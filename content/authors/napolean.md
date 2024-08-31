@@ -1,7 +1,4 @@
 ---
 name: Napolean
-avatar: /uploads/llama-2.avif
+avatar: /uploads/main/llama-2.avif
 ---
-
-
-
