@@ -1,4 +1,5 @@
 import type { Collection } from "tinacms";
+import { tagField } from "../fields/tag";
 
 const Post: Collection = {
   label: "Blog Posts",
@@ -6,7 +7,7 @@ const Post: Collection = {
   path: "content/posts",
   format: "mdx",
   ui: {
-    router: ({ document }) => {                  
+    router: ({ document }) => {
       return `/posts/${document._sys.breadcrumbs.join("/")}`;
     },
   },
@@ -112,6 +113,7 @@ const Post: Collection = {
       ],
       isBody: true,
     },
+    tagField,
   ],
 };
 

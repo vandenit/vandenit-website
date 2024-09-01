@@ -9,6 +9,8 @@ import { format } from "date-fns";
 import { PostQuery } from "../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { components } from "../../../components/mdx-components";
+import { FaTag } from "react-icons/fa";
+import Link from "next/link";
 
 const titleColorClasses = {
   blue: "from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500",
@@ -51,9 +53,8 @@ export default function PostClientPage(props: ClientPostProps) {
           className={`w-full relative	mb-8 text-6xl font-extrabold tracking-normal text-center title-font`}
         >
           <span
-            className={`bg-clip-text text-transparent bg-gradient-to-r ${
-              titleColorClasses[theme.color]
-            }`}
+            className={`bg-clip-text text-transparent bg-gradient-to-r ${titleColorClasses[theme.color]
+              }`}
           >
             {post.title}
           </span>
@@ -92,6 +93,16 @@ export default function PostClientPage(props: ClientPostProps) {
             {formattedDate}
           </p>
         </div>
+        {post.tags && (
+          <div className="flex items-center justify-center mb-16">
+            <FaTag />
+            {post.tags.map((tag) => (
+              <span key={tag} className="badge ml-2 text-xs font-semibold">
+                <Link href={`/tags/${tag}`}>{tag}</Link>
+              </span>
+            ))}
+          </div>
+        )}
       </Container>
       {post.heroImg && (
         <div className="px-4 w-full">
