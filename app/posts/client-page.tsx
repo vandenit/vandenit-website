@@ -9,9 +9,11 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
   PostConnectionQuery,
   PostConnectionQueryVariables,
+  ThemeConnectionQuery,
 } from "../../tina/__generated__/types";
 import { useTina } from "tinacms/dist/react";
 import { FaTag } from "react-icons/fa";
+import { TagFilterPanel } from "./tag-filter-panel";
 
 const titleColorClasses = {
   blue: "group-hover:text-blue-600 dark:group-hover:text-blue-300",
@@ -23,18 +25,23 @@ const titleColorClasses = {
   orange: "group-hover:text-orange-600 dark:group-hover:text-orange-300",
   yellow: "group-hover:text-yellow-500 dark:group-hover:text-yellow-300",
 };
+
+
 interface ClientPostProps {
   data: PostConnectionQuery;
   variables: PostConnectionQueryVariables;
   query: string;
+  tags: string[];
 }
 
 export default function PostsClientPage(props: ClientPostProps) {
   const { data } = useTina({ ...props });
+  const { tags } = props;
   const { theme } = useLayout();
 
   return (
     <>
+      <TagFilterPanel tags={tags} />
       {data?.postConnection.edges.map((postData) => {
         const post = postData.node;
         const date = new Date(post.date);
