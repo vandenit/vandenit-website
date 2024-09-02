@@ -91,7 +91,7 @@ export default function PostsClientPage(props: ClientPostProps) {
                       key={tag}
                       className="badge ml-2 text-xs font-semibold"
                     >
-                      <Link href={`/tags/${tag}`}>{tag}</Link>
+                      <Link href={`/posts?tag=${tag}`}>{tag}</Link>
                     </span>
                   ))}
                 </div>

@@ -98,7 +98,7 @@ export default function PostClientPage(props: ClientPostProps) {
             <FaTag />
             {post.tags.map((tag) => (
               <span key={tag} className="badge ml-2 text-xs font-semibold">
-                <Link href={`/tags/${tag}`}>{tag}</Link>
+                <Link href={`/posts?tag=${tag}`}>{tag}</Link>
               </span>
             ))}
           </div>
