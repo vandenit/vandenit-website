@@ -34,7 +34,7 @@ const config = defineConfig({
   },
   search: {
     tina: {
-      indexerToken: '37c6bf819004ed6f7df33a5c2691824b49c6929b',
+      indexerToken: process.env.TINA_SEARCH_TOKEN,
       stopwordLanguages: ['eng'],
     },
     indexBatchSize: 100,
