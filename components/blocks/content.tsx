@@ -5,19 +5,16 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { Template } from "tinacms";
 import { PageBlocksContent } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
-import { Container } from "../layout/container";
-import { Section } from "../layout/section";
+import { Container, Section } from "@radix-ui/themes";
 
 export const Content = ({ data }: { data: PageBlocksContent }) => {
   return (
-    <Section color={data.color}>
+    <Section >
       <Container
         className={`prose prose-lg ${
           data.color === "primary" ? `prose-primary` : `dark:prose-dark`
         }`}
         data-tina-field={tinaField(data, "body")}
-        size="large"
-        width="medium"
       >
         <TinaMarkdown content={data.body} />
       </Container>

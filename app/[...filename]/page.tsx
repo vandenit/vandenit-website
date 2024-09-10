@@ -13,7 +13,7 @@ export default async function Page({
   });
 
   return (
-    <Layout rawPageData={data}>
+    <Layout>
       <ClientPage {...data}></ClientPage>
     </Layout>
   );

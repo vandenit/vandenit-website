@@ -1,5 +1,5 @@
 ---
-title: Tina Cloud Starter
+title: Vanden IT
 blocks:
   - headline: Vanden IT
     text: >
@@ -43,21 +43,21 @@ blocks:
     _template: hero
   - items:
       - icon:
-          name: BiCodeBlock
-          color: red
+          name: CodeIcon
+          color: orange
           style: float
         title: Amazing Feature
         text: >-
           Aliquam blandit felis rhoncus, eleifend ipsum in, condimentum nibh.
           Praesent ac faucibus risus, eu lacinia enim.
       - icon:
-          name: BiLike
+          name: CheckIcon
           color: primary
           style: float
         title: This Is a Feature
         text: Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.
       - icon:
-          name: BiPalette
+          name: CookieIcon
           color: green
           style: float
         title: Configurable Theme
@@ -73,3 +73,4 @@ blocks:
     color: primary
     _template: testimonial
 ---
+
