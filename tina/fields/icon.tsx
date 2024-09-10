@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { Button, wrapFieldsWithMeta } from "tinacms";
-import { BiChevronRight } from "react-icons/bi";
-import { GoCircleSlash } from "react-icons/go";
+import { ChevronRightIcon,  SlashIcon } from "@radix-ui/react-icons";
 import { Icon, IconOptions } from "../../components/icon";
 import {
   Popover,
@@ -52,7 +51,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
                 )}
                 {inputLabel}
                 {!InputIcon && (
-                  <BiChevronRight className="w-5 h-auto fill-current opacity-70 ml-1" />
+                  <ChevronRightIcon className="w-5 h-auto fill-current opacity-70 ml-1" />
                 )}
               </Button>
             </PopoverButton>
@@ -102,7 +101,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
                               close();
                             }}
                           >
-                            <GoCircleSlash className="w-6 h-auto text-gray-200" />
+                            <SlashIcon className="w-6 h-auto text-gray-200" />
                           </button>
                           {filteredBlocks.map((name) => {
                             return (
@@ -121,7 +120,6 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
                                     size: "custom",
                                     color: "blue",
                                   }}
-                                  className="w-7 h-auto"
                                 />
                               </button>
                             );

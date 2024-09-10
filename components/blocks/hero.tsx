@@ -5,106 +5,93 @@ import type { Template } from "tinacms";
 import { PageBlocksHero } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
 import Image from "next/image";
-import { Section } from "../layout/section";
-import { Container } from "../layout/container";
 import { Actions } from "./actions";
+import { Box, Container, Grid, Section, Text } from "@radix-ui/themes";
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
-  const headlineColorClasses = {
-    blue: "from-blue-400 to-blue-600",
-    teal: "from-teal-400 to-teal-600",
-    green: "from-green-400 to-green-600",
-    red: "from-red-400 to-red-600",
-    pink: "from-pink-400 to-pink-600",
-    purple: "from-purple-400 to-purple-600",
-    orange: "from-orange-300 to-orange-600",
-    yellow: "from-yellow-400 to-yellow-600",
-  };
+
 
   return (
-    <Section color={data.color}>
-      <Container
-        size="large"
-        className="grid grid-cols-1 md:grid-cols-5 gap-14 items-start justify-center"
+    <Section>
+      <Grid
+        columns={{ initial: '1', md: '5' }}  // Grid with 1 column on mobile, 5 on md+
+        gap="6"  // Adjust the gap as needed
+        style={{
+          gridTemplateRows: 'repeat(2, auto)',  // Mimicking the Tailwind `row-start` behavior
+        }}
       >
-        <div className="row-start-2 md:row-start-1 md:col-span-5 text-center md:text-left">
+        {/* Content Box */}
+        <Box
+          gridRow={{ initial: '2', md: '1' }}  // Row start logic for responsive design
+          gridColumn={{ initial: '1', md: 'span 5' }}  // Column span logic
+        >
+          {/* Tagline */}
           {data.tagline && (
-            <h2
-              data-tina-field={tinaField(data, "tagline")}
-              className="relative inline-block px-3 py-1 mb-8 text-md font-bold tracking-wide title-font z-20"
-            >
+            <h2 data-tina-field={tinaField(data, 'tagline')}>
               {data.tagline}
-              <span className="absolute w-full h-full left-0 top-0 rounded-full -z-1 bg-current opacity-7"></span>
             </h2>
           )}
+
+          {/* Headline */}
           {data.headline && (
-            <h3
-              data-tina-field={tinaField(data, "headline")}
-              className={`w-full relative mb-10 text-5xl font-extrabold tracking-normal leading-tight title-font`}
-            >
-              <span
-                className={`bg-clip-text text-transparent bg-gradient-to-r  ${
-                  data.color === "primary"
-                    ? `from-white to-gray-100`
-                    : headlineColorClasses["blue"]
-                }`}
-              >
-                {data.headline}
-              </span>
+            <h3 data-tina-field={tinaField(data, 'headline')}>
+              {data.headline}
             </h3>
           )}
-          <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex flex-col md:w-3/5">
+
+          {/* Flex Container for Text and Image */}
+          <Grid columns={{ initial: '1', md: '2' }} gap="6">
+            {/* Text Column */}
+            <Box>
               {data.text && (
-                <div
-                  data-tina-field={tinaField(data, "text")}
-                  className={`prose prose-lg mx-auto md:mx-0 mb-10 ${
-                    data.color === "primary"
-                      ? `prose-primary`
-                      : `dark:prose-dark`
-                  }`}
+                <Box
+                  data-tina-field={tinaField(data, 'text')}
                 >
                   <TinaMarkdown content={data.text} />
-                </div>
+                </Box>
               )}
-            </div>
+            </Box>
+
+            {/* Image Column */}
             {data.image && (
-              <div
-                data-tina-field={tinaField(data.image, "src")}
-                className="relative flex-shrink-0 md:w-2/5 flex justify-center"
+              <Box
+                data-tina-field={tinaField(data.image, 'src')}
+                className="relative flex-shrink-0"
               >
                 <Image
                   className="w-full h-auto max-w-full rounded-lg"
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: 'cover' }}
                   alt={data.image.alt}
                   src={data.image.src}
                   width={500}
                   height={500}
                 />
-              </div>
+              </Box>
             )}
-          </div>
+          </Grid>
+
+          {/* Additional Text */}
           {data.text2 && (
-            <div
-              data-tina-field={tinaField(data, "text2")}
-              className={`prose prose-lg mx-auto md:mx-0 mb-10 ${
-                data.color === "primary" ? `prose-primary` : `dark:prose-dark`
-              }`}
+            <Box
+              data-tina-field={tinaField(data, 'text2')}
             >
               <TinaMarkdown content={data.text2} />
-            </div>
+            </Box>
           )}
+
+          {/* Actions */}
           {data.actions && (
-            <div className="mt-10">
+            <Box mt="10">
               <Actions
                 className="justify-center md:justify-start py-2"
                 parentColor={data.color}
                 actions={data.actions}
               />
-            </div>
+            </Box>
           )}
-        </div>
-      </Container>
+        </Box>
+      </Grid>
+
     </Section>
   );
 };
