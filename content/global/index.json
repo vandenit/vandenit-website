@@ -31,7 +31,8 @@
     }
   },
   "theme": {
-    "color": "ember",
+    "accentColor": "Gold",
+    "greyColor": "gray",
     "font": "lato",
     "darkMode": "dark"
   }

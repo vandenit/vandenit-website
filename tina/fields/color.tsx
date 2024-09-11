@@ -3,15 +3,8 @@ import { wrapFieldsWithMeta } from "tinacms";
 import styled, { ThemeProvider } from 'styled-components';
 
 export const colorOptions = [
-  "blue",
-  "teal",
-  "green",
-  "yellow",
-  "orange",
-  "red",
-  "pink",
-  "purple",
-  "white",
+  "Soft", "Gray", "Gold", "Bronze", "Brown", "Yellow", "Amber", "Orange", "Tomato", "Red", "Ruby",
+  "Crimson", "Pink", "Plum", "Purple", "Violet", "Iris", "Indigo", "Blue", "Cyan", "Teal", "Jade", "Green", "Grass", "Lime", "Mint", "Sky"
 ];
 
 const Button = styled.button`

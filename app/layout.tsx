@@ -30,8 +30,8 @@ export default async function RootLayout({
           forcedTheme={global.theme.darkMode}
         >
           <Theme
-            accentColor="mint"
-            grayColor="gray"
+            accentColor={global.theme.accentColor}
+            grayColor={global.theme.greyColor || "gray"}
             panelBackground="solid"
             scaling="100%"
             radius="full">

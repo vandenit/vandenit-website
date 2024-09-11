@@ -111,8 +111,16 @@ const Global: Collection = {
       fields: [
         {
           type: "string",
-          label: "Primary Color",
-          name: "color",
+          label: "Accent Color",
+          name: "accentColor",
+          ui: {
+            component: ColorPickerInput,
+          },
+        },
+        {
+          type: "string",
+          label: "Grey Color",
+          name: "greyColor",
           ui: {
             component: ColorPickerInput,
           },
