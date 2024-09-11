@@ -20,7 +20,6 @@ export const Feature = ({
       {data.icon && (
         <Icon
           tinaField={tinaField(data, 'icon')}
-          parentColor={featuresColor}
           data={{ size: 'large', ...data.icon }}
         />
       )}
