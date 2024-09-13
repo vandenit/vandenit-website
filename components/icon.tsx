@@ -43,12 +43,7 @@ export const Icon = ({
 
   const IconSVG = IconOptions[name];
 
-  const iconColor = color
-    ? color === "primary"
-      ? theme.color
-      : color
-    : theme.color;
-
+  const iconColor = color;
   return (
     <IconButton size={size || undefined} color={color || undefined} variant={variant || undefined}>
       <IconSVG

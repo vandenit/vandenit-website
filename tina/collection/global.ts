@@ -1,6 +1,7 @@
 import type { Collection } from "tinacms";
-import { ColorPickerInput } from "../fields/color";
+import { colorOptions, ColorPickerInput, greyOptions } from "../fields/color";
 import { iconSchema } from "../fields/icon";
+
 
 const Global: Collection = {
   label: "Global",
@@ -113,17 +114,13 @@ const Global: Collection = {
           type: "string",
           label: "Accent Color",
           name: "accentColor",
-          ui: {
-            component: ColorPickerInput,
-          },
+          options: colorOptions.map(color => ({ label: color, value: color })),
         },
         {
           type: "string",
           label: "Grey Color",
           name: "greyColor",
-          ui: {
-            component: ColorPickerInput,
-          },
+          options:  greyOptions.map(color => ({ label: color, value: color })),
         },
         {
           type: "string",

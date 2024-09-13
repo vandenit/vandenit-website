@@ -12,14 +12,12 @@ export default function Header() {
   const { globalSettings, theme } = useLayout();
   const header = globalSettings.header;
 
-
   return (
     <Container>
           <h4>
             <Link
               href="/"
-              className="flex gap-1 items-center whitespace-nowrap tracking-[.002em]"
-            >
+              >
               <span data-tina-field={tinaField(header, "name")}>
                 {header.name}
               </span>
