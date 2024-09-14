@@ -6,8 +6,8 @@ import client from "../tina/__generated__/client";
 import { Theme } from "@radix-ui/themes";
 
 export const metadata: Metadata = {
-  title: "Tina",
-  description: "Tina Cloud Starter",
+  title: "Vanden IT",
+  description: "Vanden IT",
 };
 
 export default async function RootLayout({
@@ -19,7 +19,7 @@ export default async function RootLayout({
     relativePath: "index.json",
   });
   const global = globalQuery.data.global;
-
+  console.log(JSON.stringify(global, null, 2));
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -30,11 +30,12 @@ export default async function RootLayout({
           forcedTheme={global.theme.darkMode}
         >
           <Theme
-            accentColor={global.theme.accentColor as any}
+            accentColor={global.theme.accentCol as any}
             grayColor={global.theme.greyColor || "gray" as any}
             panelBackground="solid"
             scaling="100%"
             radius="full">
+            <h1>{global.theme.accentColor}</h1>
             {children}
           </Theme>
         </ThemeProvider>

@@ -33,7 +33,7 @@ export default function NavItems({ navs }: { navs: any }) {
           <DropdownMenu.Content>
             {navs.map((item) => (
               <DropdownMenu.Item asChild
-                key={item.value}
+                key={item.href}
               >
                 <Link href={item.href}>
                   {item.label}
