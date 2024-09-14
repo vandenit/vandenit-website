@@ -31,7 +31,7 @@
     }
   },
   "theme": {
-    "accentColor": "bronze",
+    "accentColor": "gold",
     "greyColor": "gray",
     "font": "lato",
     "darkMode": "dark"
