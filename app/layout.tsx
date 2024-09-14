@@ -35,7 +35,7 @@ export default async function RootLayout({
             panelBackground="solid"
             scaling="100%"
             radius="full">
-            <h1>{global.theme.accentColor}</h1>
+            <h1>{global.theme.accentCol}</h1>
             {children}
           </Theme>
         </ThemeProvider>
