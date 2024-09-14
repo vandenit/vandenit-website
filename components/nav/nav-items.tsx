@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
 import Link from "next/link";
-import { Box, DropdownMenu, IconButton, TabNav } from "@radix-ui/themes";
+import { Box, DropdownMenu, Heading, IconButton, TabNav } from "@radix-ui/themes";
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 
 export default function NavItems({ navs }: { navs: any }) {
@@ -12,6 +12,7 @@ export default function NavItems({ navs }: { navs: any }) {
     <>
       <Box width="100%" display={{ initial: 'none', sm: 'block' }}>
         <TabNav.Root>
+          <Heading size="1">VDIT</Heading>
           {navs.map((item) => {
             return (
               <TabNav.Link active={currentPath === `/${item.href}`} asChild key={item.href}>

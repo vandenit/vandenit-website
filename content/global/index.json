@@ -31,8 +31,8 @@
     }
   },
   "theme": {
-    "accentCol": "gray",
-    "greyColor": "gray",
+    "accentCol": "blue",
+    "greyColor": "slate",
     "font": "nunito",
     "darkMode": "dark"
   }
