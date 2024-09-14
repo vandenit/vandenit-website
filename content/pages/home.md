@@ -1,7 +1,7 @@
 ---
 title: Vanden IT
 blocks:
-  - headline: Vanden IT
+  - headline: Vanden IT?
     text: >
       ## **Editors**
 
