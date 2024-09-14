@@ -44,21 +44,21 @@ blocks:
   - items:
       - icon:
           name: CodeIcon
-          color: orange
+          color: yellow
           style: float
         title: Amazing Feature
         text: >-
           Aliquam blandit felis rhoncus, eleifend ipsum in, condimentum nibh.
           Praesent ac faucibus risus, eu lacinia enim.
       - icon:
-          name: CheckIcon
-          color: primary
+          name: AccessibilityIcon
+          color: orange
           style: float
         title: This Is a Feature
         text: Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.
       - icon:
           name: CookieIcon
-          color: green
+          color: red
           style: float
         title: Configurable Theme
         text: >-
