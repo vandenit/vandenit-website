@@ -4,6 +4,7 @@ import { ThemeProvider } from "../components/theme-provider";
 import { Metadata } from "next";
 import client from "../tina/__generated__/client";
 import { Theme } from "@radix-ui/themes";
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: "Vanden IT",

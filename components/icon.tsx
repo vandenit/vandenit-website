@@ -42,8 +42,6 @@ export const Icon = ({
   const { name, color, size, variant } = data;
 
   const IconSVG = IconOptions[name];
-
-  const iconColor = color;
   return (
     <IconButton size={size || undefined} color={color || undefined} variant={variant || undefined}>
       <IconSVG

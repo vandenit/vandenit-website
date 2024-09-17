@@ -6,7 +6,7 @@ import {
 import { tinaField } from "tinacms/dist/react";
 import { Icon } from "../icon";
 import { iconSchema } from "../../tina/fields/icon";
-import { Box, Container, Grid, Section } from "@radix-ui/themes";
+import { Box, Card, Container, Flex, Grid, Section, Text } from "@radix-ui/themes";
 
 export const Feature = ({
   featuresColor,
@@ -16,31 +16,22 @@ export const Feature = ({
   data: PageBlocksFeaturesItems;
 }) => {
   return (
-    <Box style={{ textAlign: 'center' }}>
-      {data.icon && (
+    <Card>
+      <Flex gap="3" align="start" justify="start">
         <Icon
           tinaField={tinaField(data, 'icon')}
           data={{ size: 'large', ...data.icon }}
         />
-      )}
-
-      {data.title && (
-        <h3
-          data-tina-field={tinaField(data, 'title')}
-        >
-          {data.title}
-        </h3>
-      )}
-
-      {data.text && (
-        <p
-          data-tina-field={tinaField(data, 'text')}
-          style={{ opacity: 0.8, lineHeight: '1.6' }}
-        >
-          {data.text}
-        </p>
-      )}
-    </Box>
+        <Box>
+          <Text as="div" size="2" weight="bold" data-tina-field={tinaField(data, 'title')}>
+            {data.title}
+          </Text>
+          <Text as="div" size="2" color="gray" data-tina-field={tinaField(data, 'text')}>
+            {data.text}
+          </Text>
+        </Box>
+      </Flex>
+    </Card>
   );
 };
 
@@ -49,7 +40,7 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
     <Section>
       <Container
       >
-        <Grid columns="3" gap="3" rows="repeat(2, 64px)" width="auto">
+        <Grid columns={{ initial: '1', sm: '3' }} gap="3">
           {data.items &&
             data.items.map(function (block, i) {
               return <Feature featuresColor={data.color} key={i} data={block} />;

@@ -13,12 +13,12 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
   return (
     <Box p="8">
       {/* Hero Heading */}
-      <Heading as="h1" size="9" mb="4" data-tina-field={tinaField(data, 'tagline')}>
-        {data.tagline}
+      <Heading as="h1" size={{ initial: '6', sm: '9'}}  mb="4" data-tina-field={tinaField(data, 'tagline')}>
+      {data.tagline}
       </Heading>
 
       {/* Hero Subheading */}
-      <Text as="p" size="5" mb="6" >
+      <Text as="p" size={{ initial: '3', sm: '4', md: '5'}} mb="6" >
         Bij Vanden IT streven we ernaar om innovatieve oplossingen te bouwen die de kracht van open source technologieën benutten.
       </Text>
 
