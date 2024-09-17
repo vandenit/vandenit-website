@@ -31,7 +31,7 @@
     }
   },
   "theme": {
-    "accentCol": "grass",
+    "accentCol": "amber",
     "greyColor": "slate",
     "font": "nunito",
     "darkMode": "dark"
