@@ -2,7 +2,7 @@
 title: About
 blocks:
   - tagline: Meet the Founder
-    headline: Filip Van den Broeck
+    headline: ' Filip Van den Broeck, a seasoned Full Stack Developer with over 15 years of experience in developing high-performance, secure web applications and systems.'
     text: ''
     text2: ''
     image:
