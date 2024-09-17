@@ -6,7 +6,6 @@ import Link from "next/link";
 import { AccessibleIcon, Box, DropdownMenu, Flex, Heading, IconButton, TabNav } from "@radix-ui/themes";
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { VandenITLogo } from "../vanden-it-logo";
-import { RadixLogo, RadixLogoIcon } from "../radix-logo";
 
 export default function NavItems({ navs }: { navs: any }) {
   const currentPath = usePathname();

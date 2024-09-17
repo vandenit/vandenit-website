@@ -6,93 +6,27 @@ import { PageBlocksHero } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
 import Image from "next/image";
 import { Actions } from "./actions";
-import { Box, Container, Grid, Section, Text } from "@radix-ui/themes";
+import { Box, Button, Container, Grid, Heading, Section, Text } from "@radix-ui/themes";
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
-
   return (
-    <Section>
-      <Grid
-        columns={{ initial: '1', md: '5' }}  // Grid with 1 column on mobile, 5 on md+
-        gap="6"  // Adjust the gap as needed
-        style={{
-          gridTemplateRows: 'repeat(2, auto)',  // Mimicking the Tailwind `row-start` behavior
-        }}
-      >
-        {/* Content Box */}
-        <Box
-          gridRow={{ initial: '2', md: '1' }}  // Row start logic for responsive design
-          gridColumn={{ initial: '1', md: 'span 5' }}  // Column span logic
-        >
-          {/* Tagline */}
-          {data.tagline && (
-            <h2 data-tina-field={tinaField(data, 'tagline')}>
-              {data.tagline}
-            </h2>
-          )}
+    <Box p="8">
+      {/* Hero Heading */}
+      <Heading as="h1" size="9" mb="4" data-tina-field={tinaField(data, 'tagline')}>
+        {data.tagline}
+      </Heading>
 
-          {/* Headline */}
-          {data.headline && (
-            <h3 data-tina-field={tinaField(data, 'headline')}>
-              {data.headline}
-            </h3>
-          )}
+      {/* Hero Subheading */}
+      <Text as="p" size="5" mb="6" >
+        Bij Vanden IT streven we ernaar om innovatieve oplossingen te bouwen die de kracht van open source technologieën benutten.
+      </Text>
 
-          {/* Flex Container for Text and Image */}
-          <Grid columns={{ initial: '1', md: '2' }} gap="6">
-            {/* Text Column */}
-            <Box>
-              {data.text && (
-                <Box
-                  data-tina-field={tinaField(data, 'text')}
-                >
-                  <TinaMarkdown content={data.text} />
-                </Box>
-              )}
-            </Box>
-
-            {/* Image Column */}
-            {data.image && (
-              <Box
-                data-tina-field={tinaField(data.image, 'src')}
-                className="relative flex-shrink-0"
-              >
-                <Image
-                  className="w-full h-auto max-w-full rounded-lg"
-                  style={{ objectFit: 'cover' }}
-                  alt={data.image.alt}
-                  src={data.image.src}
-                  width={500}
-                  height={500}
-                />
-              </Box>
-            )}
-          </Grid>
-
-          {/* Additional Text */}
-          {data.text2 && (
-            <Box
-              data-tina-field={tinaField(data, 'text2')}
-            >
-              <TinaMarkdown content={data.text2} />
-            </Box>
-          )}
-
-          {/* Actions */}
-          {data.actions && (
-            <Box mt="10">
-              <Actions
-                className="justify-center md:justify-start py-2"
-                parentColor={data.color}
-                actions={data.actions}
-              />
-            </Box>
-          )}
-        </Box>
-      </Grid>
-
-    </Section>
+      {/* Call to Action Button */}
+      <Button size="4" variant="classic" mt="5">
+        Ontdek Meer
+      </Button>
+    </Box>
   );
 };
 

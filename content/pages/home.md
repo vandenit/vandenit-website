@@ -1,7 +1,10 @@
 ---
 title: Vanden IT
 blocks:
-  - headline: Vanden IT?
+  - tagline: Innovatie in Open Source Ontwikkeling
+    headline: >-
+      Bij Vanden IT streven we ernaar om innovatieve oplossingen te bouwen die
+      de kracht van open source technologieën benutten.
     text: >
       ## **Editors**
 

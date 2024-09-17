@@ -19,7 +19,7 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
       <Header />
       <main
       >
-        <Container size={{ initial: '2', sm: '3', md: '4' }} p={{ initial: '4', md: '6' }} m="auto">
+        <Container mx="5" my="5" >
           {children}
         </Container>
       </main>
