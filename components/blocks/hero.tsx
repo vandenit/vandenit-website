@@ -31,7 +31,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
           {/* Hero Subheading */}
           <Text as="p" size={{ initial: '3', sm: '4', md: '5' }} mb="6" data-tina-field={tinaField(data, 'headline')}  >
-            Bij Vanden IT streven we ernaar om innovatieve oplossingen te bouwen die de kracht van open source technologieën benutten.
+            {data.headline}
           </Text>
 
         </Box>
