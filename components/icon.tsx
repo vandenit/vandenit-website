@@ -24,6 +24,25 @@ export const IconOptions = {
       />
     </svg>
   ),
+  VandenIT: (props) => (
+    <svg
+      {...props}
+      viewBox="0 0 66 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>Vanden IT</title>
+      <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="5" fill="none" />
+
+      <path
+        d="M 30 30 L 48 70 L 50 63 L 52 70 L 70 30"
+        stroke="currentColor"
+        strokeWidth="8"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  ),
   ...RadixIcons,
   ...BoxIcons
 };

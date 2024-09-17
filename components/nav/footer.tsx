@@ -26,7 +26,7 @@ export default function Footer() {
               data={{
                 name: globalSettings?.header.icon.name,
                 color:
-                  footer.color,
+                  globalSettings?.header.icon.color ? globalSettings?.header.icon.color : footer.color,
               }}
             />
           </Link>
