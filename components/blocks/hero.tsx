@@ -6,26 +6,46 @@ import { PageBlocksHero } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
 import Image from "next/image";
 import { Actions } from "./actions";
-import { Box, Button, Container, Grid, Heading, Section, Text } from "@radix-ui/themes";
+import { Avatar, Box, Button, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
   return (
     <Box p="8">
-      {/* Hero Heading */}
-      <Heading as="h1" size={{ initial: '6', sm: '9'}}  mb="4" data-tina-field={tinaField(data, 'tagline')}>
-      {data.tagline}
-      </Heading>
+      <Flex>
+        {data.image && data.image.isAvatar && (
+          <Box>
+            <Avatar
+              src={data.image.src}
+              fallback="A"
+              size="6"
+              mr="5"
+            />
+          </Box>
+        )}
+        <Box>
+          {/* Hero Heading */}
+          <Heading as="h1" size={{ initial: '6', sm: '9' }} mb="4" data-tina-field={tinaField(data, 'tagline')}>
+            {data.tagline}
+          </Heading>
 
-      {/* Hero Subheading */}
-      <Text as="p" size={{ initial: '3', sm: '4', md: '5'}} mb="6" >
-        Bij Vanden IT streven we ernaar om innovatieve oplossingen te bouwen die de kracht van open source technologieën benutten.
-      </Text>
+          {/* Hero Subheading */}
+          <Text as="p" size={{ initial: '3', sm: '4', md: '5' }} mb="6" data-tina-field={tinaField(data, 'headline')}  >
+            Bij Vanden IT streven we ernaar om innovatieve oplossingen te bouwen die de kracht van open source technologieën benutten.
+          </Text>
+
+        </Box>
+      </Flex>
+
 
       {/* Call to Action Button */}
-      <Button size="4" variant="classic" mt="5">
-        Ontdek Meer
-      </Button>
+      {data.actions && (
+        <Box mt="10">
+          <Actions
+            actions={data.actions}
+          />
+        </Box>
+      )}
     </Box>
   );
 };
@@ -117,6 +137,11 @@ export const heroBlockSchema: Template = {
           name: "alt",
           label: "Alt Text",
           type: "string",
+        },
+        {
+          name: "isAvatar",
+          label: "Is Avatar",
+          type: "boolean",
         },
       ],
     },

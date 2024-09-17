@@ -1,10 +1,10 @@
 ---
 title: Vanden IT
 blocks:
-  - tagline: Innovatie in Open Source Ontwikkeling
+  - tagline: Building Scalable Solutions with Cutting-Edge Technologies
     headline: >-
-      Bij Vanden IT streven we ernaar om innovatieve oplossingen te bouwen die
-      de kracht van open source technologieën benutten.
+      At Vanden IT, we specialize in developing high-performance software
+      solutions that drive business success.
     text: >
       ## **Editors**
 
@@ -29,14 +29,14 @@ blocks:
       all together in `pages/[filename].tsx`, all based on a config
       `tina/config.tsx`.
     actions:
-      - label: Get Started
+      - label: Our services
         type: button
         icon: true
         link: /about
-      - label: Read Blog
-        type: link
+      - label: Meet the Founder
+        type: button
         icon: false
-        link: /posts
+        link: /about
     image:
       src: /uploads/main/unsplash-75EFpyXu3Wg.jpg
       alt: >-
