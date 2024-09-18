@@ -33,7 +33,7 @@ blocks:
         type: button
         icon: true
         link: /about
-      - label: Meet the Founder
+      - label: Meet the Developer
         type: button
         icon: false
         link: /about
