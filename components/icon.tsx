@@ -1,6 +1,6 @@
 "use client";
 import * as RadixIcons from "@radix-ui/react-icons";
-import * as BoxIcons from "@radix-ui/react-icons";
+import * as FaIcons from "react-icons/fa";
 import React from "react";
 import { useLayout } from "./layout/layout-context";
 import { IconButton, IconProps } from "@radix-ui/themes";
@@ -44,7 +44,7 @@ export const IconOptions = {
     </svg>
   ),
   ...RadixIcons,
-  ...BoxIcons
+  ...FaIcons
 };
 
 

@@ -48,25 +48,68 @@ blocks:
       - icon:
           name: CodeIcon
           color: yellow
-          style: float
-        title: Amazing Feature
+        title: Custom Software Development
         text: >-
-          Aliquam blandit felis rhoncus, eleifend ipsum in, condimentum nibh.
-          Praesent ac faucibus risus, eu lacinia enim.
+          Tailored software solutions designed to meet your specific business
+          needs, ensuring scalability, performance, and flexibility.
       - icon:
-          name: AccessibilityIcon
+          name: FaPuzzlePiece
+          color: blue
+        title: Open Source Integration
+        text: >-
+          Integrate the power of open source technologies into your business
+          systems to reduce costs, increase flexibility, and ensure continuous
+          innovation.
+      - icon:
+          name: FaBrain
           color: orange
-          style: float
-        title: This Is a Feature
-        text: Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.
-      - icon:
-          name: CookieIcon
-          color: red
-          style: float
-        title: Configurable Theme
+        title: Consultancy and Strategy
         text: >-
-          Edit global theme configuration with Tina. Change your theme's primary
-          color, font, or icon set.
+          Expert guidance to help you navigate the complexities of technology
+          adoption, from digital transformation to software architecture design.
+      - icon:
+          name: FaCloud
+          color: lightblue
+        title: Cloud and DevOps Solutions
+        text: >-
+          Implement robust cloud solutions and DevOps practices to enhance
+          deployment speed, maintainability, and security of your applications.
+      - icon:
+          name: FaWrench
+          color: red
+        title: Maintenance and Support
+        text: >-
+          Ongoing support and maintenance services to ensure your software stays
+          up-to-date, secure, and performs optimally.
+      - icon:
+          name: FaPaintBrush
+          color: pink
+        title: UI/UX Design and Prototyping
+        text: >-
+          Design intuitive user interfaces and create interactive prototypes to
+          ensure a seamless user experience that meets your business goals.
+      - icon:
+          name: FaExchangeAlt
+          color: green
+        title: API Development and Integration
+        text: >-
+          Develop and integrate APIs that enable seamless communication between
+          different software systems, ensuring data consistency and operational
+          efficiency.
+      - icon:
+          name: BarChartIcon
+          color: purple
+        title: Data Analytics and Insights
+        text: >-
+          Leverage data analytics to uncover insights and drive data-driven
+          decision making for better business outcomes.
+      - icon:
+          name: LockClosedIcon
+          color: black
+        title: Security and Compliance
+        text: >-
+          Implement advanced security protocols and ensure compliance with
+          industry standards to protect your software and data.
     color: tint
     _template: features
   - quote: >-
