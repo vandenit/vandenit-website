@@ -11,7 +11,7 @@ import { Avatar, Box, Button, Container, Flex, Grid, Heading, Section, Text } fr
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
   return (
-    <Box p="8">
+    <Box p="8" pb="5" pt="5">
       <Flex>
         {data.image && data.image.isAvatar && (
           <Box>

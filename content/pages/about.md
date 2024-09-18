@@ -10,75 +10,137 @@ blocks:
       isAvatar: true
     _template: hero
   - body: >
-      Hello! I'm Filip Van den Broeck, a seasoned Full Stack Developer with over
-      15 years of experience in developing high-performance, secure web
-      applications and systems. Based in Antwerpen, Belgium, I have a proven
-      track record of leading projects to successful completion, overcoming
-      complex technical and security challenges, and delivering high-quality
-      solutions. My expertise spans both frontend and backend development, with
-      a strong emphasis on secure coding practices and proactive threat
-      mitigation. I’ve worked extensively with technologies like Java, Spring
-      Boot, React, and Microservices, applying OWASP standards and integrating
-      security throughout the development lifecycle.
+      Hi! I'm Filip Van den Broeck, a Full Stack Developer with over 15 years of
+      experience in building secure, high-performance web applications. I
+      specialize in frontend and backend development, focusing on secure coding
+      and integrating OWASP standards.
 
 
       # What I Do Best
 
 
-      I excel in building robust, scalable, and secure applications that meet
-      and exceed client expectations. My experience includes securing and
-      developing mission-critical systems for financial institutions like BNP
-      Paribas Fortis, as well as delivering innovative solutions for my own
-      ventures, such as DinnerGift. I focus on ensuring high performance,
-      reliable code, and comprehensive security coverage, utilizing best
-      practices like Behavior-Driven Development (BDD) and continuous
-      integration
-
-      If you're looking for a dedicated, experienced, and security-focused
-      developer who can bring your vision to life while ensuring that your
-      application is protected against threats, let's connect! I am ready to
-      help you achieve your project goals with professionalism and a touch of
-      humor. Feel free to reach out to discuss your needs and how we can work
-      together to create something secure and amazing.
+      I build secure, scalable applications, with experience in critical systems
+      for companies like BNP Paribas Fortis and my own projects like DinnerGift.
+      I focus on performance, security, and reliability. Let's connect to
+      discuss how I can help bring your project to life.
     color: default
     _template: content
-  - items:
+  - title: Why Clients Love Working with Me
+    items:
       - icon:
           name: FaShieldAlt
           color: blue
         title: Security-First Approach
         text: >-
-          I prioritize security at every stage of development, ensuring your application is resilient against modern threats with expertise in applying OWASP standards.
+          I prioritize security at every stage of development, ensuring your
+          application is resilient against modern threats with expertise in
+          applying OWASP standards.
       - icon:
           name: FaCheckCircle
           color: green
         title: Quality-Driven
         text: >-
-          I aim for the highest quality in every project, ensuring the solutions I deliver are functional, secure, reliable, and maintainable.
+          I aim for the highest quality in every project, ensuring the solutions
+          I deliver are functional, secure, reliable, and maintainable.
       - icon:
           name: FaCommentDots
           color: orange
         title: Effective Communication
         text: >-
-          My clients appreciate my clear and transparent communication, helping them understand their needs and keeping them informed throughout the project.
+          My clients appreciate my clear and transparent communication, helping
+          them understand their needs and keeping them informed throughout the
+          project.
       - icon:
           name: FaSmile
           color: yellow
         title: Motivated and Positive
         text: >-
-          I bring a positive attitude and sense of humor, making collaboration enjoyable while staying focused on results.
+          I bring a positive attitude and sense of humor, making collaboration
+          enjoyable while staying focused on results.
       - icon:
           name: FaUserShield
           color: purple
         title: Independent and Reliable
         text: >-
-          With experience in developing, deploying, and securing my own projects, I work independently, manage tasks efficiently, and meet deadlines.
+          With experience in developing, deploying, and securing my own
+          projects, I work independently, manage tasks efficiently, and meet
+          deadlines.
       - icon:
           name: FaPuzzlePiece
           color: red
         title: Problem Solver
         text: >-
-          I thrive on tackling complex challenges, whether securing an application or solving tricky development issues, ensuring the job gets done effectively.
+          I thrive on tackling complex challenges, whether securing an
+          application or solving tricky development issues, ensuring the job
+          gets done effectively.
+    color: tint
+    _template: features
+  - title: Experience Highlights
+    items:
+      - icon:
+          name: FaBuilding
+          color: blue
+        title: Senior Full Stack Developer at BNP Paribas Fortis
+        text: >-
+          Led the development of a high-performance document and statement archiving system, handling billions of records, while integrating security measures aligned with OWASP standards.
+      - icon:
+          name: FaGift
+          color: green
+        title: Owner and Developer of DinnerGift
+        text: >-
+          Created a platform connecting restaurants and customers for selling and buying gift certificates, using modern web technologies and a security-first mindset.
+      - icon:
+          name: FaProjectDiagram
+          color: orange
+        title: Technical Lead for BNP Paribas Fortis' E-commerce Project
+        text: >-
+          Managed the Enablement project responsible for user onboarding to the financial platform Centric, ensuring all features met stringent security requirements.
+    color: tint
+    _template: features
+  - title: Key Skills and Tools
+    items:
+      - icon:
+          name: FaCode
+          color: blue
+        title: Programming Languages
+        text: >-
+          Java, JavaScript (ES6), Typescript, PHP, C, C++, HTML, CSS, SASS
+      - icon:
+          name: FaReact
+          color: cyan
+        title: Frameworks and Libraries
+        text: >-
+          Spring Boot, Spring Core, React, Redux, AngularJS, NextJs, Express.js
+      - icon:
+          name: FaLock
+          color: red
+        title: Security Practices
+        text: >-
+          OWASP Top 10, Secure Coding, Vulnerability Management
+      - icon:
+          name: FaToolbox
+          color: green
+        title: Development Tools
+        text: >-
+          IntelliJ, Visual Studio Code, Jenkins, Docker, Kubernetes, GIT, Maven, GitHub Actions, CircleCI
+      - icon:
+          name: FaDatabase
+          color: orange
+        title: Database Systems
+        text: >-
+          MongoDB, Oracle, H2, MySQL
+      - icon:
+          name: FaClipboardCheck
+          color: purple
+        title: Methodologies
+        text: >-
+          Agile (Scrum, KANBAN), Test-Driven Development (TDD), Behavior-Driven Development (BDD)
+      - icon:
+          name: FaVial
+          color: yellow
+        title: Testing and Security Tools
+        text: >-
+          Cypress, Cucumber, Mocha, Chai, JUnit, Mockito, Automated Security Scanning
     color: tint
     _template: features
 ---

@@ -14,7 +14,7 @@ export const Actions = ({
 }) => {
   const { theme } = useLayout();
   return (
-    <Flex gapY="4" gapX="3">
+    <Flex gapY="4" gapX="3"  >
       {actions &&
         actions.map(function (action, index) {
           let element = null;
@@ -23,7 +23,8 @@ export const Actions = ({
               <Link key={index} href={action.link ? action.link : "/"}>
 
                 <Button
-                  size="4" variant="classic"
+                  size={{ sm: '4'}} variant="classic"
+                  
                   data-tina-field={tinaField(action)}
                 >
                   {action.label}

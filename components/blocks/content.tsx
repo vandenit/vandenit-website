@@ -9,11 +9,9 @@ import { Container, Section } from "@radix-ui/themes";
 
 export const Content = ({ data }: { data: PageBlocksContent }) => {
   return (
-    <Section >
+    <Section mt="0" mb="0" pt="0" pb="0">
       <Container
-        className={`prose prose-lg ${
-          data.color === "primary" ? `prose-primary` : `dark:prose-dark`
-        }`}
+
         data-tina-field={tinaField(data, "body")}
       >
         <TinaMarkdown content={data.body} />
