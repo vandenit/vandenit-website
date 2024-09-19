@@ -18,7 +18,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
             <Avatar
               src={data.image.src}
               fallback="A"
-              size="6"
+              size={{ initial: '6', sm: '8' }}
               mr="5"
             />
           </Box>
@@ -28,19 +28,23 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           <Heading as="h1" size={{ initial: '6', sm: '9' }} mb="4" data-tina-field={tinaField(data, 'tagline')}>
             {data.tagline}
           </Heading>
-
-          {/* Hero Subheading */}
-          <Text as="p" size={{ initial: '3', sm: '4', md: '5' }} mb="6" data-tina-field={tinaField(data, 'headline')}  >
-            {data.headline}
-          </Text>
-
+          <Box display={{ initial: 'none', sm: 'block' }}>
+            <Text as="p" size={{ sm: '4', md: '5' }} mb="6" data-tina-field={tinaField(data, 'headline')}  >
+              {data.headline}
+            </Text>
+          </Box>
         </Box>
       </Flex>
-
+      <Box display={{ initial: 'block', sm: 'none' }} mt="2">
+        {/* Hero Subheading */}
+        <Text as="p" size="3" mb="3" data-tina-field={tinaField(data, 'headline')}  >
+          {data.headline}
+        </Text>
+      </Box>
 
       {/* Call to Action Button */}
       {data.actions && (
-        <Flex mt="0" align="center" justify="center">
+        <Flex mt="6" align="center" justify="center">
           <Actions
             actions={data.actions}
           />

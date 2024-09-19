@@ -1,29 +1,24 @@
 ---
 title: About
 blocks:
-  - tagline: Meet the Founder
-    headline: " Filip Van den Broeck, a seasoned Full Stack Developer with over 15 years of experience in developing high-performance, secure web applications and systems."
-    text: ""
-    text2: ""
+  - tagline: Meet the developer
+    headline: ' Filip Van den Broeck, a seasoned Full Stack Developer with over 15 years of experience in developing high-performance, secure web applications and systems.'
+    text: ''
+    text2: ''
     image:
       src: /uploads/main/unnamed.jpg
       isAvatar: true
     _template: hero
   - body: >
-      Hi! I'm Filip Van den Broeck, a Full Stack Developer with over 15 years of
-      experience in building secure, high-performance web applications. I
-      specialize in frontend and backend development, focusing on secure coding
-      and integrating OWASP standards.
-
-
       # What I Do Best
 
 
       I build secure, scalable applications, with experience in critical systems
-      for companies like BNP Paribas Fortis and my own projects like DinnerGift.
-      I focus on performance, security, and reliability. Let's connect to
-      discuss how I can help bring your project to life.
-    color: default
+      for companies like **BNP Paribas Fortis** and my own projects like
+      **DinnerGift**. I focus on **performance**, **security**, and
+      **reliability**. Let's connect to discuss how I can help bring your
+      project to life.
+    color: ''
     _template: content
   - title: Why Clients Love Working with Me
     items:
@@ -82,19 +77,25 @@ blocks:
           color: blue
         title: Senior Full Stack Developer at BNP Paribas Fortis
         text: >-
-          Led the development of a high-performance document and statement archiving system, handling billions of records, while integrating security measures aligned with OWASP standards.
+          Led the development of a high-performance document and statement
+          archiving system, handling billions of records, while integrating
+          security measures aligned with OWASP standards.
       - icon:
           name: FaGift
           color: green
         title: Owner and Developer of DinnerGift
         text: >-
-          Created a platform connecting restaurants and customers for selling and buying gift certificates, using modern web technologies and a security-first mindset.
+          Created a platform connecting restaurants and customers for selling
+          and buying gift certificates, using modern web technologies and a
+          security-first mindset.
       - icon:
           name: FaProjectDiagram
           color: orange
         title: Technical Lead for BNP Paribas Fortis' E-commerce Project
         text: >-
-          Managed the Enablement project responsible for user onboarding to the financial platform Centric, ensuring all features met stringent security requirements.
+          Managed the Enablement project responsible for user onboarding to the
+          financial platform Centric, ensuring all features met stringent
+          security requirements.
     color: tint
     _template: features
   - title: Key Skills and Tools
@@ -103,44 +104,44 @@ blocks:
           name: FaCode
           color: blue
         title: Programming Languages
-        text: >-
-          Java, JavaScript (ES6), Typescript, PHP, C, C++, HTML, CSS, SASS
+        text: 'Java, JavaScript (ES6), Typescript, PHP, C, C++, HTML, CSS, SASS'
       - icon:
           name: FaReact
           color: cyan
         title: Frameworks and Libraries
-        text: >-
-          Spring Boot, Spring Core, React, Redux, AngularJS, NextJs, Express.js
+        text: 'Spring Boot, Spring Core, React, Redux, AngularJS, NextJs, Express.js'
       - icon:
           name: FaLock
           color: red
         title: Security Practices
-        text: >-
-          OWASP Top 10, Secure Coding, Vulnerability Management
+        text: 'OWASP Top 10, Secure Coding, Vulnerability Management'
       - icon:
           name: FaToolbox
           color: green
         title: Development Tools
         text: >-
-          IntelliJ, Visual Studio Code, Jenkins, Docker, Kubernetes, GIT, Maven, GitHub Actions, CircleCI
+          IntelliJ, Visual Studio Code, Jenkins, Docker, Kubernetes, GIT, Maven,
+          GitHub Actions, CircleCI
       - icon:
           name: FaDatabase
           color: orange
         title: Database Systems
-        text: >-
-          MongoDB, Oracle, H2, MySQL
+        text: 'MongoDB, Oracle, H2, MySQL'
       - icon:
           name: FaClipboardCheck
           color: purple
         title: Methodologies
         text: >-
-          Agile (Scrum, KANBAN), Test-Driven Development (TDD), Behavior-Driven Development (BDD)
+          Agile (Scrum, KANBAN), Test-Driven Development (TDD), Behavior-Driven
+          Development (BDD)
       - icon:
           name: FaVial
           color: yellow
         title: Testing and Security Tools
         text: >-
-          Cypress, Cucumber, Mocha, Chai, JUnit, Mockito, Automated Security Scanning
+          Cypress, Cucumber, Mocha, Chai, JUnit, Mockito, Automated Security
+          Scanning
     color: tint
     _template: features
 ---
+
