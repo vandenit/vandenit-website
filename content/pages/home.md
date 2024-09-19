@@ -44,7 +44,8 @@ blocks:
         unsplash.com/photos/75EFpyXu3Wg
     color: default
     _template: hero
-  - items:
+  - title: Services
+    items:
       - icon:
           name: CodeIcon
           color: yellow
