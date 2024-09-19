@@ -5,7 +5,7 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import { PageBlocksHeroActions } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
 import { useLayout } from "../layout/layout-context";
-import { Button, Flex } from "@radix-ui/themes";
+import { Box, Button, Flex, Grid } from "@radix-ui/themes";
 
 export const Actions = ({
   actions,
@@ -14,25 +14,28 @@ export const Actions = ({
 }) => {
   const { theme } = useLayout();
   return (
-    <Flex gapY="4" gapX="3"  >
+    <Flex align="center" justify="center" direction={{ initial: "column", sm: "row" }}>
       {actions &&
         actions.map(function (action, index) {
           let element = null;
           if (action.type === "button") {
             element = (
-              <Link key={index} href={action.link ? action.link : "/"}>
-
-                <Button
-                  size={{ sm: '4'}} variant="classic"
-                  
-                  data-tina-field={tinaField(action)}
-                >
-                  {action.label}
-                  {action.icon && (
-                    <BiRightArrowAlt />
-                  )}
-                </Button>
-              </Link>
+              <Box key={index}>
+                <Link key={index} href={action.link ? action.link : "/"}>
+                  <Button
+                    size={{ sm: '4' }} variant="classic"
+                    mb={{ initial: '4', sm: '0' }}
+                    ml={{ initial: '0', sm: '2' }}
+                    mr={{ initial: '0', sm: '2' }}
+                    data-tina-field={tinaField(action)}
+                  >
+                    {action.label}
+                    {action.icon && (
+                      <BiRightArrowAlt />
+                    )}
+                  </Button>
+                </Link>
+              </Box>
             );
           }
           if (action.type === "link" || action.type === "linkExternal") {
@@ -41,13 +44,10 @@ export const Actions = ({
                 key={index}
                 href={action.link ? action.link : "/"}
                 data-tina-field={tinaField(action)}
-                style={{
-                  textShadow: `0 3px 7px rgba(var(--color-rgb-blue-400),0.2)`,
-                }}
               >
                 {action.label}
                 {action.icon && (
-                  <BiRightArrowAlt className={`ml-0 mr-0 w-6 h-6 opacity-80`} />
+                  <BiRightArrowAlt />
                 )}
               </Link>
             );

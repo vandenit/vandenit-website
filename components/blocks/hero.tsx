@@ -11,7 +11,7 @@ import { Avatar, Box, Button, Container, Flex, Grid, Heading, Section, Text } fr
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
   return (
-    <Box p="8" pb="5" pt="5">
+    <Box p={{ initial: '0', sm: '4' }} pb="5" pt="5">
       <Flex>
         {data.image && data.image.isAvatar && (
           <Box>
@@ -40,11 +40,11 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
       {/* Call to Action Button */}
       {data.actions && (
-        <Box mt="10">
+        <Flex mt="0" align="center" justify="center">
           <Actions
             actions={data.actions}
           />
-        </Box>
+        </Flex>
       )}
     </Box>
   );

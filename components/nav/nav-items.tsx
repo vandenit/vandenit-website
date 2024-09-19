@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
 import Link from "next/link";
-import { AccessibleIcon, Box, DropdownMenu, Flex, Heading, IconButton, TabNav } from "@radix-ui/themes";
+import { AccessibleIcon, Box, Card, DropdownMenu, Flex, Heading, IconButton, TabNav } from "@radix-ui/themes";
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { VandenITLogo } from "../vanden-it-logo";
 
@@ -33,19 +33,20 @@ export default function NavItems({ navs }: { navs: any }) {
           </TabNav.Root>
         </Box>
       </Box>
-      <Box width="100%" display={{ initial: 'block', sm: 'none' }}>
+      <Flex width="100%" display={{ initial: 'flex', sm: 'none' }} justify="between">
+        <Link href="/">
+          <VandenITLogo width={48} height={48} color="gold" />
+        </Link>
+        <Card><Heading>Vanden IT</Heading></Card>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <IconButton size="3" variant="soft">
+            <IconButton size="4" variant="soft" ml="4" color="gold">
               <HamburgerMenuIcon width="16" height="16" />
             </IconButton>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Item asChild
             >
-              <Link href="/">
-                <VandenITLogo width={30} height={30} />
-              </Link>
             </DropdownMenu.Item>
             {navs.map((item) => (
               <DropdownMenu.Item asChild
@@ -58,7 +59,7 @@ export default function NavItems({ navs }: { navs: any }) {
             ))}
           </DropdownMenu.Content>
         </DropdownMenu.Root>
-      </Box>
+      </Flex>
     </>
   );
 }

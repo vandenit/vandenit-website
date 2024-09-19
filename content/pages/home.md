@@ -32,7 +32,7 @@ blocks:
       - label: Our services
         type: button
         icon: true
-        link: /about
+        link: /
       - label: Meet the Developer
         type: button
         icon: false
