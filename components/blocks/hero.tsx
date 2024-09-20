@@ -6,40 +6,22 @@ import { PageBlocksHero } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
 import Image from "next/image";
 import { Actions } from "./actions";
-import { Avatar, Box, Button, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
+import { Avatar, Box, Button, Card, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
   return (
     <Box p={{ initial: '0', sm: '4' }} pb="5" pt="5">
-      <Flex>
-        {data.image && data.image.isAvatar && (
-          <Box>
-            <Avatar
-              src={data.image.src}
-              fallback="A"
-              size={{ initial: '6', sm: '8' }}
-              mr="5"
-            />
-          </Box>
-        )}
+      <Box>
+        {/* Hero Heading */}
+        <Heading as="h1" size={{ initial: '6', sm: '9' }} mb="4" data-tina-field={tinaField(data, 'tagline')}>
+          {data.tagline}
+        </Heading>
         <Box>
-          {/* Hero Heading */}
-          <Heading as="h1" size={{ initial: '6', sm: '9' }} mb="4" data-tina-field={tinaField(data, 'tagline')}>
-            {data.tagline}
-          </Heading>
-          <Box display={{ initial: 'none', sm: 'block' }}>
-            <Text as="p" size={{ sm: '4', md: '5' }} mb="6" data-tina-field={tinaField(data, 'headline')}  >
-              {data.headline}
-            </Text>
-          </Box>
+          <Text as="p" size={{ sm: '4', md: '5' }} mb="6" data-tina-field={tinaField(data, 'headline')}  >
+            {data.headline}
+          </Text>
         </Box>
-      </Flex>
-      <Box display={{ initial: 'block', sm: 'none' }} mt="2">
-        {/* Hero Subheading */}
-        <Text as="p" size="3" mb="3" data-tina-field={tinaField(data, 'headline')}  >
-          {data.headline}
-        </Text>
       </Box>
 
       {/* Call to Action Button */}
@@ -141,12 +123,7 @@ export const heroBlockSchema: Template = {
           name: "alt",
           label: "Alt Text",
           type: "string",
-        },
-        {
-          name: "isAvatar",
-          label: "Is Avatar",
-          type: "boolean",
-        },
+        }
       ],
     },
     {
