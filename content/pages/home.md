@@ -5,6 +5,8 @@ blocks:
     headline: >-
       At Vanden IT, we specialize in developing high-performance software
       solutions that drive business success.
+    text: ''
+    text2: ''
     actions:
       - label: Our services
         type: button
@@ -24,6 +26,15 @@ blocks:
   - title: Services
     items:
       - icon:
+          name: FaBrain
+          color: orange
+        title: Development consultancy
+        text: >-
+          Tailored development consultancy to architect and implement robust,
+          secure, and scalable software solutions for complex systems, with a
+          strong focus on performance, security, and integration across the
+          development lifecycle.
+      - icon:
           name: CodeIcon
           color: yellow
         title: Custom Software Development
@@ -39,33 +50,12 @@ blocks:
           systems to reduce costs, increase flexibility, and ensure continuous
           innovation.
       - icon:
-          name: FaBrain
-          color: orange
-        title: Consultancy and Strategy
-        text: >-
-          Expert guidance to help you navigate the complexities of technology
-          adoption, from digital transformation to software architecture design.
-      - icon:
           name: FaCloud
           color: lightblue
         title: Cloud and DevOps Solutions
         text: >-
           Implement robust cloud solutions and DevOps practices to enhance
           deployment speed, maintainability, and security of your applications.
-      - icon:
-          name: FaWrench
-          color: red
-        title: Maintenance and Support
-        text: >-
-          Ongoing support and maintenance services to ensure your software stays
-          up-to-date, secure, and performs optimally.
-      - icon:
-          name: FaPaintBrush
-          color: pink
-        title: UI/UX Design and Prototyping
-        text: >-
-          Design intuitive user interfaces and create interactive prototypes to
-          ensure a seamless user experience that meets your business goals.
       - icon:
           name: FaExchangeAlt
           color: green
@@ -74,13 +64,6 @@ blocks:
           Develop and integrate APIs that enable seamless communication between
           different software systems, ensuring data consistency and operational
           efficiency.
-      - icon:
-          name: BarChartIcon
-          color: purple
-        title: Data Analytics and Insights
-        text: >-
-          Leverage data analytics to uncover insights and drive data-driven
-          decision making for better business outcomes.
       - icon:
           name: LockClosedIcon
           color: black
