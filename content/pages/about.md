@@ -1,11 +1,8 @@
 ---
 title: About
 blocks:
-  - body: >
-      # Meet the developer
-    color: ""
-    _template: content
-  - avatarsName: Filip Van den Broeck
+  - avatarHeader: Meet the developer
+    avatarsName: Filip Van den Broeck
     description: "A seasoned Full Stack Developer with over 15 years of experience in developing high-performance, secure web applications and systems."
     avatarImage:
       src: /uploads/main/unnamed.jpg

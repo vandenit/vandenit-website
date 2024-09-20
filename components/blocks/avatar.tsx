@@ -1,28 +1,31 @@
 "use client";
 import * as React from "react";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { Template } from "tinacms";
 import { PageBlocksAvatar } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
-import Image from "next/image";
-import { Actions } from "./actions";
-import { Avatar, Box, Button, Card, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
+import { Avatar, Box, Card, Flex, Heading, Text } from "@radix-ui/themes";
 
 export const AvatarBlock = ({ data }: { data: PageBlocksAvatar }) => (
   <Box p={{ initial: '0', sm: '4' }} pb="5" pt="5">
+    {data.avatarHeader && (
+      <Heading as="h1" size={{ initial: '6', sm: '9' }} mb="4" data-tina-field={tinaField(data, 'avatarHeader')}>
+        {data.avatarHeader}
+      </Heading>
+    )}
     <Card>
       <Flex gap="3" align="center">
         <Avatar
+          data-tina-field={tinaField(data.avatarImage, "src")}
           src={data.avatarImage.src}
           fallback="A"
           size={{ initial: '6', sm: '8' }}
           mr="5"
         />
         <Box>
-          <Text as="div" size="2" weight="bold">
+          <Heading size="4" weight="bold" data-tina-field={tinaField(data, 'avatarsName')}>
             {data.avatarsName}
-          </Text>
-          <Text as="div" size="2" color="gray">
+          </Heading>
+          <Text as="div" size="2" color="gray" data-tina-field={tinaField(data, 'description')}>
             {data.description}
           </Text>
         </Box>
@@ -42,6 +45,11 @@ export const avatarBlockSchema: Template = {
     },
   },
   fields: [
+    {
+      type: "string",
+      label: "Header for above Avatar",
+      name: "avatarHeader",
+    },
     {
       type: "string",
       label: "Name of Person",

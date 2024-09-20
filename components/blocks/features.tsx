@@ -37,10 +37,8 @@ export const Feature = ({
 
 export const Features = ({ data }: { data: PageBlocksFeatures }) => {
   return (
-    <Section>
-      <Container
-      >
-        {data.title && (
+    <Section mb="5" pb="10">
+      {data.title && (
           <Heading as="h2" size="6" mb="4" data-tina-field={tinaField(data, 'title')}>
             {data.title}
           </Heading>
@@ -51,7 +49,6 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
               return <Feature featuresColor={data.color} key={i} data={block} />;
             })}
         </Grid>
-      </Container>
     </Section>
   );
 };
