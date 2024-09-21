@@ -11,7 +11,7 @@ blocks:
       - label: Our services
         type: button
         icon: true
-        link: /
+        link: "#services"
       - label: Meet the Developer
         type: button
         icon: false
@@ -24,6 +24,7 @@ blocks:
     color: default
     _template: hero
   - title: Services
+    key: services
     items:
       - icon:
           name: FaBrain
