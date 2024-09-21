@@ -17,7 +17,7 @@ export default function NavItems({ navs }: { navs: any }) {
             <TabNav.Link asChild >
               <Link href="/" >
                 <AccessibleIcon label="Radix Homepage">
-                  <VandenITLogo width={25} height={25} />
+                  <VandenITLogo width={25} height={25} color="gold"/>
                 </AccessibleIcon>
               </Link>
             </TabNav.Link>
