@@ -5,8 +5,8 @@ blocks:
     headline: >-
       At Vanden IT, we specialize in developing high-performance software
       solutions that drive business success.
-    text: ''
-    text2: ''
+    text: ""
+    text2: ""
     actions:
       - label: Our services
         type: button
@@ -74,11 +74,37 @@ blocks:
           industry standards to protect your software and data.
     color: tint
     _template: features
-  - quote: >-
-      There are only two hard things in Computer Science: cache invalidation and
-      naming things.
-    author: Phil Karlton
-    color: primary
-    _template: testimonial
+  - title: Testimonials
+    key: testimonials
+    items:
+      - content: >-
+          Working with Filip was a game-changer for our project. His attention to
+          detail and commitment to delivering high-quality solutions exceeded our expectations.
+        author: Sarah Collins
+        role: Project Manager, Tech Innovators
+      - content: >-
+          Filip's ability to solve complex challenges and provide innovative
+          solutions is unmatched. He was instrumental in the success of our
+          development team.
+        author: Mark Stevens
+        role: Lead Developer, FinTech Solutions
+      - content: >-
+          Filip's focus on security and performance is truly impressive. He
+          implemented robust measures that ensured our software's safety and
+          scalability.
+        author: Emily Richardson
+        role: CTO, Secure Web Systems
+      - content: >-
+          From start to finish, Filip's professionalism and technical expertise
+          were evident. He delivered beyond expectations and was a pleasure to work
+          with.
+        author: James Bennett
+        role: CEO, StartUp Inc.
+      - content: >-
+          Filip's clear communication and collaborative approach made it easy for
+          us to achieve our project goals. His expertise was a key asset in
+          delivering a top-notch product.
+        author: Lisa Thompson
+        role: Product Owner, DevOps Hub
+    _template: testimonials
 ---
-

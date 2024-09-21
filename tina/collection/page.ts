@@ -1,9 +1,9 @@
 import type { Collection } from "tinacms";
 import { heroBlockSchema } from "../../components/blocks/hero";
 import { contentBlockSchema } from "../../components/blocks/content";
-import { testimonialBlockSchema } from "../../components/blocks/testimonial";
 import { featureBlockSchema } from "../../components/blocks/features";
 import { avatarBlockSchema } from "../../components/blocks/avatar";
+import { testimonialsBlockSchema } from "../../components/blocks/testimonial-carousel";
 
 const Page: Collection = {
   label: "Pages",
@@ -44,7 +44,7 @@ const Page: Collection = {
         //@ts-ignore
         featureBlockSchema,
         contentBlockSchema,
-        testimonialBlockSchema,
+        testimonialsBlockSchema,
       ],
     },
   ],

@@ -3,8 +3,8 @@ import { Page, PageBlocks } from "../../tina/__generated__/types";
 import { Hero } from "./hero";
 import { Content } from "./content";
 import { Features } from "./features";
-import { Testimonial } from "./testimonial";
 import { AvatarBlock } from "./avatar";
+import { TestimonialCarousel } from "./testimonial-carousel";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   return (
@@ -32,8 +32,8 @@ const Block = (block: PageBlocks) => {
       return <Content data={block} />;
     case "PageBlocksFeatures":
       return <Features data={block} />;
-    case "PageBlocksTestimonial":
-      return <Testimonial data={block} />;
+    case "PageBlocksTestimonials":
+      return <TestimonialCarousel data={block} />;
     default:
       return null;
   }

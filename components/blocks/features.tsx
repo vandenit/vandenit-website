@@ -9,10 +9,8 @@ import { iconSchema } from "../../tina/fields/icon";
 import { Box, Card, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
 
 export const Feature = ({
-  featuresColor,
   data,
 }: {
-  featuresColor: string;
   data: PageBlocksFeaturesItems;
 }) => {
   return (
@@ -47,7 +45,7 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
         <Grid columns={{ initial: '1', sm: '3' }} gap="3">
           {data.items &&
             data.items.map(function (block, i) {
-              return <Feature featuresColor={data.color} key={i} data={block} />;
+              return <Feature key={i} data={block} />;
             })}
         </Grid>
     </Section>
