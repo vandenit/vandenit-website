@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
-import { Box, Text, Flex, Card, Button } from '@radix-ui/themes'
+import { Box, Text, Flex, Card, Button, Quote, Blockquote, Section, Heading } from '@radix-ui/themes'
 import { Template } from 'tinacms'
 import { PageBlocksTestimonials } from '../../tina/__generated__/types'
+import { tinaField } from 'tinacms/dist/react'
 
+const INTERVAL = 10000;
 
 export const TestimonialCarousel = ({
     data,
@@ -23,37 +25,49 @@ export const TestimonialCarousel = ({
     }
 
     useEffect(() => {
-        const timer = setInterval(nextSlide, 5000) // Change slide every 5 seconds
+        const timer = setInterval(nextSlide, INTERVAL) // Change slide every x seconds
         return () => clearInterval(timer)
     }, [])
 
     return (
-        <Box position="relative" width="100%" maxWidth="600px" m="auto">
-            <Card size="3" style={{ height: '200px' }}>
-                <Flex direction="column" justify="between" height="100%">
-                    <Text as="p" size="3">
-                        "{testimonials[currentSlide].content}"
-                    </Text>
-                    <Box>
-                        <Text as="p" weight="bold">
-                            {testimonials[currentSlide].author}
-                        </Text>
-                        <Text as="p" color="gray">
-                            {testimonials[currentSlide].role}
-                        </Text>
-                    </Box>
-                </Flex>
-            </Card>
+        <Section>
+            <Heading as="h2" size="6" mb="4" data-tina-field={tinaField(data, 'title')} align="center"
+                id={data.key}>
+                {data.title}
+            </Heading>
+            <Box width="100%" maxWidth="600px" m="auto" >
 
-            <Flex justify="between" position="absolute" top="50%" left="0" right="0" style={{ transform: 'translateY(-50%)' }}>
-                <Button variant="soft" color="gray" radius="full" onClick={prevSlide}>
-                    <ChevronLeftIcon width="20" height="20" />
-                </Button>
-                <Button variant="soft" color="gray" radius="full" onClick={nextSlide}>
-                    <ChevronRightIcon width="20" height="20" />
-                </Button>
-            </Flex>
-        </Box>
+                <Card size="3">
+                    <Flex justify="center" align="center" gap="4" width="100%"
+                        direction={{ initial: "column", sm: "row" }}>
+                        {/* Left Arrow */}
+                        <Button variant="soft" color="gray" radius="full" onClick={prevSlide}>
+                            <ChevronLeftIcon width="20" height="20" />
+                        </Button>
+
+                        {/* Testimonial Content */}
+                        <Box >
+                            <Blockquote>
+                                {testimonials[currentSlide].content}
+                            </Blockquote>
+                            <Box mt="5">
+                                <Text as="p" weight="bold">
+                                    {testimonials[currentSlide].author}
+                                </Text>
+                                <Text as="p" color="gray">
+                                    {testimonials[currentSlide].role}
+                                </Text>
+                            </Box>
+                        </Box>
+
+                        {/* Right Arrow */}
+                        <Button variant="soft" color="gray" radius="full" onClick={nextSlide}>
+                            <ChevronRightIcon width="20" height="20" />
+                        </Button>
+                    </Flex>
+                </Card>
+            </Box>
+        </Section>
     )
 }
 
