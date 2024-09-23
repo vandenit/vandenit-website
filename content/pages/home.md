@@ -77,6 +77,17 @@ blocks:
   - title: Portfolio
     portfolioId: portfolio
     items:
+      - title: Tech lead at centric -BNP
+        content: ' I was the Technical Lead for the Enablement project at BNP Paribas Fortis, responsible for onboarding users to the financial platform Centric. While leading the technical aspects of Centric, I implemented OWASP guidelines, performed vulnerability assessments, and integrated secure coding practices to ensure that the platform was resilient against modern threats.'
+        image:
+          src: /uploads/main/Screenshot 2024-09-23 at 07.57.06.png
+          alt: centric
+        technologies:
+          - java
+          - spring
+          - angular
+          - sass
+          - ''
       - title: Development and Deployment of DinnerGift
         content: >-
           As a Senior Full Stack Developer, I developed DinnerGift, a platform
