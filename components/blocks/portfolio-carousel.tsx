@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
-import { Box, Text, Flex, Card, Button, Quote, Blockquote, Section, Heading } from '@radix-ui/themes'
+import { Box, Text, Flex, Card, Button, Quote, Blockquote, Section, Heading, Badge } from '@radix-ui/themes'
 import { Template } from 'tinacms'
 import { PageBlocksPortfolio } from '../../tina/__generated__/types'
 import { tinaField } from 'tinacms/dist/react'
@@ -55,6 +55,13 @@ export const PortfolioCarousel = ({
                                 <Text as="p" color="gray">
                                     {portfolioItems[currentSlide].content}
                                 </Text>
+                                {portfolioItems[currentSlide].technologies && (
+                                    <Flex gap="2" mt="2">
+                                        {portfolioItems[currentSlide].technologies.map((tech, i) => (
+                                            <Badge key={i} color="gray" size="2">{tech}</Badge>
+                                        ))}
+                                    </Flex>
+                                )}
                             </Box>
                             {portfolioItems[currentSlide].image && (
                                 <Box>
