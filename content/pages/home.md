@@ -105,8 +105,6 @@ blocks:
           - Javascript
           - ExpressJs
           - Nextjs
-          - Redux
-          - Mongodb
     _template: portfolio
   - title: Testimonials
     testimonialsId: testimonials

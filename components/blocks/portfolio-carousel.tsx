@@ -47,12 +47,12 @@ export const PortfolioCarousel = ({
                         </Button>
 
                         {/* Portfolio Content */}
-                        <Flex >
-                            <Box>
-                                <Heading as="h3" size="5" mb="4">
+                        <Flex direction={{ initial: "column", sm: "row" }}>
+                            <Box p="2">
+                                <Heading as="h3" size={{ initial: "3", sm: "4", md: "5" }} mb="4">
                                     {portfolioItems[currentSlide].title}
                                 </Heading>
-                                <Text as="p" color="gray">
+                                <Text as="div" color="gray">
                                     {portfolioItems[currentSlide].content}
                                 </Text>
                                 {portfolioItems[currentSlide].technologies && (
