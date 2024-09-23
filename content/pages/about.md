@@ -19,7 +19,7 @@ blocks:
     color: ""
     _template: content
   - title: Why Clients Love Working with Me
-    key: workingwithme
+    featuresId: workingwithme
     items:
       - icon:
           name: FaShieldAlt
@@ -70,7 +70,7 @@ blocks:
     color: tint
     _template: features
   - title: Experience Highlights
-    key: experience
+    featuresId: experience
     items:
       - icon:
           name: FaBuilding
@@ -99,7 +99,7 @@ blocks:
     color: tint
     _template: features
   - title: Key Skills and Tools
-    key: skills
+    featuresId: skills
     items:
       - icon:
           name: FaCode

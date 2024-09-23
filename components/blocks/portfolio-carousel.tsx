@@ -4,24 +4,25 @@ import React, { useState, useEffect } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
 import { Box, Text, Flex, Card, Button, Quote, Blockquote, Section, Heading } from '@radix-ui/themes'
 import { Template } from 'tinacms'
-import { PageBlocksTestimonials } from '../../tina/__generated__/types'
+import { PageBlocksPortfolio } from '../../tina/__generated__/types'
 import { tinaField } from 'tinacms/dist/react'
+import Image from 'next/image'
 
 const INTERVAL = 10000;
 
-export const TestimonialCarousel = ({
+export const PortfolioCarousel = ({
     data,
 }: {
-    data: PageBlocksTestimonials;
+    data: PageBlocksPortfolio;
 }) => {
     const [currentSlide, setCurrentSlide] = useState(0)
-    const { items: testimonials } = data
+    const { items: portfolioItems } = data
     const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % testimonials.length)
+        setCurrentSlide((prev) => (prev + 1) % portfolioItems.length)
     }
 
     const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+        setCurrentSlide((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length)
     }
 
     useEffect(() => {
@@ -32,10 +33,10 @@ export const TestimonialCarousel = ({
     return (
         <Section>
             <Heading as="h2" size="6" mb="4" data-tina-field={tinaField(data, 'title')} align="center"
-                id={data.testimonialsId}>
+                id={data.portfolioId}>
                 {data.title}
             </Heading>
-            <Box width="100%" maxWidth="600px" m="auto" >
+            <Box width="100%" m="auto" >
 
                 <Card size="3">
                     <Flex justify="center" align="center" gap="4" width="100%"
@@ -45,20 +46,24 @@ export const TestimonialCarousel = ({
                             <ChevronLeftIcon width="20" height="20" />
                         </Button>
 
-                        {/* Testimonial Content */}
-                        <Box >
-                            <Blockquote>
-                                {testimonials[currentSlide].content}
-                            </Blockquote>
-                            <Box mt="5">
-                                <Text as="p" weight="bold">
-                                    {testimonials[currentSlide].author}
-                                </Text>
+                        {/* Portfolio Content */}
+                        <Flex >
+                            <Box>
+                                <Heading as="h3" size="5" mb="4">
+                                    {portfolioItems[currentSlide].title}
+                                </Heading>
                                 <Text as="p" color="gray">
-                                    {testimonials[currentSlide].role}
+                                    {portfolioItems[currentSlide].content}
                                 </Text>
                             </Box>
-                        </Box>
+                            {portfolioItems[currentSlide].image && (
+                                <Box>
+                                    <Image
+                                        src={portfolioItems[currentSlide].image.src} alt={portfolioItems[currentSlide].image.alt}
+                                        width="200" height="200" />
+                                </Box>
+                            )}
+                        </Flex>
 
                         {/* Right Arrow */}
                         <Button variant="soft" color="gray" radius="full" onClick={nextSlide}>
@@ -71,20 +76,19 @@ export const TestimonialCarousel = ({
     )
 }
 
-const defaultTestimonial = {
-    author: "John Doe",
-    role: "Software Engineer",
-    content: "This is a testimonial quote. It can be used to highlight a customer's feedback or review."
+const defaultPortfolioItem = {
+    title: "My project",
+    content: "This is a project I worked on and it was great"
 };
 
-export const testimonialsBlockSchema: Template = {
-    name: "testimonials",
-    label: "Testimonials",
+export const portfolioBlockSchema: Template = {
+    name: "portfolio",
+    label: "Portfolio",
     ui: {
         previewSrc: "/blocks/features.png",
         defaultItem: {
-            title: "Testimonials",
-            items: [defaultTestimonial, defaultTestimonial],
+            title: "Portfolio",
+            items: [defaultPortfolioItem],
         },
     },
     fields: [
@@ -95,12 +99,12 @@ export const testimonialsBlockSchema: Template = {
         },
         {
             type: "string",
-            label: "testimonials id",
-            name: "testimonialsId"
+            label: "id",
+            name: "portfolioId"
         },
         {
             type: "object",
-            label: "Testimonial Items",
+            label: "Portfolio Items",
             name: "items",
             list: true,
             ui: {
@@ -110,28 +114,43 @@ export const testimonialsBlockSchema: Template = {
                     };
                 },
                 defaultItem: {
-                    ...defaultTestimonial,
+                    ...defaultPortfolioItem,
                 },
             },
             fields: [
                 {
                     type: "string",
-                    ui: {
-                        component: "textarea",
-                    },
-                    label: "Quote",
+                    label: "Title",
+                    name: "title",
+                },
+                {
+                    type: "string",
+                    label: "content",
                     name: "content",
                 },
                 {
-                    type: "string",
-                    label: "Author",
-                    name: "author",
+                    type: "object",
+                    label: "Image",
+                    name: "image",
+                    fields: [
+                        {
+                            name: "src",
+                            label: "Image Source",
+                            type: "image",
+                        },
+                        {
+                            name: "alt",
+                            label: "Alt Text",
+                            type: "string",
+                        }
+                    ]
                 },
                 {
                     type: "string",
-                    label: "Role",
-                    name: "role",
-                },
+                    label: "Technologies",
+                    name: "technologies",
+                    list: true
+                }
             ],
         }
     ],

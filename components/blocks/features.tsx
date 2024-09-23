@@ -38,7 +38,7 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
     <Section mb="5" pb="10">
       {data.title && (
         <Heading as="h2" size="6" mb="4" data-tina-field={tinaField(data, 'title')}
-          id={data.key}>
+          id={data.featuresId}>
           {data.title}
         </Heading>
       )}
@@ -79,8 +79,8 @@ export const featureBlockSchema = {
     },
     {
       type: "string",
-      label: "key",
-      name: "key"
+      label: "Features ID",
+      name: "featuresId"
     },
     {
       type: "object",
