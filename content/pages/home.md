@@ -5,13 +5,13 @@ blocks:
     headline: >-
       At Vanden IT, we specialize in developing high-performance software
       solutions that drive business success.
-    text: ''
-    text2: ''
+    text: ""
+    text2: ""
     actions:
       - label: Our services
         type: button
         icon: true
-        link: '#services'
+        link: "#services"
       - label: Meet the Developer
         type: button
         icon: false
@@ -78,7 +78,7 @@ blocks:
     portfolioId: portfolio
     items:
       - title: Tech lead at centric -BNP
-        content: ' I was the Technical Lead for the Enablement project at BNP Paribas Fortis, responsible for onboarding users to the financial platform Centric. While leading the technical aspects of Centric, I implemented OWASP guidelines, performed vulnerability assessments, and integrated secure coding practices to ensure that the platform was resilient against modern threats.'
+        content: " I was the Technical Lead for the Enablement project at BNP Paribas Fortis, responsible for onboarding users to the financial platform Centric. While leading the technical aspects of Centric, I implemented OWASP guidelines, performed vulnerability assessments, and integrated secure coding practices to ensure that the platform was resilient against modern threats."
         image:
           src: /uploads/main/Screenshot 2024-09-23 at 07.57.06.png
           alt: centric
@@ -87,7 +87,7 @@ blocks:
           - spring
           - angular
           - sass
-          - ''
+          - ""
       - title: Development and Deployment of DinnerGift
         content: >-
           As a Senior Full Stack Developer, I developed DinnerGift, a platform
@@ -110,35 +110,31 @@ blocks:
     testimonialsId: testimonials
     items:
       - content: >-
-          Working with Filip was a game-changer for our project. His attention
-          to detail and commitment to delivering high-quality solutions exceeded
-          our expectations.
-        author: Sarah Collins
-        role: 'Project Manager, Tech Innovators'
+          I worked with Filip for many years on a big project.
+
+          Filip is the kind of person that naturally feels responsible for his
+          work and does whatever is required to deliver on time and with high
+          quality.
+
+          As a person he is great to work with; he is always ready to assist
+          someone, can explain things in a patient, clear way.
+
+          He is very proactive and thinks outside of the box.
+
+          In short, an excellent developer to have on any development team.
+        author: Stijn Geukens
+        role: "Development Manager, BNP Paribas"
       - content: >-
           Filip's ability to solve complex challenges and provide innovative
           solutions is unmatched. He was instrumental in the success of our
           development team.
         author: Mark Stevens
-        role: 'Lead Developer, FinTech Solutions'
+        role: "Lead Developer, FinTech Solutions"
       - content: >-
           Filip's focus on security and performance is truly impressive. He
           implemented robust measures that ensured our software's safety and
           scalability.
         author: Emily Richardson
-        role: 'CTO, Secure Web Systems'
-      - content: >-
-          From start to finish, Filip's professionalism and technical expertise
-          were evident. He delivered beyond expectations and was a pleasure to
-          work with.
-        author: James Bennett
-        role: 'CEO, StartUp Inc.'
-      - content: >-
-          Filip's clear communication and collaborative approach made it easy
-          for us to achieve our project goals. His expertise was a key asset in
-          delivering a top-notch product.
-        author: Lisa Thompson
-        role: 'Product Owner, DevOps Hub'
+        role: "CTO, Secure Web Systems"
     _template: testimonials
 ---
-
