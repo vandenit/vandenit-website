@@ -77,8 +77,16 @@ blocks:
   - title: Portfolio
     portfolioId: portfolio
     items:
-      - title: Tech lead at centric -BNP
-        content: ' I was the Technical Lead for the Enablement project at BNP Paribas Fortis, responsible for onboarding users to the financial platform Centric. While leading the technical aspects of Centric, I implemented OWASP guidelines, performed vulnerability assessments, and integrated secure coding practices to ensure that the platform was resilient against modern threats.'
+      - title: Tech lead at centric - Bnp paribas
+        content: ''
+        richContent: >
+          I was the Technical Lead for the Enablement project at BNP Paribas
+          Fortis, responsible for onboarding users to the financial platform
+          [Centric](https://centric.bnpparibas.com/public/marketing/). My role
+          involved leading the technical aspects, ensuring smooth user
+          onboarding, and working on both backend and frontend aspects using
+          Java, Spring and Angular, while maintaining high-quality code and
+          agile practices.
         image:
           src: /uploads/main/Screenshot 2024-09-30 at 07.21.37.png
           alt: centric
@@ -87,18 +95,16 @@ blocks:
           - spring
           - angular
           - sass
-          - ''
       - title: Development and Deployment of DinnerGift
-        content: >-
-          As a Senior Full Stack Developer, I developed DinnerGift, a platform
-          connecting restaurants and customers for selling and buying gift
-          certificates. Utilizing ES6, React with Redux, expressJS REST backend,
-          and MongoDB, I delivered a high-performance server-rendered universal
-          web application using NextJs, with a focus on automated testing and
-          continuous integration using CircleCI. I also ensured that security
-          was embedded at every stage, from secure authentication to
-          safeguarding user data, applying security best practices aligned with
-          OWASP guidelines.
+        content: ''
+        richContent: >
+          As a Senior Full Stack Developer, I developed
+          [DinnerGift](https://www.dinnergift.be), a platform connecting
+          restaurants and customers for selling and buying gift certificates.
+          Utilizing ES6, React with Redux, expressJS REST backend, and MongoDB,
+          I delivered a high-performance server-rendered universal web
+          application using NextJs, with a focus on automated testing and
+          continuous integration using CircleCI.
         image:
           src: /uploads/main/Screenshot 2024-09-30 at 07.18.34.png
         technologies:

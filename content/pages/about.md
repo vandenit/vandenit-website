@@ -3,20 +3,23 @@ title: About
 blocks:
   - avatarHeader: Meet the developer
     avatarsName: Filip Van den Broeck
-    description: "A seasoned Full Stack Developer with over 15 years of experience in developing high-performance, secure web applications and systems."
+    description: >-
+      A seasoned Full Stack Developer with over 15 years of experience in
+      developing high-performance, secure web applications and systems.
     avatarImage:
       src: /uploads/main/unnamed.jpg
-      alt: "Filip Van den Broeck"
+      alt: Filip Van den Broeck
     _template: avatar
   - body: >
       # What I Do Best
+
 
       I build secure, scalable applications, with experience in critical systems
       for companies like **BNP Paribas Fortis** and my own projects like
       **DinnerGift**. I focus on **performance**, **security**, and
       **reliability**. Let's connect to discuss how I can help bring your
       project to life.
-    color: ""
+    color: ''
     _template: content
   - title: Why Clients Love Working with Me
     featuresId: workingwithme
@@ -105,17 +108,19 @@ blocks:
           name: FaCode
           color: blue
         title: Programming Languages
-        text: "Java, JavaScript (ES6), Typescript, PHP, C, C++, HTML, CSS, SASS"
+        text: 'Java, JavaScript (ES6), Typescript, PHP, C, C++, HTML, CSS, SASS'
       - icon:
           name: FaReact
           color: cyan
         title: Frameworks and Libraries
-        text: "Spring Boot, Spring Core, React, Redux, AngularJS, NextJs, Express.js"
+        text: >-
+          Spring Boot, Spring Core, React, Redux, Angular, AngularJS, NextJs,
+          Express.js
       - icon:
           name: FaLock
           color: red
         title: Security Practices
-        text: "OWASP Top 10, Secure Coding, Vulnerability Management"
+        text: 'OWASP Top 10, Secure Coding, Vulnerability Management'
       - icon:
           name: FaToolbox
           color: green
@@ -127,7 +132,7 @@ blocks:
           name: FaDatabase
           color: orange
         title: Database Systems
-        text: "MongoDB, Oracle, H2, MySQL"
+        text: 'MongoDB, Oracle, H2, MySQL'
       - icon:
           name: FaClipboardCheck
           color: purple
@@ -145,3 +150,4 @@ blocks:
     color: tint
     _template: features
 ---
+

@@ -7,6 +7,7 @@ import { Template } from 'tinacms'
 import { PageBlocksPortfolio } from '../../tina/__generated__/types'
 import { tinaField } from 'tinacms/dist/react'
 import Image from 'next/image'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 const INTERVAL = 10000;
 
@@ -49,11 +50,14 @@ export const PortfolioCarousel = ({
                         {/* Portfolio Content */}
                         <Flex direction={{ initial: "column", sm: "row" }}>
                             <Box p="2">
-                                <Heading as="h3" size={{ initial: "3", sm: "4", md: "5" }} mb="4">
+                                <Heading as="h3" size={{ initial: "3", sm: "4", md: "5" }} mb="4" data-tina-field={tinaField(portfolioItems[currentSlide], 'title')}>
                                     {portfolioItems[currentSlide].title}
                                 </Heading>
-                                <Text as="div" color="gray">
+                                <Text as="div" color="gray" data-tina-field={tinaField(portfolioItems[currentSlide], 'richContent')}>
                                     {portfolioItems[currentSlide].content}
+                                    {portfolioItems[currentSlide].richContent && (
+                                        <TinaMarkdown content={portfolioItems[currentSlide].richContent} />
+                                    )}
                                 </Text>
                                 {portfolioItems[currentSlide].technologies && (
                                     <Flex gap="2" mt="2">
@@ -134,6 +138,11 @@ export const portfolioBlockSchema: Template = {
                     type: "string",
                     label: "content",
                     name: "content",
+                },
+                {
+                    type: "rich-text",
+                    label: "content",
+                    name: "richContent",
                 },
                 {
                     type: "object",
