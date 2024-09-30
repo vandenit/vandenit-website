@@ -1,6 +1,15 @@
 ---
 title: Vanden IT
 blocks:
+  - tagline: ''
+    headline: ''
+    text: ''
+    actions:
+      - label: Contact us on LinkedIn
+        type: button
+        icon: true
+        link: 'https://www.linkedin.com/company/vanden-it/'
+    _template: hero
   - tagline: Building Scalable Solutions with Cutting-Edge Technologies
     headline: >-
       At Vanden IT, we specialize in developing high-performance software
