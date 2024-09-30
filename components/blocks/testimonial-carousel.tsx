@@ -24,13 +24,13 @@ export const TestimonialCarousel = ({
             <Grid columns={{ initial: '1', sm: '3' }} gap="3">
                 {data.items && data.items.map((testimonial, i) => (
                     <Card key={i}>
-                        <Flex direction="column" justify="between" style={{ height: '100%' }}>
-                            <Blockquote>
+                        <Flex direction="column" justify="between" style={{ height: '100%' }} >
+                            <Blockquote  data-tina-field={tinaField(testimonial, 'content')}>
                                 {testimonial.content}
                             </Blockquote>
                             <Box mt="3">
-                                <Text as="div" size="2" weight="bold">{testimonial.author}</Text>
-                                <Text as="div" size="2" color="gray">{testimonial.role}</Text>
+                                <Text as="div" size="2" weight="bold" data-tina-field={tinaField(testimonial, 'author')}>{testimonial.author}</Text>
+                                <Text as="div" size="2" color="gray" data-tina-field={tinaField(testimonial, 'role')}>{testimonial.role}</Text>
                             </Box>
                         </Flex>
 
