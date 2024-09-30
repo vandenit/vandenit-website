@@ -87,7 +87,6 @@ blocks:
           - spring
           - angular
           - sass
-          - ''
       - title: Development and Deployment of DinnerGift
         content: >-
           As a Senior Full Stack Developer, I developed DinnerGift, a platform
