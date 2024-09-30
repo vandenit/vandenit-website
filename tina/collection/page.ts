@@ -5,6 +5,7 @@ import { featureBlockSchema } from "../../components/blocks/features";
 import { avatarBlockSchema } from "../../components/blocks/avatar";
 import { testimonialsBlockSchema } from "../../components/blocks/testimonial-carousel";
 import { portfolioBlockSchema } from "../../components/blocks/portfolio-carousel";
+import { actionsBlockSchema } from "../../components/blocks/action-block";
 
 const Page: Collection = {
   label: "Pages",
@@ -47,6 +48,7 @@ const Page: Collection = {
         contentBlockSchema,
         testimonialsBlockSchema,
         portfolioBlockSchema,
+        actionsBlockSchema
       ],
     },
   ],

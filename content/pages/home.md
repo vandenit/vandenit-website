@@ -74,9 +74,16 @@ blocks:
           industry standards to protect your software and data.
     color: tint
     _template: features
+  - actions:
+      - label: Contact us via LinkedIn
+        type: button
+        icon: true
+        link: 'https://www.linkedin.com/company/vanden-it/'
+    _template: actions
   - tagline: ''
     headline: ''
     text: ''
+    text2: ''
     actions:
       - label: Contact us on LinkedIn
         type: button
@@ -152,5 +159,11 @@ blocks:
         author: Emily Richardson
         role: 'CTO, Secure Web Systems'
     _template: testimonials
+  - actions:
+      - label: Contact us via LinkedIn
+        type: button
+        icon: true
+        link: 'https://www.linkedin.com/company/vanden-it/'
+    _template: actions
 ---
 

@@ -1,12 +1,10 @@
 "use client";
 import * as React from "react";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { Template } from "tinacms";
 import { PageBlocksHero } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
-import Image from "next/image";
 import { Actions } from "./actions";
-import { Avatar, Box, Button, Card, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
+import { Box, Flex, Heading, Text } from "@radix-ui/themes";
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
 

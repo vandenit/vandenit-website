@@ -2,7 +2,7 @@
 import Link from "next/link";
 import * as React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
-import { PageBlocksHeroActions } from "../../tina/__generated__/types";
+import { PageBlocksActionsActions, PageBlocksHeroActions } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
 import { useLayout } from "../layout/layout-context";
 import { Box, Button, Flex, Grid } from "@radix-ui/themes";
@@ -10,7 +10,7 @@ import { Box, Button, Flex, Grid } from "@radix-ui/themes";
 export const Actions = ({
   actions,
 }: {
-  actions: PageBlocksHeroActions[];
+  actions: PageBlocksHeroActions[] | PageBlocksActionsActions[];
 }) => {
   const { theme } = useLayout();
   return (
