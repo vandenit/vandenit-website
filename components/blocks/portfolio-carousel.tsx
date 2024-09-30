@@ -64,11 +64,11 @@ export const PortfolioCarousel = ({
                                 )}
                             </Box>
                             {portfolioItems[currentSlide].image && (
-                                <Box>
-                                    <Image
-                                        src={portfolioItems[currentSlide].image.src} alt={portfolioItems[currentSlide].image.alt}
-                                        width="200" height="200" />
-                                </Box>
+                                <Flex >
+                                    <img style={{ width: "200px", height: "auto", objectFit: "contain" }}
+                                        src={portfolioItems[currentSlide].image.src}
+                                    />
+                                </Flex>
                             )}
                         </Flex>
 

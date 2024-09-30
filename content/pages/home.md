@@ -5,13 +5,13 @@ blocks:
     headline: >-
       At Vanden IT, we specialize in developing high-performance software
       solutions that drive business success.
-    text: ""
-    text2: ""
+    text: ''
+    text2: ''
     actions:
       - label: Our services
         type: button
         icon: true
-        link: "#services"
+        link: '#services'
       - label: Meet the Developer
         type: button
         icon: false
@@ -78,16 +78,16 @@ blocks:
     portfolioId: portfolio
     items:
       - title: Tech lead at centric -BNP
-        content: " I was the Technical Lead for the Enablement project at BNP Paribas Fortis, responsible for onboarding users to the financial platform Centric. While leading the technical aspects of Centric, I implemented OWASP guidelines, performed vulnerability assessments, and integrated secure coding practices to ensure that the platform was resilient against modern threats."
+        content: ' I was the Technical Lead for the Enablement project at BNP Paribas Fortis, responsible for onboarding users to the financial platform Centric. While leading the technical aspects of Centric, I implemented OWASP guidelines, performed vulnerability assessments, and integrated secure coding practices to ensure that the platform was resilient against modern threats.'
         image:
-          src: /uploads/main/Screenshot 2024-09-23 at 07.57.06.png
+          src: /uploads/main/Screenshot 2024-09-30 at 07.21.37.png
           alt: centric
         technologies:
           - java
           - spring
           - angular
           - sass
-          - ""
+          - ''
       - title: Development and Deployment of DinnerGift
         content: >-
           As a Senior Full Stack Developer, I developed DinnerGift, a platform
@@ -100,7 +100,7 @@ blocks:
           safeguarding user data, applying security best practices aligned with
           OWASP guidelines.
         image:
-          src: /uploads/main/dinnergiftthumb.png
+          src: /uploads/main/Screenshot 2024-09-30 at 07.18.34.png
         technologies:
           - Javascript
           - ExpressJs
@@ -123,18 +123,19 @@ blocks:
 
           In short, an excellent developer to have on any development team.
         author: Stijn Geukens
-        role: "Development Manager, BNP Paribas"
+        role: 'Development Manager, BNP Paribas'
       - content: >-
           Filip's ability to solve complex challenges and provide innovative
           solutions is unmatched. He was instrumental in the success of our
           development team.
         author: Mark Stevens
-        role: "Lead Developer, FinTech Solutions"
+        role: 'Lead Developer, FinTech Solutions'
       - content: >-
           Filip's focus on security and performance is truly impressive. He
           implemented robust measures that ensured our software's safety and
           scalability.
         author: Emily Richardson
-        role: "CTO, Secure Web Systems"
+        role: 'CTO, Secure Web Systems'
     _template: testimonials
 ---
+

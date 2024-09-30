@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
-import { Box, Text, Flex, Card, Button, Quote, Blockquote, Section, Heading } from '@radix-ui/themes'
+import { Box, Text, Flex, Card, Button, Quote, Blockquote, Section, Heading, Table, Grid } from '@radix-ui/themes'
 import { Template } from 'tinacms'
 import { PageBlocksTestimonials } from '../../tina/__generated__/types'
 import { tinaField } from 'tinacms/dist/react'
@@ -14,20 +14,6 @@ export const TestimonialCarousel = ({
 }: {
     data: PageBlocksTestimonials;
 }) => {
-    const [currentSlide, setCurrentSlide] = useState(0)
-    const { items: testimonials } = data
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % testimonials.length)
-    }
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-    }
-
-    useEffect(() => {
-        const timer = setInterval(nextSlide, INTERVAL) // Change slide every x seconds
-        return () => clearInterval(timer)
-    }, [])
 
     return (
         <Section>
@@ -35,38 +21,23 @@ export const TestimonialCarousel = ({
                 id={data.testimonialsId}>
                 {data.title}
             </Heading>
-            <Box width="100%" maxWidth="600px" m="auto" >
-
-                <Card size="3">
-                    <Flex justify="center" align="center" gap="4" width="100%"
-                        direction={{ initial: "column", sm: "row" }}>
-                        {/* Left Arrow */}
-                        <Button variant="soft" color="gray" radius="full" onClick={prevSlide}>
-                            <ChevronLeftIcon width="20" height="20" />
-                        </Button>
-
-                        {/* Testimonial Content */}
-                        <Box >
+            <Grid columns={{ initial: '1', sm: '3' }} gap="3">
+                {data.items && data.items.map((testimonial, i) => (
+                    <Card key={i}>
+                        <Flex direction="column" justify="between" style={{ height: '100%' }}>
                             <Blockquote>
-                                {testimonials[currentSlide].content}
+                                {testimonial.content}
                             </Blockquote>
-                            <Box mt="5">
-                                <Text as="p" weight="bold">
-                                    {testimonials[currentSlide].author}
-                                </Text>
-                                <Text as="p" color="gray">
-                                    {testimonials[currentSlide].role}
-                                </Text>
+                            <Box mt="3">
+                                <Text as="div" size="2" weight="bold">{testimonial.author}</Text>
+                                <Text as="div" size="2" color="gray">{testimonial.role}</Text>
                             </Box>
-                        </Box>
+                        </Flex>
 
-                        {/* Right Arrow */}
-                        <Button variant="soft" color="gray" radius="full" onClick={nextSlide}>
-                            <ChevronRightIcon width="20" height="20" />
-                        </Button>
-                    </Flex>
-                </Card>
-            </Box>
+                    </Card>
+                ))}
+
+            </Grid>
         </Section>
     )
 }
