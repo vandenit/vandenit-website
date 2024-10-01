@@ -80,16 +80,6 @@ blocks:
         icon: true
         link: info@vandenit.be
     _template: actions
-  - tagline: ''
-    headline: ''
-    text: ''
-    text2: ''
-    actions:
-      - label: Contact us
-        type: button
-        icon: true
-        link: 'https://www.linkedin.com/company/vanden-it/'
-    _template: hero
   - title: Portfolio
     portfolioId: portfolio
     items:
