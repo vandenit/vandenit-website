@@ -38,7 +38,7 @@ const Block = (block: PageBlocks) => {
       return <TestimonialCarousel data={block} />;
     case "PageBlocksPortfolio":
       return <PortfolioCarousel data={block} />;
-    case "PageBocksActions":
+    case "PageBlocksActions":
       return <ActionsBlock data={block} />;
     default:
       return null;

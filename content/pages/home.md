@@ -75,17 +75,17 @@ blocks:
     color: tint
     _template: features
   - actions:
-      - label: Contact us via LinkedIn
-        type: button
+      - label: Contact us
+        type: email
         icon: true
-        link: 'https://www.linkedin.com/company/vanden-it/'
+        link: info@vandenit.be
     _template: actions
   - tagline: ''
     headline: ''
     text: ''
     text2: ''
     actions:
-      - label: Contact us on LinkedIn
+      - label: Contact us
         type: button
         icon: true
         link: 'https://www.linkedin.com/company/vanden-it/'
@@ -160,10 +160,10 @@ blocks:
         role: 'CTO, Secure Web Systems'
     _template: testimonials
   - actions:
-      - label: Contact us via LinkedIn
-        type: button
+      - label: Contact us
+        type: email
         icon: true
-        link: 'https://www.linkedin.com/company/vanden-it/'
+        link: info@vandenit.be
     _template: actions
 ---
 

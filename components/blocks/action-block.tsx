@@ -45,6 +45,7 @@ export const actionField = {
         options: [
           { label: "Button", value: "button" },
           { label: "Link", value: "link" },
+          { label: "Email", value: "email" },
         ],
       },
       {

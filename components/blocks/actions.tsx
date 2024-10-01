@@ -13,6 +13,9 @@ export const Actions = ({
   actions: PageBlocksHeroActions[] | PageBlocksActionsActions[];
 }) => {
   const { theme } = useLayout();
+  const openEmail = (email: string) => () => {
+    window.location.href = `mailto:${email}`;
+  };
   return (
     <Flex align="center" justify="center" direction={{ initial: "column", sm: "row" }}>
       {actions &&
@@ -38,7 +41,7 @@ export const Actions = ({
               </Box>
             );
           }
-          if (action.type === "link" || action.type === "linkExternal") {
+          else if (action.type === "link" || action.type === "linkExternal") {
             element = (
               <Link
                 key={index}
@@ -50,6 +53,24 @@ export const Actions = ({
                   <BiRightArrowAlt />
                 )}
               </Link>
+            );
+          }
+          else if (action.type === "email" ) {
+            element = (
+              <Box key={index}>
+                  <Button onClick={openEmail(action.link)}
+                    size={{ sm: '4' }} variant="classic"
+                    mb={{ initial: '4', sm: '0' }}
+                    ml={{ initial: '0', sm: '2' }}
+                    mr={{ initial: '0', sm: '2' }}
+                    data-tina-field={tinaField(action)}
+                  >
+                    {action.label}
+                    {action.icon && (
+                      <BiRightArrowAlt />
+                    )}
+                  </Button>
+              </Box>
             );
           }
           return element;

@@ -68,7 +68,7 @@ export const PortfolioCarousel = ({
                                 )}
                             </Box>
                             {portfolioItems[currentSlide].image && (
-                                <Flex >
+                                <Flex justify="center" align="center" mt={{ initial: "5", sm: "0" }}>
                                     <img style={{ width: "200px", height: "auto", objectFit: "contain" }}
                                         src={portfolioItems[currentSlide].image.src}
                                     />
