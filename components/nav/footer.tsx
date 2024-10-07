@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Icon } from "../icon";
 import { useLayout } from "../layout/layout-context";
 import { Box, Container, Flex } from "@radix-ui/themes";
+import { Text } from "@radix-ui/themes/dist/cjs/components/callout";
+import { FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   const { theme, globalSettings, pageData } = useLayout();
@@ -17,22 +19,53 @@ export default function Footer() {
           align="center"
           gap="6"
           wrap="wrap"
+          style={{ padding: '1.5rem 0' }} // Meer padding voor ruimte
         >
-          <Link
-            href="/"
-            className="group mx-2 flex items-center font-bold tracking-tight text-gray-400 dark:text-gray-300 opacity-50 hover:opacity-100 transition duration-150 ease-out whitespace-nowrap"
-          >
+          {/* Logo link */}
+          <Link href="/" aria-label="Home">
             <Icon
               data={{
                 name: globalSettings?.header.icon.name,
-                color:
-                  globalSettings?.header.icon.color ? globalSettings?.header.icon.color : footer.color,
+                color: globalSettings?.header.icon.color || 'gray',
               }}
             />
           </Link>
+
+          {/* Vanden IT text */}
+          <Text size="4" color="gray" weight="bold"> {/* Grotere, opvallendere tekst */}
+            Vanden IT
+          </Text>
+
+          {/* VAT number */}
+          <Text size="2" color="gray">
+            BE0768.999.370
+          </Text>
+
+          {/* LinkedIn link met extra margin voor ruimte */}
+          <Link
+            href="https://www.linkedin.com/in/filip-van-den-broeck/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            style={{ marginLeft: '1rem' }} // Extra margin voor spacing
+          >
+            <FaLinkedin size="1.5em" style={{ color: 'gray' }} />
+          </Link>
         </Flex>
-        <div />
+
+        {/* Subfooter links */}
+        <Flex justify="center" gap="6" style={{ marginTop: '1.5rem' }}>
+          <Link href="/contact" style={{ color: 'gray', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'gray'}>
+            Contact
+          </Link>
+          <Link href="/about" style={{ color: 'gray', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'gray'}>
+            About
+          </Link>
+        </Flex>
       </Container>
     </footer>
+
+
+
   );
 }
