@@ -7,6 +7,7 @@ import { tinaField } from "tinacms/dist/react";
 import { Icon } from "../icon";
 import { iconSchema } from "../../tina/fields/icon";
 import { Box, Card, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 export const Feature = ({
   data,
@@ -27,6 +28,13 @@ export const Feature = ({
           <Text as="div" size="2" color="gray" data-tina-field={tinaField(data, 'text')}>
             {data.text}
           </Text>
+
+          {data.richText && (
+            <Container data-tina-field={tinaField(data, 'richText')}>
+              <TinaMarkdown content={data.richText}  />
+
+            </Container>
+          )}
         </Box>
       </Flex>
     </Card>
@@ -112,6 +120,16 @@ export const featureBlockSchema = {
             component: "textarea",
           },
         },
+        {
+          type: "rich-text",
+          label: "Richt Text",
+          name: "richText",
+        },
+        {
+          type: "string",
+          label: "link",
+          name: "link",
+        }
       ],
     },
     {

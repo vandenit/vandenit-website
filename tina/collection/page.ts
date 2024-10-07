@@ -19,6 +19,9 @@ const Page: Collection = {
       if (document._sys.filename === "about") {
         return `/about`;
       }
+      if (document._sys.filename === "contact") {
+        return `/contact`;
+      }
       return undefined;
     },
   },
@@ -48,7 +51,7 @@ const Page: Collection = {
         contentBlockSchema,
         testimonialsBlockSchema,
         portfolioBlockSchema,
-        actionsBlockSchema
+        actionsBlockSchema,
       ],
     },
   ],
