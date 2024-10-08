@@ -52,9 +52,9 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
       )}
       <Grid columns={{ initial: '1', sm: '3' }} gap="3">
         {data.items &&
-          data.items.map(function (block, i) {
-            return <Feature key={i} data={block} />;
-          })}
+          data.items.map((block, i) => (
+            <Feature key={i} data={block} />
+          ))}
       </Grid>
     </Section>
   );

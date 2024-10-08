@@ -55,10 +55,10 @@ export default function Footer() {
 
         {/* Subfooter links */}
         <Flex justify="center" gap="6" style={{ marginTop: '1.5rem' }}>
-          <Link href="/contact" style={{ color: 'gray', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'gray'}>
+          <Link href="/contact" style={{ color: 'gray', textDecoration: 'none' }} >
             Contact
           </Link>
-          <Link href="/about" style={{ color: 'gray', textDecoration: 'none' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'gray'}>
+          <Link href="/about" style={{ color: 'gray', textDecoration: 'none' }}>
             About
           </Link>
         </Flex>
