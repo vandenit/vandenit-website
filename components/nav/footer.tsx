@@ -54,7 +54,7 @@ export default function Footer() {
         </Flex>
 
         {/* Subfooter links */}
-        <Flex justify="center" gap="6" style={{ marginTop: '1.5rem' }}>
+        <Flex justify="center" gap="6" mt="2" mb="2">
           <Link href="/contact" style={{ color: 'gray', textDecoration: 'none' }} >
             Contact
           </Link>

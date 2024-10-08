@@ -3,7 +3,7 @@ import { LayoutProvider } from "./layout-context";
 import client from "../../tina/__generated__/client";
 import Header from "../nav/header";
 import Footer from "../nav/footer";
-import { Container } from "@radix-ui/themes";
+import { Box, Container, Flex } from "@radix-ui/themes";
 
 type LayoutProps = PropsWithChildren & {
   rawPageData?: any;
@@ -16,14 +16,17 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
 
   return (
     <LayoutProvider globalSettings={globalData.global} pageData={rawPageData}>
-      <Header />
-      <main
-      >
-        <Container mx="5" my="5" >
-          {children}
-        </Container>
-      </main>
-      <Footer />
+      <Flex direction="column" minHeight="100vh" >
+        <Header />
+        <Flex flexGrow="1" >
+          <main>
+            <Container mx="5" my="5" >
+              {children}
+            </Container>
+          </main>
+        </Flex>
+        <Footer />
+      </Flex>
     </LayoutProvider>
   );
 }
