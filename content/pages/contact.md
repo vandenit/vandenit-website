@@ -1,10 +1,7 @@
 ---
 title: contact
 blocks:
-  - body: |
-      # Contact us
-    _template: content
-  - title: ''
+  - title: Contact us
     items:
       - icon:
           name: EnvelopeClosedIcon
@@ -19,17 +16,16 @@ blocks:
           name: FaMailBulk
           color: ''
         title: Email
-        text: ''
-        richText: |
-          [Mail us](mailto\:info@vandenit.be)
+        text: Mail us
+        richText: ''
+        link: 'mailto:info@vandenit.be'
       - icon:
           name: LinkedInLogoIcon
           color: ''
         title: LinkedIn
-        text: ''
-        richText: >
-          [Visit us on
-          LinkedIn](https://www.linkedin.com/in/filip-van-den-broeck/)
+        text: Visit us on LinkedIn
+        richText: ''
+        link: 'https://www.linkedin.com/in/filip-van-den-broeck/'
     _template: features
 ---
 

@@ -6,8 +6,10 @@ import {
 import { tinaField } from "tinacms/dist/react";
 import { Icon } from "../icon";
 import { iconSchema } from "../../tina/fields/icon";
-import { Box, Card, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
+import { Box, Card, Container, Flex, Grid, Heading, Link, Section, Text } from "@radix-ui/themes";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+// import next link with different name since Link already exists
+import NextLink from "next/link";
 
 export const Feature = ({
   data,
@@ -25,19 +27,29 @@ export const Feature = ({
           <Text as="div" size="2" weight="bold" data-tina-field={tinaField(data, 'title')}>
             {data.title}
           </Text>
-          <Text as="div" size="2" color="gray" data-tina-field={tinaField(data, 'text')}>
-            {data.text}
-          </Text>
-
+          <Box pt="2">
+            {data.link && (
+              <Link href={data.link} asChild>
+                <NextLink href={data.link}>
+                  {data.text}
+                </NextLink>
+              </Link>
+            )}
+            {!data.link && (
+              <Text as="div" size="2" color="gray" data-tina-field={tinaField(data, 'text')}>
+                {data.text}
+              </Text>
+            )}
+          </Box>
           {data.richText && (
             <Container data-tina-field={tinaField(data, 'richText')}>
-              <TinaMarkdown content={data.richText}  />
+              <TinaMarkdown content={data.richText} />
 
             </Container>
           )}
         </Box>
       </Flex>
-    </Card>
+    </Card >
   );
 };
 

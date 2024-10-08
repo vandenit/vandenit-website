@@ -18,13 +18,13 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
     <LayoutProvider globalSettings={globalData.global} pageData={rawPageData}>
       <Flex direction="column" minHeight="100vh" >
         <Header />
-        <Flex flexGrow="1" >
+        <Box flexGrow="1" >
           <main>
-            <Container mx="5" my="5" >
+            <Container mx="5" my="5" flexGrow="1" >
               {children}
             </Container>
           </main>
-        </Flex>
+        </Box>
         <Footer />
       </Flex>
     </LayoutProvider>
