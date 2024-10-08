@@ -32,6 +32,7 @@ blocks:
           I prioritize security at every stage of development, ensuring your
           application is resilient against modern threats with expertise in
           applying OWASP standards.
+        richText: ''
       - icon:
           name: FaCheckCircle
           color: green
@@ -39,6 +40,7 @@ blocks:
         text: >-
           I aim for the highest quality in every project, ensuring the solutions
           I deliver are functional, secure, reliable, and maintainable.
+        richText: ''
       - icon:
           name: FaCommentDots
           color: orange
@@ -47,6 +49,7 @@ blocks:
           My clients appreciate my clear and transparent communication, helping
           them understand their needs and keeping them informed throughout the
           project.
+        richText: ''
       - icon:
           name: FaSmile
           color: yellow
@@ -54,6 +57,7 @@ blocks:
         text: >-
           I bring a positive attitude and sense of humor, making collaboration
           enjoyable while staying focused on results.
+        richText: ''
       - icon:
           name: FaUserShield
           color: purple
@@ -62,6 +66,7 @@ blocks:
           With experience in developing, deploying, and securing my own
           projects, I work independently, manage tasks efficiently, and meet
           deadlines.
+        richText: ''
       - icon:
           name: FaPuzzlePiece
           color: red
@@ -70,6 +75,7 @@ blocks:
           I thrive on tackling complex challenges, whether securing an
           application or solving tricky development issues, ensuring the job
           gets done effectively.
+        richText: ''
     color: tint
     _template: features
   - title: Experience Highlights
@@ -83,6 +89,7 @@ blocks:
           Led the development of a high-performance document and statement
           archiving system, handling billions of records, while integrating
           security measures aligned with OWASP standards.
+        richText: ''
       - icon:
           name: FaGift
           color: green
@@ -91,6 +98,7 @@ blocks:
           Created a platform connecting restaurants and customers for selling
           and buying gift certificates, using modern web technologies and a
           security-first mindset.
+        richText: ''
       - icon:
           name: FaProjectDiagram
           color: orange
@@ -99,6 +107,7 @@ blocks:
           Managed the Enablement project responsible for user onboarding to the
           financial platform Centric, ensuring all features met stringent
           security requirements.
+        richText: ''
     color: tint
     _template: features
   - title: Key Skills and Tools
@@ -109,6 +118,7 @@ blocks:
           color: blue
         title: Programming Languages
         text: 'Java, JavaScript (ES6), Typescript, PHP, C, C++, HTML, CSS, SASS'
+        richText: ''
       - icon:
           name: FaReact
           color: cyan
@@ -116,11 +126,13 @@ blocks:
         text: >-
           Spring Boot, Spring Core, React, Redux, Angular, AngularJS, NextJs,
           Express.js
+        richText: ''
       - icon:
           name: FaLock
           color: red
         title: Security Practices
         text: 'OWASP Top 10, Secure Coding, Vulnerability Management'
+        richText: ''
       - icon:
           name: FaToolbox
           color: green
@@ -128,11 +140,13 @@ blocks:
         text: >-
           IntelliJ, Visual Studio Code, Jenkins, Docker, Kubernetes, GIT, Maven,
           GitHub Actions, CircleCI
+        richText: ''
       - icon:
           name: FaDatabase
           color: orange
         title: Database Systems
         text: 'MongoDB, Oracle, H2, MySQL'
+        richText: ''
       - icon:
           name: FaClipboardCheck
           color: purple
@@ -140,6 +154,7 @@ blocks:
         text: >-
           Agile (Scrum, KANBAN), Test-Driven Development (TDD), Behavior-Driven
           Development (BDD)
+        richText: ''
       - icon:
           name: FaVial
           color: yellow
@@ -147,7 +162,14 @@ blocks:
         text: >-
           Cypress, Cucumber, Mocha, Chai, JUnit, Mockito, Automated Security
           Scanning
+        richText: ''
     color: tint
     _template: features
+  - actions:
+      - label: Full CV
+        type: button
+        icon: false
+        link: /fullcv
+    _template: actions
 ---
 

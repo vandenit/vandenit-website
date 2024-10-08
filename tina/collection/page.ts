@@ -19,8 +19,8 @@ const Page: Collection = {
       if (document._sys.filename === "about") {
         return `/about`;
       }
-      if (document._sys.filename === "contact") {
-        return `/contact`;
+      if (document._sys.filename === "fullcv") {
+        return `/fullcv`;
       }
       return undefined;
     },
