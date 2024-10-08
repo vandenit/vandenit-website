@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import { Icon } from "../icon";
 import { useLayout } from "../layout/layout-context";
-import { Box, Container, Flex } from "@radix-ui/themes";
+import { Box, Container, Flex, Link } from "@radix-ui/themes";
 import { Text } from "@radix-ui/themes/dist/cjs/components/callout";
 import { FaLinkedin } from "react-icons/fa";
 
@@ -55,10 +54,10 @@ export default function Footer() {
 
         {/* Subfooter links */}
         <Flex justify="center" gap="6" mt="2" mb="2">
-          <Link href="/contact" style={{ color: 'gray', textDecoration: 'none' }} >
+          <Link href="/contact"  >
             Contact
           </Link>
-          <Link href="/about" style={{ color: 'gray', textDecoration: 'none' }}>
+          <Link href="/about"  >
             About
           </Link>
         </Flex>
