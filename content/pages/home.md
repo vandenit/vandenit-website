@@ -35,6 +35,7 @@ blocks:
           secure, and scalable software solutions for complex systems, with a
           strong focus on performance, security, and integration across the
           development lifecycle.
+        richText: ''
       - icon:
           name: CodeIcon
           color: yellow
@@ -42,6 +43,7 @@ blocks:
         text: >-
           Tailored software solutions designed to meet your specific business
           needs, ensuring scalability, performance, and flexibility.
+        richText: ''
       - icon:
           name: FaPuzzlePiece
           color: blue
@@ -50,6 +52,7 @@ blocks:
           Integrate the power of open source technologies into your business
           systems to reduce costs, increase flexibility, and ensure continuous
           innovation.
+        richText: ''
       - icon:
           name: FaCloud
           color: lightblue
@@ -57,6 +60,7 @@ blocks:
         text: >-
           Implement robust cloud solutions and DevOps practices to enhance
           deployment speed, maintainability, and security of your applications.
+        richText: ''
       - icon:
           name: FaExchangeAlt
           color: green
@@ -65,6 +69,7 @@ blocks:
           Develop and integrate APIs that enable seamless communication between
           different software systems, ensuring data consistency and operational
           efficiency.
+        richText: ''
       - icon:
           name: LockClosedIcon
           color: black
@@ -72,6 +77,7 @@ blocks:
         text: >-
           Implement advanced security protocols and ensure compliance with
           industry standards to protect your software and data.
+        richText: ''
     color: tint
     _template: features
   - actions:
@@ -136,18 +142,6 @@ blocks:
           In short, an excellent developer to have on any development team.
         author: Stijn Geukens
         role: 'Development Manager, BNP Paribas'
-      - content: >-
-          Filip's ability to solve complex challenges and provide innovative
-          solutions is unmatched. He was instrumental in the success of our
-          development team.
-        author: Mark Stevens
-        role: 'Lead Developer, FinTech Solutions'
-      - content: >-
-          Filip's focus on security and performance is truly impressive. He
-          implemented robust measures that ensured our software's safety and
-          scalability.
-        author: Emily Richardson
-        role: 'CTO, Secure Web Systems'
     _template: testimonials
   - actions:
       - label: Contact us
