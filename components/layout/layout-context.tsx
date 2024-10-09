@@ -16,16 +16,7 @@ const LayoutContext = React.createContext<LayoutState | undefined>(undefined);
 
 export const useLayout = () => {
   const context = useContext(LayoutContext);
-  return (
-    context || {
-      theme: {
-        color: "blue",
-        darkMode: "default",
-      },
-      globalSettings: undefined,
-      pageData: undefined,
-    }
-  );
+  return context;
 };
 
 interface LayoutProviderProps {

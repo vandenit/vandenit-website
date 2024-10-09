@@ -6,9 +6,8 @@ import { useLayout } from "../layout/layout-context";
 import { Container } from "@radix-ui/themes";
 
 export default function Header() {
-  const { globalSettings, theme } = useLayout();
+  const { globalSettings } = useLayout();
   const header = globalSettings.header;
-
   return (
     <Container>
       <NavItems navs={header.nav} />

@@ -3,9 +3,11 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
 import Link from "next/link";
-import { AccessibleIcon, Box, Card, DropdownMenu, Flex, Heading, IconButton, TabNav } from "@radix-ui/themes";
+// import radix ui link with different name since Link already exists
+import { AccessibleIcon, Box, Card, DropdownMenu, Flex, Heading, IconButton, TabNav, Link as RadixLink } from "@radix-ui/themes";
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { VandenITLogo } from "../vanden-it-logo";
+import { GlobalQuery } from "../../tina/__generated__/types";
 
 export default function NavItems({ navs }: { navs: any }) {
   const currentPath = usePathname();
@@ -17,7 +19,7 @@ export default function NavItems({ navs }: { navs: any }) {
             <TabNav.Link asChild >
               <Link href="/" >
                 <AccessibleIcon label="Radix Homepage">
-                  <VandenITLogo width={25} height={25} color="gold"/>
+                  <VandenITLogo width={25} height={25} />
                 </AccessibleIcon>
               </Link>
             </TabNav.Link>
@@ -34,13 +36,16 @@ export default function NavItems({ navs }: { navs: any }) {
         </Box>
       </Box>
       <Flex width="100%" display={{ initial: 'flex', sm: 'none' }} justify="between">
-        <Link href="/">
-          <VandenITLogo width={48} height={48} color="gold" />
-        </Link>
+        <RadixLink asChild>
+          <Link href="/">
+            <VandenITLogo width={48} height={48} />
+          </Link>
+
+        </RadixLink>
         <Card><Heading>Vanden IT</Heading></Card>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <IconButton size="4" variant="soft" ml="4" color="gold">
+            <IconButton size="4" variant="soft" ml="4">
               <HamburgerMenuIcon width="16" height="16" />
             </IconButton>
           </DropdownMenu.Trigger>
