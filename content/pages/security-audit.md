@@ -31,7 +31,7 @@ blocks:
           color: blue
         title: Vulnerability Assessment
         text: >-
-          We perform a thorough analysis to identify potential weaknesses in your application, from outdated libraries to misconfigurations that could be exploited by attackers.
+          We use automated tools like **OWASP ZAP** and **Burp Suite** to quickly identify common security vulnerabilities such as SQL injections, cross-site scripting (XSS), and more.
         richText: ''
       - icon:
           name: FaShieldAlt
@@ -52,7 +52,7 @@ blocks:
           color: orange
         title: Penetration Testing
         text: >-
-          We simulate real-world attacks to test the security of your system, helping to uncover any hidden vulnerabilities that may not be immediately obvious.
+          Using tools like **Metasploit**, we simulate real-world attacks to test the security of your system and uncover any hidden vulnerabilities.
         richText: ''
       - icon:
           name: FaFileContract
@@ -92,14 +92,14 @@ blocks:
           color: green
         title: Security Report
         text: >-
-          Once the audit is complete, you’ll receive a comprehensive report detailing all vulnerabilities found, along with recommendations for mitigation.
+          Once the audit is complete, you’ll receive a **preview** of the findings, showing a summary of the vulnerabilities found. The full report, including detailed recommendations and solutions, will be provided after payment.
         richText: ''
       - icon:
           name: FaHandHoldingUsd
           color: yellow
-        title: Implementation Support
+        title: Cost-Effective Solutions
         text: >-
-          We can assist you in implementing the recommended security measures, ensuring your site is protected against future attacks.
+          Using automated tools like **OWASP ZAP** and **Qualys**, we keep the costs low while still delivering a comprehensive security audit. You only pay for the full report after seeing the preview.
         richText: ''
     color: tint
     _template: features
