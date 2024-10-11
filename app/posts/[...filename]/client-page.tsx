@@ -9,8 +9,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { components } from "../../../components/mdx-components";
 import { FaTag } from "react-icons/fa";
 import Link from "next/link";
-import { Container, Section } from "@radix-ui/themes";
-
+import { Container, Section, Flex, Heading, Text, Box, Avatar } from "@radix-ui/themes";
 
 interface ClientPostProps {
   data: PostQuery;
@@ -34,89 +33,85 @@ export default function PostClientPage(props: ClientPostProps) {
   return (
     <Section>
       <Container>
-        <h2
+        <Heading
           data-tina-field={tinaField(post, "title")}
-          className={`w-full relative	mb-8 text-6xl font-extrabold tracking-normal text-center title-font`}
+          size="6"
+          align="center"
+          weight="bold"
+          mb="8"
         >
-          <span
-            className={`bg-clip-text text-transparent bg-gradient-to-r
-              }`}
-          >
+          <span style={{ backgroundClip: "text", color: "transparent", backgroundImage: "linear-gradient(to right)" }}>
             {post.title}
           </span>
-        </h2>
-        <div
+        </Heading>
+
+        <Flex
           data-tina-field={tinaField(post, "author")}
-          className="flex items-center justify-center mb-16"
+          align="center"
+          justify="center"
+          mb="16"
         >
           {post.author && (
             <>
-              <div className="flex-shrink-0 mr-4">
-                <Image
+              <Box mr="4" flexShrink="0">
+                <Avatar
                   data-tina-field={tinaField(post.author, "avatar")}
-                  className="h-14 w-14 object-cover rounded-full shadow-sm"
                   src={post.author.avatar}
                   alt={post.author.name}
-                  width={500}
-                  height={500}
+                  size="4"
+                  radius="full"
+                  fallback={post.author.name[0]}
                 />
-              </div>
-              <p
+              </Box>
+              <Text
                 data-tina-field={tinaField(post.author, "name")}
-                className="text-base font-medium text-gray-600 group-hover:text-gray-800 dark:text-gray-200 dark:group-hover:text-white"
+                size="2"
+                color="gray"
               >
                 {post.author.name}
-              </p>
-              <span className="font-bold text-gray-200 dark:text-gray-500 mx-2">
+              </Text>
+              <Text size="2" mx="2" weight="bold" color="gray">
                 —
-              </span>
+              </Text>
             </>
           )}
-          <p
+          <Text
             data-tina-field={tinaField(post, "date")}
-            className="text-base text-gray-400 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover:text-gray-150"
+            size="2"
+            color="gray"
           >
             {formattedDate}
-          </p>
-        </div>
+          </Text>
+        </Flex>
+
         {post.tags && (
-          <div className="flex items-center justify-center mb-16">
+          <Flex align="center" justify="center" mb="16">
             <FaTag />
             {post.tags.map((tag) => (
-              <span key={tag} className="badge ml-2 text-xs font-semibold">
+              <Text key={tag} size="1" weight="bold" ml="2">
                 <Link href={`/posts?tag=${tag}`}>{tag}</Link>
-              </span>
+              </Text>
             ))}
-          </div>
+          </Flex>
         )}
       </Container>
+
       {post.heroImg && (
-        <div>
-          <div
-            data-tina-field={tinaField(post, "heroImg")}
-          >
-            <Image
-              src={post.heroImg}
-              alt={post.title}
-              aria-hidden="true"
-              width={500}
-              height={500}
-            />
-            <Image
-              src={post.heroImg}
-              alt={post.title}
-              width={500}
-              height={500}
-            />
-          </div>
-        </div>
+        <Box data-tina-field={tinaField(post, "heroImg")} mb="8">
+          <Image
+            src={post.heroImg}
+            alt={post.title}
+            aria-hidden="true"
+            width={500}
+            height={500}
+          />
+        </Box>
       )}
+
       <Container>
-        <div
-          data-tina-field={tinaField(post, "_body")}
-        >
+        <Box data-tina-field={tinaField(post, "_body")} mb="8">
           <TinaMarkdown components={components} content={post._body} />
-        </div>
+        </Box>
       </Container>
     </Section>
   );

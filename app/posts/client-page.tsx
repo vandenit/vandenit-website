@@ -3,6 +3,8 @@ import { format } from "date-fns";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { Flex, Box, Heading, Text, Link as RadixLink, Avatar, Card } from '@radix-ui/themes';
+
 import { useLayout } from "../../components/layout/layout-context";
 import { BsArrowRight } from "react-icons/bs";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -38,58 +40,71 @@ export default function PostsClientPage(props: ClientPostProps) {
           formattedDate = format(date, "MMM dd, yyyy");
         }
         return (
-          <Link
-            key={post.id}
-            href={`/posts/` + post._sys.breadcrumbs.join("/")}
-            className="group block px-6 sm:px-8 md:px-10 py-10 mb-8 last:mb-0 bg-gray-50 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-1000 rounded-md shadow-sm transition-all duration-150 ease-out hover:shadow-md hover:to-gray-50 dark:hover:to-gray-800"
-          >
-            <h3>
-              {post.title}{" "}
-              <span className="inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out">
-                <BsArrowRight className="inline-block h-8 -mt-1 ml-1 w-auto opacity-70" />
-              </span>
-            </h3>
-            <div className="prose dark:prose-dark w-full max-w-none mb-5 opacity-70">
-              <TinaMarkdown content={post.excerpt} />
-            </div>
-            <div className="flex items-center">
-              <div className="flex-shrink-0 mr-2">
-                <Image
-                  width={500}
-                  height={500}
-                  className="h-10 w-10 object-cover rounded-full shadow-sm"
-                  src={post?.author?.avatar}
-                  alt={post?.author?.name}
-                />
-              </div>
-              <p className="text-base font-medium text-gray-600 group-hover:text-gray-800 dark:text-gray-200 dark:group-hover:text-white">
-                {post?.author?.name}
-              </p>
-              {formattedDate !== "" && (
-                <>
-                  <span className="font-bold text-gray-200 dark:text-gray-500 mx-2">
-                    —
-                  </span>
-                  <p className="text-base text-gray-400 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover:text-gray-150">
-                    {formattedDate}
-                  </p>
-                </>
-              )}
-              {post.tags && (
-                <div className="flex items-center ml-auto">
-                  <FaTag />
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="badge ml-2 text-xs font-semibold"
+          <RadixLink asChild key={post.id} >
+            <Link
+              key={post.id}
+              href={`/posts/` + post._sys.breadcrumbs.join("/")}
+            >
+              <Box
+                p="6"
+                mb="4"
+              >
+                <Card>
+                  <Flex>
+                    <Heading size="3" weight="bold">
+                      {post.title}{" "}
+                    </Heading>
+                    <Box
+                      as="span"
+                      pl="2"
                     >
-                      <Link href={`/posts?tag=${tag}`}>{tag}</Link>
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </Link>
+                      <BsArrowRight />
+                    </Box>
+                  </Flex>
+
+                  <Text size="2" color="gray" mb="5">
+                    <TinaMarkdown content={post.excerpt} />
+                  </Text>
+
+                  <Flex align="center">
+                    <Box mr="2" flexShrink="0">
+                      <Avatar
+                        src={post?.author?.avatar}
+                        alt={post?.author?.name}
+                        fallback={post?.author?.name}
+                        size="4"
+                      />
+                    </Box>
+                    <Text size="2" color="gray">
+                      {post?.author?.name}
+                    </Text>
+                    {formattedDate && (
+                      <>
+                        <Text size="2" color="gray" mx="2">
+                          —
+                        </Text>
+                        <Text size="2" color="gray">
+                          {formattedDate}
+                        </Text>
+                      </>
+                    )}
+                    {post.tags && (
+                      <Flex align="center" ml="auto">
+                        <FaTag />
+                        {post.tags.map((tag) => (
+                          <Text key={tag} size="1" weight="bold" ml="2">
+                            <RadixLink asChild>
+                              <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+                            </RadixLink>
+                          </Text>
+                        ))}
+                      </Flex>
+                    )}
+                  </Flex>
+                </Card>
+              </Box>
+            </Link>
+          </RadixLink>
         );
       })}
     </>
