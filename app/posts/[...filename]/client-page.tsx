@@ -9,7 +9,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { components } from "../../../components/mdx-components";
 import { FaTag } from "react-icons/fa";
 import Link from "next/link";
-import { Container, Section, Flex, Heading, Text, Box, Avatar } from "@radix-ui/themes";
+import { Container, Section, Flex, Heading, Text, Box, Avatar, Link as RadixLink } from "@radix-ui/themes";
 
 interface ClientPostProps {
   data: PostQuery;
@@ -35,14 +35,10 @@ export default function PostClientPage(props: ClientPostProps) {
       <Container>
         <Heading
           data-tina-field={tinaField(post, "title")}
-          size="6"
+          as="h1" size={{ initial: '6', sm: '9' }} mb="4"
           align="center"
-          weight="bold"
-          mb="8"
         >
-          <span style={{ backgroundClip: "text", color: "transparent", backgroundImage: "linear-gradient(to right)" }}>
-            {post.title}
-          </span>
+          {post.title}
         </Heading>
 
         <Flex
@@ -85,28 +81,32 @@ export default function PostClientPage(props: ClientPostProps) {
         </Flex>
 
         {post.tags && (
-          <Flex align="center" justify="center" mb="16">
+          <Flex align="center" justify="center" mb="5" mt="5">
             <FaTag />
             {post.tags.map((tag) => (
               <Text key={tag} size="1" weight="bold" ml="2">
-                <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+                <RadixLink asChild>
+                  <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+                </RadixLink>
               </Text>
             ))}
           </Flex>
         )}
+        
       </Container>
-
+      <Container>
       {post.heroImg && (
-        <Box data-tina-field={tinaField(post, "heroImg")} mb="8">
-          <Image
-            src={post.heroImg}
-            alt={post.title}
-            aria-hidden="true"
-            width={500}
-            height={500}
-          />
-        </Box>
-      )}
+          <Box data-tina-field={tinaField(post, "heroImg")} mb="5" mt="5" >
+            <img
+              src={post.heroImg}
+              alt={post.title}
+              aria-hidden="true"
+              width="100%"
+            />
+          </Box>
+        )}
+        </Container>
+
 
       <Container>
         <Box data-tina-field={tinaField(post, "_body")} mb="8">
