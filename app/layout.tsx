@@ -42,13 +42,12 @@ export default async function RootLayout({
                 left: 0,
                 right: 0,
                 height: 480,
-                opacity: 0.9,
+                opacity: 0.6,
                 background:
                   "linear-gradient(to bottom, var(--accent-4), transparent)",
               }}
-            >
+            ></Box>
             {children}
-          </Box>
         </Theme>
       </ThemeProvider>
     </body>
