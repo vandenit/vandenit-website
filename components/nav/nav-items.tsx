@@ -35,7 +35,7 @@ export default function NavItems({ navs }: { navs: any }) {
           </TabNav.Root>
         </Box>
       </Box>
-      <Flex width="100%" display={{ initial: 'flex', sm: 'none' }} justify="between">
+      <Flex width="100%" display={{ initial: 'flex', sm: 'none' }} justify="between" position="relative">
         <RadixLink asChild>
           <Link href="/">
             <VandenITLogo width={48} height={48} />
