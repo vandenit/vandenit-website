@@ -153,3 +153,8 @@ body {
   color: var(--gray-12);
   -webkit-text-size-adjust: 100%;
 }
+
+
+.action-button {
+    min-width: 200px;
+}

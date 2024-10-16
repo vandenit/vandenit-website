@@ -6,6 +6,30 @@ import { PageBlocksActionsActions, PageBlocksHeroActions } from "../../tina/__ge
 import { tinaField } from "tinacms/dist/react";
 import { useLayout } from "../layout/layout-context";
 import { Box, Button, Flex, Grid } from "@radix-ui/themes";
+import styles from './Actions.module.css';
+
+const ActionButton = ({
+  action,
+  onClick,
+}: {
+  action: PageBlocksHeroActions | PageBlocksActionsActions;
+  onClick?: () => void;
+}) => (
+  <Button
+    size={{ sm: '4' }} variant="classic"
+    mb={{ initial: '4', sm: '0' }}
+    ml={{ initial: '0', sm: '2' }}
+    mr={{ initial: '0', sm: '2' }}
+    data-tina-field={tinaField(action)}
+    onClick={onClick ? onClick : undefined}
+    className={styles.actionButton}
+  >
+    {action.label}
+    {action.icon && (
+      <BiRightArrowAlt />
+    )}
+  </Button>
+);
 
 export const Actions = ({
   actions,
@@ -25,18 +49,7 @@ export const Actions = ({
             element = (
               <Box key={index}>
                 <Link key={index} href={action.link ? action.link : "/"}>
-                  <Button
-                    size={{ sm: '4' }} variant="classic"
-                    mb={{ initial: '4', sm: '0' }}
-                    ml={{ initial: '0', sm: '2' }}
-                    mr={{ initial: '0', sm: '2' }}
-                    data-tina-field={tinaField(action)}
-                  >
-                    {action.label}
-                    {action.icon && (
-                      <BiRightArrowAlt />
-                    )}
-                  </Button>
+                  <ActionButton action={action} />
                 </Link>
               </Box>
             );
@@ -55,21 +68,10 @@ export const Actions = ({
               </Link>
             );
           }
-          else if (action.type === "email" ) {
+          else if (action.type === "email") {
             element = (
               <Box key={index}>
-                  <Button onClick={openEmail(action.link)}
-                    size={{ sm: '4' }} variant="classic"
-                    mb={{ initial: '4', sm: '0' }}
-                    ml={{ initial: '0', sm: '2' }}
-                    mr={{ initial: '0', sm: '2' }}
-                    data-tina-field={tinaField(action)}
-                  >
-                    {action.label}
-                    {action.icon && (
-                      <BiRightArrowAlt />
-                    )}
-                  </Button>
+                <ActionButton onClick={openEmail(action.link)} action={action} />
               </Box>
             );
           }
