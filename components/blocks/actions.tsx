@@ -2,7 +2,7 @@
 import Link from "next/link";
 import * as React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
-import { PageBlocksActionsActions, PageBlocksHeroActions } from "../../tina/__generated__/types";
+import { PageBlocksActionsActions, PageBlocksHeroActions, PageBlocksImageHeaderActions } from "../../tina/__generated__/types";
 import { tinaField } from "tinacms/dist/react";
 import { useLayout } from "../layout/layout-context";
 import { Box, Button, Flex, Grid } from "@radix-ui/themes";
@@ -34,7 +34,7 @@ const ActionButton = ({
 export const Actions = ({
   actions,
 }: {
-  actions: PageBlocksHeroActions[] | PageBlocksActionsActions[];
+  actions: PageBlocksHeroActions[] | PageBlocksActionsActions[] | PageBlocksImageHeaderActions[];
 }) => {
   const { theme } = useLayout();
   const openEmail = (email: string) => () => {

@@ -6,6 +6,7 @@ import { avatarBlockSchema } from "../../components/blocks/avatar";
 import { testimonialsBlockSchema } from "../../components/blocks/testimonial-carousel";
 import { portfolioBlockSchema } from "../../components/blocks/portfolio-carousel";
 import { actionsBlockSchema } from "../../components/blocks/action-block";
+import { imageHeaderBlockSchema } from "../../components/blocks/imageHeader";
 
 const Page: Collection = {
   label: "Pages",
@@ -21,6 +22,9 @@ const Page: Collection = {
       }
       if (document._sys.filename === "fullcv") {
         return `/fullcv`;
+      }
+      if (document._sys.filename === "security-audit") {
+        return `/security-audit`;
       }
       return undefined;
     },
@@ -52,6 +56,7 @@ const Page: Collection = {
         testimonialsBlockSchema,
         portfolioBlockSchema,
         actionsBlockSchema,
+        imageHeaderBlockSchema
       ],
     },
   ],

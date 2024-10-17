@@ -7,6 +7,7 @@ import { AvatarBlock } from "./avatar";
 import { TestimonialCarousel } from "./testimonial-carousel";
 import { PortfolioCarousel } from "./portfolio-carousel";
 import { ActionsBlock } from "./action-block";
+import { ImageHeader } from "./imageHeader";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   return (
@@ -40,6 +41,8 @@ const Block = (block: PageBlocks) => {
       return <PortfolioCarousel data={block} />;
     case "PageBlocksActions":
       return <ActionsBlock data={block} />;
+    case "PageBlocksImageHeader":
+      return <ImageHeader data={block} />;
     default:
       return null;
   }
