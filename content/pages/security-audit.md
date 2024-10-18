@@ -4,7 +4,7 @@ blocks:
   - tagline: 'Professional Security, Full Control'
     headline: '      Protect your website with a professional security audit, tailored to your needs. '
     image:
-      src: /uploads/main/securitybg2.webp
+      src: /uploads/main/security_bg_3.jpg
     _template: imageHeader
   - body: >
       ## Why Choose Our Automated Security Audits?
