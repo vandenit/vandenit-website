@@ -4,11 +4,11 @@ import type { Template } from "tinacms";
 import { tinaField } from "tinacms/dist/react";
 import { Actions } from "./actions";
 import { Box, Flex, Heading } from "@radix-ui/themes";
-import styles from './ImageHeader.module.css';
+import styles from './image-header.module.css';
 import { PageBlocksImageHeader } from "../../tina/__generated__/types";
 
 export const ImageHeader = ({ data }: { data: PageBlocksImageHeader }) => (
-  <Box className={styles.imageHeader} style={{ backgroundImage: `url(${data.image?.src})` }}>
+  <Box className={styles.imageBox} style={{ backgroundImage: `url(${data.image?.src})` }}>
     <Box position="relative" className={styles.heroBox} minHeight="400px">
       {/* Hero Heading */}
       <Heading
