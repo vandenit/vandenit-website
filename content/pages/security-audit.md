@@ -1,32 +1,21 @@
 ---
 title: Secure Your Website with a Fully Automated Security Audit
 blocks:
-  - tagline: 'Professional Security, Full Control'
-    headline: '      Protect your website with a professional security audit, tailored to your needs. '
+  - tagline: "Professional Security, Full Control"
+    headline: "      Protect your website with a professional security audit, tailored to your needs. "
     image:
       src: /uploads/main/security_bg_3.jpg
     _template: imageHeader
   - body: >
-      ## Why Choose Our Automated Security Audits?
+      ## Why Choose Our Security Audits?
 
+      We value your time and security. Our audits provide fast, actionable insights with minimal effort on your end. No need for lengthy meetings—simply submit your website details online, and receive a comprehensive report to secure your business.
 
-      You value your time, and so do we. Our security audits are designed to be
-      fast, fully automated, and tailored to the modern, time-conscious
-      business. Get all the security insights you need, without the hassle of
-      long meetings or discussions. Simply request your audit, and receive
-      actionable results right in your inbox.
-
-
-      * **On-Demand Reports**: Order your security audit online, and receive a
-      full report with actionable insights in a matter of hours, not days. -
-      **Fully Automated**: Our audit process is powered by leading security
-      tools like **OWASP ZAP**, **Burp Suite**, and **Qualys**, ensuring that
-      every scan is thorough and efficient. - **No Meetings, No Hassle**: You
-      don't need to set aside time for calls or meetings. Everything is handled
-      online, and you get your results without any delays. - **Affordable and
-      Accessible**: By automating our processes, we keep costs low and make
-      professional-grade security accessible to businesses of all sizes.
-    color: ''
+      - **Quick and Convenient**: Request your audit online, and receive a preview of your vulnerabilities within a week.
+      - **Professional Expertise**: Powered by leading security tools like **OWASP ZAP** and **Burp Suite**, combined with expert analysis.
+      - **No Meetings Required**: Get all the insights you need online, with an optional follow-up if needed.
+      - **Affordable and Transparent**: Start with a free preview, and choose to purchase the full report with a detailed action plan.
+    color: ""
     _template: content
   - title: How It Works
     featuresId: howitworks
@@ -34,41 +23,41 @@ blocks:
       - icon:
           name: FaSearch
           color: blue
-        title: Place Your Order Online
+        title: Submit Your Request
         text: >-
-          Select the type of audit you need, provide your website details, and
-          order your security audit in just a few clicks. 
-        richText: ''
+          Provide your website details through our simple online form. Your audit request starts immediately.
+        richText: ""
       - icon:
           name: FaTools
           color: red
-        title: Automated Vulnerability Scanning
+        title: Vulnerability Scanning
         text: >-
-          Our automated tools, including **OWASP ZAP** and **Burp Suite**, begin
-          scanning your site for vulnerabilities right away, simulating
-          real-world attacks to uncover hidden weaknesses.
-        richText: ''
+          We run a series of tests using industry-standard tools, scanning your website for potential security risks and vulnerabilities.
+        richText: ""
       - icon:
           name: FaRocket
           color: green
-        title: Get a Preview of the Results
+        title: Preview of Findings
         text: >-
-          Within hours, you'll receive a **summary** of the vulnerabilities
-          found. This gives you a snapshot of your website’s security status
-          before you purchase the full report.
-        richText: ''
+          Within a week, you'll receive a **summary** of the key vulnerabilities found on your site, giving you a clear overview of your security status.
+        richText: ""
       - icon:
           name: FaClipboardList
           color: yellow
         title: Full Report and Action Plan
         text: >-
-          Once you purchase the full report, you’ll receive a detailed breakdown
-          of each vulnerability, prioritized by risk level, and step-by-step
-          solutions to fix them.
-        richText: ''
+          Opt for the full report to get a detailed breakdown of each vulnerability, complete with prioritization and step-by-step instructions to fix them.
+        richText: ""
+      - icon:
+          name: FaClipboardCheck
+          color: red
+        title: Optional Bug Fixes
+        text: >-
+          If needed, request a tailored quote to have vulnerabilities fixed professionally, ensuring your site is fully secured.
+        richText: ""
     color: tint
     _template: features
-  - title: Key Features of Our Automated Audits
+  - title: Key Features of Our Audits
     featuresId: keyfeatures
     items:
       - icon:
@@ -76,40 +65,28 @@ blocks:
           color: blue
         title: Comprehensive Security Testing
         text: >-
-          From OWASP Top 10 risks to compliance with GDPR and ISO 27001, our
-          automated audits cover all essential security aspects.
-        richText: ''
+          From OWASP Top 10 risks to compliance with GDPR and ISO 27001, our audits cover all essential security aspects.
+        richText: ""
       - icon:
           name: FaMoneyBillAlt
           color: green
         title: Affordable Pricing
         text: >-
-          By automating our audits, we keep the cost low while maintaining the
-          same high standards of manual audits.
-        richText: ''
+          Start with a free preview, and pay only when you need the full report.
+        richText: ""
       - icon:
           name: FaClock
           color: purple
-        title: Fast Turnaround
+        title: Quick Turnaround
         text: >-
-          No waiting for days. Our automated tools deliver results quickly, with
-          a full report available within hours of placing your order.
-        richText: ''
-      - icon:
-          name: FaFileContract
-          color: red
-        title: Pay Only for Full Reports
-        text: >-
-          You receive a free summary of vulnerabilities found. Only pay when you
-          want the detailed report and action plan.
-        richText: ''
+          Get the initial findings within a week, and the full report within two weeks of ordering.
+        richText: ""
     color: tint
     _template: features
   - actions:
-      - label: Get Your Automated Audit Now
+      - label: Request Your Audit Now
         type: button
         icon: false
         link: /order-audit
     _template: actions
 ---
-

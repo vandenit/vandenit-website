@@ -3,37 +3,25 @@ import * as React from "react";
 import type { Template } from "tinacms";
 import { tinaField } from "tinacms/dist/react";
 import { Actions } from "./actions";
-import { Box, Flex, Heading } from "@radix-ui/themes";
+import { Box, Flex, Heading, Text } from "@radix-ui/themes";
 import styles from './image-header.module.css';
 import { PageBlocksImageHeader } from "../../tina/__generated__/types";
 
 export const ImageHeader = ({ data }: { data: PageBlocksImageHeader }) => (
-  <Box className={styles.imageBox} style={{ backgroundImage: `url(${data.image?.src})` }}>
-    <Box position="relative" className={styles.heroBox} minHeight="400px">
+  <Box className={styles.imageHeader} style={{ backgroundImage: `url(${data.image?.src})` }}>
+    <Flex position="relative" className={styles.imageBox} minHeight="400px" align="center" justify="center" direction="column"
+    >
       {/* Hero Heading */}
-      <Heading
-        as="h1"
-        size={{ initial: '6', sm: '9' }}
-        mb="4"
-        color="blue"
-        className={styles.textShadow}
-        data-tina-field={tinaField(data, 'tagline')}
-      >
+      <Heading as="h1" size={{ initial: '6', sm: '9' }} mb="4" data-tina-field={tinaField(data, 'tagline')} 
+      className={styles.textShadow}>
         {data.tagline}
       </Heading>
       <Box>
-        <Heading
-          as="h2"
-          size={{ initial: '4', sm: '7' }}
-          mb="4"
-          color="blue"
-          className={styles.textShadow}
-          data-tina-field={tinaField(data, 'headline')}
-        >
+        <Text as="p" size={{ sm: '4', md: '5' }} mb="6" data-tina-field={tinaField(data, 'headline')} className={styles.textShadow}>
           {data.headline}
-        </Heading>
+        </Text>
       </Box>
-    </Box>
+    </Flex>
 
     {/* Call to Action Button */}
     {data.actions && (
