@@ -9,11 +9,11 @@
     "color": "default",
     "nav": [
       {
-        "href": "home",
+        "href": "/home",
         "label": "Home"
       },
       {
-        "href": "about",
+        "href": "/about",
         "label": "About"
       },
       {

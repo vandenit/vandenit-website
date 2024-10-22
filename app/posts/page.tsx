@@ -15,7 +15,6 @@ export default async function PostsPage({
   });
   const theme = await client.queries.themeConnection();
   const allTags = theme?.data?.themeConnection?.edges.map((edge) => edge.node.data).flat();
-  console.log(JSON.stringify(allTags, null, 2));
   if (!posts) {
     return null;
   }
