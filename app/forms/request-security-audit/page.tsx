@@ -16,8 +16,7 @@ export default function requestSecurityAuditForm() {
                 Request FREE security audit preview
             </Heading>
             <Text as="p" mb="5">
-                Fill out the form below to receive your free security audit preview.
-                Then you can decide to purchase a full security audit and optionally hire us to fix any issues.
+                Protect your website with a fast, expert-driven audit. Fill out the form to receive your free security audit preview. Based on the results, you can decide to upgrade to a full audit, with actionable insights to secure your site.
             </Text>
             <AuditForm />
 

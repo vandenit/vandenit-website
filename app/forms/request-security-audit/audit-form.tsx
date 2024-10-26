@@ -4,6 +4,7 @@ import * as Form from "@radix-ui/react-form";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { createAuditRequest } from "./actions/request-form-action";
+import { FaHandHoldingHeart } from "react-icons/fa";
 
 // Callout for validation errors
 const ValidationCallOut = ({ message }: { message: string }) => (
@@ -35,14 +36,26 @@ export const AuditForm = () => {
     return (
         <Card>
             {isSubmitted ? (
-                <Flex align="center" p="6">
-                    <Heading size="3" weight="bold" mb="4">
-                        Thank you for your request!
-                    </Heading>
-                    <Text size="2">
-                        We have received your security audit request. Our team will review it and get back to you shortly.
-                    </Text>
-                </Flex>
+                <Box p="6">
+                    <Callout.Root>
+                        <Callout.Icon>
+                            <Flex align="center" justify="center" pt="4">
+                                <FaHandHoldingHeart size="30" />
+
+                            </Flex>
+
+                        </Callout.Icon>
+                        <Callout.Text>
+                            <Heading size="3" weight="bold" mb="4">
+                                Thank you for your request!
+                            </Heading>
+                            <Text size="2">
+                                We have received your security audit request. Our team will review it and get back to you shortly.
+                            </Text>
+                        </Callout.Text>
+                    </Callout.Root>
+
+                </Box>
             ) : (
                 <Form.Root className="FormRoot" onSubmit={handleSubmit}>
                     {/* Name Field */}
