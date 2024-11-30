@@ -65,7 +65,7 @@ blocks:
         * Building the frontend using React.
         * Ensuring comprehensive test coverage for both frontend and backend using automated tests with Cucumber.
         * Adopting a Behavior-Driven Development (BDD) approach, where specifications are written in Gherkin syntax for Cucumber and rigorously tested against the developed code.
-      * **Environment/Tools:** Java, Spring Boot, Microservices, React, SASS,
+      * **Environment/Tools:** Java, Spring, React,
       JPA, Hibernate, Oracle, H2, GIT, Jenkins, Gerkin, Cucumber, BDD.
 
 
@@ -283,4 +283,3 @@ blocks:
       ***
     _template: content
 ---
-
