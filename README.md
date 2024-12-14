@@ -1,86 +1,99 @@
-# Tina Starter 🦙
+# Vanden IT Website 🚀
 
-![tina-cloud-starter-demo](https://user-images.githubusercontent.com/103008/130587027-995ccc45-a852-4f90-b658-13e8e0517339.gif)
+Welcome to the **Vanden IT website repository**. This project serves as both the foundation of our company’s online presence and a showcase of modern web development practices. By integrating **Next.js**, **TinaCMS**, and **Radix UI Themes**, this site demonstrates how simplicity and functionality can combine to create an effective digital experience.
 
-This Next.js starter is powered by [TinaCMS](https://app.tina.io) for you and your team to visually live edit the structured content of your website. ✨
+---
 
-The content is managed through Markdown and JSON files stored in your GitHub repository, and queried through Tina GraphQL API.
+## About Vanden IT
+
+At **Vanden IT**, we focus on creating practical and reliable web solutions that cater to real-world needs. With over 15 years of experience in full-stack development, we specialize in crafting applications that are:
+
+- **Secure**: Incorporating OWASP principles and industry best practices to safeguard your data.
+- **User-Friendly**: Designed with accessibility and usability in mind to ensure a seamless experience.
+- **Modern and Maintainable**: Built using scalable technologies like **Next.js**, **React**, and **Radix UI Themes**.
+
+Our aim is to collaborate closely with clients, understand their challenges, and provide solutions that are both effective and future-proof.
+
+---
+
+## About This Project
+
+This repository powers the **Vanden IT website**, which highlights our capabilities and serves as a practical demonstration of our technical skills. It was built with a focus on performance, flexibility, and easy content management.
 
 ### Features
 
-- [Tina Headless CMS](https://app.tina.io) for authentication, content modeling, visual editing and team management.
-- [Vercel](https://vercel.com) deployment to visually edit your site from the `/admin` route.
-- Local development workflow from the filesystem with a local GraqhQL server.
+- **Live Editing with TinaCMS**: The site uses **TinaCMS** for visual, real-time content editing and management.
+- **Custom Design System**: Styled with **Radix UI Themes**, ensuring a clean, consistent look that prioritizes usability.
+- **Modern Development Stack**: Built with **Next.js** for fast performance and server-side rendering.
+- **Content Stored in GitHub**: Markdown and JSON files are version-controlled and hosted directly within this repository.
 
-## Requirements
+### Technologies Used
 
-- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/), pnpm installed for local development.
-- A [TinaCMS](https://app.tina.io) account for live editing.
+- **Frontend**: React, Next.js, Radix UI Themes
+- **Backend**: Tina GraphQL API for structured content querying
+- **Deployment**: Hosted on **Vercel**, ensuring reliable performance and fast loading speeds
 
-## Local Development
+---
 
-Install the project's dependencies:
+## How to Use This Repository
 
-> [!NOTE]  
-> [Do you know the best package manager for Node.js?](https://www.ssw.com.au/rules/best-package-manager-for-node/) Using the right package manager can greatly enhance your development workflow. We recommend using pnpm for its speed and efficient handling of dependencies. Learn more about why pnpm might be the best choice for your projects by checking out this rule from SSW.
+### Local Development
 
+Follow these steps to set up the project locally:
 
-```
-pnpm install
-```
+1. **Install dependencies**:
 
-Run the project locally:
+   ```bash
+   pnpm install
+   ```
 
-```
-pnpm dev
-```
+2. **Run the development server**:
 
-### Local URLs
+   ```bash
+   pnpm dev
+   ```
 
-- http://localhost:3000 : browse the website
-- http://localhost:3000/admin : connect to Tina Cloud and go in edit mode
-- http://localhost:3000/exit-admin : log out of Tina Cloud
-- http://localhost:4001/altair/ : GraphQL playground to test queries and browse the API documentation
+3. **Access the project locally**:
 
-### Building the Starter Locally (Using the hosted content API)
+   - Website: `http://localhost:3000`
+   - TinaCMS Admin: `http://localhost:3000/admin`
+   - GraphQL Playground: `http://localhost:4001/altair/`
 
-Replace the `.env.example`, with `.env`
+4. **Build for production**:
+   ```bash
+   pnpm build
+   ```
 
-```
-NEXT_PUBLIC_TINA_CLIENT_ID=<get this from the project you create at app.tina.io>
-TINA_TOKEN=<get this from the project you create at app.tina.io>
-NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
-```
+---
 
-Build the project:
+## Why Vanden IT?
 
-```bash
-pnpm build
-```
+While this project showcases our technical abilities, at Vanden IT, we prioritize the value our solutions bring to clients. Here’s what we focus on:
 
-## Getting Help
+- **Collaboration**: Working closely with stakeholders to ensure the project aligns with their goals.
+- **Flexibility**: Adapting to project needs and tailoring solutions to fit.
+- **Quality**: Delivering maintainable, scalable, and secure applications.
 
-To get help with any TinaCMS challenges you may have:
+---
 
-- Visit the [documentation](https://tina.io/docs/) to learn about Tina.
-- [Join our Discord](https://discord.gg/zumN63Ybpf) to share feedback.
-- Visit the [community forum](https://community.tinacms.org/) to ask questions.
-- Get support through the chat widget on the TinaCMS Dashboard
-- [Email us](mailto:support@tina.io) to schedule a call with our team and share more about your context and what you're trying to achieve.
-- [Search or open an issue](https://github.com/tinacms/tinacms/issues) if something is not working.
-- Reach out on Twitter at [@tina_cms](https://twitter.com/tina_cms).
+## Recent Highlights
 
-## Development tips
+- Developed **DinnerGift**, a platform for managing restaurant gift cards.
+- Built scalable, secure systems for financial institutions like **BNP Paribas Fortis**.
+- Delivered intuitive user experiences using frameworks like **React** and **Next.js**.
 
-### Visual Studio Code GraphQL extension
+---
 
-[Install the GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) to benefit from type auto-completion.
+## Contact
 
-### Typescript
+If you’d like to learn more about how we can work together, feel free to get in touch!
 
-A good way to ensure your components match the shape of your data is to leverage the auto-generated TypeScript types.
-These are rebuilt when your `tina` config changes.
+- **Website**: [vandenit.be](https://www.vandenit.be)
+- **GitHub**: [Vanden IT](https://github.com/vandenit)
+- **Email**: filip@vandenit.be
 
-## LICENSE
+---
 
-Licensed under the [Apache 2.0 license](./LICENSE).
+## License
+
+This project is licensed under the [Apache 2.0 license](./LICENSE).
