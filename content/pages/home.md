@@ -1,5 +1,5 @@
 ---
-title: Vanden IT
+title: Home
 blocks:
   - tagline: Building Scalable Solutions with Cutting-Edge Technologies
     headline: >-
@@ -27,65 +27,43 @@ blocks:
     featuresId: services
     items:
       - icon:
-          name: FaBrain
-          color: orange
-        title: Development consultancy
+          name: LockClosedIcon
+          color: black
+        title: Security audit
         text: >-
-          Tailored development consultancy to architect and implement robust,
-          secure, and scalable software solutions for complex systems, with a
-          strong focus on performance, security, and integration across the
-          development lifecycle.
+          Protect your website with a comprehensive security audit tailored to
+          safeguard your digital assets.
         richText: ''
+        link: ''
+        buttonLink:
+          label: Request a free preview
+          link: /security-audit
       - icon:
           name: CodeIcon
           color: yellow
         title: Custom Software Development
         text: >-
-          Tailored software solutions designed to meet your specific business
-          needs, ensuring scalability, performance, and flexibility.
+          Scalable software solutions designed for your business, focusing on
+          performance, flexibility, and innovation.
         richText: ''
+        link: ''
+        buttonLink:
+          label: Explore Our Solutions
+          link: /custom-software
       - icon:
-          name: FaPuzzlePiece
-          color: blue
-        title: Open Source Integration
+          name: FaBrain
+          color: orange
+        title: Development consultancy
         text: >-
-          Integrate the power of open source technologies into your business
-          systems to reduce costs, increase flexibility, and ensure continuous
-          innovation.
+          Freelance tech lead services to support your team with secure,
+          scalable solutions and project guidance.
         richText: ''
-      - icon:
-          name: FaCloud
-          color: lightblue
-        title: Cloud and DevOps Solutions
-        text: >-
-          Implement robust cloud solutions and DevOps practices to enhance
-          deployment speed, maintainability, and security of your applications.
-        richText: ''
-      - icon:
-          name: FaExchangeAlt
-          color: green
-        title: API Development and Integration
-        text: >-
-          Develop and integrate APIs that enable seamless communication between
-          different software systems, ensuring data consistency and operational
-          efficiency.
-        richText: ''
-      - icon:
-          name: LockClosedIcon
-          color: black
-        title: Security and Compliance
-        text: >-
-          Implement advanced security protocols and ensure compliance with
-          industry standards to protect your software and data.
-        richText: ''
+        link: ''
+        buttonLink:
+          label: Meet Your Tech Lead
+          link: /about
     color: tint
     _template: features
-  - actions:
-      - label: Contact us
-        type: email
-        icon: true
-        link: info@vandenit.be
-    _template: actions
   - title: Portfolio
     portfolioId: portfolio
     items:
@@ -142,12 +120,30 @@ blocks:
           In short, an excellent developer to have on any development team.
         author: Stijn Geukens
         role: 'Development Manager, BNP Paribas'
+      - content: >-
+          I worked with Filip for over 7 years at DinnerGift, where his
+          technical expertise and dedication were key to our success. He
+          consistently delivered high-quality code and offered innovative
+          solutions to complex challenges.
+
+
+          Filip was also great at collaborating, always open to feedback and
+          proactive in suggesting improvements. His ability to simplify complex
+          ideas made discussions clear and productive for everyone.
+
+          I highly recommend Filip as a developer who not only excels
+          technically but is also deeply committed to achieving shared goals.
+        author: Astrid Van den Broeck
+        role: CTO at Autonomous
+      - content: >-
+          Filip Van den Broeck is a highly skilled developer and technical lead with expertise in Angular and Java. I had the pleasure of working with him when he played a key role in developing and maintaining a corporate banking portal used by 100,000+ users. Known for his reliability, collaboration, and problem-solving skills, Filip consistently delivers high-quality work and enhances team dynamics. A strong asset to any software development team.
+        author: Jos Van Dorpe
+        role: 'Delivery Lead & Senior Solution Architect'
     _template: testimonials
   - actions:
       - label: Contact us
-        type: email
+        type: button
         icon: true
-        link: info@vandenit.be
+        link: /contact
     _template: actions
 ---
-
