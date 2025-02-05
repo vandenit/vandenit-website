@@ -6,8 +6,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install pnpm
-RUN corepack enable
-RUN corepack prepare pnpm@latest --activate
+RUN wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
 
 # Install dependencies
 COPY package.json pnpm-lock.yaml ./
@@ -16,6 +15,10 @@ RUN pnpm install --frozen-lockfile
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
+
+# Install pnpm in builder stage
+RUN wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -23,6 +26,15 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
+
+# Add build-time environment variables for TinaCMS
+ARG NEXT_PUBLIC_TINA_CLIENT_ID
+ARG TINA_TOKEN
+ARG NEXT_PUBLIC_TINA_BRANCH=main
+
+ENV NEXT_PUBLIC_TINA_CLIENT_ID=${NEXT_PUBLIC_TINA_CLIENT_ID}
+ENV TINA_TOKEN=${TINA_TOKEN}
+ENV NEXT_PUBLIC_TINA_BRANCH=${NEXT_PUBLIC_TINA_BRANCH}
 
 RUN pnpm build
 
