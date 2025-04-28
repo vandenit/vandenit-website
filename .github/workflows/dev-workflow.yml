@@ -1,4 +1,4 @@
-name: Deploy to Digital Ocean Kubernetes
+name: Deploy to Digital Ocean Kubernetes.
 
 on:
   push:
