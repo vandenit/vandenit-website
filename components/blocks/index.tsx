@@ -1,5 +1,3 @@
-import { tinaField } from "tinacms/dist/react";
-import { Page, PageBlocks } from "../../tina/__generated__/types";
 import { Hero } from "./hero";
 import { Content } from "./content";
 import { Features } from "./features";
@@ -8,14 +6,15 @@ import { TestimonialCarousel } from "./testimonial-carousel";
 import { PortfolioCarousel } from "./portfolio-carousel";
 import { ActionsBlock } from "./action-block";
 import { ImageHeader } from "./imageHeader";
+import type { Page } from '.contentlayer/generated';
 
-export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
+export const Blocks = (props: Page) => {
   return (
     <>
       {props.blocks
-        ? props.blocks.map(function (block, i) {
+        ? props.blocks.map(function (block: any, i: number) {
           return (
-            <div key={i} data-tina-field={tinaField(block)}>
+            <div key={i}>
               <Block {...block} />
             </div>
           );
@@ -25,23 +24,23 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   );
 };
 
-const Block = (block: PageBlocks) => {
-  switch (block.__typename) {
-    case "PageBlocksHero":
+const Block = (block: any) => {
+  switch (block._template) {
+    case "hero":
       return <Hero data={block} />;
-    case "PageBlocksAvatar":
+    case "avatar":
       return <AvatarBlock data={block} />;
-    case "PageBlocksContent":
+    case "content":
       return <Content data={block} />;
-    case "PageBlocksFeatures":
+    case "features":
       return <Features data={block} />;
-    case "PageBlocksTestimonials":
+    case "testimonials":
       return <TestimonialCarousel data={block} />;
-    case "PageBlocksPortfolio":
+    case "portfolio":
       return <PortfolioCarousel data={block} />;
-    case "PageBlocksActions":
+    case "actions":
       return <ActionsBlock data={block} />;
-    case "PageBlocksImageHeader":
+    case "imageHeader":
       return <ImageHeader data={block} />;
     default:
       return null;

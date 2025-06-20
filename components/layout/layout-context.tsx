@@ -1,15 +1,13 @@
 "use client";
 import React, { useState, useContext } from "react";
-import { GlobalQuery } from "../../tina/__generated__/types";
+import type { Global } from '.contentlayer/generated';
 
 interface LayoutState {
-  globalSettings: GlobalQuery["global"];
-  setGlobalSettings: React.Dispatch<
-    React.SetStateAction<GlobalQuery["global"]>
-  >;
-  pageData: {};
-  setPageData: React.Dispatch<React.SetStateAction<{}>>;
-  theme: GlobalQuery["global"]["theme"];
+  globalSettings: Global | null;
+  setGlobalSettings: React.Dispatch<React.SetStateAction<Global | null>>;
+  pageData: any;
+  setPageData: React.Dispatch<React.SetStateAction<any>>;
+  theme: any;
 }
 
 const LayoutContext = React.createContext<LayoutState | undefined>(undefined);
@@ -21,8 +19,8 @@ export const useLayout = () => {
 
 interface LayoutProviderProps {
   children: React.ReactNode;
-  globalSettings: GlobalQuery["global"];
-  pageData: {};
+  globalSettings: Global | null;
+  pageData: any;
 }
 
 export const LayoutProvider: React.FC<LayoutProviderProps> = ({
@@ -30,12 +28,12 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
   globalSettings: initialGlobalSettings,
   pageData: initialPageData,
 }) => {
-  const [globalSettings, setGlobalSettings] = useState<GlobalQuery["global"]>(
+  const [globalSettings, setGlobalSettings] = useState<Global | null>(
     initialGlobalSettings
   );
-  const [pageData, setPageData] = useState<{}>(initialPageData);
+  const [pageData, setPageData] = useState<any>(initialPageData);
 
-  const theme = globalSettings.theme;
+  const theme = globalSettings?.theme;
 
   return (
     <LayoutContext.Provider

@@ -1,49 +1,36 @@
 "use client";
 import { format } from "date-fns";
 import Link from "next/link";
-import Image from "next/image";
 import React from "react";
 import { Flex, Box, Heading, Text, Link as RadixLink, Avatar, Card } from '@radix-ui/themes';
-
 import { useLayout } from "../../components/layout/layout-context";
 import { BsArrowRight } from "react-icons/bs";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-import {
-  PostConnectionQuery,
-  PostConnectionQueryVariables,
-} from "../../tina/__generated__/types";
-import { useTina } from "tinacms/dist/react";
 import { FaTag } from "react-icons/fa";
 import { TagFilterPanel } from "./tag-filter-panel";
-
+import type { Post, Author } from '.contentlayer/generated';
 
 interface ClientPostProps {
-  data: PostConnectionQuery;
-  variables: PostConnectionQueryVariables;
-  query: string;
+  posts: (Post & { authorData?: Author })[];
   tags: string[];
 }
 
-export default function PostsClientPage(props: ClientPostProps) {
-  const { data } = useTina({ ...props });
-  const { tags } = props;
+export default function PostsClientPage({ posts, tags }: ClientPostProps) {
   const { theme } = useLayout();
 
   return (
     <>
       <TagFilterPanel tags={tags} />
-      {data?.postConnection.edges.map((postData) => {
-        const post = postData.node;
+      {posts.map((post) => {
         const date = new Date(post.date);
         let formattedDate = "";
         if (!isNaN(date.getTime())) {
           formattedDate = format(date, "MMM dd, yyyy");
         }
         return (
-          <RadixLink asChild key={post.id} >
+          <RadixLink asChild key={post._id} >
             <Link
-              key={post.id}
-              href={`/posts/` + post._sys.breadcrumbs.join("/")}
+              key={post._id}
+              href={post.url}
             >
               <Box
                 p="6"
@@ -62,22 +49,28 @@ export default function PostsClientPage(props: ClientPostProps) {
                     </Box>
                   </Flex>
 
-                  <Text size="2" color="gray" mb="5">
-                    <TinaMarkdown content={post.excerpt} />
-                  </Text>
+                  {post.excerpt && (
+                    <Text size="2" color="gray" mb="5">
+                      {post.excerpt}
+                    </Text>
+                  )}
 
                   <Flex align="center">
-                    <Box mr="2" flexShrink="0">
-                      <Avatar
-                        src={post?.author?.avatar}
-                        alt={post?.author?.name}
-                        fallback={post?.author?.name}
-                        size="4"
-                      />
-                    </Box>
-                    <Text size="2" color="gray">
-                      {post?.author?.name}
-                    </Text>
+                    {post.authorData && (
+                      <>
+                        <Box mr="2" flexShrink="0">
+                          <Avatar
+                            src={post.authorData.avatar}
+                            alt={post.authorData.name}
+                            fallback={post.authorData.name?.[0] || 'A'}
+                            size="4"
+                          />
+                        </Box>
+                        <Text size="2" color="gray">
+                          {post.authorData.name}
+                        </Text>
+                      </>
+                    )}
                     {formattedDate && (
                       <>
                         <Text size="2" color="gray" mx="2">

@@ -2,17 +2,22 @@
 import Link from "next/link";
 import * as React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
-import { PageBlocksActionsActions, PageBlocksHeroActions, PageBlocksImageHeaderActions } from "../../tina/__generated__/types";
-import { tinaField } from "tinacms/dist/react";
 import { useLayout } from "../layout/layout-context";
-import { Box, Button, Flex, Grid } from "@radix-ui/themes";
+import { Box, Button, Flex } from "@radix-ui/themes";
 import styles from './Actions.module.css';
+
+interface ActionItem {
+  label: string;
+  type: string;
+  icon: boolean;
+  link: string;
+}
 
 const ActionButton = ({
   action,
   onClick,
 }: {
-  action: PageBlocksHeroActions | PageBlocksActionsActions;
+  action: ActionItem;
   onClick?: () => void;
 }) => (
   <Button
@@ -20,7 +25,6 @@ const ActionButton = ({
     mb={{ initial: '4', sm: '0' }}
     ml={{ initial: '0', sm: '2' }}
     mr={{ initial: '0', sm: '2' }}
-    data-tina-field={tinaField(action)}
     onClick={onClick ? onClick : undefined}
     className={styles.actionButton}
   >
@@ -34,7 +38,7 @@ const ActionButton = ({
 export const Actions = ({
   actions,
 }: {
-  actions: PageBlocksHeroActions[] | PageBlocksActionsActions[] | PageBlocksImageHeaderActions[];
+  actions: ActionItem[];
 }) => {
   const { theme } = useLayout();
   const openEmail = (email: string) => () => {
@@ -59,7 +63,6 @@ export const Actions = ({
               <Link
                 key={index}
                 href={action.link ? action.link : "/"}
-                data-tina-field={tinaField(action)}
               >
                 {action.label}
                 {action.icon && (

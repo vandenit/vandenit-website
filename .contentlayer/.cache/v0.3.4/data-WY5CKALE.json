@@ -1,0 +1,985 @@
+{
+  "cacheItemsMap": {
+    "authors/napolean.md": {
+      "document": {
+        "name": "Napolean",
+        "avatar": "/uploads/main/llama-2.avif",
+        "body": {
+          "raw": "",
+          "html": ""
+        },
+        "_id": "authors/napolean.md",
+        "_raw": {
+          "sourceFilePath": "authors/napolean.md",
+          "sourceFileName": "napolean.md",
+          "sourceFileDir": "authors",
+          "contentType": "markdown",
+          "flattenedPath": "authors/napolean"
+        },
+        "type": "Author",
+        "url": "/authors/authors/napolean"
+      },
+      "documentHash": "1750329854185",
+      "hasWarnings": false,
+      "documentTypeName": "Author"
+    },
+    "authors/pedro.md": {
+      "document": {
+        "name": "Pedro",
+        "avatar": "/uploads/testmedia/d66c27cd-0ef1-4639-8fc5-dcc319305f06.jpeg",
+        "body": {
+          "raw": "\n",
+          "html": ""
+        },
+        "_id": "authors/pedro.md",
+        "_raw": {
+          "sourceFilePath": "authors/pedro.md",
+          "sourceFileName": "pedro.md",
+          "sourceFileDir": "authors",
+          "contentType": "markdown",
+          "flattenedPath": "authors/pedro"
+        },
+        "type": "Author",
+        "url": "/authors/authors/pedro"
+      },
+      "documentHash": "1750329854185",
+      "hasWarnings": false,
+      "documentTypeName": "Author"
+    },
+    "global/index.json": {
+      "document": {
+        "header": {
+          "icon": {
+            "name": "VandenIT",
+            "color": "amber",
+            "style": "float"
+          },
+          "name": "Vanden IT",
+          "color": "default",
+          "nav": [
+            {
+              "href": "/home",
+              "label": "Home"
+            },
+            {
+              "href": "/about",
+              "label": "About"
+            },
+            {
+              "href": "/contact",
+              "label": "Contact"
+            }
+          ]
+        },
+        "footer": {
+          "color": "default",
+          "social": {
+            "facebook": "/",
+            "twitter": "/",
+            "instagram": "/"
+          }
+        },
+        "theme": {
+          "accentCol": "blue",
+          "greyColor": "slate",
+          "font": "nunito",
+          "darkMode": "dark"
+        },
+        "_id": "global/index.json",
+        "_raw": {
+          "sourceFilePath": "global/index.json",
+          "sourceFileName": "index.json",
+          "sourceFileDir": "global",
+          "contentType": "data",
+          "flattenedPath": "global"
+        },
+        "type": "Global"
+      },
+      "documentHash": "1750329854185",
+      "hasWarnings": false,
+      "documentTypeName": "Global"
+    },
+    "pages/about.md": {
+      "document": {
+        "title": "About",
+        "blocks": [
+          {
+            "avatarHeader": "Meet the developer",
+            "avatarsName": "Filip Van den Broeck",
+            "description": "A seasoned Full Stack Developer with over 15 years of experience in developing high-performance, secure web applications and systems.",
+            "avatarImage": {
+              "src": "/uploads/main/unnamed.jpg",
+              "alt": "Filip Van den Broeck"
+            },
+            "_template": "avatar"
+          },
+          {
+            "body": "# What I Do Best\n\nI build secure, scalable applications, with experience in critical systems for companies like **BNP Paribas Fortis** and my own projects like **DinnerGift**. I focus on **performance**, **security**, and **reliability**. Let's connect to discuss how I can help bring your project to life.\n",
+            "color": "",
+            "_template": "content"
+          },
+          {
+            "title": "Why Clients Love Working with Me",
+            "featuresId": "workingwithme",
+            "items": [
+              {
+                "icon": {
+                  "name": "FaShieldAlt",
+                  "color": "blue"
+                },
+                "title": "Security-First Approach",
+                "text": "I prioritize security at every stage of development, ensuring your application is resilient against modern threats with expertise in applying OWASP standards.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaCheckCircle",
+                  "color": "green"
+                },
+                "title": "Quality-Driven",
+                "text": "I aim for the highest quality in every project, ensuring the solutions I deliver are functional, secure, reliable, and maintainable.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaCommentDots",
+                  "color": "orange"
+                },
+                "title": "Effective Communication",
+                "text": "My clients appreciate my clear and transparent communication, helping them understand their needs and keeping them informed throughout the project.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaSmile",
+                  "color": "yellow"
+                },
+                "title": "Motivated and Positive",
+                "text": "I bring a positive attitude and sense of humor, making collaboration enjoyable while staying focused on results.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaUserShield",
+                  "color": "purple"
+                },
+                "title": "Independent and Reliable",
+                "text": "With experience in developing, deploying, and securing my own projects, I work independently, manage tasks efficiently, and meet deadlines.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaPuzzlePiece",
+                  "color": "red"
+                },
+                "title": "Problem Solver",
+                "text": "I thrive on tackling complex challenges, whether securing an application or solving tricky development issues, ensuring the job gets done effectively.",
+                "richText": ""
+              }
+            ],
+            "color": "tint",
+            "_template": "features"
+          },
+          {
+            "title": "Experience Highlights",
+            "featuresId": "experience",
+            "items": [
+              {
+                "icon": {
+                  "name": "FaBuilding",
+                  "color": "blue"
+                },
+                "title": "Senior Full Stack Developer at BNP Paribas Fortis",
+                "text": "Led the development of a high-performance document and statement archiving system, handling billions of records, while integrating security measures aligned with OWASP standards.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaGift",
+                  "color": "green"
+                },
+                "title": "Owner and Developer of DinnerGift",
+                "text": "Created a platform connecting restaurants and customers for selling and buying gift certificates, using modern web technologies and a security-first mindset.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaProjectDiagram",
+                  "color": "orange"
+                },
+                "title": "Technical Lead for BNP Paribas Fortis' E-commerce Project",
+                "text": "Managed the Enablement project responsible for user onboarding to the financial platform Centric, ensuring all features met stringent security requirements.",
+                "richText": ""
+              }
+            ],
+            "color": "tint",
+            "_template": "features"
+          },
+          {
+            "title": "Key Skills and Tools",
+            "featuresId": "skills",
+            "items": [
+              {
+                "icon": {
+                  "name": "FaCode",
+                  "color": "blue"
+                },
+                "title": "Programming Languages",
+                "text": "Java, JavaScript (ES6), Typescript, PHP, C, C++, HTML, CSS, SASS",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaReact",
+                  "color": "cyan"
+                },
+                "title": "Frameworks and Libraries",
+                "text": "Spring Boot, Spring Core, React, Redux, Angular, AngularJS, NextJs, Express.js",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaLock",
+                  "color": "red"
+                },
+                "title": "Security Practices",
+                "text": "OWASP Top 10, Secure Coding, Vulnerability Management",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaToolbox",
+                  "color": "green"
+                },
+                "title": "Development Tools",
+                "text": "IntelliJ, Visual Studio Code, Jenkins, Docker, Kubernetes, GIT, Maven, GitHub Actions, CircleCI",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaDatabase",
+                  "color": "orange"
+                },
+                "title": "Database Systems",
+                "text": "MongoDB, Oracle, H2, MySQL",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaClipboardCheck",
+                  "color": "purple"
+                },
+                "title": "Methodologies",
+                "text": "Agile (Scrum, KANBAN), Test-Driven Development (TDD), Behavior-Driven Development (BDD)",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaVial",
+                  "color": "yellow"
+                },
+                "title": "Testing and Security Tools",
+                "text": "Cypress, Cucumber, Mocha, Chai, JUnit, Mockito, Automated Security Scanning",
+                "richText": ""
+              }
+            ],
+            "color": "tint",
+            "_template": "features"
+          },
+          {
+            "actions": [
+              {
+                "label": "Full CV",
+                "type": "button",
+                "icon": false,
+                "link": "/fullcv"
+              }
+            ],
+            "_template": "actions"
+          }
+        ],
+        "body": {
+          "raw": "\n",
+          "html": ""
+        },
+        "_id": "pages/about.md",
+        "_raw": {
+          "sourceFilePath": "pages/about.md",
+          "sourceFileName": "about.md",
+          "sourceFileDir": "pages",
+          "contentType": "markdown",
+          "flattenedPath": "pages/about"
+        },
+        "type": "Page",
+        "url": "/pages/about",
+        "slug": "pages/about"
+      },
+      "documentHash": "1750329854185",
+      "hasWarnings": false,
+      "documentTypeName": "Page"
+    },
+    "pages/contact.md": {
+      "document": {
+        "title": "contact",
+        "blocks": [
+          {
+            "title": "Contact us",
+            "items": [
+              {
+                "icon": {
+                  "name": "EnvelopeClosedIcon",
+                  "color": ""
+                },
+                "title": "Adres",
+                "text": "",
+                "richText": "Filomenastraat 24\\\n2018 Antwerpen\\\nBE0768.999.370\n"
+              },
+              {
+                "icon": {
+                  "name": "FaMailBulk",
+                  "color": ""
+                },
+                "title": "Email",
+                "text": "Mail us",
+                "richText": "",
+                "link": "mailto:info@vandenit.be"
+              },
+              {
+                "icon": {
+                  "name": "LinkedInLogoIcon",
+                  "color": ""
+                },
+                "title": "LinkedIn",
+                "text": "Visit us on LinkedIn",
+                "richText": "",
+                "link": "https://www.linkedin.com/in/filip-van-den-broeck/"
+              }
+            ],
+            "_template": "features"
+          }
+        ],
+        "body": {
+          "raw": "\n",
+          "html": ""
+        },
+        "_id": "pages/contact.md",
+        "_raw": {
+          "sourceFilePath": "pages/contact.md",
+          "sourceFileName": "contact.md",
+          "sourceFileDir": "pages",
+          "contentType": "markdown",
+          "flattenedPath": "pages/contact"
+        },
+        "type": "Page",
+        "url": "/pages/contact",
+        "slug": "pages/contact"
+      },
+      "documentHash": "1750329854185",
+      "hasWarnings": false,
+      "documentTypeName": "Page"
+    },
+    "pages/fullcv.md": {
+      "document": {
+        "title": "Full CV",
+        "blocks": [
+          {
+            "avatarHeader": "Curriculum Vitae",
+            "avatarsName": "Filip Van den Broeck",
+            "description": "Full CV",
+            "avatarImage": {
+              "src": "/uploads/main/unnamed.jpg",
+              "alt": "filip"
+            },
+            "_template": "avatar"
+          },
+          {
+            "body": "## Filip Van den Broeck\n\n***\n\n### Education\n\n**Industrial Engineer** (2002-2006)\n\n* Specialization: Industrial engineer electronics, option Information and Communication Technology\n* Institution: The Nayer Institute, Sint-Katelijne-Waver, Belgium\n\n**General Education** (1996-2002)\n\n* Specialization: Science, Mathematics\n* Institution: Sint-Gummarus college, Lier, Belgium\n\n### Certifications\n\n* **Spring Certified Professional** (2011)\n\n***\n\n### Experience\n\n#### Senior Full Stack Java Developer - BNP Paribas Fortis - Doc2Go\n\n**July 2023 – Present**\n\n* **Project:** Development of the main document and statement archiving system for BNP Paribas Fortis group.\n* **Role:** Senior Java Developer\n* **Activities:**\n  * Aiding in the development of a high-performance document and statement archiving system, capable of handling billions of records.\n  * Implementing efficient search and save functionalities to manage large-scale data.\n  * Developing multiple backends using Java with the Spring framework.\n  * Building the frontend using React.\n  * Ensuring comprehensive test coverage for both frontend and backend using automated tests with Cucumber.\n  * Adopting a Behavior-Driven Development (BDD) approach, where specifications are written in Gherkin syntax for Cucumber and rigorously tested against the developed code.\n* **Environment/Tools:** Java, Spring, React, JPA, Hibernate, Oracle, H2, GIT, Jenkins, Gerkin, Cucumber, BDD.\n\n#### Senior Full Stack Developer - Vanden IT\n\n**Jan 2017 – Present**\n\n* **Role:** Senior Full Stack Developer\n* **Activities:**\n  * Developed a project called [DinnerGift](http://www.dinner-gift.com) for own company to bring restaurants and customers together for selling and buying gift certificates.\n  * Used ES6, React with Redux, expressJS REST backend, and MongoDB database.\n  * Delivered a high-performance server-rendered universal web application using NextJs.\n  * Focused on high performance and high quality code with automated testing and delivery using CircleCI.\n  * Deployed applications in Kubernetes on Digital Ocean.\n  * Worked in an agile way (KANBAN) using Trello.\n* **Environment/Tools:** ES6, React, Redux, NextJs, Babel, Webpack, ExpressJS, MongoDB (Mlab), Mocha, Sinon, Chai, Chai as Promised, Bootstrap, HTML, styled JSX, CSS, npm, auth0, cloudinary, SendGrid, REST Level 3, GIT, CircleCI, Docker, Digital Ocean, zeit now, Trello, IntelliJ\n\n#### Senior Java Developer - BNP Paribas Fortis (E-commerce)\n\n**Aug 2017 – July 2023**\n\n* **Project:** E-commerce project at BNP Paribas Fortis.\n* **Role:** Technical Lead of the Enablement project responsible for onboarding users to the financial platform called [Centric](https://cib.bnpparibas/centric/)\n* **Activities:**\n  * Led the technical aspects of the Enablement project.\n  * Ensured smooth onboarding of users to the Centric platform.\n  * Worked on both backend (java, spring) and frontend (angular) aspects of the project.\n  * Focused on developing high-quality, testable code and maintaining agile practices.\n* **Environment/Tools:** Java, Spring Core, Spring Boot, Spring AOP, Microservices, Angular, SASS, JPA, Hibernate, SCRUM, Oracle, H2, Jenkins, GIT, Jira.\n\n#### Senior Frontend Developer - CSC Spain (Fidea)\n\n**April 2016 – Oct 2016**\n\n* **Role:** Senior Frontend Developer\n* **Activities:**\n  * Part of frontend team for a new web application for selling insurances.\n  * Improved code quality through refactoring and testing.\n  * Worked with AngularJS, communicating with a REST Level 3 Java backend.\n  * Improved Spanish language skills.\n* **Environment/Tools:** AngularJS, REST Level 3, Jasmine, CSS, lodash, HTML, npm, grunt, GIT, Jenkins, IntelliJ, Jira\n\n#### Senior Java Developer - BNP Paribas Fortis (E-commerce)\n\n**Aug 2012 – April 2016**\n\n* **Role:** Senior Java Developer\n* **Activities:**\n  * Core and framework team member for developing a multi-product e-commerce platform.\n  * Focused on high quality and testable code.\n  * Worked on both front-end (Wicket, JavaScript) and back-end (Java, Spring, REST, SOAP, JPA, Hibernate).\n  * Team leader for sub-projects.\n  * Worked in an agile environment (Scrum) using Jira.\n* **Environment/Tools:** Java, Wicket, Spring Core, Spring AOP, REST webservices, SOAP webservices, JPA, Hibernate, Liquibase, JavaScript, JQuery, AngularJS, Bootstrap, CSS, HTML, WebSphere, JBoss, Jetty, Oracle DB, H2, SQL, Jenkins, Maven, SVN, Nexus, Sonar, TestNG, XML, IntelliJ, Mockito, Jira (Agile), Scrum, TIBCO, GIT\n\n#### Java Developer - CSC/BNP Paribas Fortis (Online Banking System)\n\n**July 2010 - Aug 2012**\n\n* **Role:** Java Developer\n* **Activities:**\n  * Renewed the online banking system for various BNP Paribas offices.\n  * Part of development process and worked as team leader.\n  * Worked in an agile environment with daily Scrum stand-up meetings and two-week sprints.\n* **Environment/Tools:** Java, Spring Core, Spring Webflow, Spring AOP, STS Eclipse, Tomcat, WebSphere, Hudson, Maven, SVN, RedMine, Nexus, Sonar, JUnit4, GWT, JSP, Servlets, Hibernate, XML, Design Patterns, Jasper reports, EasyMock, Mockito, Drools, Jira (Agile), Scrum.\n\n#### Owner - Fire IT\n\n**May 2008 – July 2010**\n\n* **Activities:**\n  * Led the company and was responsible for client communications, sales management, and design and development of object-oriented web applications framework and CMS system.\n  * Designed web views and maintained client-specific web applications based on own framework and CMS.\n* **Environment/Tools:** PHP5 OO, HTML, CSS, JavaScript, Mac OS X, Unix, Apache, SVN, mySQL, MemCache, Eclipse, Dreamweaver, Design Patterns, J2EE, JDBC, mySQL, JAAS, JBoss, XML, Spring, Terminal (vi), Open source software & plugins.\n\n#### Consultant - Callatay & Wouters (Banking Solutions)\n\n**September 2006 – May 2008**\n\n* **Activities:**\n  * Developed and analyzed base banking system updates.\n  * Specialized in online banking software Kyudo (J2EE).\n  * Worked in teams, discussing deadlines and executing assignments.\n* **Environment/Tools:** Cobol, C, Thaler Banking solution, J2EE, JSP, Servlets, JavaScript, HTML, XML, Windows, Unix, Tomcat, Terminal (vi), UML.\n* **Languages:** Dutch, English, French.\n\n#### Thesis - IMEC, Heverlee Leuven – Belgium\n\n**September 2005 – June 2006**\n\n* **Activities:**\n  * Developed an integrated, portable, graphic, object-oriented analysis package for Elastic Recoil Detection (ERD) measurements.\n  * Software developed using Microsoft Visual C++ 6.0 and Qt 4 class library, based on a document/view architecture.\n  * Used Qt 4 for displaying charts and graphs.\n* **Environment/Tools:** C, C++, Qt3/Qt4, Microsoft Visual C++ 6.0, UML, Windows, Unix, OpenGL, Design patterns.\n* **Languages:** Dutch, English.\n\n***\n\n### Professional Interests\n\n* Software development and design\n* Web development (Java – Spring)\n\n***\n\n### Skills\n\n**Programming Languages and Software Design:**\n\n* Java, JNDI, EJB, JDBC, JMS, Hibernate, REST webservices, SOAP webservices, Liquibase, SWING UI, Java (Applet), SQL, Ant, Spring Core, Spring WebFlow, Spring AOP, Maven, Jenkins, Nexus, Sonar, TestNG, JUnit, EasyMock, Mockito, Google Web Toolkit, Design Patterns, UML, PHP5 OO, HTML, CSS, JavaScript, XML, C, C++, Qt3/Qt4 framework, OpenGL\n\n**Operating Systems:**\n\n* Windows, Unix, Mac OS X\n\n**Server Knowledge:**\n\n* Apache, Tomcat, JBoss, SVN, mySQL, Oracle, H2, PHP server, MemCache, WebSphere\n\n**Development Software:**\n\n* IntelliJ, Eclipse (Java, J2EE, PHP, Aptana), Terminal (vi), Visual C++, Xcode, Dreamweaver\n\n***\n\n### Languages\n\n* **Dutch:** Native proficiency\n* **English:** Full professional proficiency\n* **French:** Decent proficiency\n* **Turkish:** Elementary proficiency\n* **Spanish:** Decent proficiency\n\n***\n",
+            "_template": "content"
+          }
+        ],
+        "body": {
+          "raw": "",
+          "html": ""
+        },
+        "_id": "pages/fullcv.md",
+        "_raw": {
+          "sourceFilePath": "pages/fullcv.md",
+          "sourceFileName": "fullcv.md",
+          "sourceFileDir": "pages",
+          "contentType": "markdown",
+          "flattenedPath": "pages/fullcv"
+        },
+        "type": "Page",
+        "url": "/pages/fullcv",
+        "slug": "pages/fullcv"
+      },
+      "documentHash": "1750329854185",
+      "hasWarnings": false,
+      "documentTypeName": "Page"
+    },
+    "pages/home.md": {
+      "document": {
+        "title": "Home",
+        "blocks": [
+          {
+            "tagline": "Building Scalable Solutions with Cutting-Edge Technologies",
+            "headline": "At Vanden IT, we specialize in developing high-performance software solutions that drive business success.",
+            "text": "",
+            "text2": "",
+            "actions": [
+              {
+                "label": "Our services",
+                "type": "button",
+                "icon": true,
+                "link": "#services"
+              },
+              {
+                "label": "Meet the Developer",
+                "type": "button",
+                "icon": false,
+                "link": "/about"
+              }
+            ],
+            "image": {
+              "src": "/uploads/main/unsplash-75EFpyXu3Wg.jpg",
+              "alt": "Photo of palm trees at sunset by Adam Birkett - unsplash.com/photos/75EFpyXu3Wg"
+            },
+            "color": "default",
+            "_template": "hero"
+          },
+          {
+            "title": "Services",
+            "featuresId": "services",
+            "items": [
+              {
+                "icon": {
+                  "name": "LockClosedIcon",
+                  "color": "black"
+                },
+                "title": "Security audit",
+                "text": "Protect your website with a comprehensive security audit tailored to safeguard your digital assets.",
+                "richText": "",
+                "link": "",
+                "buttonLink": {
+                  "label": "Request a free preview",
+                  "link": "/security-audit"
+                }
+              },
+              {
+                "icon": {
+                  "name": "CodeIcon",
+                  "color": "yellow"
+                },
+                "title": "Custom Software Development",
+                "text": "Scalable software solutions designed for your business, focusing on performance, flexibility, and innovation.",
+                "richText": "",
+                "link": "",
+                "buttonLink": {
+                  "label": "Explore Our Solutions",
+                  "link": "/custom-software"
+                }
+              },
+              {
+                "icon": {
+                  "name": "FaBrain",
+                  "color": "orange"
+                },
+                "title": "Development consultancy",
+                "text": "Freelance tech lead services to support your team with secure, scalable solutions and project guidance.",
+                "richText": "",
+                "link": "",
+                "buttonLink": {
+                  "label": "Meet Your Tech Lead",
+                  "link": "/about"
+                }
+              }
+            ],
+            "color": "tint",
+            "_template": "features"
+          },
+          {
+            "title": "Portfolio",
+            "portfolioId": "portfolio",
+            "items": [
+              {
+                "title": "Tech lead at centric - Bnp paribas",
+                "content": "",
+                "richContent": "I was the Technical Lead for the Enablement project at BNP Paribas Fortis, responsible for onboarding users to the financial platform [Centric](https://centric.bnpparibas.com/public/marketing/). My role involved leading the technical aspects, ensuring smooth user onboarding, and working on both backend and frontend aspects using Java, Spring and Angular, while maintaining high-quality code and agile practices.\n",
+                "image": {
+                  "src": "/uploads/main/Screenshot 2024-09-30 at 07.21.37.png",
+                  "alt": "centric"
+                },
+                "technologies": [
+                  "java",
+                  "spring",
+                  "angular",
+                  "sass"
+                ]
+              },
+              {
+                "title": "Development and Deployment of DinnerGift",
+                "content": "",
+                "richContent": "As a Senior Full Stack Developer, I developed [DinnerGift](https://www.dinnergift.be), a platform connecting restaurants and customers for selling and buying gift certificates. Utilizing ES6, React with Redux, expressJS REST backend, and MongoDB, I delivered a high-performance server-rendered universal web application using NextJs, with a focus on automated testing and continuous integration using CircleCI.\n",
+                "image": {
+                  "src": "/uploads/main/Screenshot 2024-09-30 at 07.18.34.png"
+                },
+                "technologies": [
+                  "Javascript",
+                  "ExpressJs",
+                  "Nextjs"
+                ]
+              }
+            ],
+            "_template": "portfolio"
+          },
+          {
+            "title": "Testimonials",
+            "testimonialsId": "testimonials",
+            "items": [
+              {
+                "content": "I worked with Filip for many years on a big project.\nFilip is the kind of person that naturally feels responsible for his work and does whatever is required to deliver on time and with high quality.\nAs a person he is great to work with; he is always ready to assist someone, can explain things in a patient, clear way.\nHe is very proactive and thinks outside of the box.\nIn short, an excellent developer to have on any development team.",
+                "author": "Stijn Geukens",
+                "role": "Development Manager, BNP Paribas"
+              },
+              {
+                "content": "I worked with Filip for over 7 years at DinnerGift, where his technical expertise and dedication were key to our success. He consistently delivered high-quality code and offered innovative solutions to complex challenges.\n\nFilip was also great at collaborating, always open to feedback and proactive in suggesting improvements. His ability to simplify complex ideas made discussions clear and productive for everyone.\nI highly recommend Filip as a developer who not only excels technically but is also deeply committed to achieving shared goals.",
+                "author": "Astrid Van den Broeck",
+                "role": "CTO at Autonomous"
+              },
+              {
+                "content": "Filip Van den Broeck is a highly skilled developer and technical lead with expertise in Angular and Java. I had the pleasure of working with him when he played a key role in developing and maintaining a corporate banking portal used by 100,000+ users. Known for his reliability, collaboration, and problem-solving skills, Filip consistently delivers high-quality work and enhances team dynamics. A strong asset to any software development team.",
+                "author": "Jos Van Dorpe",
+                "role": "Delivery Lead & Senior Solution Architect"
+              }
+            ],
+            "_template": "testimonials"
+          },
+          {
+            "actions": [
+              {
+                "label": "Contact us",
+                "type": "button",
+                "icon": true,
+                "link": "/contact"
+              }
+            ],
+            "_template": "actions"
+          }
+        ],
+        "body": {
+          "raw": "",
+          "html": ""
+        },
+        "_id": "pages/home.md",
+        "_raw": {
+          "sourceFilePath": "pages/home.md",
+          "sourceFileName": "home.md",
+          "sourceFileDir": "pages",
+          "contentType": "markdown",
+          "flattenedPath": "pages/home"
+        },
+        "type": "Page",
+        "url": "/pages/home",
+        "slug": "pages/home"
+      },
+      "documentHash": "1750329854186",
+      "hasWarnings": false,
+      "documentTypeName": "Page"
+    },
+    "pages/security-audit.md": {
+      "document": {
+        "title": "Secure Your Website with a Fully Automated Security Audit",
+        "blocks": [
+          {
+            "tagline": "Professional Security, Full Control",
+            "headline": "      Protect your website with a professional security audit, tailored to your needs. ",
+            "image": {
+              "src": "/uploads/main/security_bg_3.jpg"
+            },
+            "_template": "imageHeader"
+          },
+          {
+            "body": "## Why Choose Our Security Audits?\n\nWe value your time and security. Our audits provide fast, actionable insights with minimal effort on your end. No need for lengthy meetings—simply submit your website details online, and receive a comprehensive report to secure your business.\n\n* **Quick and Convenient**: Request your audit online, and receive a preview of your vulnerabilities within a week. - **Professional Expertise**: Powered by leading security tools like **OWASP ZAP** and **Burp Suite**, combined with expert analysis. - **No Meetings Required**: Get all the insights you need online, with an optional follow-up if needed. - **Affordable and Transparent**: Start with a free preview, and choose to purchase the full report with a detailed action plan.\n",
+            "color": "",
+            "_template": "content"
+          },
+          {
+            "title": "How It Works",
+            "featuresId": "howitworks",
+            "items": [
+              {
+                "icon": {
+                  "name": "FaSearch",
+                  "color": "blue"
+                },
+                "title": "Submit Your Request",
+                "text": "Provide your website details through our simple online form. Your audit request starts immediately.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaTools",
+                  "color": "red"
+                },
+                "title": "Vulnerability Scanning",
+                "text": "We run a series of tests using industry-standard tools, scanning your website for potential security risks and vulnerabilities.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaRocket",
+                  "color": "green"
+                },
+                "title": "Preview of Findings",
+                "text": "Within a week, you'll receive a **summary** of the key vulnerabilities found on your site, giving you a clear overview of your security status.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaClipboardList",
+                  "color": "yellow"
+                },
+                "title": "Full Report and Action Plan",
+                "text": "Opt for the full report to get a detailed breakdown of each vulnerability, complete with prioritization and step-by-step instructions to fix them.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaClipboardCheck",
+                  "color": "red"
+                },
+                "title": "Optional Bug Fixes",
+                "text": "If needed, request a tailored quote to have vulnerabilities fixed professionally, ensuring your site is fully secured.",
+                "richText": ""
+              }
+            ],
+            "color": "tint",
+            "_template": "features"
+          },
+          {
+            "title": "Key Features of Our Audits",
+            "featuresId": "keyfeatures",
+            "items": [
+              {
+                "icon": {
+                  "name": "FaLock",
+                  "color": "blue"
+                },
+                "title": "Comprehensive Security Testing",
+                "text": "From OWASP Top 10 risks to compliance with GDPR and ISO 27001, our audits cover all essential security aspects.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaMoneyBillAlt",
+                  "color": "green"
+                },
+                "title": "Affordable Pricing",
+                "text": "Start with a free preview, and pay only when you need the full report.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaClock",
+                  "color": "purple"
+                },
+                "title": "Quick Turnaround",
+                "text": "Get the initial findings within a week, and the full report within two weeks of ordering.",
+                "richText": ""
+              }
+            ],
+            "color": "tint",
+            "_template": "features"
+          },
+          {
+            "actions": [
+              {
+                "label": "Request Your Audit Now",
+                "type": "button",
+                "icon": false,
+                "link": "/forms/request-security-audit"
+              }
+            ],
+            "_template": "actions"
+          }
+        ],
+        "body": {
+          "raw": "\n",
+          "html": ""
+        },
+        "_id": "pages/security-audit.md",
+        "_raw": {
+          "sourceFilePath": "pages/security-audit.md",
+          "sourceFileName": "security-audit.md",
+          "sourceFileDir": "pages",
+          "contentType": "markdown",
+          "flattenedPath": "pages/security-audit"
+        },
+        "type": "Page",
+        "url": "/pages/security-audit",
+        "slug": "pages/security-audit"
+      },
+      "documentHash": "1750329854186",
+      "hasWarnings": false,
+      "documentTypeName": "Page"
+    },
+    "pages/website-product.md": {
+      "document": {
+        "title": "Build Your Own Website - No Subscription Fees, Full Control",
+        "blocks": [
+          {
+            "avatarHeader": "Meet Your Website Solution",
+            "avatarsName": "By Filip Van den Broeck",
+            "description": "A custom website built for your business, fully optimized for mobile, accessible, and incredibly easy to manage without any recurring fees. Get the freedom to update and control your content whenever you need.",
+            "avatarImage": {
+              "src": "/uploads/main/unnamed.jpg",
+              "alt": "Filip Van den Broeck"
+            },
+            "_template": "avatar"
+          },
+          {
+            "body": "## Why Choose Our Custom Websites?\nTired of expensive subscription-based platforms? With our solution, you own your website and your data. Built with **accessibility** and **mobile-friendliness**  at the core, your site is optimized for the modern web, and you never have to worry about being tied to a platform you don’t control.\n- **No Monthly Subscription**: You pay once and have full ownership of your site—no hidden fees. - **Your Data, Your Control**: All content is stored as simple files (like text files) that can be easily reused or migrated in the future. - **Easy to Update**: Use our simple visual editor to make updates to your website whenever you need, without technical knowledge. - **Fully Accessible**: Your site will meet the highest accessibility standards, ensuring a seamless experience for all users.\n",
+            "color": "",
+            "_template": "content"
+          },
+          {
+            "title": "Key Features",
+            "featuresId": "features",
+            "items": [
+              {
+                "icon": {
+                  "name": "FaMoneyBillAlt",
+                  "color": "blue"
+                },
+                "title": "No Subscription Fees",
+                "text": "Unlike other platforms, you pay only once for your custom website. No monthly fees, no lock-in.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaKey",
+                  "color": "green"
+                },
+                "title": "Full Control of Your Content",
+                "text": "Your website’s content is stored in easily accessible text files, giving you the freedom to migrate or update without restrictions.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaMobileAlt",
+                  "color": "orange"
+                },
+                "title": "Mobile-First Design",
+                "text": "Your website is fully responsive, optimized for mobile devices, and provides a smooth user experience on any screen size.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaUniversalAccess",
+                  "color": "yellow"
+                },
+                "title": "Built for Accessibility",
+                "text": "All websites meet modern accessibility standards, making sure your site is usable by everyone, regardless of ability.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaPen",
+                  "color": "purple"
+                },
+                "title": "Easy Editing",
+                "text": "With our intuitive content management system, you can edit your site’s content directly on the page with no technical skills required.",
+                "richText": ""
+              }
+            ],
+            "color": "tint",
+            "_template": "features"
+          },
+          {
+            "title": "How It Works",
+            "featuresId": "howitworks",
+            "items": [
+              {
+                "icon": {
+                  "name": "FaPlug",
+                  "color": "blue"
+                },
+                "title": "Initial Setup",
+                "text": "We handle all the technical setup, from design to deployment. Once your site is ready, you can manage it with ease.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaTools",
+                  "color": "yellow"
+                },
+                "title": "Easy Content Management",
+                "text": "Make content updates whenever you want through our user-friendly editor, no technical skills needed.",
+                "richText": ""
+              },
+              {
+                "icon": {
+                  "name": "FaRocket",
+                  "color": "red"
+                },
+                "title": "Deploy and Launch",
+                "text": "Your website will be deployed on Vercel, ensuring top performance and fast loading times.",
+                "richText": ""
+              }
+            ],
+            "color": "tint",
+            "_template": "features"
+          },
+          {
+            "actions": [
+              {
+                "label": "Get Your Custom Website",
+                "type": "button",
+                "icon": false,
+                "link": "/getstarted"
+              }
+            ],
+            "_template": "actions"
+          }
+        ],
+        "body": {
+          "raw": "",
+          "html": ""
+        },
+        "_id": "pages/website-product.md",
+        "_raw": {
+          "sourceFilePath": "pages/website-product.md",
+          "sourceFileName": "website-product.md",
+          "sourceFileDir": "pages",
+          "contentType": "markdown",
+          "flattenedPath": "pages/website-product"
+        },
+        "type": "Page",
+        "url": "/pages/website-product",
+        "slug": "pages/website-product"
+      },
+      "documentHash": "1750329854186",
+      "hasWarnings": false,
+      "documentTypeName": "Page"
+    },
+    "posts/anotherPost.mdx": {
+      "document": {
+        "title": "Just Another Blog Post",
+        "heroImg": "/uploads/main/unsplash-lylCw4zcA7I.jpg",
+        "excerpt": "Lorem markdownum evinctus ut cape adhaeret gravis licet progenies ut haesit maxima ille. Est scorpius, mori vel in visaeque Haemoniis viperei furoris e ad vasti, distulit. Crudus sub coniuge iam: dea propera sive\n",
+        "author": "content/authors/napolean.md",
+        "date": "2021-07-12T07:00:00.000Z",
+        "tags": [
+          "buddhism",
+          "spirtual"
+        ],
+        "body": {
+          "raw": "\n# Vote For Pedro\n\nHello, the current date is <DateTime format=\"local\" />. Quis semper [vulputate](https://example.com) aliquam venenatdis egestas sagittis quisque orci. Donec commodo sdit viverra aliquam porttitor ultrices gravida eu. Tincidunt leo, elementum mattis elementum ut nisl, justo, amet, mattis. Nunc purus, diam cdommodo tincidunt turpis. Amet, duis sed elit interdum dignissim\n\n***\n\n```graphql\nquery MyQuery($relativePath: String!) {\n  page(relativePath: $relativePath) {\n    title\n  }\n}\n```\n\n> Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis ipsum eu a sed convallis diam.\n\n![This is an image](/uploads/main/unsplash-75EFpyXu3Wg.jpg)\n\nQuis semper [vulputate](https://example.com) aliquam venenatdis egestas sagittis quisque orci. Donec commodo sit viverra aliquam porttitor ultrices gravida eu. Tincidunt leo, elementum mattis elementum ut nisl, justo, amet, mattis. Nunc purus, diam cdommodo tincidunt turpis. Amet, duis sed elit interdum dignissim\n\n<NewsletterSignup\n  placeholder=\"Enter your email\"\n  buttonText=\"Notify Me\"\n  disclaimer={<>\n    We care about the protection of your data. Read our [Privacy Policy](http://example.com).\n  </>}\n>\n  ## Stay in touch!\n\n  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.\n</NewsletterSignup>\n\n### 3 Reasons to vote for Pedro\n\n* Anim aute id magna aliqua ad ad non deserunt sunt\n* Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.\n* Lorem markdownum evinctus ut cape adhaeret gravis licet progenies ut haesit maxima ille. Est scorpius, mori vel in visaeque Haemoniis viperei furoris e ad vasti, distulit. Crudus sub coniuge iam: dea propera sive?\n\n### 3 More Reasons to vote for Pedro\n\n1. Anim aute id magna aliqua ad ad non deserunt sunt\n2. Qui irure qui Lorem cupidatat commodo.\n   . Elit sunt amet fugiat veniam occaecat fugiat.\n3. Lorem markdownum evinctus ut cape adhaeret gravis licet progenies ut haesit maxima ille. Est scorpius, mori vel in visaeque Haemoniis viperei furoris e ad vasti, distulit. Crudus sub coniuge iam: dea propera sive?\n\n***\n\n<BlockQuote authorName=\"Uncle Rico\">\n  How much you wanna make a bet I can throw a football over them mountains?\n</BlockQuote>\n",
+          "code": "var Component=(()=>{var mr=Object.create;var F=Object.defineProperty;var pr=Object.getOwnPropertyDescriptor;var br=Object.getOwnPropertyNames;var vr=Object.getPrototypeOf,_r=Object.prototype.hasOwnProperty;var Q=(l,n)=>()=>(n||l((n={exports:{}}).exports,n),n.exports),hr=(l,n)=>{for(var m in n)F(l,m,{get:n[m],enumerable:!0})},we=(l,n,m,g)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let h of br(n))!_r.call(l,h)&&h!==m&&F(l,h,{get:()=>n[h],enumerable:!(g=pr(n,h))||g.enumerable});return l};var gr=(l,n,m)=>(m=l!=null?mr(vr(l)):{},we(n||!l||!l.__esModule?F(m,\"default\",{value:l,enumerable:!0}):m,l)),yr=l=>we(F({},\"__esModule\",{value:!0}),l);var ke=Q((kr,Re)=>{Re.exports=React});var Te=Q(X=>{\"use strict\";(function(){\"use strict\";var l=ke(),n=Symbol.for(\"react.element\"),m=Symbol.for(\"react.portal\"),g=Symbol.for(\"react.fragment\"),h=Symbol.for(\"react.strict_mode\"),G=Symbol.for(\"react.profiler\"),J=Symbol.for(\"react.provider\"),Z=Symbol.for(\"react.context\"),C=Symbol.for(\"react.forward_ref\"),q=Symbol.for(\"react.suspense\"),I=Symbol.for(\"react.suspense_list\"),S=Symbol.for(\"react.memo\"),M=Symbol.for(\"react.lazy\"),Oe=Symbol.for(\"react.offscreen\"),ee=Symbol.iterator,je=\"@@iterator\";function De(e){if(e===null||typeof e!=\"object\")return null;var r=ee&&e[ee]||e[je];return typeof r==\"function\"?r:null}var E=l.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;function p(e){{for(var r=arguments.length,t=new Array(r>1?r-1:0),a=1;a<r;a++)t[a-1]=arguments[a];Ae(\"error\",e,t)}}function Ae(e,r,t){{var a=E.ReactDebugCurrentFrame,u=a.getStackAddendum();u!==\"\"&&(r+=\"%s\",t=t.concat([u]));var c=t.map(function(s){return String(s)});c.unshift(\"Warning: \"+r),Function.prototype.apply.call(console[e],console,c)}}var Fe=!1,qe=!1,Ie=!1,Me=!1,We=!1,re;re=Symbol.for(\"react.module.reference\");function $e(e){return!!(typeof e==\"string\"||typeof e==\"function\"||e===g||e===G||We||e===h||e===q||e===I||Me||e===Oe||Fe||qe||Ie||typeof e==\"object\"&&e!==null&&(e.$$typeof===M||e.$$typeof===S||e.$$typeof===J||e.$$typeof===Z||e.$$typeof===C||e.$$typeof===re||e.getModuleId!==void 0))}function Le(e,r,t){var a=e.displayName;if(a)return a;var u=r.displayName||r.name||\"\";return u!==\"\"?t+\"(\"+u+\")\":t}function te(e){return e.displayName||\"Context\"}function y(e){if(e==null)return null;if(typeof e.tag==\"number\"&&p(\"Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.\"),typeof e==\"function\")return e.displayName||e.name||null;if(typeof e==\"string\")return e;switch(e){case g:return\"Fragment\";case m:return\"Portal\";case G:return\"Profiler\";case h:return\"StrictMode\";case q:return\"Suspense\";case I:return\"SuspenseList\"}if(typeof e==\"object\")switch(e.$$typeof){case Z:var r=e;return te(r)+\".Consumer\";case J:var t=e;return te(t._context)+\".Provider\";case C:return Le(e,e.render,\"ForwardRef\");case S:var a=e.displayName||null;return a!==null?a:y(e.type)||\"Memo\";case M:{var u=e,c=u._payload,s=u._init;try{return y(s(c))}catch{return null}}}return null}var x=Object.assign,k=0,ne,ae,ie,oe,se,ue,le;function ce(){}ce.__reactDisabledLog=!0;function Ye(){{if(k===0){ne=console.log,ae=console.info,ie=console.warn,oe=console.error,se=console.group,ue=console.groupCollapsed,le=console.groupEnd;var e={configurable:!0,enumerable:!0,value:ce,writable:!0};Object.defineProperties(console,{info:e,log:e,warn:e,error:e,group:e,groupCollapsed:e,groupEnd:e})}k++}}function Ve(){{if(k--,k===0){var e={configurable:!0,enumerable:!0,writable:!0};Object.defineProperties(console,{log:x({},e,{value:ne}),info:x({},e,{value:ae}),warn:x({},e,{value:ie}),error:x({},e,{value:oe}),group:x({},e,{value:se}),groupCollapsed:x({},e,{value:ue}),groupEnd:x({},e,{value:le})})}k<0&&p(\"disabledDepth fell below zero. This is a bug in React. Please file an issue.\")}}var W=E.ReactCurrentDispatcher,$;function O(e,r,t){{if($===void 0)try{throw Error()}catch(u){var a=u.stack.trim().match(/\\n( *(at )?)/);$=a&&a[1]||\"\"}return`\n`+$+e}}var L=!1,j;{var Ue=typeof WeakMap==\"function\"?WeakMap:Map;j=new Ue}function de(e,r){if(!e||L)return\"\";{var t=j.get(e);if(t!==void 0)return t}var a;L=!0;var u=Error.prepareStackTrace;Error.prepareStackTrace=void 0;var c;c=W.current,W.current=null,Ye();try{if(r){var s=function(){throw Error()};if(Object.defineProperty(s.prototype,\"props\",{set:function(){throw Error()}}),typeof Reflect==\"object\"&&Reflect.construct){try{Reflect.construct(s,[])}catch(v){a=v}Reflect.construct(e,[],s)}else{try{s.call()}catch(v){a=v}e.call(s.prototype)}}else{try{throw Error()}catch(v){a=v}e()}}catch(v){if(v&&a&&typeof v.stack==\"string\"){for(var o=v.stack.split(`\n`),b=a.stack.split(`\n`),d=o.length-1,f=b.length-1;d>=1&&f>=0&&o[d]!==b[f];)f--;for(;d>=1&&f>=0;d--,f--)if(o[d]!==b[f]){if(d!==1||f!==1)do if(d--,f--,f<0||o[d]!==b[f]){var _=`\n`+o[d].replace(\" at new \",\" at \");return e.displayName&&_.includes(\"<anonymous>\")&&(_=_.replace(\"<anonymous>\",e.displayName)),typeof e==\"function\"&&j.set(e,_),_}while(d>=1&&f>=0);break}}}finally{L=!1,W.current=c,Ve(),Error.prepareStackTrace=u}var R=e?e.displayName||e.name:\"\",N=R?O(R):\"\";return typeof e==\"function\"&&j.set(e,N),N}function Be(e,r,t){return de(e,!1)}function He(e){var r=e.prototype;return!!(r&&r.isReactComponent)}function D(e,r,t){if(e==null)return\"\";if(typeof e==\"function\")return de(e,He(e));if(typeof e==\"string\")return O(e);switch(e){case q:return O(\"Suspense\");case I:return O(\"SuspenseList\")}if(typeof e==\"object\")switch(e.$$typeof){case C:return Be(e.render);case S:return D(e.type,r,t);case M:{var a=e,u=a._payload,c=a._init;try{return D(c(u),r,t)}catch{}}}return\"\"}var T=Object.prototype.hasOwnProperty,fe={},me=E.ReactDebugCurrentFrame;function A(e){if(e){var r=e._owner,t=D(e.type,e._source,r?r.type:null);me.setExtraStackFrame(t)}else me.setExtraStackFrame(null)}function Ke(e,r,t,a,u){{var c=Function.call.bind(T);for(var s in e)if(c(e,s)){var o=void 0;try{if(typeof e[s]!=\"function\"){var b=Error((a||\"React class\")+\": \"+t+\" type `\"+s+\"` is invalid; it must be a function, usually from the `prop-types` package, but received `\"+typeof e[s]+\"`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.\");throw b.name=\"Invariant Violation\",b}o=e[s](r,s,a,t,null,\"SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED\")}catch(d){o=d}o&&!(o instanceof Error)&&(A(u),p(\"%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).\",a||\"React class\",t,s,typeof o),A(null)),o instanceof Error&&!(o.message in fe)&&(fe[o.message]=!0,A(u),p(\"Failed %s type: %s\",t,o.message),A(null))}}}var Qe=Array.isArray;function Y(e){return Qe(e)}function Xe(e){{var r=typeof Symbol==\"function\"&&Symbol.toStringTag,t=r&&e[Symbol.toStringTag]||e.constructor.name||\"Object\";return t}}function ze(e){try{return pe(e),!1}catch{return!0}}function pe(e){return\"\"+e}function be(e){if(ze(e))return p(\"The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.\",Xe(e)),pe(e)}var P=E.ReactCurrentOwner,Ge={key:!0,ref:!0,__self:!0,__source:!0},ve,_e,V;V={};function Je(e){if(T.call(e,\"ref\")){var r=Object.getOwnPropertyDescriptor(e,\"ref\").get;if(r&&r.isReactWarning)return!1}return e.ref!==void 0}function Ze(e){if(T.call(e,\"key\")){var r=Object.getOwnPropertyDescriptor(e,\"key\").get;if(r&&r.isReactWarning)return!1}return e.key!==void 0}function er(e,r){if(typeof e.ref==\"string\"&&P.current&&r&&P.current.stateNode!==r){var t=y(P.current.type);V[t]||(p('Component \"%s\" contains the string ref \"%s\". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref',y(P.current.type),e.ref),V[t]=!0)}}function rr(e,r){{var t=function(){ve||(ve=!0,p(\"%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)\",r))};t.isReactWarning=!0,Object.defineProperty(e,\"key\",{get:t,configurable:!0})}}function tr(e,r){{var t=function(){_e||(_e=!0,p(\"%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)\",r))};t.isReactWarning=!0,Object.defineProperty(e,\"ref\",{get:t,configurable:!0})}}var nr=function(e,r,t,a,u,c,s){var o={$$typeof:n,type:e,key:r,ref:t,props:s,_owner:c};return o._store={},Object.defineProperty(o._store,\"validated\",{configurable:!1,enumerable:!1,writable:!0,value:!1}),Object.defineProperty(o,\"_self\",{configurable:!1,enumerable:!1,writable:!1,value:a}),Object.defineProperty(o,\"_source\",{configurable:!1,enumerable:!1,writable:!1,value:u}),Object.freeze&&(Object.freeze(o.props),Object.freeze(o)),o};function ar(e,r,t,a,u){{var c,s={},o=null,b=null;t!==void 0&&(be(t),o=\"\"+t),Ze(r)&&(be(r.key),o=\"\"+r.key),Je(r)&&(b=r.ref,er(r,u));for(c in r)T.call(r,c)&&!Ge.hasOwnProperty(c)&&(s[c]=r[c]);if(e&&e.defaultProps){var d=e.defaultProps;for(c in d)s[c]===void 0&&(s[c]=d[c])}if(o||b){var f=typeof e==\"function\"?e.displayName||e.name||\"Unknown\":e;o&&rr(s,f),b&&tr(s,f)}return nr(e,o,b,u,a,P.current,s)}}var U=E.ReactCurrentOwner,he=E.ReactDebugCurrentFrame;function w(e){if(e){var r=e._owner,t=D(e.type,e._source,r?r.type:null);he.setExtraStackFrame(t)}else he.setExtraStackFrame(null)}var B;B=!1;function H(e){return typeof e==\"object\"&&e!==null&&e.$$typeof===n}function ge(){{if(U.current){var e=y(U.current.type);if(e)return`\n\nCheck the render method of \\``+e+\"`.\"}return\"\"}}function ir(e){{if(e!==void 0){var r=e.fileName.replace(/^.*[\\\\\\/]/,\"\"),t=e.lineNumber;return`\n\nCheck your code at `+r+\":\"+t+\".\"}return\"\"}}var ye={};function or(e){{var r=ge();if(!r){var t=typeof e==\"string\"?e:e.displayName||e.name;t&&(r=`\n\nCheck the top-level render call using <`+t+\">.\")}return r}}function xe(e,r){{if(!e._store||e._store.validated||e.key!=null)return;e._store.validated=!0;var t=or(r);if(ye[t])return;ye[t]=!0;var a=\"\";e&&e._owner&&e._owner!==U.current&&(a=\" It was passed a child from \"+y(e._owner.type)+\".\"),w(e),p('Each child in a list should have a unique \"key\" prop.%s%s See https://reactjs.org/link/warning-keys for more information.',t,a),w(null)}}function Ne(e,r){{if(typeof e!=\"object\")return;if(Y(e))for(var t=0;t<e.length;t++){var a=e[t];H(a)&&xe(a,r)}else if(H(e))e._store&&(e._store.validated=!0);else if(e){var u=De(e);if(typeof u==\"function\"&&u!==e.entries)for(var c=u.call(e),s;!(s=c.next()).done;)H(s.value)&&xe(s.value,r)}}}function sr(e){{var r=e.type;if(r==null||typeof r==\"string\")return;var t;if(typeof r==\"function\")t=r.propTypes;else if(typeof r==\"object\"&&(r.$$typeof===C||r.$$typeof===S))t=r.propTypes;else return;if(t){var a=y(r);Ke(t,e.props,\"prop\",a,e)}else if(r.PropTypes!==void 0&&!B){B=!0;var u=y(r);p(\"Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?\",u||\"Unknown\")}typeof r.getDefaultProps==\"function\"&&!r.getDefaultProps.isReactClassApproved&&p(\"getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.\")}}function ur(e){{for(var r=Object.keys(e.props),t=0;t<r.length;t++){var a=r[t];if(a!==\"children\"&&a!==\"key\"){w(e),p(\"Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.\",a),w(null);break}}e.ref!==null&&(w(e),p(\"Invalid attribute `ref` supplied to `React.Fragment`.\"),w(null))}}var Ee={};function lr(e,r,t,a,u,c){{var s=$e(e);if(!s){var o=\"\";(e===void 0||typeof e==\"object\"&&e!==null&&Object.keys(e).length===0)&&(o+=\" You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\");var b=ir(u);b?o+=b:o+=ge();var d;e===null?d=\"null\":Y(e)?d=\"array\":e!==void 0&&e.$$typeof===n?(d=\"<\"+(y(e.type)||\"Unknown\")+\" />\",o=\" Did you accidentally export a JSX literal instead of a component?\"):d=typeof e,p(\"React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s\",d,o)}var f=ar(e,r,t,u,c);if(f==null)return f;if(s){var _=r.children;if(_!==void 0)if(a)if(Y(_)){for(var R=0;R<_.length;R++)Ne(_[R],e);Object.freeze&&Object.freeze(_)}else p(\"React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.\");else Ne(_,e)}if(T.call(r,\"key\")){var N=y(e),v=Object.keys(r).filter(function(fr){return fr!==\"key\"}),K=v.length>0?\"{key: someKey, \"+v.join(\": ..., \")+\": ...}\":\"{key: someKey}\";if(!Ee[N+K]){var dr=v.length>0?\"{\"+v.join(\": ..., \")+\": ...}\":\"{}\";p(`A props object containing a \"key\" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />`,K,N,dr,N),Ee[N+K]=!0}}return e===g?ur(f):sr(f),f}}var cr=lr;X.Fragment=g,X.jsxDEV=cr})()});var Ce=Q((Pr,Pe)=>{\"use strict\";Pe.exports=Te()});var wr={};hr(wr,{default:()=>Er,frontmatter:()=>xr});var i=gr(Ce()),xr={title:\"Just Another Blog Post\",heroImg:\"/uploads/main/unsplash-lylCw4zcA7I.jpg\",excerpt:`Lorem markdownum evinctus ut cape adhaeret gravis licet progenies ut haesit maxima ille. Est scorpius, mori vel in visaeque Haemoniis viperei furoris e ad vasti, distulit. Crudus sub coniuge iam: dea propera sive\n`,author:\"content/authors/napolean.md\",date:new Date(16260732e5),tags:[\"buddhism\",\"spirtual\"]};function Se(l){let n=Object.assign({h1:\"h1\",p:\"p\",a:\"a\",hr:\"hr\",pre:\"pre\",code:\"code\",blockquote:\"blockquote\",img:\"img\",h2:\"h2\",h3:\"h3\",ul:\"ul\",li:\"li\",ol:\"ol\"},l.components),{DateTime:m,NewsletterSignup:g,BlockQuote:h}=n;return h||z(\"BlockQuote\",!0,\"62:1-64:14\"),m||z(\"DateTime\",!0,\"17:28-17:55\"),g||z(\"NewsletterSignup\",!0,\"35:1-45:20\"),(0,i.jsxDEV)(i.Fragment,{children:[(0,i.jsxDEV)(n.h1,{children:\"Vote For Pedro\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:15,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.p,{children:[\"Hello, the current date is \",(0,i.jsxDEV)(m,{format:\"local\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:17,columnNumber:28},this),\". Quis semper \",(0,i.jsxDEV)(n.a,{href:\"https://example.com\",children:\"vulputate\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:17,columnNumber:69},this),\" aliquam venenatdis egestas sagittis quisque orci. Donec commodo sdit viverra aliquam porttitor ultrices gravida eu. Tincidunt leo, elementum mattis elementum ut nisl, justo, amet, mattis. Nunc purus, diam cdommodo tincidunt turpis. Amet, duis sed elit interdum dignissim\"]},void 0,!0,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:17,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.hr,{},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:19,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.pre,{children:(0,i.jsxDEV)(n.code,{className:\"language-graphql\",children:`query MyQuery($relativePath: String!) {\n  page(relativePath: $relativePath) {\n    title\n  }\n}\n`},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:21,columnNumber:1},this)},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:21,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.blockquote,{children:[`\n`,(0,i.jsxDEV)(n.p,{children:\"Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis ipsum eu a sed convallis diam.\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:29,columnNumber:3},this),`\n`]},void 0,!0,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:29,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.p,{children:(0,i.jsxDEV)(n.img,{src:\"/uploads/main/unsplash-75EFpyXu3Wg.jpg\",alt:\"This is an image\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:31,columnNumber:1},this)},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:31,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.p,{children:[\"Quis semper \",(0,i.jsxDEV)(n.a,{href:\"https://example.com\",children:\"vulputate\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:33,columnNumber:13},this),\" aliquam venenatdis egestas sagittis quisque orci. Donec commodo sit viverra aliquam porttitor ultrices gravida eu. Tincidunt leo, elementum mattis elementum ut nisl, justo, amet, mattis. Nunc purus, diam cdommodo tincidunt turpis. Amet, duis sed elit interdum dignissim\"]},void 0,!0,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:33,columnNumber:1},this),`\n`,(0,i.jsxDEV)(g,{placeholder:\"Enter your email\",buttonText:\"Notify Me\",disclaimer:(0,i.jsxDEV)(i.Fragment,{children:\"We care about the protection of your data. Read our [Privacy Policy](http://example.com).\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:38,columnNumber:15},this),children:[(0,i.jsxDEV)(n.h2,{children:\"Stay in touch!\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:42,columnNumber:3},this),(0,i.jsxDEV)(n.p,{children:\"Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:44,columnNumber:3},this)]},void 0,!0,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:35,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.h3,{children:\"3 Reasons to vote for Pedro\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:47,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.ul,{children:[`\n`,(0,i.jsxDEV)(n.li,{children:\"Anim aute id magna aliqua ad ad non deserunt sunt\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:49,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.li,{children:\"Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:50,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.li,{children:\"Lorem markdownum evinctus ut cape adhaeret gravis licet progenies ut haesit maxima ille. Est scorpius, mori vel in visaeque Haemoniis viperei furoris e ad vasti, distulit. Crudus sub coniuge iam: dea propera sive?\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:51,columnNumber:1},this),`\n`]},void 0,!0,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:49,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.h3,{children:\"3 More Reasons to vote for Pedro\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:53,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.ol,{children:[`\n`,(0,i.jsxDEV)(n.li,{children:\"Anim aute id magna aliqua ad ad non deserunt sunt\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:55,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.li,{children:`Qui irure qui Lorem cupidatat commodo.\n. Elit sunt amet fugiat veniam occaecat fugiat.`},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:56,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.li,{children:\"Lorem markdownum evinctus ut cape adhaeret gravis licet progenies ut haesit maxima ille. Est scorpius, mori vel in visaeque Haemoniis viperei furoris e ad vasti, distulit. Crudus sub coniuge iam: dea propera sive?\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:58,columnNumber:1},this),`\n`]},void 0,!0,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:55,columnNumber:1},this),`\n`,(0,i.jsxDEV)(n.hr,{},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:60,columnNumber:1},this),`\n`,(0,i.jsxDEV)(h,{authorName:\"Uncle Rico\",children:(0,i.jsxDEV)(n.p,{children:\"How much you wanna make a bet I can throw a football over them mountains?\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:63,columnNumber:3},this)},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:62,columnNumber:1},this)]},void 0,!0,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\",lineNumber:1,columnNumber:1},this)}function Nr(l={}){let{wrapper:n}=l.components||{};return n?(0,i.jsxDEV)(n,Object.assign({},l,{children:(0,i.jsxDEV)(Se,l,void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\"},this)}),void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx\"},this):Se(l)}var Er=Nr;function z(l,n,m){throw new Error(\"Expected \"+(n?\"component\":\"object\")+\" `\"+l+\"` to be defined: you likely forgot to import, pass, or provide it.\"+(m?\"\\nIt\\u2019s referenced in your code at `\"+m+\"` in `/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-60e5d086-395d-4522-a6a7-18b2e3ebe193.mdx`\":\"\"))}return yr(wr);})();\n/*! Bundled license information:\n\nreact/cjs/react-jsx-dev-runtime.development.js:\n  (**\n   * @license React\n   * react-jsx-dev-runtime.development.js\n   *\n   * Copyright (c) Facebook, Inc. and its affiliates.\n   *\n   * This source code is licensed under the MIT license found in the\n   * LICENSE file in the root directory of this source tree.\n   *)\n*/\n;return Component;"
+        },
+        "_id": "posts/anotherPost.mdx",
+        "_raw": {
+          "sourceFilePath": "posts/anotherPost.mdx",
+          "sourceFileName": "anotherPost.mdx",
+          "sourceFileDir": "posts",
+          "contentType": "mdx",
+          "flattenedPath": "posts/anotherPost"
+        },
+        "type": "Post",
+        "url": "/posts/posts/anotherPost",
+        "slug": "posts/anotherPost"
+      },
+      "documentHash": "1750329854186",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "posts/voteForPedro.mdx": {
+      "document": {
+        "title": "Vote For Pedro",
+        "heroImg": "/uploads/main/unsplash-lylCw4zcA7I.jpg",
+        "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.\n",
+        "author": "content/authors/pedro.md",
+        "date": "2021-07-03T20:30:00.000Z",
+        "tags": [
+          "clean code",
+          "spirtual"
+        ],
+        "body": {
+          "raw": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.\n",
+          "code": "var Component=(()=>{var dr=Object.create;var F=Object.defineProperty;var vr=Object.getOwnPropertyDescriptor;var pr=Object.getOwnPropertyNames;var mr=Object.getPrototypeOf,br=Object.prototype.hasOwnProperty;var z=(s,l)=>()=>(l||s((l={exports:{}}).exports,l),l.exports),gr=(s,l)=>{for(var b in l)F(s,b,{get:l[b],enumerable:!0})},Te=(s,l,b,y)=>{if(l&&typeof l==\"object\"||typeof l==\"function\")for(let h of pr(l))!br.call(s,h)&&h!==b&&F(s,h,{get:()=>l[h],enumerable:!(y=vr(l,h))||y.enumerable});return s};var hr=(s,l,b)=>(b=s!=null?dr(mr(s)):{},Te(l||!s||!s.__esModule?F(b,\"default\",{value:s,enumerable:!0}):b,s)),yr=s=>Te(F({},\"__esModule\",{value:!0}),s);var Ce=z((Cr,we)=>{we.exports=React});var Oe=z(G=>{\"use strict\";(function(){\"use strict\";var s=Ce(),l=Symbol.for(\"react.element\"),b=Symbol.for(\"react.portal\"),y=Symbol.for(\"react.fragment\"),h=Symbol.for(\"react.strict_mode\"),H=Symbol.for(\"react.profiler\"),J=Symbol.for(\"react.provider\"),Z=Symbol.for(\"react.context\"),S=Symbol.for(\"react.forward_ref\"),W=Symbol.for(\"react.suspense\"),Y=Symbol.for(\"react.suspense_list\"),j=Symbol.for(\"react.memo\"),$=Symbol.for(\"react.lazy\"),ke=Symbol.for(\"react.offscreen\"),Q=Symbol.iterator,xe=\"@@iterator\";function De(e){if(e===null||typeof e!=\"object\")return null;var r=Q&&e[Q]||e[xe];return typeof r==\"function\"?r:null}var R=s.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;function d(e){{for(var r=arguments.length,t=new Array(r>1?r-1:0),n=1;n<r;n++)t[n-1]=arguments[n];Ae(\"error\",e,t)}}function Ae(e,r,t){{var n=R.ReactDebugCurrentFrame,o=n.getStackAddendum();o!==\"\"&&(r+=\"%s\",t=t.concat([o]));var u=t.map(function(i){return String(i)});u.unshift(\"Warning: \"+r),Function.prototype.apply.call(console[e],console,u)}}var Fe=!1,Ie=!1,We=!1,Ye=!1,$e=!1,ee;ee=Symbol.for(\"react.module.reference\");function Ve(e){return!!(typeof e==\"string\"||typeof e==\"function\"||e===y||e===H||$e||e===h||e===W||e===Y||Ye||e===ke||Fe||Ie||We||typeof e==\"object\"&&e!==null&&(e.$$typeof===$||e.$$typeof===j||e.$$typeof===J||e.$$typeof===Z||e.$$typeof===S||e.$$typeof===ee||e.getModuleId!==void 0))}function Me(e,r,t){var n=e.displayName;if(n)return n;var o=r.displayName||r.name||\"\";return o!==\"\"?t+\"(\"+o+\")\":t}function re(e){return e.displayName||\"Context\"}function g(e){if(e==null)return null;if(typeof e.tag==\"number\"&&d(\"Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.\"),typeof e==\"function\")return e.displayName||e.name||null;if(typeof e==\"string\")return e;switch(e){case y:return\"Fragment\";case b:return\"Portal\";case H:return\"Profiler\";case h:return\"StrictMode\";case W:return\"Suspense\";case Y:return\"SuspenseList\"}if(typeof e==\"object\")switch(e.$$typeof){case Z:var r=e;return re(r)+\".Consumer\";case J:var t=e;return re(t._context)+\".Provider\";case S:return Me(e,e.render,\"ForwardRef\");case j:var n=e.displayName||null;return n!==null?n:g(e.type)||\"Memo\";case $:{var o=e,u=o._payload,i=o._init;try{return g(i(u))}catch{return null}}}return null}var E=Object.assign,C=0,te,ne,ae,ie,oe,ue,se;function le(){}le.__reactDisabledLog=!0;function Le(){{if(C===0){te=console.log,ne=console.info,ae=console.warn,ie=console.error,oe=console.group,ue=console.groupCollapsed,se=console.groupEnd;var e={configurable:!0,enumerable:!0,value:le,writable:!0};Object.defineProperties(console,{info:e,log:e,warn:e,error:e,group:e,groupCollapsed:e,groupEnd:e})}C++}}function Ne(){{if(C--,C===0){var e={configurable:!0,enumerable:!0,writable:!0};Object.defineProperties(console,{log:E({},e,{value:te}),info:E({},e,{value:ne}),warn:E({},e,{value:ae}),error:E({},e,{value:ie}),group:E({},e,{value:oe}),groupCollapsed:E({},e,{value:ue}),groupEnd:E({},e,{value:se})})}C<0&&d(\"disabledDepth fell below zero. This is a bug in React. Please file an issue.\")}}var V=R.ReactCurrentDispatcher,M;function k(e,r,t){{if(M===void 0)try{throw Error()}catch(o){var n=o.stack.trim().match(/\\n( *(at )?)/);M=n&&n[1]||\"\"}return`\n`+M+e}}var L=!1,x;{var Ue=typeof WeakMap==\"function\"?WeakMap:Map;x=new Ue}function ce(e,r){if(!e||L)return\"\";{var t=x.get(e);if(t!==void 0)return t}var n;L=!0;var o=Error.prepareStackTrace;Error.prepareStackTrace=void 0;var u;u=V.current,V.current=null,Le();try{if(r){var i=function(){throw Error()};if(Object.defineProperty(i.prototype,\"props\",{set:function(){throw Error()}}),typeof Reflect==\"object\"&&Reflect.construct){try{Reflect.construct(i,[])}catch(p){n=p}Reflect.construct(e,[],i)}else{try{i.call()}catch(p){n=p}e.call(i.prototype)}}else{try{throw Error()}catch(p){n=p}e()}}catch(p){if(p&&n&&typeof p.stack==\"string\"){for(var a=p.stack.split(`\n`),v=n.stack.split(`\n`),c=a.length-1,f=v.length-1;c>=1&&f>=0&&a[c]!==v[f];)f--;for(;c>=1&&f>=0;c--,f--)if(a[c]!==v[f]){if(c!==1||f!==1)do if(c--,f--,f<0||a[c]!==v[f]){var m=`\n`+a[c].replace(\" at new \",\" at \");return e.displayName&&m.includes(\"<anonymous>\")&&(m=m.replace(\"<anonymous>\",e.displayName)),typeof e==\"function\"&&x.set(e,m),m}while(c>=1&&f>=0);break}}}finally{L=!1,V.current=u,Ne(),Error.prepareStackTrace=o}var w=e?e.displayName||e.name:\"\",_=w?k(w):\"\";return typeof e==\"function\"&&x.set(e,_),_}function Be(e,r,t){return ce(e,!1)}function Ke(e){var r=e.prototype;return!!(r&&r.isReactComponent)}function D(e,r,t){if(e==null)return\"\";if(typeof e==\"function\")return ce(e,Ke(e));if(typeof e==\"string\")return k(e);switch(e){case W:return k(\"Suspense\");case Y:return k(\"SuspenseList\")}if(typeof e==\"object\")switch(e.$$typeof){case S:return Be(e.render);case j:return D(e.type,r,t);case $:{var n=e,o=n._payload,u=n._init;try{return D(u(o),r,t)}catch{}}}return\"\"}var O=Object.prototype.hasOwnProperty,fe={},de=R.ReactDebugCurrentFrame;function A(e){if(e){var r=e._owner,t=D(e.type,e._source,r?r.type:null);de.setExtraStackFrame(t)}else de.setExtraStackFrame(null)}function qe(e,r,t,n,o){{var u=Function.call.bind(O);for(var i in e)if(u(e,i)){var a=void 0;try{if(typeof e[i]!=\"function\"){var v=Error((n||\"React class\")+\": \"+t+\" type `\"+i+\"` is invalid; it must be a function, usually from the `prop-types` package, but received `\"+typeof e[i]+\"`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.\");throw v.name=\"Invariant Violation\",v}a=e[i](r,i,n,t,null,\"SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED\")}catch(c){a=c}a&&!(a instanceof Error)&&(A(o),d(\"%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).\",n||\"React class\",t,i,typeof a),A(null)),a instanceof Error&&!(a.message in fe)&&(fe[a.message]=!0,A(o),d(\"Failed %s type: %s\",t,a.message),A(null))}}}var Xe=Array.isArray;function N(e){return Xe(e)}function ze(e){{var r=typeof Symbol==\"function\"&&Symbol.toStringTag,t=r&&e[Symbol.toStringTag]||e.constructor.name||\"Object\";return t}}function Ge(e){try{return ve(e),!1}catch{return!0}}function ve(e){return\"\"+e}function pe(e){if(Ge(e))return d(\"The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.\",ze(e)),ve(e)}var P=R.ReactCurrentOwner,He={key:!0,ref:!0,__self:!0,__source:!0},me,be,U;U={};function Je(e){if(O.call(e,\"ref\")){var r=Object.getOwnPropertyDescriptor(e,\"ref\").get;if(r&&r.isReactWarning)return!1}return e.ref!==void 0}function Ze(e){if(O.call(e,\"key\")){var r=Object.getOwnPropertyDescriptor(e,\"key\").get;if(r&&r.isReactWarning)return!1}return e.key!==void 0}function Qe(e,r){if(typeof e.ref==\"string\"&&P.current&&r&&P.current.stateNode!==r){var t=g(P.current.type);U[t]||(d('Component \"%s\" contains the string ref \"%s\". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref',g(P.current.type),e.ref),U[t]=!0)}}function er(e,r){{var t=function(){me||(me=!0,d(\"%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)\",r))};t.isReactWarning=!0,Object.defineProperty(e,\"key\",{get:t,configurable:!0})}}function rr(e,r){{var t=function(){be||(be=!0,d(\"%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)\",r))};t.isReactWarning=!0,Object.defineProperty(e,\"ref\",{get:t,configurable:!0})}}var tr=function(e,r,t,n,o,u,i){var a={$$typeof:l,type:e,key:r,ref:t,props:i,_owner:u};return a._store={},Object.defineProperty(a._store,\"validated\",{configurable:!1,enumerable:!1,writable:!0,value:!1}),Object.defineProperty(a,\"_self\",{configurable:!1,enumerable:!1,writable:!1,value:n}),Object.defineProperty(a,\"_source\",{configurable:!1,enumerable:!1,writable:!1,value:o}),Object.freeze&&(Object.freeze(a.props),Object.freeze(a)),a};function nr(e,r,t,n,o){{var u,i={},a=null,v=null;t!==void 0&&(pe(t),a=\"\"+t),Ze(r)&&(pe(r.key),a=\"\"+r.key),Je(r)&&(v=r.ref,Qe(r,o));for(u in r)O.call(r,u)&&!He.hasOwnProperty(u)&&(i[u]=r[u]);if(e&&e.defaultProps){var c=e.defaultProps;for(u in c)i[u]===void 0&&(i[u]=c[u])}if(a||v){var f=typeof e==\"function\"?e.displayName||e.name||\"Unknown\":e;a&&er(i,f),v&&rr(i,f)}return tr(e,a,v,o,n,P.current,i)}}var B=R.ReactCurrentOwner,ge=R.ReactDebugCurrentFrame;function T(e){if(e){var r=e._owner,t=D(e.type,e._source,r?r.type:null);ge.setExtraStackFrame(t)}else ge.setExtraStackFrame(null)}var K;K=!1;function q(e){return typeof e==\"object\"&&e!==null&&e.$$typeof===l}function he(){{if(B.current){var e=g(B.current.type);if(e)return`\n\nCheck the render method of \\``+e+\"`.\"}return\"\"}}function ar(e){{if(e!==void 0){var r=e.fileName.replace(/^.*[\\\\\\/]/,\"\"),t=e.lineNumber;return`\n\nCheck your code at `+r+\":\"+t+\".\"}return\"\"}}var ye={};function ir(e){{var r=he();if(!r){var t=typeof e==\"string\"?e:e.displayName||e.name;t&&(r=`\n\nCheck the top-level render call using <`+t+\">.\")}return r}}function Ee(e,r){{if(!e._store||e._store.validated||e.key!=null)return;e._store.validated=!0;var t=ir(r);if(ye[t])return;ye[t]=!0;var n=\"\";e&&e._owner&&e._owner!==B.current&&(n=\" It was passed a child from \"+g(e._owner.type)+\".\"),T(e),d('Each child in a list should have a unique \"key\" prop.%s%s See https://reactjs.org/link/warning-keys for more information.',t,n),T(null)}}function _e(e,r){{if(typeof e!=\"object\")return;if(N(e))for(var t=0;t<e.length;t++){var n=e[t];q(n)&&Ee(n,r)}else if(q(e))e._store&&(e._store.validated=!0);else if(e){var o=De(e);if(typeof o==\"function\"&&o!==e.entries)for(var u=o.call(e),i;!(i=u.next()).done;)q(i.value)&&Ee(i.value,r)}}}function or(e){{var r=e.type;if(r==null||typeof r==\"string\")return;var t;if(typeof r==\"function\")t=r.propTypes;else if(typeof r==\"object\"&&(r.$$typeof===S||r.$$typeof===j))t=r.propTypes;else return;if(t){var n=g(r);qe(t,e.props,\"prop\",n,e)}else if(r.PropTypes!==void 0&&!K){K=!0;var o=g(r);d(\"Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?\",o||\"Unknown\")}typeof r.getDefaultProps==\"function\"&&!r.getDefaultProps.isReactClassApproved&&d(\"getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.\")}}function ur(e){{for(var r=Object.keys(e.props),t=0;t<r.length;t++){var n=r[t];if(n!==\"children\"&&n!==\"key\"){T(e),d(\"Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.\",n),T(null);break}}e.ref!==null&&(T(e),d(\"Invalid attribute `ref` supplied to `React.Fragment`.\"),T(null))}}var Re={};function sr(e,r,t,n,o,u){{var i=Ve(e);if(!i){var a=\"\";(e===void 0||typeof e==\"object\"&&e!==null&&Object.keys(e).length===0)&&(a+=\" You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\");var v=ar(o);v?a+=v:a+=he();var c;e===null?c=\"null\":N(e)?c=\"array\":e!==void 0&&e.$$typeof===l?(c=\"<\"+(g(e.type)||\"Unknown\")+\" />\",a=\" Did you accidentally export a JSX literal instead of a component?\"):c=typeof e,d(\"React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s\",c,a)}var f=nr(e,r,t,o,u);if(f==null)return f;if(i){var m=r.children;if(m!==void 0)if(n)if(N(m)){for(var w=0;w<m.length;w++)_e(m[w],e);Object.freeze&&Object.freeze(m)}else d(\"React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.\");else _e(m,e)}if(O.call(r,\"key\")){var _=g(e),p=Object.keys(r).filter(function(fr){return fr!==\"key\"}),X=p.length>0?\"{key: someKey, \"+p.join(\": ..., \")+\": ...}\":\"{key: someKey}\";if(!Re[_+X]){var cr=p.length>0?\"{\"+p.join(\": ..., \")+\": ...}\":\"{}\";d(`A props object containing a \"key\" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />`,X,_,cr,_),Re[_+X]=!0}}return e===y?ur(f):or(f),f}}var lr=sr;G.Fragment=y,G.jsxDEV=lr})()});var Se=z((Pr,Pe)=>{\"use strict\";Pe.exports=Oe()});var Tr={};gr(Tr,{default:()=>Rr,frontmatter:()=>Er});var I=hr(Se()),Er={title:\"Vote For Pedro\",heroImg:\"/uploads/main/unsplash-lylCw4zcA7I.jpg\",excerpt:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.\n`,author:\"content/authors/pedro.md\",date:new Date(16253442e5),tags:[\"clean code\",\"spirtual\"]};function je(s){let l=Object.assign({p:\"p\"},s.components);return(0,I.jsxDEV)(l.p,{children:\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-99460ab6-ee91-4925-8c06-044e822bcb90.mdx\",lineNumber:16,columnNumber:1},this)}function _r(s={}){let{wrapper:l}=s.components||{};return l?(0,I.jsxDEV)(l,Object.assign({},s,{children:(0,I.jsxDEV)(je,s,void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-99460ab6-ee91-4925-8c06-044e822bcb90.mdx\"},this)}),void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/_mdx_bundler_entry_point-99460ab6-ee91-4925-8c06-044e822bcb90.mdx\"},this):je(s)}var Rr=_r;return yr(Tr);})();\n/*! Bundled license information:\n\nreact/cjs/react-jsx-dev-runtime.development.js:\n  (**\n   * @license React\n   * react-jsx-dev-runtime.development.js\n   *\n   * Copyright (c) Facebook, Inc. and its affiliates.\n   *\n   * This source code is licensed under the MIT license found in the\n   * LICENSE file in the root directory of this source tree.\n   *)\n*/\n;return Component;"
+        },
+        "_id": "posts/voteForPedro.mdx",
+        "_raw": {
+          "sourceFilePath": "posts/voteForPedro.mdx",
+          "sourceFileName": "voteForPedro.mdx",
+          "sourceFileDir": "posts",
+          "contentType": "mdx",
+          "flattenedPath": "posts/voteForPedro"
+        },
+        "type": "Post",
+        "url": "/posts/posts/voteForPedro",
+        "slug": "posts/voteForPedro"
+      },
+      "documentHash": "1750329854186",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "theme/tags.json": {
+      "document": {
+        "data": [
+          "buddhism",
+          "spirtual",
+          "clean code",
+          "ai",
+          "typescript",
+          "javascript"
+        ],
+        "_template": "tags",
+        "_id": "theme/tags.json",
+        "_raw": {
+          "sourceFilePath": "theme/tags.json",
+          "sourceFileName": "tags.json",
+          "sourceFileDir": "theme",
+          "contentType": "data",
+          "flattenedPath": "theme/tags"
+        },
+        "type": "Theme"
+      },
+      "documentHash": "1750329854186",
+      "hasWarnings": false,
+      "documentTypeName": "Theme"
+    },
+    "posts/june/June-Blog-Post.mdx": {
+      "document": {
+        "title": "June Blog Post",
+        "heroImg": "/uploads/main/llama-2.avif",
+        "excerpt": "Testing nested content\n",
+        "author": "content/authors/pedro.md",
+        "date": "2024-06-17T14:00:00.000Z",
+        "tags": [
+          "ai",
+          "javascript",
+          "typescript"
+        ],
+        "body": {
+          "raw": "\nCool nested content!\n",
+          "code": "var Component=(()=>{var dr=Object.create;var F=Object.defineProperty;var vr=Object.getOwnPropertyDescriptor;var pr=Object.getOwnPropertyNames;var br=Object.getPrototypeOf,gr=Object.prototype.hasOwnProperty;var q=(s,l)=>()=>(l||s((l={exports:{}}).exports,l),l.exports),hr=(s,l)=>{for(var g in l)F(s,g,{get:l[g],enumerable:!0})},Te=(s,l,g,m)=>{if(l&&typeof l==\"object\"||typeof l==\"function\")for(let y of pr(l))!gr.call(s,y)&&y!==g&&F(s,y,{get:()=>l[y],enumerable:!(m=vr(l,y))||m.enumerable});return s};var yr=(s,l,g)=>(g=s!=null?dr(br(s)):{},Te(l||!s||!s.__esModule?F(g,\"default\",{value:s,enumerable:!0}):g,s)),mr=s=>Te(F({},\"__esModule\",{value:!0}),s);var we=q((wr,Ce)=>{Ce.exports=React});var Oe=q(z=>{\"use strict\";(function(){\"use strict\";var s=we(),l=Symbol.for(\"react.element\"),g=Symbol.for(\"react.portal\"),m=Symbol.for(\"react.fragment\"),y=Symbol.for(\"react.strict_mode\"),J=Symbol.for(\"react.profiler\"),H=Symbol.for(\"react.provider\"),Z=Symbol.for(\"react.context\"),S=Symbol.for(\"react.forward_ref\"),W=Symbol.for(\"react.suspense\"),Y=Symbol.for(\"react.suspense_list\"),j=Symbol.for(\"react.memo\"),$=Symbol.for(\"react.lazy\"),ke=Symbol.for(\"react.offscreen\"),Q=Symbol.iterator,xe=\"@@iterator\";function De(e){if(e===null||typeof e!=\"object\")return null;var r=Q&&e[Q]||e[xe];return typeof r==\"function\"?r:null}var R=s.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;function d(e){{for(var r=arguments.length,t=new Array(r>1?r-1:0),n=1;n<r;n++)t[n-1]=arguments[n];Ae(\"error\",e,t)}}function Ae(e,r,t){{var n=R.ReactDebugCurrentFrame,o=n.getStackAddendum();o!==\"\"&&(r+=\"%s\",t=t.concat([o]));var u=t.map(function(i){return String(i)});u.unshift(\"Warning: \"+r),Function.prototype.apply.call(console[e],console,u)}}var Fe=!1,Ie=!1,We=!1,Ye=!1,$e=!1,ee;ee=Symbol.for(\"react.module.reference\");function Me(e){return!!(typeof e==\"string\"||typeof e==\"function\"||e===m||e===J||$e||e===y||e===W||e===Y||Ye||e===ke||Fe||Ie||We||typeof e==\"object\"&&e!==null&&(e.$$typeof===$||e.$$typeof===j||e.$$typeof===H||e.$$typeof===Z||e.$$typeof===S||e.$$typeof===ee||e.getModuleId!==void 0))}function Ve(e,r,t){var n=e.displayName;if(n)return n;var o=r.displayName||r.name||\"\";return o!==\"\"?t+\"(\"+o+\")\":t}function re(e){return e.displayName||\"Context\"}function h(e){if(e==null)return null;if(typeof e.tag==\"number\"&&d(\"Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.\"),typeof e==\"function\")return e.displayName||e.name||null;if(typeof e==\"string\")return e;switch(e){case m:return\"Fragment\";case g:return\"Portal\";case J:return\"Profiler\";case y:return\"StrictMode\";case W:return\"Suspense\";case Y:return\"SuspenseList\"}if(typeof e==\"object\")switch(e.$$typeof){case Z:var r=e;return re(r)+\".Consumer\";case H:var t=e;return re(t._context)+\".Provider\";case S:return Ve(e,e.render,\"ForwardRef\");case j:var n=e.displayName||null;return n!==null?n:h(e.type)||\"Memo\";case $:{var o=e,u=o._payload,i=o._init;try{return h(i(u))}catch{return null}}}return null}var E=Object.assign,w=0,te,ne,ae,ie,oe,ue,se;function le(){}le.__reactDisabledLog=!0;function Ne(){{if(w===0){te=console.log,ne=console.info,ae=console.warn,ie=console.error,oe=console.group,ue=console.groupCollapsed,se=console.groupEnd;var e={configurable:!0,enumerable:!0,value:le,writable:!0};Object.defineProperties(console,{info:e,log:e,warn:e,error:e,group:e,groupCollapsed:e,groupEnd:e})}w++}}function Le(){{if(w--,w===0){var e={configurable:!0,enumerable:!0,writable:!0};Object.defineProperties(console,{log:E({},e,{value:te}),info:E({},e,{value:ne}),warn:E({},e,{value:ae}),error:E({},e,{value:ie}),group:E({},e,{value:oe}),groupCollapsed:E({},e,{value:ue}),groupEnd:E({},e,{value:se})})}w<0&&d(\"disabledDepth fell below zero. This is a bug in React. Please file an issue.\")}}var M=R.ReactCurrentDispatcher,V;function k(e,r,t){{if(V===void 0)try{throw Error()}catch(o){var n=o.stack.trim().match(/\\n( *(at )?)/);V=n&&n[1]||\"\"}return`\n`+V+e}}var N=!1,x;{var Ue=typeof WeakMap==\"function\"?WeakMap:Map;x=new Ue}function fe(e,r){if(!e||N)return\"\";{var t=x.get(e);if(t!==void 0)return t}var n;N=!0;var o=Error.prepareStackTrace;Error.prepareStackTrace=void 0;var u;u=M.current,M.current=null,Ne();try{if(r){var i=function(){throw Error()};if(Object.defineProperty(i.prototype,\"props\",{set:function(){throw Error()}}),typeof Reflect==\"object\"&&Reflect.construct){try{Reflect.construct(i,[])}catch(p){n=p}Reflect.construct(e,[],i)}else{try{i.call()}catch(p){n=p}e.call(i.prototype)}}else{try{throw Error()}catch(p){n=p}e()}}catch(p){if(p&&n&&typeof p.stack==\"string\"){for(var a=p.stack.split(`\n`),v=n.stack.split(`\n`),f=a.length-1,c=v.length-1;f>=1&&c>=0&&a[f]!==v[c];)c--;for(;f>=1&&c>=0;f--,c--)if(a[f]!==v[c]){if(f!==1||c!==1)do if(f--,c--,c<0||a[f]!==v[c]){var b=`\n`+a[f].replace(\" at new \",\" at \");return e.displayName&&b.includes(\"<anonymous>\")&&(b=b.replace(\"<anonymous>\",e.displayName)),typeof e==\"function\"&&x.set(e,b),b}while(f>=1&&c>=0);break}}}finally{N=!1,M.current=u,Le(),Error.prepareStackTrace=o}var C=e?e.displayName||e.name:\"\",_=C?k(C):\"\";return typeof e==\"function\"&&x.set(e,_),_}function Be(e,r,t){return fe(e,!1)}function Ke(e){var r=e.prototype;return!!(r&&r.isReactComponent)}function D(e,r,t){if(e==null)return\"\";if(typeof e==\"function\")return fe(e,Ke(e));if(typeof e==\"string\")return k(e);switch(e){case W:return k(\"Suspense\");case Y:return k(\"SuspenseList\")}if(typeof e==\"object\")switch(e.$$typeof){case S:return Be(e.render);case j:return D(e.type,r,t);case $:{var n=e,o=n._payload,u=n._init;try{return D(u(o),r,t)}catch{}}}return\"\"}var O=Object.prototype.hasOwnProperty,ce={},de=R.ReactDebugCurrentFrame;function A(e){if(e){var r=e._owner,t=D(e.type,e._source,r?r.type:null);de.setExtraStackFrame(t)}else de.setExtraStackFrame(null)}function Xe(e,r,t,n,o){{var u=Function.call.bind(O);for(var i in e)if(u(e,i)){var a=void 0;try{if(typeof e[i]!=\"function\"){var v=Error((n||\"React class\")+\": \"+t+\" type `\"+i+\"` is invalid; it must be a function, usually from the `prop-types` package, but received `\"+typeof e[i]+\"`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.\");throw v.name=\"Invariant Violation\",v}a=e[i](r,i,n,t,null,\"SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED\")}catch(f){a=f}a&&!(a instanceof Error)&&(A(o),d(\"%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).\",n||\"React class\",t,i,typeof a),A(null)),a instanceof Error&&!(a.message in ce)&&(ce[a.message]=!0,A(o),d(\"Failed %s type: %s\",t,a.message),A(null))}}}var Ge=Array.isArray;function L(e){return Ge(e)}function qe(e){{var r=typeof Symbol==\"function\"&&Symbol.toStringTag,t=r&&e[Symbol.toStringTag]||e.constructor.name||\"Object\";return t}}function ze(e){try{return ve(e),!1}catch{return!0}}function ve(e){return\"\"+e}function pe(e){if(ze(e))return d(\"The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.\",qe(e)),ve(e)}var P=R.ReactCurrentOwner,Je={key:!0,ref:!0,__self:!0,__source:!0},be,ge,U;U={};function He(e){if(O.call(e,\"ref\")){var r=Object.getOwnPropertyDescriptor(e,\"ref\").get;if(r&&r.isReactWarning)return!1}return e.ref!==void 0}function Ze(e){if(O.call(e,\"key\")){var r=Object.getOwnPropertyDescriptor(e,\"key\").get;if(r&&r.isReactWarning)return!1}return e.key!==void 0}function Qe(e,r){if(typeof e.ref==\"string\"&&P.current&&r&&P.current.stateNode!==r){var t=h(P.current.type);U[t]||(d('Component \"%s\" contains the string ref \"%s\". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref',h(P.current.type),e.ref),U[t]=!0)}}function er(e,r){{var t=function(){be||(be=!0,d(\"%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)\",r))};t.isReactWarning=!0,Object.defineProperty(e,\"key\",{get:t,configurable:!0})}}function rr(e,r){{var t=function(){ge||(ge=!0,d(\"%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)\",r))};t.isReactWarning=!0,Object.defineProperty(e,\"ref\",{get:t,configurable:!0})}}var tr=function(e,r,t,n,o,u,i){var a={$$typeof:l,type:e,key:r,ref:t,props:i,_owner:u};return a._store={},Object.defineProperty(a._store,\"validated\",{configurable:!1,enumerable:!1,writable:!0,value:!1}),Object.defineProperty(a,\"_self\",{configurable:!1,enumerable:!1,writable:!1,value:n}),Object.defineProperty(a,\"_source\",{configurable:!1,enumerable:!1,writable:!1,value:o}),Object.freeze&&(Object.freeze(a.props),Object.freeze(a)),a};function nr(e,r,t,n,o){{var u,i={},a=null,v=null;t!==void 0&&(pe(t),a=\"\"+t),Ze(r)&&(pe(r.key),a=\"\"+r.key),He(r)&&(v=r.ref,Qe(r,o));for(u in r)O.call(r,u)&&!Je.hasOwnProperty(u)&&(i[u]=r[u]);if(e&&e.defaultProps){var f=e.defaultProps;for(u in f)i[u]===void 0&&(i[u]=f[u])}if(a||v){var c=typeof e==\"function\"?e.displayName||e.name||\"Unknown\":e;a&&er(i,c),v&&rr(i,c)}return tr(e,a,v,o,n,P.current,i)}}var B=R.ReactCurrentOwner,he=R.ReactDebugCurrentFrame;function T(e){if(e){var r=e._owner,t=D(e.type,e._source,r?r.type:null);he.setExtraStackFrame(t)}else he.setExtraStackFrame(null)}var K;K=!1;function X(e){return typeof e==\"object\"&&e!==null&&e.$$typeof===l}function ye(){{if(B.current){var e=h(B.current.type);if(e)return`\n\nCheck the render method of \\``+e+\"`.\"}return\"\"}}function ar(e){{if(e!==void 0){var r=e.fileName.replace(/^.*[\\\\\\/]/,\"\"),t=e.lineNumber;return`\n\nCheck your code at `+r+\":\"+t+\".\"}return\"\"}}var me={};function ir(e){{var r=ye();if(!r){var t=typeof e==\"string\"?e:e.displayName||e.name;t&&(r=`\n\nCheck the top-level render call using <`+t+\">.\")}return r}}function Ee(e,r){{if(!e._store||e._store.validated||e.key!=null)return;e._store.validated=!0;var t=ir(r);if(me[t])return;me[t]=!0;var n=\"\";e&&e._owner&&e._owner!==B.current&&(n=\" It was passed a child from \"+h(e._owner.type)+\".\"),T(e),d('Each child in a list should have a unique \"key\" prop.%s%s See https://reactjs.org/link/warning-keys for more information.',t,n),T(null)}}function _e(e,r){{if(typeof e!=\"object\")return;if(L(e))for(var t=0;t<e.length;t++){var n=e[t];X(n)&&Ee(n,r)}else if(X(e))e._store&&(e._store.validated=!0);else if(e){var o=De(e);if(typeof o==\"function\"&&o!==e.entries)for(var u=o.call(e),i;!(i=u.next()).done;)X(i.value)&&Ee(i.value,r)}}}function or(e){{var r=e.type;if(r==null||typeof r==\"string\")return;var t;if(typeof r==\"function\")t=r.propTypes;else if(typeof r==\"object\"&&(r.$$typeof===S||r.$$typeof===j))t=r.propTypes;else return;if(t){var n=h(r);Xe(t,e.props,\"prop\",n,e)}else if(r.PropTypes!==void 0&&!K){K=!0;var o=h(r);d(\"Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?\",o||\"Unknown\")}typeof r.getDefaultProps==\"function\"&&!r.getDefaultProps.isReactClassApproved&&d(\"getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.\")}}function ur(e){{for(var r=Object.keys(e.props),t=0;t<r.length;t++){var n=r[t];if(n!==\"children\"&&n!==\"key\"){T(e),d(\"Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.\",n),T(null);break}}e.ref!==null&&(T(e),d(\"Invalid attribute `ref` supplied to `React.Fragment`.\"),T(null))}}var Re={};function sr(e,r,t,n,o,u){{var i=Me(e);if(!i){var a=\"\";(e===void 0||typeof e==\"object\"&&e!==null&&Object.keys(e).length===0)&&(a+=\" You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\");var v=ar(o);v?a+=v:a+=ye();var f;e===null?f=\"null\":L(e)?f=\"array\":e!==void 0&&e.$$typeof===l?(f=\"<\"+(h(e.type)||\"Unknown\")+\" />\",a=\" Did you accidentally export a JSX literal instead of a component?\"):f=typeof e,d(\"React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s\",f,a)}var c=nr(e,r,t,o,u);if(c==null)return c;if(i){var b=r.children;if(b!==void 0)if(n)if(L(b)){for(var C=0;C<b.length;C++)_e(b[C],e);Object.freeze&&Object.freeze(b)}else d(\"React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.\");else _e(b,e)}if(O.call(r,\"key\")){var _=h(e),p=Object.keys(r).filter(function(cr){return cr!==\"key\"}),G=p.length>0?\"{key: someKey, \"+p.join(\": ..., \")+\": ...}\":\"{key: someKey}\";if(!Re[_+G]){var fr=p.length>0?\"{\"+p.join(\": ..., \")+\": ...}\":\"{}\";d(`A props object containing a \"key\" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />`,G,_,fr,_),Re[_+G]=!0}}return e===m?ur(c):or(c),c}}var lr=sr;z.Fragment=m,z.jsxDEV=lr})()});var Se=q((Pr,Pe)=>{\"use strict\";Pe.exports=Oe()});var Tr={};hr(Tr,{default:()=>Rr,frontmatter:()=>Er});var I=yr(Se()),Er={title:\"June Blog Post\",heroImg:\"/uploads/main/llama-2.avif\",excerpt:`Testing nested content\n`,author:\"content/authors/pedro.md\",date:new Date(17186328e5),tags:[\"ai\",\"javascript\",\"typescript\"]};function je(s){let l=Object.assign({p:\"p\"},s.components);return(0,I.jsxDEV)(l.p,{children:\"Cool nested content!\"},void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/june/_mdx_bundler_entry_point-44c2e16b-e905-4988-b4aa-e9f144387dd9.mdx\",lineNumber:14,columnNumber:1},this)}function _r(s={}){let{wrapper:l}=s.components||{};return l?(0,I.jsxDEV)(l,Object.assign({},s,{children:(0,I.jsxDEV)(je,s,void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/june/_mdx_bundler_entry_point-44c2e16b-e905-4988-b4aa-e9f144387dd9.mdx\"},this)}),void 0,!1,{fileName:\"/mnt/persist/workspace/content/posts/june/_mdx_bundler_entry_point-44c2e16b-e905-4988-b4aa-e9f144387dd9.mdx\"},this):je(s)}var Rr=_r;return mr(Tr);})();\n/*! Bundled license information:\n\nreact/cjs/react-jsx-dev-runtime.development.js:\n  (**\n   * @license React\n   * react-jsx-dev-runtime.development.js\n   *\n   * Copyright (c) Facebook, Inc. and its affiliates.\n   *\n   * This source code is licensed under the MIT license found in the\n   * LICENSE file in the root directory of this source tree.\n   *)\n*/\n;return Component;"
+        },
+        "_id": "posts/june/June-Blog-Post.mdx",
+        "_raw": {
+          "sourceFilePath": "posts/june/June-Blog-Post.mdx",
+          "sourceFileName": "June-Blog-Post.mdx",
+          "sourceFileDir": "posts/june",
+          "contentType": "mdx",
+          "flattenedPath": "posts/june/June-Blog-Post"
+        },
+        "type": "Post",
+        "url": "/posts/posts/june/June-Blog-Post",
+        "slug": "posts/june/June-Blog-Post"
+      },
+      "documentHash": "1750329854186",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    }
+  }
+}

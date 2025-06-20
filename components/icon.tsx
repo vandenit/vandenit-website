@@ -50,7 +50,6 @@ export const IconOptions = {
 
 export const Icon = ({
   data,
-  tinaField = "",
 }) => {
   const { theme } = useLayout();
 
@@ -63,9 +62,7 @@ export const Icon = ({
   const IconSVG = IconOptions[name];
   return (
     <IconButton size={size || undefined} color={color || undefined} variant={variant || undefined}>
-      <IconSVG
-        data-tina-field={tinaField}
-      />
+      <IconSVG />
     </IconButton>
   );
 };

@@ -1,28 +1,19 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { useLayout } from "../../../components/layout/layout-context";
-import { tinaField, useTina } from "tinacms/dist/react";
 import { format } from "date-fns";
-import { PostQuery } from "../../../tina/__generated__/types";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { components } from "../../../components/mdx-components";
 import { FaTag } from "react-icons/fa";
 import Link from "next/link";
 import { Container, Section, Flex, Heading, Text, Box, Avatar, Link as RadixLink } from "@radix-ui/themes";
+import { mdxComponents } from "../../../components/mdx-components";
+import type { Post, Author } from '.contentlayer/generated';
 
 interface ClientPostProps {
-  data: PostQuery;
-  variables: {
-    relativePath: string;
-  };
-  query: string;
+  post: Post & { authorData?: Author };
 }
 
-export default function PostClientPage(props: ClientPostProps) {
+export default function PostClientPage({ post }: ClientPostProps) {
   const { theme } = useLayout();
-  const { data } = useTina({ ...props });
-  const post = data.post;
 
   const date = new Date(post.date);
   let formattedDate = "";
@@ -30,11 +21,12 @@ export default function PostClientPage(props: ClientPostProps) {
     formattedDate = format(date, "MMM dd, yyyy");
   }
 
+  // For now, we'll render the raw content since MDX processing needs to be set up differently
+
   return (
     <Section>
       <Container>
         <Heading
-          data-tina-field={tinaField(post, "title")}
           as="h1" size={{ initial: '6', sm: '9' }} mb="4"
           align="center"
         >
@@ -42,29 +34,26 @@ export default function PostClientPage(props: ClientPostProps) {
         </Heading>
 
         <Flex
-          data-tina-field={tinaField(post, "author")}
           align="center"
           justify="center"
           mb="16"
         >
-          {post.author && (
+          {post.authorData && (
             <>
               <Box mr="4" flexShrink="0">
                 <Avatar
-                  data-tina-field={tinaField(post.author, "avatar")}
-                  src={post.author.avatar}
-                  alt={post.author.name}
+                  src={post.authorData.avatar}
+                  alt={post.authorData.name}
                   size="4"
                   radius="full"
-                  fallback={post.author.name[0]}
+                  fallback={post.authorData.name?.[0] || 'A'}
                 />
               </Box>
               <Text
-                data-tina-field={tinaField(post.author, "name")}
                 size="2"
                 color="gray"
               >
-                {post.author.name}
+                {post.authorData.name}
               </Text>
               <Text size="2" mx="2" weight="bold" color="gray">
                 —
@@ -72,7 +61,6 @@ export default function PostClientPage(props: ClientPostProps) {
             </>
           )}
           <Text
-            data-tina-field={tinaField(post, "date")}
             size="2"
             color="gray"
           >
@@ -92,11 +80,11 @@ export default function PostClientPage(props: ClientPostProps) {
             ))}
           </Flex>
         )}
-        
+
       </Container>
       <Container>
-      {post.heroImg && (
-          <Box data-tina-field={tinaField(post, "heroImg")} mb="5" mt="5" >
+        {post.heroImg && (
+          <Box mb="5" mt="5" >
             <img
               src={post.heroImg}
               alt={post.title}
@@ -105,12 +93,13 @@ export default function PostClientPage(props: ClientPostProps) {
             />
           </Box>
         )}
-        </Container>
-
+      </Container>
 
       <Container>
-        <Box data-tina-field={tinaField(post, "_body")} mb="8">
-          <TinaMarkdown components={components} content={post._body} />
+        <Box mb="8">
+          <div style={{ whiteSpace: 'pre-wrap' }}>
+            {post.body.raw}
+          </div>
         </Box>
       </Container>
     </Section>

@@ -3,9 +3,8 @@ import '../styles.css'
 import React from "react";
 import { ThemeProvider } from "../components/theme-provider";
 import { Metadata } from "next";
-import client from "../tina/__generated__/client";
+import { getGlobalConfig } from "../lib/contentlayer";
 import { Box, Theme } from "@radix-ui/themes";
-import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: "Vanden IT",
@@ -17,10 +16,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const globalQuery = await client.queries.global({
-    relativePath: "index.json",
-  });
-  const global = globalQuery.data.global;
+  const global = getGlobalConfig();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -28,11 +25,11 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="system"
           disableTransitionOnChange
-          forcedTheme={global.theme.darkMode}
+          forcedTheme={global?.theme?.darkMode || "system"}
         >
           <Theme
-            accentColor={global.theme.accentCol || "blue" as any}
-            grayColor={global.theme.greyColor || "gray" as any}
+            accentColor={global?.theme?.accentCol || "blue" as any}
+            grayColor={global?.theme?.greyColor || "gray" as any}
             panelBackground="translucent"
             scaling="100%"
             radius="full">

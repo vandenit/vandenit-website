@@ -1,0 +1,22 @@
+[
+  {
+    "data": [
+      "buddhism",
+      "spirtual",
+      "clean code",
+      "ai",
+      "typescript",
+      "javascript"
+    ],
+    "_template": "tags",
+    "_id": "theme/tags.json",
+    "_raw": {
+      "sourceFilePath": "theme/tags.json",
+      "sourceFileName": "tags.json",
+      "sourceFileDir": "theme",
+      "contentType": "data",
+      "flattenedPath": "theme/tags"
+    },
+    "type": "Theme"
+  }
+]

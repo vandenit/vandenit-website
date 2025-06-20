@@ -1,0 +1,48 @@
+{
+  "header": {
+    "icon": {
+      "name": "VandenIT",
+      "color": "amber",
+      "style": "float"
+    },
+    "name": "Vanden IT",
+    "color": "default",
+    "nav": [
+      {
+        "href": "/home",
+        "label": "Home"
+      },
+      {
+        "href": "/about",
+        "label": "About"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ]
+  },
+  "footer": {
+    "color": "default",
+    "social": {
+      "facebook": "/",
+      "twitter": "/",
+      "instagram": "/"
+    }
+  },
+  "theme": {
+    "accentCol": "blue",
+    "greyColor": "slate",
+    "font": "nunito",
+    "darkMode": "dark"
+  },
+  "_id": "global/index.json",
+  "_raw": {
+    "sourceFilePath": "global/index.json",
+    "sourceFileName": "index.json",
+    "sourceFileDir": "global",
+    "contentType": "data",
+    "flattenedPath": "global"
+  },
+  "type": "Global"
+}

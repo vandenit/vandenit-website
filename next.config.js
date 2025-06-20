@@ -1,4 +1,7 @@
-module.exports = {
+const { withContentlayer } = require('next-contentlayer')
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: 'standalone',
   images: {
     remotePatterns: [
@@ -24,10 +27,8 @@ module.exports = {
         source: "/",
         destination: "/home",
       },
-      {
-        source: "/admin",
-        destination: "/admin/index.html",
-      },
     ];
   },
-};
+}
+
+module.exports = withContentlayer(nextConfig)

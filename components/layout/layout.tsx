@@ -1,21 +1,17 @@
 import React, { PropsWithChildren } from "react";
 import { LayoutProvider } from "./layout-context";
-import client from "../../tina/__generated__/client";
+import { getGlobalConfig } from "../../lib/contentlayer";
 import Header from "../nav/header";
 import Footer from "../nav/footer";
 import { Box, Container, Flex } from "@radix-ui/themes";
 
-type LayoutProps = PropsWithChildren & {
-  rawPageData?: any;
-};
+type LayoutProps = PropsWithChildren;
 
-export default async function Layout({ children, rawPageData }: LayoutProps) {
-  const { data: globalData } = await client.queries.global({
-    relativePath: "index.json",
-  });
+export default async function Layout({ children }: LayoutProps) {
+  const globalData = getGlobalConfig();
 
   return (
-    <LayoutProvider globalSettings={globalData.global} pageData={rawPageData}>
+    <LayoutProvider globalSettings={globalData} pageData={null}>
       <Flex direction="column" minHeight="100vh"  >
         <Header />
         <Box flexGrow="1" >
