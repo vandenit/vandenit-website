@@ -210,8 +210,8 @@
       "flattenedPath": "pages/about"
     },
     "type": "Page",
-    "url": "/pages/about",
-    "slug": "pages/about"
+    "url": "/about",
+    "slug": "about"
   },
   {
     "title": "contact",
@@ -265,8 +265,8 @@
       "flattenedPath": "pages/contact"
     },
     "type": "Page",
-    "url": "/pages/contact",
-    "slug": "pages/contact"
+    "url": "/contact",
+    "slug": "contact"
   },
   {
     "title": "Full CV",
@@ -299,8 +299,8 @@
       "flattenedPath": "pages/fullcv"
     },
     "type": "Page",
-    "url": "/pages/fullcv",
-    "slug": "pages/fullcv"
+    "url": "/fullcv",
+    "slug": "fullcv"
   },
   {
     "title": "Home",
@@ -463,8 +463,8 @@
       "flattenedPath": "pages/home"
     },
     "type": "Page",
-    "url": "/pages/home",
-    "slug": "pages/home"
+    "url": "/home",
+    "slug": "home"
   },
   {
     "title": "Secure Your Website with a Fully Automated Security Audit",
@@ -595,8 +595,8 @@
       "flattenedPath": "pages/security-audit"
     },
     "type": "Page",
-    "url": "/pages/security-audit",
-    "slug": "pages/security-audit"
+    "url": "/security-audit",
+    "slug": "security-audit"
   },
   {
     "title": "Build Your Own Website - No Subscription Fees, Full Control",
@@ -729,7 +729,7 @@
       "flattenedPath": "pages/website-product"
     },
     "type": "Page",
-    "url": "/pages/website-product",
-    "slug": "pages/website-product"
+    "url": "/website-product",
+    "slug": "website-product"
   }
 ]

@@ -209,6 +209,6 @@
     "flattenedPath": "pages/about"
   },
   "type": "Page",
-  "url": "/pages/about",
-  "slug": "pages/about"
+  "url": "/about",
+  "slug": "about"
 }

@@ -159,6 +159,6 @@
     "flattenedPath": "pages/home"
   },
   "type": "Page",
-  "url": "/pages/home",
-  "slug": "pages/home"
+  "url": "/home",
+  "slug": "home"
 }

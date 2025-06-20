@@ -50,6 +50,6 @@
     "flattenedPath": "pages/contact"
   },
   "type": "Page",
-  "url": "/pages/contact",
-  "slug": "pages/contact"
+  "url": "/contact",
+  "slug": "contact"
 }

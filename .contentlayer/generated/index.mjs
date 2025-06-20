@@ -4,11 +4,11 @@ export { isType } from 'contentlayer/client'
 
 // NOTE During development Contentlayer imports from `.mjs` files to improve HMR speeds.
 // During (production) builds Contentlayer it imports from `.json` files to improve build performance.
-import { allAuthors } from './Author/_index.mjs'
-import { allPosts } from './Post/_index.mjs'
-import { allPages } from './Page/_index.mjs'
-import { global } from './Global/_index.mjs'
-import { allThemes } from './Theme/_index.mjs'
+import allAuthors from './Author/_index.json' assert { type: 'json' }
+import allPosts from './Post/_index.json' assert { type: 'json' }
+import allPages from './Page/_index.json' assert { type: 'json' }
+import global from './Global/_index.json' assert { type: 'json' }
+import allThemes from './Theme/_index.json' assert { type: 'json' }
 
 export { allAuthors, allPosts, allPages, global, allThemes }
 

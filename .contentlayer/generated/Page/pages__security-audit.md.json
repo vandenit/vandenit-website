@@ -127,6 +127,6 @@
     "flattenedPath": "pages/security-audit"
   },
   "type": "Page",
-  "url": "/pages/security-audit",
-  "slug": "pages/security-audit"
+  "url": "/security-audit",
+  "slug": "security-audit"
 }

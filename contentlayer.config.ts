@@ -95,11 +95,11 @@ export const Page = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: (page) => `/${page._raw.flattenedPath}`,
+      resolve: (page) => `/${page._raw.sourceFileName.replace('.md', '')}`,
     },
     slug: {
       type: 'string',
-      resolve: (page) => page._raw.flattenedPath,
+      resolve: (page) => page._raw.sourceFileName.replace('.md', ''),
     },
   },
 }))

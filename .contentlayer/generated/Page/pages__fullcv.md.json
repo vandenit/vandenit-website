@@ -29,6 +29,6 @@
     "flattenedPath": "pages/fullcv"
   },
   "type": "Page",
-  "url": "/pages/fullcv",
-  "slug": "pages/fullcv"
+  "url": "/fullcv",
+  "slug": "fullcv"
 }
