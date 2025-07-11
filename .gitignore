@@ -26,4 +26,13 @@ yarn-debug.log*
 yarn-error.log*
 
 # Contentlayer generated files
+.contentlayer/
 .contentlayer
+
+# Admin interface (if accidentally regenerated)
+public/admin/
+
+# Build artifacts
+.next/
+out/
+dist/
