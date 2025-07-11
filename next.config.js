@@ -5,11 +5,7 @@ const nextConfig = {
   output: 'standalone',
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "assets.tina.io",
-        port: "",
-      },
+      // Add your image domains here if needed
     ],
   },
   webpack(config) {
