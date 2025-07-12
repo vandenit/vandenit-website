@@ -27,11 +27,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: filipvdb321/vandenit-tina:${{ github.sha }}
-          build-args: |
-            NEXT_PUBLIC_TINA_CLIENT_ID=${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
-            TINA_TOKEN=${{ secrets.TINA_TOKEN }}
-            TINA_SEARCH_TOKEN=${{ secrets.TINA_SEARCH_TOKEN }}
-            NEXT_PUBLIC_TINA_BRANCH=main
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
@@ -53,9 +48,6 @@ jobs:
         run: |
           kubectl create secret generic vandenit-tina-secrets \
             --namespace=dev \
-            --from-literal=NEXT_PUBLIC_TINA_CLIENT_ID='${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}' \
-            --from-literal=TINA_TOKEN='${{ secrets.TINA_TOKEN }}' \
-            --from-literal=TINA_SEARCH_TOKEN='${{ secrets.TINA_SEARCH_TOKEN }}' \
             --from-literal=POSTMARK_API_TOKEN='${{ secrets.POSTMARK_API_TOKEN }}' \
             --dry-run=client -o yaml | kubectl apply -f -
 

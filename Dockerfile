@@ -27,17 +27,6 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Add build-time environment variables for TinaCMS
-ARG NEXT_PUBLIC_TINA_CLIENT_ID
-ARG TINA_TOKEN
-ARG NEXT_PUBLIC_TINA_BRANCH=main
-ARG TINA_SEARCH_TOKEN
-
-ENV NEXT_PUBLIC_TINA_CLIENT_ID=${NEXT_PUBLIC_TINA_CLIENT_ID}
-ENV TINA_TOKEN=${TINA_TOKEN}
-ENV NEXT_PUBLIC_TINA_BRANCH=${NEXT_PUBLIC_TINA_BRANCH}
-ENV TINA_SEARCH_TOKEN=${TINA_SEARCH_TOKEN}
-
 RUN pnpm build
 
 # Production image, copy all the files and run next
