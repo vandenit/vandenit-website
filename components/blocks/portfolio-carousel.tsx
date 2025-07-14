@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
 import { Box, Text, Flex, Card, Button, Section, Heading, Badge } from '@radix-ui/themes'
+import { MarkdownRenderer } from '../markdown-renderer'
 
 const INTERVAL = 10000;
 
@@ -68,10 +69,10 @@ export const PortfolioCarousel = ({
                                 </Heading>
                                 <Text as="div" color="gray">
                                     {portfolioItems[currentSlide].content}
-                                    {portfolioItems[currentSlide].richContent && (
-                                        <div dangerouslySetInnerHTML={{ __html: portfolioItems[currentSlide].richContent }} />
-                                    )}
                                 </Text>
+                                {portfolioItems[currentSlide].richContent && (
+                                    <MarkdownRenderer content={portfolioItems[currentSlide].richContent} />
+                                )}
                                 {portfolioItems[currentSlide].technologies && (
                                     <Flex gap="2" mt="2">
                                         {portfolioItems[currentSlide].technologies.map((tech, i) => (

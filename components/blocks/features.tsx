@@ -1,6 +1,7 @@
 "use client";
 import { Icon } from "../icon";
 import { Box, Card, Container, Flex, Grid, Heading, Link, Section, Text } from "@radix-ui/themes";
+import { MarkdownRenderer } from "../markdown-renderer";
 // import next link with different name since Link already exists
 import NextLink from "next/link";
 
@@ -58,7 +59,7 @@ export const Feature = ({
           </Box>
           {data.richText && (
             <Container>
-              <div dangerouslySetInnerHTML={{ __html: data.richText }} />
+              <MarkdownRenderer content={data.richText} />
             </Container>
           )}
           {data.buttonLink && (
