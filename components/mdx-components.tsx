@@ -1,6 +1,10 @@
 import { format } from "date-fns";
 import React from "react";
 import Image from "next/image";
+import { NewsletterSignup } from "./mdx/newsletter-signup";
+import { BlockQuote } from "./mdx/block-quote";
+import { SecurityAlert } from "./mdx/security-alert";
+import { CodeExample } from "./mdx/code-example";
 
 export const mdxComponents = {
   // Custom components for MDX
@@ -46,4 +50,9 @@ export const mdxComponents = {
         return <span>{format(dt, "P")}</span>;
     }
   },
+  // Custom security blog components
+  NewsletterSignup,
+  BlockQuote,
+  SecurityAlert,
+  CodeExample,
 };
