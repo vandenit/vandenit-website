@@ -1,29 +1,33 @@
 import React from "react";
-import client from "../../tina/__generated__/client";
-import ClientPage from "./client-page";
+import { getPageBySlug, getAllPages } from "../../lib/contentlayer";
+import { Blocks } from "../../components/blocks";
 import Layout from "../../components/layout/layout";
+import { notFound } from "next/navigation";
 
 export default async function Page({
   params,
 }: {
   params: { filename: string[] };
 }) {
-  const data = await client.queries.page({
-    relativePath: `${params.filename}.md`,
-  });
+  const slug = params.filename.join('/');
+  const page = getPageBySlug(slug);
+
+  if (!page) {
+    notFound();
+  }
 
   return (
     <Layout>
-      <ClientPage {...data}></ClientPage>
+      <Blocks {...page} />
     </Layout>
   );
 }
 
 export async function generateStaticParams() {
-  const pages = await client.queries.pageConnection();
-  const paths = pages.data?.pageConnection.edges.map((edge) => ({
-    filename: edge.node._sys.breadcrumbs,
+  const pages = getAllPages();
+  const paths = pages.map((page) => ({
+    filename: page.slug.split('/'),
   }));
 
-  return paths || [];
+  return paths;
 }

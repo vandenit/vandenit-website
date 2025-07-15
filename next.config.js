@@ -1,12 +1,11 @@
-module.exports = {
+const { withContentlayer } = require('next-contentlayer')
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: 'standalone',
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "assets.tina.io",
-        port: "",
-      },
+      // Add your image domains here if needed
     ],
   },
   webpack(config) {
@@ -18,16 +17,7 @@ module.exports = {
 
     return config;
   },
-  async rewrites() {
-    return [
-      {
-        source: "/",
-        destination: "/home",
-      },
-      {
-        source: "/admin",
-        destination: "/admin/index.html",
-      },
-    ];
-  },
-};
+
+}
+
+module.exports = withContentlayer(nextConfig)

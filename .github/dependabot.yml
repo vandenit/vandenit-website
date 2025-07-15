@@ -10,5 +10,5 @@ updates:
     schedule:
       interval: "daily"
     allow:
-      - dependency-name: "tinacms"
-      - dependency-name: "@tinacms*"
+      - dependency-name: "contentlayer"
+      - dependency-name: "next-contentlayer"

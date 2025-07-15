@@ -1,13 +1,11 @@
 "use client";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { tinaField } from "tinacms/dist/react";
 import Link from "next/link";
 // import radix ui link with different name since Link already exists
 import { AccessibleIcon, Box, Card, DropdownMenu, Flex, Heading, IconButton, TabNav, Link as RadixLink } from "@radix-ui/themes";
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { VandenITLogo } from "../vanden-it-logo";
-import { GlobalQuery } from "../../tina/__generated__/types";
 
 export default function NavItems({ navs }: { navs: any }) {
   const currentPath = usePathname();
@@ -26,7 +24,7 @@ export default function NavItems({ navs }: { navs: any }) {
             {navs.map((item) => {
               return (
                 <TabNav.Link active={currentPath === `/${item.href}`} asChild key={item.href}>
-                  <Link href={item.href} data-tina-field={tinaField(item)} >
+                  <Link href={item.href}>
                     {item.label}
                   </Link>
                 </TabNav.Link>

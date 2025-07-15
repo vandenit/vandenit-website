@@ -25,4 +25,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.tina/__generated__
+# Contentlayer generated files
+.contentlayer/
+.contentlayer
+
+# Admin interface (if accidentally regenerated)
+public/admin/
+
+# Build artifacts
+.next/
+out/
+dist/

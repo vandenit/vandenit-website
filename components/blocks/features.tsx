@@ -1,30 +1,46 @@
 "use client";
-import {
-  PageBlocksFeatures,
-  PageBlocksFeaturesItems,
-} from "../../tina/__generated__/types";
-import { tinaField } from "tinacms/dist/react";
 import { Icon } from "../icon";
-import { iconSchema } from "../../tina/fields/icon";
 import { Box, Card, Container, Flex, Grid, Heading, Link, Section, Text } from "@radix-ui/themes";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { MarkdownRenderer } from "../markdown-renderer";
 // import next link with different name since Link already exists
 import NextLink from "next/link";
+
+interface FeatureItem {
+  title: string;
+  text: string;
+  richText?: string;
+  link?: string;
+  icon: {
+    name: string;
+    color: string;
+  };
+  buttonLink?: {
+    label: string;
+    link: string;
+  };
+}
+
+interface FeaturesBlockData {
+  title?: string;
+  featuresId?: string;
+  items?: FeatureItem[];
+  color?: string;
+  _template: string;
+}
 
 export const Feature = ({
   data,
 }: {
-  data: PageBlocksFeaturesItems;
+  data: FeatureItem;
 }) => {
   return (
     <Card>
       <Flex gap="3" align="start" justify="start">
         <Icon
-          tinaField={tinaField(data, 'icon')}
           data={{ size: 'large', ...data.icon }}
         />
         <Box>
-          <Text as="div" size="2" weight="bold" data-tina-field={tinaField(data, 'title')}>
+          <Text as="div" size="2" weight="bold">
             {data.title}
           </Text>
           <Box pt="2">
@@ -36,16 +52,24 @@ export const Feature = ({
               </Link>
             )}
             {!data.link && (
-              <Text as="div" size="2" color="gray" data-tina-field={tinaField(data, 'text')}>
+              <Text as="div" size="2" color="gray">
                 {data.text}
               </Text>
             )}
           </Box>
           {data.richText && (
-            <Container data-tina-field={tinaField(data, 'richText')}>
-              <TinaMarkdown content={data.richText} />
-
+            <Container>
+              <MarkdownRenderer content={data.richText} />
             </Container>
+          )}
+          {data.buttonLink && (
+            <Box pt="3">
+              <Link asChild>
+                <NextLink href={data.buttonLink.link}>
+                  {data.buttonLink.label}
+                </NextLink>
+              </Link>
+            </Box>
           )}
         </Box>
       </Flex>
@@ -53,11 +77,11 @@ export const Feature = ({
   );
 };
 
-export const Features = ({ data }: { data: PageBlocksFeatures }) => {
+export const Features = ({ data }: { data: FeaturesBlockData }) => {
   return (
     <Section mb="5" pb="10">
       {data.title && (
-        <Heading as="h2" size="6" mb="4" data-tina-field={tinaField(data, 'title')}
+        <Heading as="h2" size="6" mb="4"
           id={data.featuresId}>
           {data.title}
         </Heading>
@@ -72,87 +96,4 @@ export const Features = ({ data }: { data: PageBlocksFeatures }) => {
   );
 };
 
-const defaultFeature = {
-  title: "Here's Another Feature",
-  text: "This is where you might talk about the feature, if this wasn't just filler text.",
-  icon: {
-    color: "",
-    name: "",
-  },
-};
 
-export const featureBlockSchema = {
-  name: "features",
-  label: "Features",
-  ui: {
-    previewSrc: "/blocks/features.png",
-    defaultItem: {
-      title: "Our Features",
-      items: [defaultFeature, defaultFeature, defaultFeature],
-    },
-  },
-  fields: [
-    {
-      type: "string",
-      label: "Title",
-      name: "title"
-    },
-    {
-      type: "string",
-      label: "Features ID",
-      name: "featuresId"
-    },
-    {
-      type: "object",
-      label: "Feature Items",
-      name: "items",
-      list: true,
-      ui: {
-        itemProps: (item) => {
-          return {
-            label: item?.title,
-          };
-        },
-        defaultItem: {
-          ...defaultFeature,
-        },
-      },
-      fields: [
-        iconSchema,
-        {
-          type: "string",
-          label: "Title",
-          name: "title",
-        },
-        {
-          type: "string",
-          label: "Text",
-          name: "text",
-          ui: {
-            component: "textarea",
-          },
-        },
-        {
-          type: "rich-text",
-          label: "Richt Text",
-          name: "richText",
-        },
-        {
-          type: "string",
-          label: "link",
-          name: "link",
-        }
-      ],
-    },
-    {
-      type: "string",
-      label: "Color",
-      name: "color",
-      options: [
-        { label: "Default", value: "default" },
-        { label: "Tint", value: "tint" },
-        { label: "Primary", value: "primary" },
-      ],
-    },
-  ],
-};
