@@ -1,37 +1,114 @@
 import { format } from "date-fns";
 import React from "react";
 import Image from "next/image";
+import { Heading, Text, Link, Code, Blockquote, Box } from '@radix-ui/themes';
 import { NewsletterSignup } from "./mdx/newsletter-signup";
 import { BlockQuote } from "./mdx/block-quote";
 import { SecurityAlert } from "./mdx/security-alert";
 import { CodeExample } from "./mdx/code-example";
 
 export const mdxComponents = {
-  // Custom components for MDX
-  pre: ({ children, ...props }) => (
-    <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto" {...props}>
+  // Standard HTML elements with Radix UI styling
+  h1: ({ children, ...props }) => (
+    <Heading as="h1" size="8" mb="4" mt="6" {...props}>
       {children}
-    </pre>
+    </Heading>
+  ),
+  h2: ({ children, ...props }) => (
+    <Heading as="h2" size="7" mb="3" mt="5" {...props}>
+      {children}
+    </Heading>
+  ),
+  h3: ({ children, ...props }) => (
+    <Heading as="h3" size="6" mb="3" mt="4" {...props}>
+      {children}
+    </Heading>
+  ),
+  h4: ({ children, ...props }) => (
+    <Heading as="h4" size="5" mb="2" mt="4" {...props}>
+      {children}
+    </Heading>
+  ),
+  h5: ({ children, ...props }) => (
+    <Heading as="h5" size="4" mb="2" mt="3" {...props}>
+      {children}
+    </Heading>
+  ),
+  h6: ({ children, ...props }) => (
+    <Heading as="h6" size="3" mb="2" mt="3" {...props}>
+      {children}
+    </Heading>
+  ),
+  p: ({ children, ...props }) => (
+    <Text as="p" size="3" mb="3" style={{ lineHeight: '1.6' }} {...props}>
+      {children}
+    </Text>
+  ),
+  a: ({ href, children, ...props }) => (
+    <Link href={href} target="_blank" rel="noopener noreferrer" {...props}>
+      {children}
+    </Link>
+  ),
+  pre: ({ children, ...props }) => (
+    <Box mb="4" style={{
+      backgroundColor: 'var(--gray-3)',
+      padding: '1rem',
+      borderRadius: '8px',
+      overflow: 'auto'
+    }} {...props}>
+      {children}
+    </Box>
   ),
   code: ({ children, ...props }) => (
-    <code className="bg-gray-100 px-1 py-0.5 rounded text-sm" {...props}>
+    <Code size="2" style={{ padding: '2px 4px' }} {...props}>
       {children}
-    </code>
+    </Code>
   ),
   blockquote: ({ children, ...props }) => (
-    <blockquote className="border-l-4 border-gray-300 pl-4 italic" {...props}>
+    <Blockquote size="3" mb="3" style={{
+      borderLeft: '4px solid var(--accent-9)',
+      paddingLeft: '1rem',
+      fontStyle: 'italic'
+    }} {...props}>
       {children}
-    </blockquote>
+    </Blockquote>
   ),
   img: ({ src, alt, ...props }) => (
-    <Image
-      src={src || ''}
-      alt={alt || ''}
-      width={800}
-      height={400}
-      className="rounded-lg"
-      {...props}
-    />
+    <Box mb="4" style={{ textAlign: 'center' }}>
+      <Image
+        src={src || ''}
+        alt={alt || ''}
+        width={800}
+        height={400}
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+          borderRadius: '8px'
+        }}
+        {...props}
+      />
+    </Box>
+  ),
+  ul: ({ children, ...props }) => (
+    <Box as="ul" mb="3" style={{
+      paddingLeft: '1.5rem',
+      lineHeight: '1.6'
+    }} {...props}>
+      {children}
+    </Box>
+  ),
+  ol: ({ children, ...props }) => (
+    <Box as="ol" mb="3" style={{
+      paddingLeft: '1.5rem',
+      lineHeight: '1.6'
+    }} {...props}>
+      {children}
+    </Box>
+  ),
+  li: ({ children, ...props }) => (
+    <Box as="li" mb="1" {...props}>
+      <Text size="3">{children}</Text>
+    </Box>
   ),
   // Custom components for specific use cases
   DateTime: ({ format: formatType = "local" }: { format?: string }) => {
