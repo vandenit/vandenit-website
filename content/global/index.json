@@ -17,6 +17,10 @@
         "label": "About"
       },
       {
+        "href": "/posts",
+        "label": "Blog"
+      },
+      {
         "href": "/contact",
         "label": "Contact"
       }

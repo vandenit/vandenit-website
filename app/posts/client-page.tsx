@@ -2,10 +2,10 @@
 import { format } from "date-fns";
 import Link from "next/link";
 import React from "react";
-import { Flex, Box, Heading, Text, Link as RadixLink, Avatar, Card } from '@radix-ui/themes';
+import { Flex, Box, Heading, Text, Link as RadixLink, Avatar, Card, Container, Section } from '@radix-ui/themes';
 import { useLayout } from "../../components/layout/layout-context";
 import { BsArrowRight } from "react-icons/bs";
-import { FaTag } from "react-icons/fa";
+import { FaTag, FaShieldAlt } from "react-icons/fa";
 import { TagFilterPanel } from "./tag-filter-panel";
 import type { Post, Author } from '.contentlayer/generated';
 
@@ -19,87 +19,180 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
 
   return (
     <>
+      {/* Blog Header */}
+      <Section mb="8">
+        <Container>
+          <Flex direction="column" align="center" mb="6">
+            <Box mb="4">
+              <FaShieldAlt size="3em" color="var(--accent-9)" />
+            </Box>
+            <Heading as="h1" size="8" mb="4" align="center">
+              Security & Development Blog
+            </Heading>
+            <Text size="4" color="gray" align="center" style={{ maxWidth: '600px' }}>
+              Stay updated with the latest in web security, development best practices,
+              and insights from the field. Learn how to protect your applications and build secure software.
+            </Text>
+          </Flex>
+        </Container>
+      </Section>
+
       <TagFilterPanel tags={tags} />
-      {posts.map((post) => {
-        const date = new Date(post.date);
-        let formattedDate = "";
-        if (!isNaN(date.getTime())) {
-          formattedDate = format(date, "MMM dd, yyyy");
-        }
-        return (
-          <RadixLink asChild key={post._id} >
-            <Link
-              key={post._id}
-              href={post.url}
-            >
-              <Box
-                p="6"
-                mb="4"
-              >
-                <Card>
-                  <Flex>
-                    <Heading size="3" weight="bold">
-                      {post.title}{" "}
-                    </Heading>
-                    <Box
-                      as="span"
-                      pl="2"
-                    >
-                      <BsArrowRight />
-                    </Box>
-                  </Flex>
 
-                  {post.excerpt && (
-                    <Text size="2" color="gray" mb="5">
-                      {post.excerpt}
-                    </Text>
-                  )}
+      <Container>
+        {posts.length === 0 ? (
+          <Flex justify="center" p="8">
+            <Text size="4" color="gray">No posts found.</Text>
+          </Flex>
+        ) : (
+          <>
+            {/* Featured Post (OWASP post if it exists) */}
+            {posts.find(post => post.slug.includes('owasp')) && (
+              <Section mb="8">
+                <Heading as="h2" size="6" mb="4" color="red">
+                  🔥 Featured Security Post
+                </Heading>
+                {(() => {
+                  const featuredPost = posts.find(post => post.slug.includes('owasp'));
+                  if (!featuredPost) return null;
 
-                  <Flex align="center">
-                    {post.authorData && (
-                      <>
-                        <Box mr="2" flexShrink="0">
-                          <Avatar
-                            src={post.authorData.avatar}
-                            alt={post.authorData.name}
-                            fallback={post.authorData.name?.[0] || 'A'}
-                            size="4"
-                          />
-                        </Box>
-                        <Text size="2" color="gray">
-                          {post.authorData.name}
-                        </Text>
-                      </>
-                    )}
-                    {formattedDate && (
-                      <>
-                        <Text size="2" color="gray" mx="2">
-                          —
-                        </Text>
-                        <Text size="2" color="gray">
-                          {formattedDate}
-                        </Text>
-                      </>
-                    )}
-                    {post.tags && (
-                      <Flex align="center" ml="auto">
-                        <FaTag />
-                        {post.tags.map((tag) => (
-                          <Text key={tag} size="1" weight="bold" ml="2">
-                            <RadixLink asChild>
-                              <Link href={`/posts?tag=${tag}`}>{tag}</Link>
-                            </RadixLink>
-                          </Text>
-                        ))}
-                      </Flex>
-                    )}
-                  </Flex>
-                </Card>
-              </Box>
-            </Link>
-          </RadixLink>
-        );
-      })}
+                  const date = new Date(featuredPost.date);
+                  const formattedDate = !isNaN(date.getTime()) ? format(date, "MMM dd, yyyy") : "";
+
+                  return (
+                    <RadixLink asChild>
+                      <Link href={featuredPost.url}>
+                        <Card size="3" style={{ background: 'var(--accent-2)', border: '2px solid var(--accent-6)' }}>
+                          <Box p="6">
+                            <Flex align="start" gap="4">
+                              <Box flexShrink="0">
+                                <FaShieldAlt size="2em" color="var(--accent-9)" />
+                              </Box>
+                              <Box flexGrow="1">
+                                <Heading size="5" weight="bold" mb="3" color="red">
+                                  {featuredPost.title}
+                                </Heading>
+                                {featuredPost.excerpt && (
+                                  <Text size="3" color="gray" mb="4" style={{ lineHeight: '1.6' }}>
+                                    {featuredPost.excerpt}
+                                  </Text>
+                                )}
+                                <Flex align="center" gap="4">
+                                  {featuredPost.authorData && (
+                                    <Flex align="center" gap="2">
+                                      <Avatar
+                                        src={featuredPost.authorData.avatar}
+                                        alt={featuredPost.authorData.name}
+                                        fallback={featuredPost.authorData.name?.[0] || 'A'}
+                                        size="3"
+                                      />
+                                      <Text size="2" color="gray">
+                                        {featuredPost.authorData.name}
+                                      </Text>
+                                    </Flex>
+                                  )}
+                                  {formattedDate && (
+                                    <Text size="2" color="gray">
+                                      {formattedDate}
+                                    </Text>
+                                  )}
+                                  <Box ml="auto">
+                                    <BsArrowRight size="1.2em" />
+                                  </Box>
+                                </Flex>
+                              </Box>
+                            </Flex>
+                          </Box>
+                        </Card>
+                      </Link>
+                    </RadixLink>
+                  );
+                })()}
+              </Section>
+            )}
+
+            {/* All Posts */}
+            <Section>
+              <Heading as="h2" size="5" mb="6">
+                All Posts
+              </Heading>
+              {posts.map((post) => {
+                const date = new Date(post.date);
+                let formattedDate = "";
+                if (!isNaN(date.getTime())) {
+                  formattedDate = format(date, "MMM dd, yyyy");
+                }
+                return (
+                  <RadixLink asChild key={post._id}>
+                    <Link href={post.url}>
+                      <Box mb="4">
+                        <Card>
+                          <Box p="5">
+                            <Flex align="start" gap="3">
+                              <Box flexGrow="1">
+                                <Flex align="center" mb="2">
+                                  <Heading size="4" weight="bold">
+                                    {post.title}
+                                  </Heading>
+                                  <Box ml="auto">
+                                    <BsArrowRight />
+                                  </Box>
+                                </Flex>
+
+                                {post.excerpt && (
+                                  <Text size="2" color="gray" mb="4" style={{ lineHeight: '1.5' }}>
+                                    {post.excerpt}
+                                  </Text>
+                                )}
+
+                                <Flex align="center" justify="between">
+                                  <Flex align="center" gap="3">
+                                    {post.authorData && (
+                                      <Flex align="center" gap="2">
+                                        <Avatar
+                                          src={post.authorData.avatar}
+                                          alt={post.authorData.name}
+                                          fallback={post.authorData.name?.[0] || 'A'}
+                                          size="2"
+                                        />
+                                        <Text size="2" color="gray">
+                                          {post.authorData.name}
+                                        </Text>
+                                      </Flex>
+                                    )}
+                                    {formattedDate && (
+                                      <Text size="2" color="gray">
+                                        {formattedDate}
+                                      </Text>
+                                    )}
+                                  </Flex>
+
+                                  {post.tags && (
+                                    <Flex align="center" gap="2">
+                                      <FaTag size="0.8em" />
+                                      {post.tags.slice(0, 3).map((tag) => (
+                                        <Text key={tag} size="1" weight="bold">
+                                          <RadixLink asChild>
+                                            <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+                                          </RadixLink>
+                                        </Text>
+                                      ))}
+                                    </Flex>
+                                  )}
+                                </Flex>
+                              </Box>
+                            </Flex>
+                          </Box>
+                        </Card>
+                      </Box>
+                    </Link>
+                  </RadixLink>
+                );
+              })}
+            </Section>
+          </>
+        )}
+      </Container>
     </>
   );
 }

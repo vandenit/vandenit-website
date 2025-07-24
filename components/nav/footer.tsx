@@ -68,6 +68,11 @@ export default function Footer() {
               About
             </Link>
           </RadixLink>
+          <RadixLink asChild>
+            <Link href="/posts"  >
+              Blog
+            </Link>
+          </RadixLink>
 
         </Flex>
       </Container>
