@@ -43,10 +43,10 @@ export const CodeExample: React.FC<CodeExampleProps> = ({
           
           <Tabs.Root defaultValue="vulnerable">
             <Tabs.List>
-              <Tabs.Trigger value="vulnerable" color="red">
+              <Tabs.Trigger value="vulnerable" style={{ color: 'var(--red-11)' }}>
                 ❌ Vulnerable Code
               </Tabs.Trigger>
-              <Tabs.Trigger value="secure" color="green">
+              <Tabs.Trigger value="secure" style={{ color: 'var(--green-11)' }}>
                 ✅ Secure Code
               </Tabs.Trigger>
             </Tabs.List>

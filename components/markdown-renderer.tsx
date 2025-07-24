@@ -4,8 +4,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { Heading, Text, Link, Code, Blockquote } from '@radix-ui/themes';
 import Image from 'next/image';
-import { CodeExample } from './mdx/code-example';
-import { SecurityAlert } from './mdx/security-alert';
+
 
 interface MarkdownRendererProps {
   content: string;
@@ -189,9 +188,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             </td>
           ),
 
-          // Custom MDX Components
-          CodeExample: (props: any) => <CodeExample {...props} />,
-          SecurityAlert: (props: any) => <SecurityAlert {...props} />,
+
         }}
       >
         {content}

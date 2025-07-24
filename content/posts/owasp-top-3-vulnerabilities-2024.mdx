@@ -19,9 +19,9 @@ tags:
 
 The **Open Web Application Security Project (OWASP)** Top 10 list represents the most critical security risks to web applications. Today, we'll dive deep into the **top 3 most dangerous vulnerabilities** that every developer and security professional must understand.
 
-<SecurityAlert type="warning" title="Critical Security Notice">
-The vulnerabilities discussed in this post are responsible for **over 60% of all web application breaches**. Understanding and preventing these issues should be your top security priority.
-</SecurityAlert>
+> **⚠️ Critical Security Notice**
+>
+> The vulnerabilities discussed in this post are responsible for **over 60% of all web application breaches**. Understanding and preventing these issues should be your top security priority.
 
 ## 1. Broken Access Control (A01:2024)
 
@@ -35,9 +35,10 @@ The vulnerabilities discussed in this post are responsible for **over 60% of all
 
 ### Practical Example: Insecure Direct Object Reference (IDOR)
 
-<CodeExample 
-  title="IDOR Vulnerability Example"
-  vulnerable={`// ❌ VULNERABLE: No authorization check
+#### ❌ Vulnerable Code:
+
+```javascript
+// VULNERABLE: No authorization check
 app.get('/api/user/:id/profile', (req, res) => {
   const userId = req.params.id;
   const user = database.getUser(userId);
@@ -46,31 +47,36 @@ app.get('/api/user/:id/profile', (req, res) => {
 
 // Attacker can access ANY user's profile:
 // GET /api/user/123/profile
-// GET /api/user/456/profile`}
-  secure={`// ✅ SECURE: Proper authorization
+// GET /api/user/456/profile
+```
+
+#### ✅ Secure Code:
+
+```javascript
+// SECURE: Proper authorization
 app.get('/api/user/:id/profile', authenticateUser, (req, res) => {
   const requestedUserId = req.params.id;
   const currentUserId = req.user.id;
-  
+
   // Check if user can access this profile
   if (requestedUserId !== currentUserId && !req.user.isAdmin) {
     return res.status(403).json({ error: 'Access denied' });
   }
-  
+
   const user = database.getUser(requestedUserId);
   res.json(user);
-});`}
-/>
+});
+```
 
 ### Prevention Strategies
 
-<SecurityAlert type="success" title="Best Practices">
-1. **Implement proper authentication and authorization**
-2. **Use role-based access control (RBAC)**
-3. **Validate permissions on every request**
-4. **Apply principle of least privilege**
-5. **Log and monitor access attempts**
-</SecurityAlert>
+> **✅ Best Practices**
+>
+> 1. **Implement proper authentication and authorization**
+> 2. **Use role-based access control (RBAC)**
+> 3. **Validate permissions on every request**
+> 4. **Apply principle of least privilege**
+> 5. **Log and monitor access attempts**
 
 ## 2. Cryptographic Failures (A02:2024)
 
@@ -85,9 +91,10 @@ Previously known as "Sensitive Data Exposure," **Cryptographic Failures** occur 
 
 ### Practical Example: Password Storage
 
-<CodeExample 
-  title="Secure Password Hashing"
-  vulnerable={`// ❌ VULNERABLE: Plain text password storage
+#### ❌ Vulnerable Code:
+
+```javascript
+// VULNERABLE: Plain text password storage
 const user = {
   email: 'user@example.com',
   password: 'mypassword123' // Stored in plain text!
@@ -97,8 +104,13 @@ const user = {
 const crypto = require('crypto');
 const hashedPassword = crypto.createHash('md5')
   .update(password)
-  .digest('hex');`}
-  secure={`// ✅ SECURE: Using bcrypt with salt
+  .digest('hex');
+```
+
+#### ✅ Secure Code:
+
+```javascript
+// SECURE: Using bcrypt with salt
 const bcrypt = require('bcrypt');
 
 async function hashPassword(password) {
@@ -112,12 +124,12 @@ async function verifyPassword(password, hash) {
 
 // Usage
 const hashedPassword = await hashPassword('mypassword123');
-const isValid = await verifyPassword('mypassword123', hashedPassword);`}
-/>
+const isValid = await verifyPassword('mypassword123', hashedPassword);
+```
 
-<BlockQuote authorName="Bruce Schneier" authorTitle="Cryptographer & Security Expert">
-Cryptography is typically bypassed, not broken. The weakest link is usually not the algorithm, but the implementation.
-</BlockQuote>
+> *"Cryptography is typically bypassed, not broken. The weakest link is usually not the algorithm, but the implementation."*
+>
+> — **Bruce Schneier**, Cryptographer & Security Expert
 
 ### Essential Cryptographic Guidelines
 
@@ -133,27 +145,33 @@ Cryptography is typically bypassed, not broken. The weakest link is usually not 
 
 ### SQL Injection Example
 
-<CodeExample 
-  title="SQL Injection Prevention"
-  vulnerable={`// ❌ VULNERABLE: String concatenation
+#### ❌ Vulnerable Code:
+
+```javascript
+// VULNERABLE: String concatenation
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  
-  const query = \`SELECT * FROM users 
-                 WHERE username = '\${username}' 
-                 AND password = '\${password}'\`;
-  
+
+  const query = `SELECT * FROM users
+                 WHERE username = '${username}'
+                 AND password = '${password}'`;
+
   database.query(query, (err, results) => {
     // Attacker input: username = "admin'--"
     // Results in: SELECT * FROM users WHERE username = 'admin'--' AND password = '...'
   });
-});`}
-  secure={`// ✅ SECURE: Parameterized queries
+});
+```
+
+#### ✅ Secure Code:
+
+```javascript
+// SECURE: Parameterized queries
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  
+
   const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
-  
+
   database.query(query, [username, password], (err, results) => {
     // Parameters are safely escaped
     if (results.length > 0) {
@@ -164,14 +182,14 @@ app.post('/login', (req, res) => {
       }
     }
   });
-});`}
-/>
+});
+```
 
 ### Input Validation Best Practices
 
-<SecurityAlert type="info" title="Defense in Depth">
-Combine multiple security layers: **input validation**, **parameterized queries**, **least privilege database access**, and **web application firewalls (WAF)**.
-</SecurityAlert>
+> **💡 Defense in Depth**
+>
+> Combine multiple security layers: **input validation**, **parameterized queries**, **least privilege database access**, and **web application firewalls (WAF)**.
 
 ## Comprehensive Security Checklist
 
@@ -212,29 +230,27 @@ Combine multiple security layers: **input validation**, **parameterized queries*
 - [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security)
 
-<NewsletterSignup
-  placeholder="Enter your email for security updates"
-  buttonText="Subscribe to Security Alerts"
-  disclaimer={<>
-    Get the latest security insights and vulnerability alerts. We respect your privacy and will never share your email. Read our <a href="/privacy-policy">Privacy Policy</a>.
-  </>}
->
-  ## Stay Ahead of Security Threats
+---
 
-  Subscribe to our security newsletter and get:
-  - **Weekly vulnerability reports**
-  - **Practical security tips**
-  - **Code review checklists**
-  - **Industry threat intelligence**
-</NewsletterSignup>
+## Stay Ahead of Security Threats
+
+Subscribe to our security newsletter and get:
+- **Weekly vulnerability reports**
+- **Practical security tips**
+- **Code review checklists**
+- **Industry threat intelligence**
+
+*Get the latest security insights and vulnerability alerts. We respect your privacy and will never share your email.*
+
+---
 
 ## Conclusion
 
 The OWASP Top 3 vulnerabilities represent the most critical threats to modern web applications. By understanding these risks and implementing the prevention strategies outlined in this guide, you can significantly improve your application's security posture.
 
-<SecurityAlert type="success" title="Remember">
-Security is not a one-time implementation—it's an ongoing process. Regular testing, monitoring, and updates are essential to maintaining a secure application.
-</SecurityAlert>
+> **✅ Remember**
+>
+> Security is not a one-time implementation—it's an ongoing process. Regular testing, monitoring, and updates are essential to maintaining a secure application.
 
 **Next Steps:**
 1. Audit your current applications for these vulnerabilities

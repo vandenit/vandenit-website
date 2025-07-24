@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { FaTag } from "react-icons/fa";
 import Link from "next/link";
 import { Container, Section, Flex, Heading, Text, Box, Avatar, Link as RadixLink } from "@radix-ui/themes";
-import { MDXRenderer } from "../../../components/mdx-renderer";
+import { MarkdownRenderer } from "../../../components/markdown-renderer";
 import type { Post, Author } from '.contentlayer/generated';
 
 interface ClientPostProps {
@@ -97,7 +97,7 @@ export default function PostClientPage({ post }: ClientPostProps) {
 
       <Container>
         <Box mb="8">
-          <MDXRenderer mdxSource={post.body} />
+          <MarkdownRenderer content={post.body.raw} />
         </Box>
       </Container>
     </Section>

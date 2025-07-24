@@ -41,9 +41,9 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
 
       <Container>
         {posts.length === 0 ? (
-          <Box p="8" align="center">
+          <Flex justify="center" p="8">
             <Text size="4" color="gray">No posts found.</Text>
-          </Box>
+          </Flex>
         ) : (
           <>
             {/* Featured Post (OWASP post if it exists) */}

@@ -90,25 +90,27 @@ export const mdxComponents = {
     </Box>
   ),
   ul: ({ children, ...props }) => (
-    <Box as="ul" mb="3" style={{
+    <ul style={{
+      marginBottom: '0.75rem',
       paddingLeft: '1.5rem',
       lineHeight: '1.6'
     }} {...props}>
       {children}
-    </Box>
+    </ul>
   ),
   ol: ({ children, ...props }) => (
-    <Box as="ol" mb="3" style={{
+    <ol style={{
+      marginBottom: '0.75rem',
       paddingLeft: '1.5rem',
       lineHeight: '1.6'
     }} {...props}>
       {children}
-    </Box>
+    </ol>
   ),
   li: ({ children, ...props }) => (
-    <Box as="li" mb="1" {...props}>
+    <li style={{ marginBottom: '0.25rem' }} {...props}>
       <Text size="3">{children}</Text>
-    </Box>
+    </li>
   ),
   // Custom components for specific use cases
   DateTime: ({ format: formatType = "local" }: { format?: string }) => {
