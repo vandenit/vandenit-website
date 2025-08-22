@@ -5,6 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import { Heading, Text, Link, Code, Blockquote } from '@radix-ui/themes';
 import Image from 'next/image';
 
+
 interface MarkdownRendererProps {
   content: string;
   className?: string;
@@ -186,6 +187,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
               <Text size="3">{children}</Text>
             </td>
           ),
+
+
         }}
       >
         {content}

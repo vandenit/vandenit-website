@@ -5,8 +5,8 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install specific pnpm version
-RUN wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/download/v8.6.12/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
+# Enable corepack and install pnpm
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 
 # Install dependencies
 COPY package.json pnpm-lock.yaml ./
@@ -16,8 +16,8 @@ RUN pnpm install --frozen-lockfile
 FROM base AS builder
 WORKDIR /app
 
-# Install specific pnpm version in builder stage
-RUN wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/download/v8.6.12/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
+# Enable corepack and install pnpm in builder stage
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
