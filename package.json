@@ -2,6 +2,7 @@
   "name": "vandenit-website",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
     "dev": "contentlayer dev & next dev",
     "build": "contentlayer build && next build",
