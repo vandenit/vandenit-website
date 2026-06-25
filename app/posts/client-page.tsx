@@ -2,8 +2,7 @@
 import { format } from "date-fns";
 import Link from "next/link";
 import React from "react";
-import { Flex, Box, Heading, Text, Link as RadixLink, Avatar, Card, Container, Section } from '@radix-ui/themes';
-import { useLayout } from "../../components/layout/layout-context";
+import { Flex, Box, Heading, Text, Avatar, Card, Container, Section } from '@radix-ui/themes';
 import { BsArrowRight } from "react-icons/bs";
 import { FaTag, FaShieldAlt } from "react-icons/fa";
 import { TagFilterPanel } from "./tag-filter-panel";
@@ -15,8 +14,6 @@ interface ClientPostProps {
 }
 
 export default function PostsClientPage({ posts, tags }: ClientPostProps) {
-  const { theme } = useLayout();
-
   return (
     <>
       {/* Blog Header */}
@@ -60,52 +57,52 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
                   const formattedDate = !isNaN(date.getTime()) ? format(date, "MMM dd, yyyy") : "";
 
                   return (
-                    <RadixLink asChild>
-                      <Link href={featuredPost.url}>
-                        <Card size="3" style={{ background: 'var(--accent-2)', border: '2px solid var(--accent-6)' }}>
-                          <Box p="6">
-                            <Flex align="start" gap="4">
-                              <Box flexShrink="0">
-                                <FaShieldAlt size="2em" color="var(--accent-9)" />
-                              </Box>
-                              <Box flexGrow="1">
-                                <Heading size="5" weight="bold" mb="3" color="red">
-                                  {featuredPost.title}
-                                </Heading>
-                                {featuredPost.excerpt && (
-                                  <Text size="3" color="gray" mb="4" style={{ lineHeight: '1.6' }}>
-                                    {featuredPost.excerpt}
+                    <Card size="3" style={{ background: 'var(--accent-2)', border: '2px solid var(--accent-6)' }}>
+                      <Box p="6">
+                        <Flex align="start" gap="4">
+                          <Box flexShrink="0">
+                            <FaShieldAlt size="2em" color="var(--accent-9)" />
+                          </Box>
+                          <Box flexGrow="1">
+                            <Link href={featuredPost.url}>
+                              <Heading size="5" weight="bold" mb="3" color="red">
+                                {featuredPost.title}
+                              </Heading>
+                            </Link>
+                            {featuredPost.excerpt && (
+                              <Text size="3" color="gray" mb="4" style={{ lineHeight: '1.6' }}>
+                                {featuredPost.excerpt}
+                              </Text>
+                            )}
+                            <Flex align="center" gap="4">
+                              {featuredPost.authorData && (
+                                <Flex align="center" gap="2">
+                                  <Avatar
+                                    src={featuredPost.authorData.avatar}
+                                    alt={featuredPost.authorData.name}
+                                    fallback={featuredPost.authorData.name?.[0] || 'A'}
+                                    size="3"
+                                  />
+                                  <Text size="2" color="gray">
+                                    {featuredPost.authorData.name}
                                   </Text>
-                                )}
-                                <Flex align="center" gap="4">
-                                  {featuredPost.authorData && (
-                                    <Flex align="center" gap="2">
-                                      <Avatar
-                                        src={featuredPost.authorData.avatar}
-                                        alt={featuredPost.authorData.name}
-                                        fallback={featuredPost.authorData.name?.[0] || 'A'}
-                                        size="3"
-                                      />
-                                      <Text size="2" color="gray">
-                                        {featuredPost.authorData.name}
-                                      </Text>
-                                    </Flex>
-                                  )}
-                                  {formattedDate && (
-                                    <Text size="2" color="gray">
-                                      {formattedDate}
-                                    </Text>
-                                  )}
-                                  <Box ml="auto">
-                                    <BsArrowRight size="1.2em" />
-                                  </Box>
                                 </Flex>
+                              )}
+                              {formattedDate && (
+                                <Text size="2" color="gray">
+                                  {formattedDate}
+                                </Text>
+                              )}
+                              <Box ml="auto">
+                                <Link href={featuredPost.url}>
+                                  <BsArrowRight size="1.2em" />
+                                </Link>
                               </Box>
                             </Flex>
                           </Box>
-                        </Card>
-                      </Link>
-                    </RadixLink>
+                        </Flex>
+                      </Box>
+                    </Card>
                   );
                 })()}
               </Section>
@@ -123,70 +120,68 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
                   formattedDate = format(date, "MMM dd, yyyy");
                 }
                 return (
-                  <RadixLink asChild key={post._id}>
-                    <Link href={post.url}>
-                      <Box mb="4">
-                        <Card>
-                          <Box p="5">
-                            <Flex align="start" gap="3">
-                              <Box flexGrow="1">
-                                <Flex align="center" mb="2">
-                                  <Heading size="4" weight="bold">
-                                    {post.title}
-                                  </Heading>
-                                  <Box ml="auto">
-                                    <BsArrowRight />
-                                  </Box>
-                                </Flex>
-
-                                {post.excerpt && (
-                                  <Text size="2" color="gray" mb="4" style={{ lineHeight: '1.5' }}>
-                                    {post.excerpt}
-                                  </Text>
-                                )}
-
-                                <Flex align="center" justify="between">
-                                  <Flex align="center" gap="3">
-                                    {post.authorData && (
-                                      <Flex align="center" gap="2">
-                                        <Avatar
-                                          src={post.authorData.avatar}
-                                          alt={post.authorData.name}
-                                          fallback={post.authorData.name?.[0] || 'A'}
-                                          size="2"
-                                        />
-                                        <Text size="2" color="gray">
-                                          {post.authorData.name}
-                                        </Text>
-                                      </Flex>
-                                    )}
-                                    {formattedDate && (
-                                      <Text size="2" color="gray">
-                                        {formattedDate}
-                                      </Text>
-                                    )}
-                                  </Flex>
-
-                                  {post.tags && (
-                                    <Flex align="center" gap="2">
-                                      <FaTag size="0.8em" />
-                                      {post.tags.slice(0, 3).map((tag) => (
-                                        <Text key={tag} size="1" weight="bold">
-                                          <RadixLink asChild>
-                                            <Link href={`/posts?tag=${tag}`}>{tag}</Link>
-                                          </RadixLink>
-                                        </Text>
-                                      ))}
-                                    </Flex>
-                                  )}
-                                </Flex>
+                  <Box mb="4" key={post._id}>
+                    <Card>
+                      <Box p="5">
+                        <Flex align="start" gap="3">
+                          <Box flexGrow="1">
+                            <Flex align="center" mb="2">
+                              <Link href={post.url}>
+                                <Heading size="4" weight="bold">
+                                  {post.title}
+                                </Heading>
+                              </Link>
+                              <Box ml="auto">
+                                <Link href={post.url}>
+                                  <BsArrowRight />
+                                </Link>
                               </Box>
                             </Flex>
+
+                            {post.excerpt && (
+                              <Text size="2" color="gray" mb="4" style={{ lineHeight: '1.5' }}>
+                                {post.excerpt}
+                              </Text>
+                            )}
+
+                            <Flex align="center" justify="between">
+                              <Flex align="center" gap="3">
+                                {post.authorData && (
+                                  <Flex align="center" gap="2">
+                                    <Avatar
+                                      src={post.authorData.avatar}
+                                      alt={post.authorData.name}
+                                      fallback={post.authorData.name?.[0] || 'A'}
+                                      size="2"
+                                    />
+                                    <Text size="2" color="gray">
+                                      {post.authorData.name}
+                                    </Text>
+                                  </Flex>
+                                )}
+                                {formattedDate && (
+                                  <Text size="2" color="gray">
+                                    {formattedDate}
+                                  </Text>
+                                )}
+                              </Flex>
+
+                              {post.tags && (
+                                <Flex align="center" gap="2">
+                                  <FaTag size="0.8em" />
+                                  {post.tags.slice(0, 3).map((tag) => (
+                                    <Text key={tag} size="1" weight="bold">
+                                      <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+                                    </Text>
+                                  ))}
+                                </Flex>
+                              )}
+                            </Flex>
                           </Box>
-                        </Card>
+                        </Flex>
                       </Box>
-                    </Link>
-                  </RadixLink>
+                    </Card>
+                  </Box>
                 );
               })}
             </Section>

@@ -68,7 +68,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           ),
           
           // Code
-          code: ({ children, className, ...props }: any) => {
+          code: ({ children, className }: any) => {
             const isInline = !className?.includes('language-');
             if (isInline) {
               return (

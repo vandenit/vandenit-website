@@ -35,4 +35,4 @@ public/admin/
 # Build artifacts
 .next/
 out/
-dist/
+dist/dogfood-output/

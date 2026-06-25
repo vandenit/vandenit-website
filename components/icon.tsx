@@ -2,8 +2,7 @@
 import * as RadixIcons from "@radix-ui/react-icons";
 import * as FaIcons from "react-icons/fa";
 import React from "react";
-import { useLayout } from "./layout/layout-context";
-import { IconButton, IconProps } from "@radix-ui/themes";
+import { IconButton } from "@radix-ui/themes";
 
 export const IconOptions = {
   Tina: (props) => (
@@ -51,8 +50,6 @@ export const IconOptions = {
 export const Icon = ({
   data,
 }) => {
-  const { theme } = useLayout();
-
   if (IconOptions[data.name] === null || IconOptions[data.name] === undefined) {
     return null;
   }

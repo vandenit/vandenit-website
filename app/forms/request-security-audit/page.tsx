@@ -2,11 +2,6 @@ import { Heading, Text } from "@radix-ui/themes"
 import Layout from "../../../components/layout/layout"
 import { AuditForm } from "./audit-form"
 
-type Inputs = {
-    example: string
-    exampleRequired: string
-}
-
 
 export default function requestSecurityAuditForm() {
 

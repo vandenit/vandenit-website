@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { Box, Callout, Flex, Text } from '@radix-ui/themes';
+import { Box, Callout, Text } from '@radix-ui/themes';
 import { 
   ExclamationTriangleIcon, 
   InfoCircledIcon, 

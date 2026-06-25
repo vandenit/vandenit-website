@@ -1,0 +1,501 @@
+---
+title: "How to Let Hermes Generate Podcasts with Your Own Chosen Voices Using Open Notebook"
+heroImg: /uploads/main/security_bg_3.jpg
+excerpt: >
+  Self-host your own NotebookLM with Open Notebook, drive it entirely through Hermes Agent's REST API,
+  and clone any voice you want with XTTS v2 — Stephen Fry reading your meeting notes, for instance.
+  The entire setup was done from a phone, through a single chat interface.
+author: content/authors/pedro.md
+date: 2025-06-25T10:00:00.000Z
+tags:
+  - ai
+  - hermes
+  - open-notebook
+  - tts
+  - voice-cloning
+  - self-hosted
+  - docker
+---
+
+# How to Let Hermes Generate Podcasts with Your Own Chosen Voices Using Open Notebook
+
+Google's NotebookLM has a delightful feature: give it some source material and it generates a surprisingly listenable podcast episode — two AI hosts bantering back and forth about your notes. The catch is that you're stuck with Google's voices, Google's models, and Google's servers. What if you want to host your own NotebookLM, use your favourite LLM, and clone *any* voice you like — Stephen Fry reading your meeting notes, for instance?
+
+This post walks through exactly that. We'll use [Open Notebook](https://www.open-notebook.ai/) (an open-source NotebookLM alternative) running in Docker, driven entirely through its REST API by [Hermes Agent](https://hermes-agent.nousresearch.com/), with podcasts spoken by cloned voices from Coqui XTTS v2. Everything is self-hosted except the LLM, which comes from Ollama Cloud.
+
+And here's the best part: the entire setup — install, configure, upload, generate, and share — was done from a phone, through a single Hermes Web UI. No SSH, no laptop, no browser tabs. Just a chat interface that happens to be able to orchestrate Docker containers, REST APIs, TTS proxies, and Google Drive uploads.
+
+## The Real Story: Everything from Your Phone
+
+The workflow that follows is technical, but the point isn't the technology — it's that you never need to leave your phone. Here's what actually happened:
+
+1. **"Install Open Notebook and make it accessible"** — typed into Hermes Web UI on a phone. Hermes spun up Docker Compose, generated an encryption key, and exposed the service.
+2. **"Configure GLM-5.2 everywhere"** — Hermes read its own config for the Ollama Cloud API key, then made a dozen REST API calls to register credentials, models, and defaults in Open Notebook.
+3. **"Upload my audiobook transcript and generate a podcast"** — Hermes found the transcript on disk, POSTed it as a source, created podcast profiles, and kicked off generation.
+4. **"Use Stephen Fry's voice"** — Hermes discovered voice reference files from an existing audiobook project, built an XTTS voice cloning proxy, and rewired Open Notebook to use it.
+5. **"Put the MP3 on my Google Drive and share it"** — Hermes uploaded the finished podcast and returned a shareable link. Open the link on your phone, tap "Open in Spotify," and you're listening to Stephen Fry discuss your book while walking the dog.
+6. **"Write a blog post about this session"** — Hermes spawned a subagent that wrote the very post you're reading now. Still from the phone.
+
+One interface. One chat. Zero terminal sessions opened by a human.
+
+> **Note:** I'll link to separate tutorials for [Hermes Web UI setup](#) and [Google Workspace integration](#) in the future. This post focuses on the Open Notebook + voice cloning pipeline itself.
+
+## The Stack at a Glance
+
+| Layer | Tool | Why |
+|-------|------|-----|
+| Orchestration | Hermes Agent | Automates the entire setup via API calls — from your phone |
+| Notebook engine | Open Notebook | Open-source NotebookLM alternative |
+| Database | SurrealDB | Open Notebook's document store |
+| LLM | GLM-5.2 on Ollama Cloud | OpenAI-compatible endpoint |
+| Embedding | nomic-embed-text on Ollama Cloud | Same provider, no extra keys |
+| TTS (fallback) | Edge TTS proxy | Free, CPU-only, decent quality |
+| TTS (voice clone) | XTTS v2 proxy | Clone any voice from a reference clip |
+| Distribution | Google Drive via Hermes skill | Shareable link, playable in Spotify |
+
+## Step 1 — Deploying Open Notebook with Docker Compose
+
+Open Notebook ships a Docker Compose setup that runs two containers: the app itself (Next.js UI on port 8502, REST API on 5055) and a SurrealDB instance on port 8000.
+
+```yaml
+# docker-compose.yml (trimmed to the essentials)
+services:
+  open_notebook:
+    image: lfnovo/open_notebook:v1-latest
+    ports:
+      - "8502:8502"   # Web UI
+      - "5055:5055"   # REST API
+    environment:
+      - OPEN_NOTEBOOK_ENCRYPTION_KEY=your-secret-string-here
+      - SURREAL_URL=ws://surrealdb:8000/rpc
+      - SURREAL_USER=root
+      - SURREAL_PASSWORD=root
+      - SURREAL_NAMESPACE=open_notebook
+      - SURREAL_DATABASE=open_notebook
+    volumes:
+      - ./notebook_data:/app/data
+    depends_on:
+      - surrealdb
+    restart: always
+
+  surrealdb:
+    image: surrealdb/surrealdb:v2
+    command: start --log info --user root --pass root rocksdb:/mydata/mydatabase.db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./surreal_data:/mydata
+    restart: always
+```
+
+Bring it up:
+
+```bash
+docker compose up -d
+```
+
+The REST API is now available at `http://localhost:5055/api`. That's the only endpoint Hermes needs. You never need to open the UI — everything from here is API-driven.
+
+## Step 2 — Pointing Open Notebook at Ollama Cloud
+
+Here's the first gotcha, and it took a while to find: Open Notebook has a built-in `ollama` provider, but it uses LangChain's `ChatOllama` client, which calls Ollama's **native** API at `/api/chat`. Ollama Cloud, despite its name, only exposes the **OpenAI-compatible** endpoint at `/v1/chat/completions`. So if you pick the `ollama` provider, every request 404s with `path "/v1/api/chat" not found`.
+
+The fix is simple: use the `openai_compatible` provider instead and point it at `https://ollama.com/v1`.
+
+We configure this entirely through the REST API. First, store the API key:
+
+```bash
+curl -X POST http://localhost:5055/api/credentials \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Ollama Cloud",
+    "provider": "openai_compatible",
+    "modalities": ["language", "embedding"],
+    "api_key": "your-ollama-cloud-key",
+    "base_url": "https://ollama.com/v1"
+  }'
+```
+
+Then register the models — GLM-5.2 for language tasks and nomic-embed-text for embeddings:
+
+```bash
+# Language model
+curl -X POST http://localhost:5055/api/models \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "glm-5.2",
+    "provider": "openai_compatible",
+    "type": "language",
+    "credential": "<credential-id>"
+  }'
+
+# Embedding model
+curl -X POST http://localhost:5055/api/models \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "nomic-embed-text",
+    "provider": "openai_compatible",
+    "type": "embedding",
+    "credential": "<credential-id>"
+  }'
+```
+
+Finally, set the defaults so every role in Open Notebook uses these models:
+
+```bash
+curl -X PUT http://localhost:5055/api/models/defaults \
+  -H "Content-Type: application/json" \
+  -d '{
+    "default_chat_model": "<glm-model-id>",
+    "default_transformation_model": "<glm-model-id>",
+    "large_context_model": "<glm-model-id>",
+    "default_tools_model": "<glm-model-id>",
+    "default_embedding_model": "<embed-model-id>"
+  }'
+```
+
+No UI clicks. Hermes did all of this by chaining curl-equivalent calls together — from a chat message on a phone.
+
+## Step 3 — Building the TTS Proxy
+
+Open Notebook expects an OpenAI-compatible `/v1/audio/speech` endpoint for TTS. Ollama Cloud doesn't offer TTS at all, so we need a proxy. We built two.
+
+### 3a. Edge TTS Proxy (the simple fallback)
+
+If you just want *something* that works on a CPU with zero setup, Microsoft's Edge TTS is hard to beat. The `edge-tts` Python package wraps the same neural voices used by Microsoft Edge's Read Aloud feature — free, decent quality, no GPU.
+
+```python
+# edge_tts_proxy.py — minimal OpenAI-compatible TTS proxy
+import edge_tts, io
+from fastapi import FastAPI, Response
+from fastapi.responses import Response
+
+app = FastAPI()
+
+VOICES = {
+    "alloy": "en-US-AriaNeural",
+    "echo": "en-US-AndrewNeural",
+    "fable": "en-US-EmmaNeural",
+    "onyx": "en-US-EricNeural",
+    "nova": "en-US-JennyNeural",
+    "shimmer": "en-US-MichelleNeural",
+}
+
+@app.post("/v1/audio/speech")
+async def speech(request: Request):
+    body = await request.json()
+    voice = VOICES.get(body.get("voice", "alloy"), VOICES["alloy"])
+    communicate = edge_tts.Communicate(body.get("input", ""), voice)
+    audio = io.BytesIO()
+    async for chunk in communicate.stream():
+        if chunk["type"] == "audio":
+            audio.write(chunk["data"])
+    audio.seek(0)
+    return Response(content=audio.getvalue(), media_type="audio/mpeg")
+```
+
+Run it on port 5056:
+
+```bash
+uvicorn edge_tts_proxy:app --host 0.0.0.0 --port 5056
+```
+
+Good enough for a quick demo. But we want *custom voices*.
+
+### 3b. XTTS v2 Voice Cloning Proxy (the real deal)
+
+Coqui's XTTS v2 can clone any voice from a short reference clip — around 6 seconds is plenty. We point it at audio files extracted from audiobooks and it reproduces the timbre, accent, and cadence remarkably well.
+
+There are three engineering hurdles:
+
+1. **PyTorch 2.6 breaks XTTS model loading.** PyTorch 2.6 changed the default of `torch.load` to `weights_only=True`, which rejects XTTS's checkpoint. You need a monkey-patch *before* importing the TTS library.
+
+2. **XTTS is not thread-safe on CPU.** Two concurrent inferences will segfault. But Open Notebook fires TTS requests in batches of 5. So we need an `asyncio.Semaphore` to serialise them — not a threading lock (which would block the event loop and cause timeouts).
+
+3. **Long text overflows the model's context.** We split into chunks under 450 characters and concatenate the WAV output.
+
+Here's the proxy:
+
+```python
+# xtts_proxy.py — XTTS v2 voice cloning proxy with OpenAI-compatible API
+
+# --- Monkey-patch MUST happen before importing TTS ---
+import torch
+import TTS.utils.io as tts_io
+
+_orig_load_fsspec = tts_io.load_fsspec
+def _patched_load_fsspec(*args, **kwargs):
+    kwargs["weights_only"] = False
+    return _orig_load_fsspec(*args, **kwargs)
+tts_io.load_fsspec = _patched_load_fsspec
+
+_orig_torch_load = torch.load
+def _patched_torch_load(*args, **kwargs):
+    kwargs["weights_only"] = False
+    return _orig_torch_load(*args, **kwargs)
+torch.load = _patched_torch_load
+# ------------------------------------------------------
+
+import asyncio, io, os, tempfile
+from fastapi import FastAPI, Request, Response
+from TTS.api import TTS
+
+app = FastAPI()
+
+# Load model once at startup
+tts_model = TTS("tts_models/multilingual/multi-dataset/xtts_v2")
+
+# XTTS is not thread-safe on CPU — serialise all inferences
+_tts_semaphore = asyncio.Semaphore(1)
+
+# Map voice names → reference WAV files
+VOICE_REFS = {
+    "stephen_fry":   "~/projects/stephen-fry-audio/drive_cache/base_refs/stephen_fry_1800s.wav",
+    "jon_lindstrom": "~/projects/stephen-fry-audio/drive_cache/base_refs/jon_lindstrom_1800s.wav",
+    "lynn_chen":     "~/projects/stephen-fry-audio/drive_cache/base_refs/lynn_chen_1800s.wav",
+    "scott_brick":   "~/projects/stephen-fry-audio/drive_cache/base_refs/scott_brick_1800s.wav",
+    # Default fallback maps to Stephen Fry
+    "alloy":         "~/projects/stephen-fry-audio/drive_cache/base_refs/stephen_fry_1800s.wav",
+    "echo":          "~/projects/stephen-fry-audio/drive_cache/base_refs/jon_lindstrom_1800s.wav",
+}
+
+def _generate_sync(text: str, speaker_wav: str) -> bytes:
+    """Generate audio synchronously — called via asyncio.to_thread."""
+    MAX_CHARS = 450
+    chunks = []
+    words = text.split()
+    current = ""
+    for word in words:
+        if len(current) + len(word) + 1 > MAX_CHARS:
+            if current:
+                chunks.append(current.strip())
+            current = word
+        else:
+            current += " " + word if current else word
+    if current:
+        chunks.append(current.strip())
+
+    parts = []
+    for chunk in chunks:
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
+            tmp_path = tmp.name
+        try:
+            tts_model.tts_to_file(
+                text=chunk, speaker_wav=speaker_wav,
+                file_path=tmp_path, language="en"
+            )
+            with open(tmp_path, "rb") as f:
+                parts.append(f.read())
+        finally:
+            os.unlink(tmp_path)
+
+    # Concatenate WAV files (strip headers from all but first)
+    result = parts[0]
+    for p in parts[1:]:
+        idx = p.find(b"data")
+        if idx >= 0:
+            result += p[idx + 8:]
+        else:
+            result += p
+    return result
+
+@app.post("/v1/audio/speech")
+async def speech(request: Request):
+    body = await request.json()
+    text = body.get("input", "")
+    voice = body.get("voice", "alloy")
+    ref_wav = os.path.expanduser(VOICE_REFS.get(voice, VOICE_REFS["alloy"]))
+
+    async with _tts_semaphore:
+        audio_data = await asyncio.to_thread(_generate_sync, text, ref_wav)
+
+    return Response(content=audio_data, media_type="audio/wav")
+```
+
+Run it:
+
+```bash
+uvicorn xtts_proxy:app --host 0.0.0.0 --port 5057
+```
+
+> **Performance note:** XTTS on CPU takes roughly 20 seconds per ~100 characters. A podcast with 30 segments takes 15–20 minutes to synthesise. This is a "start it and go make coffee" operation, not a real-time one. If you have a GPU, expect a 10–20× speedup.
+
+### Where do the voice references come from?
+
+The `speaker_wav` files are short clips (about 6–10 seconds of clean speech) extracted from audiobook projects. You can create your own from any audio file using ffmpeg:
+
+```bash
+# Extract a 10-second clean speech clip from any audio file
+ffmpeg -i input.mp3 -ss 00:01:30 -t 10 -ar 22050 -ac 1 my_voice.wav
+```
+
+In this session, the voice references came from a Stephen Fry audiobook project — the same clips used to train RVC voice models for audiobook generation. Reusing them for podcast TTS was a natural fit.
+
+## Step 4 — Creating a Notebook and Uploading Content
+
+With models configured, we create a notebook and feed it source material — in this case, a 210K-character transcript of "Meditations for Mortals" by Oliver Burkeman:
+
+```bash
+# Create a notebook
+curl -X POST http://localhost:5055/api/notebooks \
+  -H "Content-Type: application/json" \
+  -d '{ "name": "Meditations for Mortals" }'
+
+# Upload a text source (transcript, notes, article, anything)
+curl -X POST http://localhost:5055/api/sources/json \
+  -H "Content-Type: application/json" \
+  -d '{
+    "notebook_id": "<notebook-id>",
+    "type": "text",
+    "title": "Full Transcript",
+    "content": "<210K chars of transcript>",
+    "embed": true
+  }'
+```
+
+Open Notebook ingests the source, runs embeddings through nomic-embed-text, and it's ready for podcast generation.
+
+## Step 5 — Configuring Podcast Profiles
+
+This is where the magic happens. Open Notebook separates **episode profiles** (which LLM models generate the outline and transcript) from **speaker profiles** (which TTS voice and personality each speaker uses).
+
+### Solo podcast — one speaker with a cloned voice
+
+For a solo monologue, we update a speaker profile to map a persona to Stephen Fry's cloned voice:
+
+```bash
+curl -X PUT http://localhost:5055/api/speaker-profiles/<id> \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "solo_expert",
+    "voice_model": "<tts-model-id>",
+    "speakers": [{
+      "name": "Professor Sarah Kim",
+      "personality": "Patient teacher, uses analogies and examples",
+      "voice_id": "stephen_fry",
+      "backstory": "Distinguished professor and researcher."
+    }],
+    "tts_provider": "openai_compatible",
+    "tts_model": "gpt-4o-mini-tts"
+  }'
+```
+
+### Two-person dialogue — NotebookLM style
+
+For the back-and-forth format that made NotebookLM famous, we create a speaker profile with two voices — Stephen Fry as the warm British host and Jon Lindstrom as the analytical American co-host:
+
+```bash
+curl -X POST http://localhost:5055/api/speaker-profiles \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "fry_lindstrom_dialogue",
+    "voice_model": "<tts-model-id>",
+    "speakers": [
+      {
+        "name": "Stephen Fry",
+        "personality": "Warm, witty, eloquent. Uses British humor and analogies.",
+        "voice_id": "stephen_fry",
+        "backstory": "British comedian, actor, and writer. Famous for narrating the Harry Potter audiobooks."
+      },
+      {
+        "name": "Jon Lindstrom",
+        "personality": "Analytical, calm, direct. Asks probing follow-up questions.",
+        "voice_id": "jon_lindstrom",
+        "backstory": "Audiobook narrator with a deep, measured American voice."
+      }
+    ],
+    "tts_provider": "openai_compatible",
+    "tts_model": "gpt-4o-mini-tts"
+  }'
+```
+
+Then we create an episode profile that tells GLM-5.2 to write a natural conversation:
+
+```bash
+curl -X POST http://localhost:5055/api/episode-profiles \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "fry_lindstrom_dialogue",
+    "speaker_config": "fry_lindstrom_dialogue",
+    "outline_llm": "<glm-model-id>",
+    "transcript_llm": "<glm-model-id>",
+    "outline_provider": "openai_compatible",
+    "outline_model": "glm-5.2",
+    "transcript_provider": "openai_compatible",
+    "transcript_model": "glm-5.2",
+    "default_briefing": "Create an engaging conversation between two experts. One speaker is warm, witty, and uses analogies and British humor. The other is analytical and asks probing questions. Make it feel like a real podcast conversation, not a lecture.",
+    "num_segments": 5,
+    "language": "en"
+  }'
+```
+
+## Step 6 — Generating the Podcast
+
+One call kicks off the whole pipeline — outline generation, transcript writing, and TTS synthesis:
+
+```bash
+curl -X POST http://localhost:5055/api/podcasts/generate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "notebook_id": "<notebook-id>",
+    "episode_profile": "fry_lindstrom_dialogue",
+    "speaker_profile": "fry_lindstrom_dialogue",
+    "episode_name": "Meditations for Mortals - Fry & Lindstrom Discussion"
+  }'
+```
+
+This is the long-running step. The LLM first drafts an outline from the source material, then writes a full dialogue transcript with stage directions, then sends each line to the XTTS proxy for synthesis. With 30+ segments on CPU, expect 15–20 minutes.
+
+When it's done, fetch the result:
+
+```bash
+curl http://localhost:5055/api/podcasts/episodes/<episode-id>/audio \
+  --output podcast.mp3
+```
+
+## Step 7 — Sharing via Google Drive (and Listening in Spotify)
+
+Hermes has a `google-workspace` skill that wraps the Drive API. After the MP3 is downloaded, a single Hermes invocation uploads it and returns a shareable link:
+
+```bash
+# Inside a Hermes session:
+# "Put the podcast MP3 on my Google Drive and share it"
+# → Hermes runs:
+gapi drive upload podcast.mp3 --name "Meditations for Mortals - Podcast.mp3"
+gapi drive share <file-id> --type anyone --role reader
+```
+
+The shareable link comes straight into the chat. Open it on your phone, tap "Open in Spotify" (or any audio player), and you're listening to Stephen Fry discuss your book while walking the dog. No laptop was opened at any point in this pipeline.
+
+## Lessons Learned (So You Don't Have To)
+
+1. **`openai_compatible`, not `ollama`.** Open Notebook's native Ollama provider calls `/api/chat`. Ollama Cloud only speaks `/v1/chat/completions`. Always use `openai_compatible` with Ollama Cloud. This took embarrassingly long to debug.
+
+2. **Batch TTS needs `asyncio.Semaphore`, not `threading.Lock`.** Open Notebook fires five TTS requests simultaneously. A `threading.Lock` blocks the async event loop and kills throughput. An `asyncio.Semaphore(1)` serialises cleanly while letting the event loop breathe.
+
+3. **Increase the TTS timeout.** Open Notebook's esperanto library defaults to a 300-second TTS timeout. When multiple podcasts run simultaneously (or the CPU is slow), requests queue up beyond this limit. Set `ESPERANTO_TTS_TIMEOUT=3600` in the container environment to give CPU-based TTS room to breathe.
+
+4. **Patch PyTorch before importing TTS.** PyTorch 2.6's `weights_only=True` default rejects XTTS checkpoints. The monkey-patch must run *before* `from TTS.api import TTS`. Order matters.
+
+5. **CPU XTTS is slow but usable.** ~20 seconds per ~100 chars. Plan for 15–20 minutes per episode. A GPU makes this trivial; on CPU it's a background job, not interactive.
+
+6. **Watch your LLM rate limits.** Multiple podcast generations in one session can exhaust your Ollama Cloud session quota (429 error). One podcast at a time, and let the session cool down between runs.
+
+7. **Everything is API-driven.** Not a single UI click was needed. Credentials, models, defaults, notebooks, sources, profiles, generation — all REST calls. This means Hermes can reproduce the entire setup from a chat message, which is exactly the point.
+
+8. **One interface, zero terminals.** The entire pipeline — Docker deployment, API configuration, TTS proxy engineering, podcast generation, Google Drive upload, and even writing this blog post — was orchestrated through a single Hermes Web UI chat on a phone. That's the real takeaway: when your AI agent can call APIs, run scripts, and manage files, you don't need to be at a desk to run infrastructure.
+
+## Wrapping Up
+
+The end result: you send a chat message with some source material, Hermes spins up a notebook, writes a podcast script with GLM-5.2, and two cloned voices — Stephen Fry and Jon Lindstrom — discuss your content in a natural dialogue. The MP3 lands in Google Drive with a shareable link that you can open in Spotify from your phone.
+
+The whole pipeline is self-hosted except the LLM (which you could swap for a local Ollama model if you have a GPU) and the TTS reference clips (which you can make from any audio file you own). No Google account required for the notebook itself, no per-minute billing, no vendor lock-in.
+
+If you want to try it yourself, the pieces you need are:
+
+- A Linux server with Docker
+- An Ollama Cloud API key (or any OpenAI-compatible LLM endpoint)
+- A few seconds of clean audio for each voice you want to clone
+- Hermes Agent to tie it all together — from your phone
+
+Happy podcasting. 🎙️

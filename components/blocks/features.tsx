@@ -1,6 +1,6 @@
 "use client";
 import { Icon } from "../icon";
-import { Box, Card, Container, Flex, Grid, Heading, Link, Section, Text } from "@radix-ui/themes";
+import { Box, Card, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
 import { MarkdownRenderer } from "../markdown-renderer";
 // import next link with different name since Link already exists
 import NextLink from "next/link";
@@ -45,11 +45,9 @@ export const Feature = ({
           </Text>
           <Box pt="2">
             {data.link && (
-              <Link href={data.link} asChild>
-                <NextLink href={data.link}>
-                  {data.text}
-                </NextLink>
-              </Link>
+              <NextLink href={data.link}>
+                {data.text}
+              </NextLink>
             )}
             {!data.link && (
               <Text as="div" size="2" color="gray">
@@ -64,11 +62,9 @@ export const Feature = ({
           )}
           {data.buttonLink && (
             <Box pt="3">
-              <Link asChild>
-                <NextLink href={data.buttonLink.link}>
-                  {data.buttonLink.label}
-                </NextLink>
-              </Link>
+              <NextLink href={data.buttonLink.link}>
+                {data.buttonLink.label}
+              </NextLink>
             </Box>
           )}
         </Box>
