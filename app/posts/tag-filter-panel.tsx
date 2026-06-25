@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Flex, Button, Text, Box, Container, Badge } from '@radix-ui/themes';
 import { FaAngleUp, FaAngleDown, FaFilter } from 'react-icons/fa';
-import { Link as RadixLink } from '@radix-ui/themes';
 import Link from 'next/link';
 
 export const TagFilterPanel = ({ tags }: { tags: string[] }) => {
@@ -40,15 +39,11 @@ export const TagFilterPanel = ({ tags }: { tags: string[] }) => {
           <Box>
             <Flex wrap="wrap" gap="2">
               <Badge size="2" variant="soft" color="gray">
-                <RadixLink asChild>
-                  <Link href="/posts">All Posts</Link>
-                </RadixLink>
+                <Link href="/posts">All Posts</Link>
               </Badge>
               {tags.map((tag) => (
                 <Badge key={tag} size="2" variant="soft" color="blue">
-                  <RadixLink asChild>
-                    <Link href={`/posts?tag=${tag}`}>{tag}</Link>
-                  </RadixLink>
+                  <Link href={`/posts?tag=${tag}`}>{tag}</Link>
                 </Badge>
               ))}
             </Flex>

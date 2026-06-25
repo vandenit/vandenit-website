@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 // import radix ui link with different name since Link already exists
-import { AccessibleIcon, Box, Card, DropdownMenu, Flex, Heading, IconButton, TabNav, Link as RadixLink } from "@radix-ui/themes";
+import { AccessibleIcon, Box, Card, DropdownMenu, Flex, Heading, IconButton, TabNav } from "@radix-ui/themes";
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { VandenITLogo } from "../vanden-it-logo";
 
@@ -34,12 +34,9 @@ export default function NavItems({ navs }: { navs: any }) {
         </Box>
       </Box>
       <Flex width="100%" display={{ initial: 'flex', sm: 'none' }} justify="between" position="relative">
-        <RadixLink asChild>
-          <Link href="/">
+        <Link href="/">
             <VandenITLogo width={48} height={48} />
-          </Link>
-
-        </RadixLink>
+        </Link>
         <Card><Heading>Vanden IT</Heading></Card>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>

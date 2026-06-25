@@ -4,7 +4,7 @@ import { useLayout } from "../../../components/layout/layout-context";
 import { format } from "date-fns";
 import { FaTag } from "react-icons/fa";
 import Link from "next/link";
-import { Container, Section, Flex, Heading, Text, Box, Avatar, Link as RadixLink } from "@radix-ui/themes";
+import { Container, Section, Flex, Heading, Text, Box, Avatar } from "@radix-ui/themes";
 import { MarkdownRenderer } from "../../../components/markdown-renderer";
 import type { Post, Author } from '.contentlayer/generated';
 
@@ -20,8 +20,6 @@ export default function PostClientPage({ post }: ClientPostProps) {
   if (!isNaN(date.getTime())) {
     formattedDate = format(date, "MMM dd, yyyy");
   }
-
-  // For now, we'll render the raw content since MDX processing needs to be set up differently
 
   return (
     <Section>
@@ -73,9 +71,7 @@ export default function PostClientPage({ post }: ClientPostProps) {
             <FaTag />
             {post.tags.map((tag) => (
               <Text key={tag} size="1" weight="bold" ml="2">
-                <RadixLink asChild>
-                  <Link href={`/posts?tag=${tag}`}>{tag}</Link>
-                </RadixLink>
+                <Link href={`/posts?tag=${tag}`}>{tag}</Link>
               </Text>
             ))}
           </Flex>
