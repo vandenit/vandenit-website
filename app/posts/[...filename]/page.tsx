@@ -7,9 +7,10 @@ import { notFound } from "next/navigation";
 export default async function PostPage({
   params,
 }: {
-  params: { filename: string[] };
+  params: Promise<{ filename: string[] }>;
 }) {
-  const slug = params.filename.join("/");
+  const { filename } = await params;
+  const slug = filename.join("/");
   const post = getPostBySlug(slug);
 
   if (!post) {

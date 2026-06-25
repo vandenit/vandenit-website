@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Box, Card, Flex, Heading, Text, TextField, Button, Callout } from '@radix-ui/themes';
+import { Box, Card, Flex, Heading, Text, TextField, Button } from '@radix-ui/themes';
 import { EnvelopeClosedIcon, CheckIcon } from '@radix-ui/react-icons';
 
 interface NewsletterSignupProps {
@@ -52,7 +52,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
             Thank you for subscribing!
           </Heading>
           <Text size="3" color="gray" align="center">
-            We'll keep you updated with our latest security insights and tips.
+            We&apos;ll keep you updated with our latest security insights and tips.
           </Text>
         </Flex>
       </Card>

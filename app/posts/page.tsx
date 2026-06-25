@@ -5,9 +5,9 @@ import PostsClientPage from "./client-page";
 export default async function PostsPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const tag = searchParams.tag;
+  const { tag } = await searchParams;
   const posts = tag ? getPostsByTag(tag) : getAllPostsWithAuthors();
   const allTags = getAllTags();
 

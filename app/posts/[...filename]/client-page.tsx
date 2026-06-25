@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useLayout } from "../../../components/layout/layout-context";
 import { format } from "date-fns";
 import { FaTag } from "react-icons/fa";
 import Link from "next/link";
@@ -13,8 +12,6 @@ interface ClientPostProps {
 }
 
 export default function PostClientPage({ post }: ClientPostProps) {
-  const { theme } = useLayout();
-
   const date = new Date(post.date);
   let formattedDate = "";
   if (!isNaN(date.getTime())) {

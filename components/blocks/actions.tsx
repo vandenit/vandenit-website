@@ -2,7 +2,6 @@
 import Link from "next/link";
 import * as React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
-import { useLayout } from "../layout/layout-context";
 import { Box, Button, Flex } from "@radix-ui/themes";
 import styles from './Actions.module.css';
 
@@ -40,7 +39,6 @@ export const Actions = ({
 }: {
   actions: ActionItem[];
 }) => {
-  const { theme } = useLayout();
   const openEmail = (email: string) => () => {
     window.location.href = `mailto:${email}`;
   };

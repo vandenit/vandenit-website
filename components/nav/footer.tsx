@@ -1,14 +1,13 @@
 "use client";
 import React from "react";
-import { Box, Container, Flex, Text } from "@radix-ui/themes";
+import { Container, Flex, Text } from "@radix-ui/themes";
 import { Icon } from "../icon";
 import { useLayout } from "../layout/layout-context";
 import { FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Footer() {
-  const { theme, globalSettings, pageData } = useLayout();
-  const footer = globalSettings?.footer;
+  const { globalSettings } = useLayout();
 
   return (
     <footer>

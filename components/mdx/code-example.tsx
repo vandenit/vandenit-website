@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Box, Card, Flex, Text, Button, Code, Tabs } from '@radix-ui/themes';
+import { Box, Card, Text, Button, Code, Tabs } from '@radix-ui/themes';
 import { CopyIcon, CheckIcon } from '@radix-ui/react-icons';
 
 interface CodeExampleProps {
@@ -13,7 +13,6 @@ interface CodeExampleProps {
 
 export const CodeExample: React.FC<CodeExampleProps> = ({
   title,
-  language = 'javascript',
   vulnerable,
   secure,
   children

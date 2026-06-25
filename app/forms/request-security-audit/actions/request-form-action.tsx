@@ -1,6 +1,5 @@
 'use server';
 const postmark = require("postmark");
-import path from 'path';
 
 const client = new postmark.ServerClient(process.env.POSTMARK_API_TOKEN);
 

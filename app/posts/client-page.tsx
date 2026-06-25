@@ -3,7 +3,6 @@ import { format } from "date-fns";
 import Link from "next/link";
 import React from "react";
 import { Flex, Box, Heading, Text, Avatar, Card, Container, Section } from '@radix-ui/themes';
-import { useLayout } from "../../components/layout/layout-context";
 import { BsArrowRight } from "react-icons/bs";
 import { FaTag, FaShieldAlt } from "react-icons/fa";
 import { TagFilterPanel } from "./tag-filter-panel";
@@ -15,8 +14,6 @@ interface ClientPostProps {
 }
 
 export default function PostsClientPage({ posts, tags }: ClientPostProps) {
-  const { theme } = useLayout();
-
   return (
     <>
       {/* Blog Header */}
