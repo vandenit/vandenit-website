@@ -339,6 +339,63 @@ These fixes are needed before the design refresh (they're on `main` already if P
 
 ---
 
+## Vision Sub-Agent for UI Validation
+
+### Problem
+The main model (`glm-5.2` via Ollama Cloud) does not support image input. Visual UI validation was impossible — the agent could not "see" screenshots to verify design quality, detect broken layouts, or give visual feedback.
+
+### Solution
+Hermes `auxiliary.vision` is configured to use a vision-capable model for screenshot analysis:
+
+```yaml
+# ~/.hermes/config.yaml
+auxiliary:
+  vision:
+    provider: ollama-cloud
+    model: qwen2.5-vl:7b
+    base_url: https://ollama.com/v1
+```
+
+### Why qwen2.5-vl:7b
+- Recognizes UI components (buttons, headers, cards, nav bars)
+- Reads text in screenshots (labels, links, headings)
+- Describes layout issues (overlapping, alignment, spacing)
+- Available on Ollama Cloud (same provider as main model, no extra auth needed)
+- Small enough for fast sub-agent calls
+
+### How to use in implementation sessions
+
+**Option A — Direct vision_analyze call:**
+```
+vision_analyze(
+  image_url="/home/filip/projects/vandenit-website/dogfood-output/screenshots/design-homepage.png",
+  question="Analyze this website homepage for design quality. Check: header, hero, cards, footer. Any layout issues, broken elements, or visual regressions?"
+)
+```
+
+**Option B — Sub-agent with vision (recommended):**
+```
+delegate_task(
+  goal="Validate UI of the vandenit-website by taking screenshots and analyzing them",
+  context="Take screenshots of /, /about, /posts, /contact using Playwright at 1280px and 390px. Use vision_analyze on each screenshot to check: layout, colors, typography, nav visibility, broken elements. Return a detailed report of issues found.",
+  toolsets=["terminal", "vision"]
+)
+```
+
+### Verification command
+```bash
+hermes config | grep -A2 "Vision"
+# Should show: provider=ollama-cloud, model=qwen2.5-vl:7b
+```
+
+### Important notes
+- Vision calls go through Ollama Cloud (same API key as main model)
+- `qwen2.5-vl:7b` is a 7B model — fast but not as detailed as GPT-4o vision
+- For production-critical visual QA, consider using OpenAI/Anthropic vision as fallback
+- The vision model is configured globally — applies to all profiles and sessions
+
+---
+
 ## Library Status
 
 | Package | Current | Latest compatible | Notes |
