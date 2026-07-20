@@ -56,10 +56,15 @@ blocks:
       ## What This Means for You
 
 
-      I work with **one client at a time**. When I'm with you, I'm fully there
-      — not splitting attention across five accounts. You get my full focus,
-      my full toolkit, and a workflow that has been genuinely transformed by
-      the last two years of AI-augmented engineering.
+      I work with optimized AI workflows that let me move fast without
+      sacrificing depth. Every engagement gets the full weight of 15 years
+      of enterprise experience — not just on the code I write, but on what
+      that code needs to become six months from now.
+
+
+      The pitch isn't speed. The pitch is speed *and* production-grade quality.
+      Those two things usually trade off. AI-augmented senior engineering is
+      how they don't.
 
 
       Whether that means auditing your team's AI readiness, stepping in as a

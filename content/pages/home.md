@@ -1,11 +1,11 @@
 ---
 title: Home
 blocks:
-  - tagline: Senior engineer. AI-augmented. One client at a time.
+  - tagline: Senior engineer. AI-powered workflows. Production-grade results.
     headline: >-
-      I help product teams move faster and think deeper — by combining 15 years
-      of enterprise engineering with AI workflows built for real-world
-      development.
+      AI agents handle the repetitive work. 15 years of enterprise experience
+      handles everything else — architecture, security, maintainability. The
+      result: fast delivery that holds up in production.
     text: ''
     text2: ''
     actions:

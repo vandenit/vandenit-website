@@ -18,11 +18,12 @@ blocks:
       ## What to expect
 
 
-      I work with **one client at a time**, fully committed. That means I might
-      not be available immediately — but when I am, you get 100% of my attention.
+      I work with optimized AI workflows that keep delivery fast without
+      cutting corners on quality. That means your project gets enterprise-grade
+      engineering, not rushed output.
 
 
-      **Currently available:** Accepting inquiries for Q4 2026.
+      **Currently available:** Taking on new projects. Tell me what you're building.
 
 
       Prefer LinkedIn? [Connect with me
