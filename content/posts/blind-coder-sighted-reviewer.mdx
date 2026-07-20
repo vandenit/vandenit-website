@@ -19,11 +19,13 @@ Here's exactly what happened.
 
 ## The Setup
 
-I run two AIs in my local workflow:
+I run two AIs in my local workflow. The choice of which AI does what is driven by cost and capability, not preference.
 
-**Hermes** runs GLM-5.2 via Ollama Cloud. It's the implementer. It reads plans, modifies files, manages the dev server, runs builds, and takes Playwright screenshots. What it cannot do is see. GLM-5.2 has no vision capability. Hermes is literally blind to its own output.
+**Hermes** runs GLM-5.2 via Ollama Cloud. It's my main tool — not because it's the smartest model available, but because it's cheap enough for intensive development without hitting usage limits, and because Hermes has persistent memory and reusable skills. That memory is what makes it possible to give Claude the right context for each review. Hermes is the implementer: it reads plans, modifies files, manages the dev server, runs builds, and takes Playwright screenshots. What it cannot do is see. GLM-5.2 has no vision capability. Hermes is literally blind to its own output.
 
-**Claude Sonnet 4.6** runs via the Antigravity CLI (`agy`). It's the reviewer. It reads screenshots with precision, scores design quality on a /10 scale, and gives specific, ranked, actionable feedback. What it cannot do is touch a file. It has no write access. It can describe a fix but not apply it.
+**Claude Sonnet 4.6** runs via the Antigravity CLI (`agy`). I have a Google subscription that includes Claude access through Antigravity — it's not free, but it's affordable for the volume of design reviews I do. For heavy development work, Antigravity's usage limits kick in fast. For design reviews — a few screenshots per iteration — we stay within the limits. Claude is the reviewer: it reads screenshots with precision, scores design quality on a /10 scale, and gives specific, ranked, actionable feedback. What it cannot do is touch a file. It has no write access. It can describe a fix but not apply it.
+
+The design plan itself also came from Claude. Before the implementation session, I sent Claude a screenshot of the existing vandenit.be and asked for a full design assessment. It scored the site 5/10 and produced a 180-line report covering nine areas — that report became the design plan that Hermes implemented.
 
 This isn't an accident. The constraint is the point.
 
@@ -227,7 +229,7 @@ The old site was serviceable. The new site is something I'd actually show a clie
 
 ## What This Actually Is
 
-I want to be careful about how I frame this. This isn't autonomous AI development. I wrote the design plan. I caught the viewport bug. I decided when to escalate. I reviewed the PR before merging.
+I want to be careful about how I frame this. This isn't autonomous AI development. Claude wrote the design plan. I caught the viewport bug. I decided when to escalate. I reviewed the PR before merging.
 
 What the workflow does is compress the iteration cycle. A single design review loop — screenshot, critique, fix, screenshot again — takes about four minutes. Running five of those loops manually would have taken most of a day, and I would have been the bottleneck at every step.
 
