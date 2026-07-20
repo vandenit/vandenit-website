@@ -64,9 +64,9 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
                         <Box p="6" className="card-content-wrap">
                           <Flex align="start" gap="4">
                             {/* Icon — hidden on mobile to give heading more room */}
-                            <Box flexShrink="0" display={{ initial: 'none', sm: 'flex' }} style={{ alignItems: 'center', justifyContent: 'center', width: '56px', height: '56px', borderRadius: '12px', background: 'var(--accent-3)' }}>
+                            <Flex flexShrink="0" display={{ initial: 'none', sm: 'flex' }} align="center" justify="center" style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'var(--accent-3)' }}>
                               <FaShieldAlt size="1.8em" color="var(--accent-9)" />
-                            </Box>
+                            </Flex>
                             <Box flexGrow="1" className="card-content-wrap" style={{ minWidth: 0 }}>
                               <Heading as="h3" size={{ initial: '5', sm: '6' }} weight="bold" mb="3" style={{ overflowWrap: 'normal', wordBreak: 'normal', hyphens: 'none' }}>
                                 {featuredPost.title}
