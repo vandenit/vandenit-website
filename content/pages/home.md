@@ -1,21 +1,22 @@
 ---
 title: Home
 blocks:
-  - tagline: Building Scalable Solutions with Cutting-Edge Technologies
+  - tagline: Senior engineer. AI-augmented. One client at a time.
     headline: >-
-      At Vanden IT, we specialize in developing high-performance software
-      solutions that drive business success.
+      I help product teams move faster and think deeper — by combining 15 years
+      of enterprise engineering with AI workflows built for real-world
+      development.
     text: ''
     text2: ''
     actions:
-      - label: Our services
+      - label: See the workflow
         type: button
         icon: true
-        link: '#services'
-      - label: Meet the Developer
+        link: /posts
+      - label: Get in touch
         type: button
         icon: false
-        link: /about
+        link: /contact
     image:
       src: /uploads/main/unsplash-75EFpyXu3Wg.jpg
       alt: >-
@@ -23,84 +24,82 @@ blocks:
         unsplash.com/photos/75EFpyXu3Wg
     color: default
     _template: hero
-  - title: Services
+  - title: What I Do
     featuresId: services
     items:
       - icon:
-          name: LockClosedIcon
+          name: FaBrain
           color: blue
-        title: Security audit
+        title: AI Development Workflow Audit
         text: >-
-          Protect your website with a comprehensive security audit tailored to
-          safeguard your digital assets.
+          I assess your team's development workflow and integrate AI tooling
+          where it creates real leverage.
         richText: ''
         link: ''
         buttonLink:
-          label: Request a free preview
-          link: /security-audit
+          label: Learn more
+          link: /about
       - icon:
           name: CodeIcon
           color: blue
-        title: Custom Software Development
+        title: Fractional Tech Lead
         text: >-
-          Scalable software solutions designed for your business, focusing on
-          performance, flexibility, and innovation.
+          Experienced tech lead for your product, available part-time.
+          Architecture, code review, team mentoring — with AI augmentation
+          built in.
         richText: ''
         link: ''
         buttonLink:
-          label: Explore Our Solutions
-          link: /custom-software
+          label: Learn more
+          link: /about
       - icon:
-          name: FaBrain
+          name: FaServer
           color: blue
-        title: Development consultancy
+        title: Self-Hosted AI Infrastructure
         text: >-
-          Freelance tech lead services to support your team with secure,
-          scalable solutions and project guidance.
+          Local LLMs, RAG pipelines, custom AI agents. No SaaS dependencies,
+          no per-seat costs, no data leaving your network.
         richText: ''
         link: ''
         buttonLink:
-          label: Meet Your Tech Lead
+          label: Learn more
           link: /about
     color: tint
     _template: features
   - title: Portfolio
     portfolioId: portfolio
     items:
-      - title: Tech lead at centric - Bnp paribas
+      - title: Tech Lead — BNP Paribas / Centric
         content: ''
         richContent: >
-          I was the Technical Lead for the Enablement project at BNP Paribas
-          Fortis, responsible for onboarding users to the financial platform
-          [Centric](https://centric.bnpparibas.com/public/marketing/). My role
-          involved leading the technical aspects, ensuring smooth user
-          onboarding, and working on both backend and frontend aspects using
-          Java, Spring and Angular, while maintaining high-quality code and
-          agile practices.
+          Technical Lead for the Enablement project at BNP Paribas Fortis,
+          responsible for onboarding users to the financial platform
+          [Centric](https://centric.bnpparibas.com/public/marketing/).
+          Oversaw architecture, backend and frontend delivery, and team
+          quality practices — serving **100,000+ users** across the platform.
         image:
           src: /uploads/main/Screenshot 2024-09-30 at 07.21.37.png
-          alt: centric
+          alt: BNP Paribas Centric platform
         technologies:
-          - java
-          - spring
-          - angular
-          - sass
-      - title: Development and Deployment of DinnerGift
+          - Java
+          - Spring
+          - Angular
+          - SASS
+      - title: Full-Stack Development — DinnerGift
         content: ''
         richContent: >
-          As a Senior Full Stack Developer, I developed
-          [DinnerGift](https://www.dinnergift.be), a platform connecting
-          restaurants and customers for selling and buying gift certificates.
-          Utilizing ES6, React with Redux, expressJS REST backend, and MongoDB,
-          I delivered a high-performance server-rendered universal web
-          application using NextJs, with a focus on automated testing and
-          continuous integration using CircleCI.
+          Built [DinnerGift](https://www.dinnergift.be) end-to-end — a
+          platform connecting restaurants and customers for gift certificate
+          sales. Designed the data model, REST API, and server-rendered
+          frontend, with full CI/CD pipeline and automated testing.
         image:
           src: /uploads/main/Screenshot 2024-09-30 at 07.18.34.png
+          alt: DinnerGift platform
         technologies:
-          - Javascript
-          - ExpressJs
-          - Nextjs
+          - React
+          - Next.js
+          - Express
+          - MongoDB
     _template: portfolio
   - title: Testimonials
     testimonialsId: testimonials
@@ -136,12 +135,18 @@ blocks:
         author: Astrid Van den Broeck
         role: CTO at Autonomous
       - content: >-
-          Filip Van den Broeck is a highly skilled developer and technical lead with expertise in Angular and Java. I had the pleasure of working with him when he played a key role in developing and maintaining a corporate banking portal used by 100,000+ users. Known for his reliability, collaboration, and problem-solving skills, Filip consistently delivers high-quality work and enhances team dynamics. A strong asset to any software development team.
+          Filip Van den Broeck is a highly skilled developer and technical lead
+          with expertise in Angular and Java. I had the pleasure of working
+          with him when he played a key role in developing and maintaining a
+          corporate banking portal used by 100,000+ users. Known for his
+          reliability, collaboration, and problem-solving skills, Filip
+          consistently delivers high-quality work and enhances team dynamics.
+          A strong asset to any software development team.
         author: Jos Van Dorpe
         role: 'Delivery Lead & Senior Solution Architect'
     _template: testimonials
   - actions:
-      - label: Contact us
+      - label: Let's talk
         type: button
         icon: true
         link: /contact

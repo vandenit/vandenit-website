@@ -21,14 +21,13 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
         <Container size="3" px="6">
           <Flex direction="column" align="center" gap="4">
             <Badge size="2" variant="soft" color="blue" radius="full">
-              Blog
+              AI-Powered Development
             </Badge>
             <Heading as="h1" size={{ initial: '7', sm: '8' }} weight="bold" align="center">
-              Security & Development
+              Building & Shipping with AI
             </Heading>
             <Text size={{ initial: '4', sm: '5' }} color="gray" align="center" style={{ maxWidth: '600px', lineHeight: '1.6' }}>
-              Stay updated with the latest in web security, development best practices,
-              and insights from the field.
+              Practical workflows for development teams using AI as a first-class collaborator.
             </Text>
           </Flex>
         </Container>
