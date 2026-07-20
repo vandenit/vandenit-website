@@ -341,58 +341,51 @@ These fixes are needed before the design refresh (they're on `main` already if P
 
 ## Vision Sub-Agent for UI Validation
 
-### Problem
-The main model (`glm-5.2` via Ollama Cloud) does not support image input. Visual UI validation was impossible — the agent could not "see" screenshots to verify design quality, detect broken layouts, or give visual feedback.
+### Antigravity (agy) + Claude Sonnet 4.6 — WORKING
 
-### Solution
-Hermes `auxiliary.vision` is configured to use a vision-capable model for screenshot analysis:
+The main model (`glm-5.2` via Ollama Cloud) does not support image input. However, Antigravity CLI (`agy` v1.0.12) is installed and provides access to Claude Sonnet 4.6 with vision capability.
 
-```yaml
-# ~/.hermes/config.yaml
-auxiliary:
-  vision:
-    provider: ollama-cloud
-    model: qwen2.5-vl:7b
-    base_url: https://ollama.com/v1
+**Available agy models with vision:**
+```
+Claude Sonnet 4.6 (Thinking)    ← best for design review
+Claude Opus 4.6 (Thinking)      ← even better, more expensive
+Gemini 3.5 Flash (Medium)       ← fast, free
+Gemini 3.1 Pro (High)           ← good alternative
 ```
 
-### Why qwen2.5-vl:7b
-- Recognizes UI components (buttons, headers, cards, nav bars)
-- Reads text in screenshots (labels, links, headings)
-- Describes layout issues (overlapping, alignment, spacing)
-- Available on Ollama Cloud (same provider as main model, no extra auth needed)
-- Small enough for fast sub-agent calls
+### How to use for UI validation
 
-### How to use in implementation sessions
-
-**Option A — Direct vision_analyze call:**
-```
-vision_analyze(
-  image_url="/home/filip/projects/vandenit-website/dogfood-output/screenshots/design-homepage.png",
-  question="Analyze this website homepage for design quality. Check: header, hero, cards, footer. Any layout issues, broken elements, or visual regressions?"
-)
-```
-
-**Option B — Sub-agent with vision (recommended):**
-```
-delegate_task(
-  goal="Validate UI of the vandenit-website by taking screenshots and analyzing them",
-  context="Take screenshots of /, /about, /posts, /contact using Playwright at 1280px and 390px. Use vision_analyze on each screenshot to check: layout, colors, typography, nav visibility, broken elements. Return a detailed report of issues found.",
-  toolsets=["terminal", "vision"]
-)
-```
-
-### Verification command
+**One-shot analysis (preferred):**
 ```bash
-hermes config | grep -A2 "Vision"
-# Should show: provider=ollama-cloud, model=qwen2.5-vl:7b
+agy -p "You are a senior UI/UX designer. Analyze the screenshot at /path/to/screenshot.png. 
+Assess: header, hero, typography, colors, layout, cards, footer, broken elements.
+Give top 5 improvements." \
+  --model "Claude Sonnet 4.6 (Thinking)" \
+  --dangerously-skip-permissions \
+  --print-timeout 10m
 ```
 
-### Important notes
-- Vision calls go through Ollama Cloud (same API key as main model)
-- `qwen2.5-vl:7b` is a 7B model — fast but not as detailed as GPT-4o vision
-- For production-critical visual QA, consider using OpenAI/Anthropic vision as fallback
-- The vision model is configured globally — applies to all profiles and sessions
+**Full report saved to agy brain:**
+The first assessment is saved at `docs/vandenit-design-assessment-claude.md` and covers 9 areas with a 5/10 verdict.
+
+### Why this works
+- `agy` uses Google Antigravity's auth (separate from Hermes providers)
+- Claude Sonnet 4.6 has native vision + excellent design reasoning
+- `--dangerously-skip-permissions` needed because headless mode can't prompt for tool approvals
+- `--print-timeout 10m` gives Claude time to think and write
+
+### Hermes auxiliary.vision — NOT WORKING
+`auxiliary.vision` was configured with `qwen2.5-vl:7b` on Ollama Cloud, but Ollama Cloud has **no vision models** available. The config can be removed. Use `agy` instead for all vision tasks.
+
+### Existing assessment
+See `docs/vandenit-design-assessment-claude.md` for the full Claude Sonnet design review of the current live site (vandenit.be). Key findings:
+- **5/10** — structurally fine, visually forgettable
+- Dark navbar on white page = jarring split
+- No visual in hero (white void)
+- Inconsistent icon accent colors (blue, yellow, red)
+- CTA hierarchy inverted
+- Generic hero copy ("cutting-edge technologies")
+- Top 5 fixes documented in the assessment
 
 ---
 
