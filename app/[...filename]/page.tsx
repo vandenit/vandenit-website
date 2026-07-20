@@ -3,13 +3,15 @@ import { getPageBySlug, getAllPages } from "../../lib/contentlayer";
 import { Blocks } from "../../components/blocks";
 import Layout from "../../components/layout/layout";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 export default async function Page({
   params,
 }: {
-  params: { filename: string[] };
+  params: Promise<{ filename: string[] }>;
 }) {
-  const slug = params.filename.join('/');
+  const { filename } = await params;
+  const slug = filename.join('/');
   const page = getPageBySlug(slug);
 
   if (!page) {
@@ -21,6 +23,23 @@ export default async function Page({
       <Blocks {...page} />
     </Layout>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ filename: string[] }>;
+}): Promise<Metadata> {
+  const { filename } = await params;
+  const slug = filename.join('/');
+  const page = getPageBySlug(slug);
+
+  if (!page) return {};
+
+  return {
+    title: `${page.title} — Vanden IT`,
+    description: `Vanden IT — ${page.title}. Software consultancy specializing in secure, scalable solutions.`,
+  };
 }
 
 export async function generateStaticParams() {

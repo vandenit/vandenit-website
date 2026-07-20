@@ -3,13 +3,15 @@ import { getPostBySlug, getAllPosts, getPostWithAuthor } from "../../../lib/cont
 import Layout from "../../../components/layout/layout";
 import PostClientPage from "./client-page";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 export default async function PostPage({
   params,
 }: {
-  params: { filename: string[] };
+  params: Promise<{ filename: string[] }>;
 }) {
-  const slug = params.filename.join("/");
+  const { filename } = await params;
+  const slug = filename.join("/");
   const post = getPostBySlug(slug);
 
   if (!post) {
@@ -23,6 +25,23 @@ export default async function PostPage({
       <PostClientPage post={postWithAuthor} />
     </Layout>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ filename: string[] }>;
+}): Promise<Metadata> {
+  const { filename } = await params;
+  const slug = filename.join("/");
+  const post = getPostBySlug(slug);
+
+  if (!post) return {};
+
+  return {
+    title: `${post.title} — Vanden IT Blog`,
+    description: post.excerpt || `Vanden IT Blog — ${post.title}`,
+  };
 }
 
 export async function generateStaticParams() {

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { Actions } from "./actions";
-import { Box, Flex } from "@radix-ui/themes";
+import { Box, Flex, Section } from "@radix-ui/themes";
 
 interface ActionsBlockData {
   actions: Array<{
@@ -14,16 +14,13 @@ interface ActionsBlockData {
 }
 
 export const ActionsBlock = ({ data }: { data: ActionsBlockData }) => {
-
   return (
-    <Box  pb="2" pt="2">
-      <Flex mt="6" align="center" justify="center">
-          <Actions
-            actions={data.actions}
-          />
+    <Section size="3" pb="8" pt="4">
+      <Box>
+        <Flex align="center" justify="center">
+          <Actions actions={data.actions} />
         </Flex>
-    </Box>
+      </Box>
+    </Section>
   );
 };
-
-

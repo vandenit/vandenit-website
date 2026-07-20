@@ -2,9 +2,7 @@
 import Link from "next/link";
 import * as React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
-import { useLayout } from "../layout/layout-context";
-import { Box, Button, Flex } from "@radix-ui/themes";
-import styles from './Actions.module.css';
+import { Button, Flex } from "@radix-ui/themes";
 
 interface ActionItem {
   label: string;
@@ -13,24 +11,50 @@ interface ActionItem {
   link: string;
 }
 
-const ActionButton = ({
-  action,
-  onClick,
-}: {
-  action: ActionItem;
-  onClick?: () => void;
-}) => (
+const PrimaryButton = ({ action, onClick }: { action: ActionItem; onClick?: () => void }) => (
   <Button
-    size={{ sm: '4' }} variant="classic"
-    mb={{ initial: '4', sm: '0' }}
-    ml={{ initial: '0', sm: '2' }}
-    mr={{ initial: '0', sm: '2' }}
+    size="3"
+    variant="solid"
+    color="blue"
     onClick={onClick ? onClick : undefined}
-    className={styles.actionButton}
+    asChild={!!action.link}
+    style={{ width: '100%' }}
+    className="action-button"
   >
-    {action.label}
-    {action.icon && (
-      <BiRightArrowAlt />
+    {action.link ? (
+      <Link href={action.link}>
+        {action.label}
+        {action.icon && <BiRightArrowAlt />}
+      </Link>
+    ) : (
+      <>
+        {action.label}
+        {action.icon && <BiRightArrowAlt />}
+      </>
+    )}
+  </Button>
+);
+
+const SecondaryButton = ({ action, onClick }: { action: ActionItem; onClick?: () => void }) => (
+  <Button
+    size="3"
+    variant="outline"
+    color="gray"
+    onClick={onClick ? onClick : undefined}
+    asChild={!!action.link}
+    style={{ width: '100%' }}
+    className="action-button"
+  >
+    {action.link ? (
+      <Link href={action.link}>
+        {action.label}
+        {action.icon && <BiRightArrowAlt />}
+      </Link>
+    ) : (
+      <>
+        {action.label}
+        {action.icon && <BiRightArrowAlt />}
+      </>
     )}
   </Button>
 );
@@ -40,46 +64,43 @@ export const Actions = ({
 }: {
   actions: ActionItem[];
 }) => {
-  const { theme } = useLayout();
   const openEmail = (email: string) => () => {
     window.location.href = `mailto:${email}`;
   };
+
   return (
-    <Flex align="center" justify="center" direction={{ initial: "column", sm: "row" }}>
+    <Flex align="center" justify="center" direction={{ initial: "column", sm: "row" }} gap="3" width={{ initial: '100%', sm: 'auto' }}>
       {actions &&
-        actions.map(function (action, index) {
-          let element = null;
+        actions.map((action, index) => {
+          const isPrimary = index === 0;
           if (action.type === "button") {
-            element = (
-              <Box key={index}>
-                <Link key={index} href={action.link ? action.link : "/"}>
-                  <ActionButton action={action} />
-                </Link>
-              </Box>
-            );
+            return isPrimary
+              ? <PrimaryButton key={index} action={action} />
+              : <SecondaryButton key={index} action={action} />;
           }
-          else if (action.type === "link" || action.type === "linkExternal") {
-            element = (
-              <Link
+          if (action.type === "email") {
+            return isPrimary
+              ? <PrimaryButton key={index} action={action} onClick={openEmail(action.link)} />
+              : <SecondaryButton key={index} action={action} onClick={openEmail(action.link)} />;
+          }
+          if (action.type === "link" || action.type === "linkExternal") {
+            return (
+              <Button
                 key={index}
-                href={action.link ? action.link : "/"}
+                size="3"
+                variant="ghost"
+                color="gray"
+                asChild
               >
-                {action.label}
-                {action.icon && (
-                  <BiRightArrowAlt />
-                )}
-              </Link>
+                <Link href={action.link || "/"}>
+                  {action.label}
+                  {action.icon && <BiRightArrowAlt />}
+                </Link>
+              </Button>
             );
           }
-          else if (action.type === "email") {
-            element = (
-              <Box key={index}>
-                <ActionButton onClick={openEmail(action.link)} action={action} />
-              </Box>
-            );
-          }
-          return element;
+          return null;
         })}
-    </Flex >
+    </Flex>
   );
 };

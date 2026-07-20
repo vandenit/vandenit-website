@@ -9,7 +9,7 @@
     "color": "default",
     "nav": [
       {
-        "href": "/home",
+        "href": "/",
         "label": "Home"
       },
       {
@@ -36,8 +36,8 @@
   },
   "theme": {
     "accentCol": "blue",
-    "greyColor": "slate",
-    "font": "nunito",
+    "grayColor": "gray",
+    "font": "geist",
     "darkMode": "dark"
   }
 }

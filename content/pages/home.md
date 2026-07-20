@@ -1,7 +1,7 @@
 ---
 title: Home
 blocks:
-  - tagline: Building Scalable Solutions with Cutting-Edge Technologies
+  - tagline: Building Scalable Solutions with Cutting-Edge Tech
     headline: >-
       At Vanden IT, we specialize in developing high-performance software
       solutions that drive business success.
@@ -28,7 +28,7 @@ blocks:
     items:
       - icon:
           name: LockClosedIcon
-          color: black
+          color: blue
         title: Security audit
         text: >-
           Protect your website with a comprehensive security audit tailored to
@@ -40,7 +40,7 @@ blocks:
           link: /security-audit
       - icon:
           name: CodeIcon
-          color: yellow
+          color: blue
         title: Custom Software Development
         text: >-
           Scalable software solutions designed for your business, focusing on
@@ -52,7 +52,7 @@ blocks:
           link: /custom-software
       - icon:
           name: FaBrain
-          color: orange
+          color: blue
         title: Development consultancy
         text: >-
           Freelance tech lead services to support your team with secure,

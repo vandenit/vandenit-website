@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
-import { Box, Text, Flex, Card, Button, Section, Heading, Badge } from '@radix-ui/themes'
+import { Box, Text, Flex, Card, Button, Section, Heading, Badge, Container } from '@radix-ui/themes'
 import { MarkdownRenderer } from '../markdown-renderer'
 
 const INTERVAL = 10000;
@@ -35,69 +35,92 @@ export const PortfolioCarousel = ({
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev + 1) % portfolioItems.length)
     }
-
     const prevSlide = () => {
         setCurrentSlide((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length)
     }
 
     useEffect(() => {
-        const timer = setInterval(nextSlide, INTERVAL) // Change slide every x seconds
+        if (!portfolioItems?.length) return;
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % portfolioItems.length)
+        }, INTERVAL)
         return () => clearInterval(timer)
-    }, [])
+    }, [portfolioItems.length])
+
+    if (!portfolioItems || portfolioItems.length === 0) return null;
 
     return (
-        <Section>
-            <Heading as="h2" size="6" mb="4" align="center"
-                id={data.portfolioId}>
-                {data.title}
-            </Heading>
-            <Box width="100%" m="auto" >
-
-                <Card size="3">
-                    <Flex justify="center" align="center" gap="4" width="100%"
-                        direction={{ initial: "column", sm: "row" }}>
-                        {/* Left Arrow */}
-                        <Button variant="soft" color="gray" radius="full" onClick={prevSlide}>
-                            <ChevronLeftIcon width="20" height="20" />
-                        </Button>
-
-                        {/* Portfolio Content */}
-                        <Flex direction={{ initial: "column", sm: "row" }}>
-                            <Box p="2">
-                                <Heading as="h3" size={{ initial: "3", sm: "4", md: "5" }} mb="4">
-                                    {portfolioItems[currentSlide].title}
-                                </Heading>
-                                <Text as="div" color="gray">
-                                    {portfolioItems[currentSlide].content}
-                                </Text>
-                                {portfolioItems[currentSlide].richContent && (
+        <Section size="3" mb="5" pb="10" className="section-alt">
+            <Container size="3" px="6">
+                <Heading as="h2" size={{ initial: '6', sm: '7' }} mb="6" align="center"
+                    id={data.portfolioId}>
+                    {data.title}
+                </Heading>
+                <Card className="card-elevated" size="4">
+                    <Flex direction={{ initial: "column", sm: "row" }} gap="5">
+                        {/* Portfolio Content — full width on mobile, flex-grow on desktop */}
+                        <Box p="4" flexGrow="1" style={{ minWidth: 0 }}>
+                            <Heading as="h3" size={{ initial: '4', sm: '5' }} mb="4">
+                                {portfolioItems[currentSlide].title}
+                            </Heading>
+                            <Text as="div" color="gray" size="3" style={{ lineHeight: '1.6' }}>
+                                {portfolioItems[currentSlide].content}
+                            </Text>
+                            {portfolioItems[currentSlide].richContent && (
+                                <Box mt="3">
                                     <MarkdownRenderer content={portfolioItems[currentSlide].richContent} />
-                                )}
-                                {portfolioItems[currentSlide].technologies && (
-                                    <Flex gap="2" mt="2">
-                                        {portfolioItems[currentSlide].technologies.map((tech, i) => (
-                                            <Badge key={i} color="gray" size="2">{tech}</Badge>
-                                        ))}
-                                    </Flex>
-                                )}
-                            </Box>
-                            {portfolioItems[currentSlide].image && (
-                                <Flex justify="center" align="center" mt={{ initial: "5", sm: "0" }}>
-                                    <img style={{ width: "200px", height: "auto", objectFit: "contain" }}
-                                        src={portfolioItems[currentSlide].image.src}
-                                    />
+                                </Box>
+                            )}
+                            {portfolioItems[currentSlide].technologies && (
+                                <Flex gap="2" mt="4" wrap="wrap">
+                                    {portfolioItems[currentSlide].technologies.map((tech, i) => (
+                                        <Badge key={i} color="blue" size="2" variant="soft">{tech}</Badge>
+                                    ))}
                                 </Flex>
                             )}
-                        </Flex>
+                        </Box>
 
-                        {/* Right Arrow */}
-                        <Button variant="soft" color="gray" radius="full" onClick={nextSlide}>
-                            <ChevronRightIcon width="20" height="20" />
+                        {/* Image — hidden on mobile, 300x200 on desktop */}
+                        {portfolioItems[currentSlide].image && (
+                            <Box display={{ initial: 'none', sm: 'block' }} style={{ flexShrink: 0 }}>
+                                <Flex justify="center" align="center" style={{ width: '300px', height: '200px', borderRadius: '8px', overflow: 'hidden' }}>
+                                    <img
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        src={portfolioItems[currentSlide].image.src}
+                                        alt={portfolioItems[currentSlide].image?.alt || portfolioItems[currentSlide].title}
+                                    />
+                                </Flex>
+                            </Box>
+                        )}
+                    </Flex>
+
+                    {/* Navigation + pagination */}
+                    <Flex justify="center" align="center" gap="3" mt="5">
+                        <Button variant="soft" color="gray" radius="full" onClick={prevSlide} size="2" style={{ minHeight: '44px', minWidth: '44px' }} aria-label="Previous slide">
+                            <ChevronLeftIcon width="16" height="16" />
+                        </Button>
+                        <Flex gap="2" align="center">
+                            {portfolioItems.map((_, i) => (
+                                <Box
+                                    key={i}
+                                    onClick={() => setCurrentSlide(i)}
+                                    style={{
+                                        width: i === currentSlide ? '24px' : '8px',
+                                        height: '8px',
+                                        borderRadius: '9999px',
+                                        background: i === currentSlide ? 'var(--accent-9)' : 'var(--gray-6)',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s ease',
+                                    }}
+                                />
+                            ))}
+                        </Flex>
+                        <Button variant="soft" color="gray" radius="full" onClick={nextSlide} size="2" style={{ minHeight: '44px', minWidth: '44px' }} aria-label="Next slide">
+                            <ChevronRightIcon width="16" height="16" />
                         </Button>
                     </Flex>
                 </Card>
-            </Box>
+            </Container>
         </Section>
     )
 }
-
