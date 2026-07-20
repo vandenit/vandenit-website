@@ -1,0 +1,240 @@
+---
+title: "The Blind Coder and the Sighted Reviewer: How Two AIs Redesigned My Freelance Site"
+date: 2026-07-21
+author: content/authors/filip.md
+tags:
+  - ai
+  - hermes
+  - workflows
+  - development
+excerpt: >
+  I redesigned and rebranded vandenit.be in a single session using two AIs with opposite capabilities — one that can write code but can't see, and one that can see but can't touch the code.
+---
+
+On July 20, 2026, I ran a session that changed how I think about AI-assisted development. Two AIs. One session. 29 files changed. My freelance site — [vandenit.be](https://vandenit.be) — went from a 5/10 to an 8.8/10 design score and a 9.0/10 content score. Neither AI could have done it alone.
+
+Here's exactly what happened.
+
+---
+
+## The Setup
+
+I run two AIs in my local workflow:
+
+**Hermes** runs GLM-5.2 via Ollama Cloud. It's the implementer. It reads plans, modifies files, manages the dev server, runs builds, and takes Playwright screenshots. What it cannot do is see. GLM-5.2 has no vision capability. Hermes is literally blind to its own output.
+
+**Claude Sonnet 4.6** runs via the Antigravity CLI (`agy`). It's the reviewer. It reads screenshots with precision, scores design quality on a /10 scale, and gives specific, ranked, actionable feedback. What it cannot do is touch a file. It has no write access. It can describe a fix but not apply it.
+
+This isn't an accident. The constraint is the point.
+
+---
+
+## The Workflow
+
+I started by telling Hermes to read the design plan and implement it. The plan covered typography, color system, layout structure, component hierarchy — the full rebrand spec.
+
+Hermes went to work. It modified 29 files, started the Next.js dev server, then used Playwright to capture screenshots at 1280px (desktop) and 390px (mobile). Then it did something that looks simple but took me a while to get right: it piped those screenshots to Claude Sonnet via `agy`.
+
+The prompt Hermes sends looks roughly like this:
+
+```
+You are a senior UI/UX designer reviewing a freelance developer website.
+Rate the design /10. List the TOP 5 most impactful improvements, ordered by priority.
+Be specific. Name components. Give exact values where relevant.
+```
+
+Claude responds with a score and a ranked list. Hermes reads the response, applies fixes, takes new screenshots, and sends them back. That's one iteration.
+
+We ran five design iterations and three content iterations.
+
+---
+
+## The Score Progression
+
+| Iteration | Desktop Score | Mobile Score | Content Score |
+|-----------|--------------|--------------|---------------|
+| Start     | 5.0          | —            | —             |
+| Design 1  | 6.4          | —            | —             |
+| Design 2  | 7.2          | —            | —             |
+| Design 3  | 7.2          | —            | —             |
+| Design 4  | 8.8          | 8.5          | —             |
+| Design 5  | 8.8          | 8.5          | —             |
+| Content 1 | —            | —            | 6.8           |
+| Content 2 | —            | —            | 7.6           |
+| Content 3 | —            | —            | 9.0           |
+
+Notice the plateau at 7.2 for two straight iterations. That's important. I'll come back to it.
+
+---
+
+## What Claude Actually Said
+
+At 6.4/10, Claude's feedback on the first iteration was specific enough to act on:
+
+- Hero background too flat — needs gradient or texture to create depth
+- Testimonial quote marks too small — increase from 2rem to 4rem, add opacity
+- Section backgrounds need alternation — all white makes sections bleed together
+- Card hover effects missing — add translateY(-4px) with box-shadow transition
+- Portfolio images too small — increase from 200px to 280px minimum
+
+These aren't vague suggestions. Each one maps directly to a CSS rule or a component prop. Hermes can take that list and execute it without me explaining anything.
+
+---
+
+## The Bugs
+
+This is the part I find most interesting. The design review loop didn't just improve aesthetics — it surfaced real bugs.
+
+### 1. Radix Box `display: flex` TypeScript Error
+
+The code review subagent caught this one. I was using:
+
+```tsx
+<Box display={{ initial: 'none', sm: 'flex' }}>
+```
+
+That's a TypeScript error. Radix UI's `Box` component only accepts `none`, `inline`, `block`, or `inline-block` for the `display` prop. It doesn't support `flex`. The same bug appeared in two places — the portfolio carousel and the blog featured card.
+
+The fix was to swap `Box` for `Flex`:
+
+```tsx
+<Flex display={{ initial: 'none', sm: 'flex' }}>
+```
+
+### 2. Portfolio Images Invisible on Desktop
+
+Claude's visual review caught that the portfolio screenshots simply weren't rendering on desktop. The code looked correct — `display={{ initial: 'none', sm: 'flex' }}` — but the images weren't there.
+
+Root cause: Radix `Box` doesn't generate `sm:` responsive display classes at runtime. The compiled class was `rt-r-display-none` without the corresponding `sm:rt-r-display-flex` part. The responsive breakpoint class never got added to the DOM.
+
+Again, the fix was to use `Flex` instead of `Box`. One component swap, images appeared.
+
+### 3. `/posts/posts/` Double Routing
+
+Contentlayer was generating URLs like `/posts/posts/owasp-top-3-for-web-applications` instead of `/posts/owasp-top-3-for-web-applications`.
+
+The problem: `flattenedPath` in Contentlayer already includes the `posts/` prefix. The URL resolver was then prepending another `/posts/`. The fix was to strip the prefix in the computed field:
+
+```ts
+url: {
+  type: 'string',
+  resolve: (doc) =>
+    `/${doc._raw.flattenedPath.replace(/^posts\//, '')}`,
+},
+```
+
+One line. But it's the kind of thing that's easy to miss when you're working fast.
+
+### 4. Missing Viewport Meta Tag (The One the AIs Missed)
+
+This one I found myself, on my phone.
+
+After the session, vandenit.be was showing the full desktop layout on mobile Safari. The Playwright screenshots had looked fine at 390px. The site scored 8.5/10 on mobile in the review loop.
+
+The problem was that there was no `<meta name="viewport">` tag. Without it, mobile browsers default to a 980px virtual viewport and then scale everything down. The site was rendering correctly at 390px — but only because Playwright forces the viewport regardless of whether the meta tag exists. On a real device, no such forcing happens.
+
+The fix in Next.js 15:
+
+```ts
+// app/layout.tsx
+import type { Viewport } from 'next'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+```
+
+This became a documented pitfall in the workflow skill. Playwright's viewport simulation masks missing meta tags. Always verify on a real device.
+
+---
+
+## The Plateau Problem
+
+When the design score stayed at 7.2 for two iterations in a row, something was wrong with the loop. Hermes was applying Claude's suggestions. Claude was giving new suggestions. But the score wasn't moving.
+
+The failure mode here is subtle. When an AI applies a fix to a complex component, it often changes something adjacent. Fix the hero gradient, accidentally flatten the card shadow. Fix the card shadow, misalign the testimonial grid. You get into a cycle where the score doesn't change because every improvement breaks something else.
+
+The workflow has an explicit escalation step for this: stop trying to fix it yourself and ask Claude to write the actual CSS.
+
+Instead of Hermes interpreting Claude's feedback and writing its own CSS, it asks Claude to produce the exact rule. Claude writes:
+
+```css
+.hero-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f172a 100%);
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+}
+```
+
+Hermes pastes it in. Score jumps from 7.2 to 8.8.
+
+The escalation pattern breaks the fix-A-break-B loop because the reviewer is now also the coder — for that specific fix. The context stays tight.
+
+---
+
+## Why This Works
+
+The key insight is **complementary blindness**.
+
+GLM-5.2 writes excellent code. It understands component structure, responsive design patterns, TypeScript types, CSS specificity. It just can't see the result. Claude Sonnet sees with precision — it can describe the visual weight of a section, the perceived hierarchy of a type scale, the absence of a hover state. It just can't touch a file.
+
+Neither can do this alone.
+
+A single AI doing its own design review is like a surgeon operating on themselves — technically possible, structurally unwise. The reviewer has no attachment to the code being reviewed. The coder has no attachment to the design being judged. The objectivity isn't a feature of the individual model. It's a feature of the structure.
+
+I've tried the single-AI version. The model applies feedback to its own output, gradually convincing itself that what it has is good. Scores drift upward without the design actually improving. With two models, the reviewer has seen nothing but the screenshot. It doesn't know how hard the component was to build. It doesn't care.
+
+---
+
+## The Skill
+
+The entire workflow is now captured as a reusable skill: `ai-pair-programming-design-review`.
+
+The skill encodes:
+
+- The 7-phase iteration loop
+- The escalation pattern (when to hand off CSS authorship to the reviewer)
+- 12 documented pitfalls, including the viewport meta tag problem
+- Iteration tracking format with score progression tables
+- The exact prompts Hermes sends to Claude
+
+Next time I need to run this workflow — on a client project, on a new product — Hermes loads the skill file and knows exactly what to do. The session knowledge doesn't live in my head. It lives in a `.md` file that any agent can read.
+
+---
+
+## The Numbers
+
+One session. One sitting.
+
+- **29 files changed**
+- **1,190 insertions**
+- **943 deletions**
+- **5 design iterations**
+- **3 content iterations**
+- **Design score: 5.0 → 8.8/10 desktop, 8.5/10 mobile**
+- **Content score: 6.8 → 9.0/10**
+- **Merged as PR #30**
+
+The old site was serviceable. The new site is something I'd actually show a client.
+
+---
+
+## What This Actually Is
+
+I want to be careful about how I frame this. This isn't autonomous AI development. I wrote the design plan. I caught the viewport bug. I decided when to escalate. I reviewed the PR before merging.
+
+What the workflow does is compress the iteration cycle. A single design review loop — screenshot, critique, fix, screenshot again — takes about four minutes. Running five of those loops manually would have taken most of a day, and I would have been the bottleneck at every step.
+
+The two-AI structure means the bottleneck is the quality of the feedback, not the speed of the human. Claude's critique is immediate and specific. Hermes's implementation is immediate and precise. The human role shifts from doing to deciding — when to escalate, when to stop, when to override.
+
+That's actually what AI-augmented development looks like in practice. Not a single AI doing everything. Not a human supervising every line. Two systems with complementary strengths, iterating toward quality, with a human watching the things neither can catch.
+
+---
+
+If you're building something and want to talk through how this kind of workflow might apply to your project, [get in touch](/contact).
