@@ -80,10 +80,19 @@ export const PortfolioCarousel = ({
                             )}
                         </Box>
 
-                        {/* Image — hidden on mobile, 300x200 on desktop */}
+                        {/* Image — full-width on mobile, 300x200 on desktop */}
                         {portfolioItems[currentSlide].image && (
-                            <Box display={{ initial: 'none', sm: 'block' }} style={{ flexShrink: 0 }}>
-                                <Flex justify="center" align="center" style={{ width: '300px', height: '200px', borderRadius: '8px', overflow: 'hidden' }}>
+                            <Box style={{ flexShrink: 0 }}>
+                                {/* Mobile: full-width image below text */}
+                                <Box display={{ initial: 'block', sm: 'none' }} mb="3" style={{ borderRadius: '8px', overflow: 'hidden' }}>
+                                    <img
+                                        style={{ width: '100%', height: 'auto', display: 'block' }}
+                                        src={portfolioItems[currentSlide].image.src}
+                                        alt={portfolioItems[currentSlide].image?.alt || portfolioItems[currentSlide].title}
+                                    />
+                                </Box>
+                                {/* Desktop: 300x200 image beside text */}
+                                <Flex display={{ initial: 'none', sm: 'flex' }} justify="center" align="center" style={{ width: '300px', height: '200px', borderRadius: '8px', overflow: 'hidden' }}>
                                     <img
                                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                         src={portfolioItems[currentSlide].image.src}

@@ -6,7 +6,7 @@ export const TagFilterPanel = ({ tags }: { tags: string[] }) => {
   if (tags.length === 0) return null;
 
   return (
-    <Container size="3" px="6" mb="6">
+    <Container size="3" px="6" mb="4">
       <Flex align="center" gap="3" wrap="wrap">
         <Flex align="center" gap="2" style={{ flexShrink: 0 }}>
           <FaFilter size="0.8em" color="var(--gray-9)" />

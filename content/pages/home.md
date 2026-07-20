@@ -1,7 +1,7 @@
 ---
 title: Home
 blocks:
-  - tagline: Building Scalable Solutions with Cutting-Edge Tech
+  - tagline: Building Scalable Solutions with Cutting-Edge Technologies
     headline: >-
       At Vanden IT, we specialize in developing high-performance software
       solutions that drive business success.

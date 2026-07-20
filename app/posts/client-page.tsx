@@ -17,7 +17,7 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
   return (
     <>
       {/* Blog Header */}
-      <Section size="3" mb="6" pt={{ initial: '7', sm: '9' }}>
+      <Section size="3" mb="4" pt={{ initial: '7', sm: '9' }}>
         <Container size="3" px="6">
           <Flex direction="column" align="center" gap="4">
             <Badge size="2" variant="soft" color="blue" radius="full">

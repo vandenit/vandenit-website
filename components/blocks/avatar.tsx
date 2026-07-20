@@ -14,27 +14,27 @@ interface AvatarBlockData {
 }
 
 export const AvatarBlock = ({ data }: { data: AvatarBlockData }) => (
-  <Section size="3" pt={{ initial: '7', sm: '9' }} pb="5">
+  <Section size="2" pt={{ initial: '6', sm: '9' }} pb="4">
     <Container size="3" px="6">
       {data.avatarHeader && (
-        <Heading as="h1" size={{ initial: '7', sm: '9' }} weight="bold" mb="6" align="center">
+        <Heading as="h1" size={{ initial: '6', sm: '9' }} weight="bold" mb="5" align="center">
           {data.avatarHeader}
         </Heading>
       )}
-      <Card className="card-elevated" size="4">
-        <Flex gap="5" align="center" direction={{ initial: 'column', sm: 'row' }}>
+      <Card className="card-elevated" size="3">
+        <Flex gap="4" align="center" direction={{ initial: 'column', sm: 'row' }}>
           <Avatar
             src={data.avatarImage.src}
             alt={data.avatarImage.alt || data.avatarsName}
             fallback={data.avatarsName?.[0] || 'A'}
-            size={{ initial: '6', sm: '8' }}
+            size={{ initial: '5', sm: '8' }}
             radius="full"
           />
           <Box>
             <Heading as="h2" size="5" weight="bold" mb="2">
               {data.avatarsName}
             </Heading>
-            <Text as="p" size="4" color="gray" style={{ lineHeight: '1.6' }}>
+            <Text as="p" size="3" color="gray" style={{ lineHeight: '1.6' }}>
               {data.description}
             </Text>
           </Box>
