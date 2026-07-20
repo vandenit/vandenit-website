@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { Actions } from "./actions";
-import { Box, Flex, Heading, Text } from "@radix-ui/themes";
+import { Badge, Container, Flex, Heading, Section, Text } from "@radix-ui/themes";
 
 interface HeroBlockData {
   tagline?: string;
@@ -24,29 +24,32 @@ interface HeroBlockData {
 
 export const Hero = ({ data }: { data: HeroBlockData }) => {
   return (
-    <Box p={{ initial: '0', sm: '4' }} pb="5" pt="5">
-      <Box>
-        {/* Hero Heading */}
-        <Heading as="h1" size={{ initial: '6', sm: '9' }} mb="4">
-          {data.tagline}
-        </Heading>
-        <Box>
-          <Text as="p" size={{ sm: '4', md: '5' }} mb="6">
+    <Section size="3" className="hero-section" pt={{ initial: '7', sm: '9' }} pb={{ initial: '6', sm: '8' }}>
+      <Container size="3" px="6">
+        <Flex direction="column" align="center" gap="5" style={{ textAlign: 'center' }}>
+          {/* Badge — short label, NOT duplicating H1 */}
+          <Badge size="2" variant="soft" color="blue" radius="full">
+            Software Consultancy
+          </Badge>
+
+          {/* H1 = short tagline */}
+          <Heading as="h1" size={{ initial: '7', sm: '9' }} weight="bold" align="center" style={{ maxWidth: '800px', hyphens: 'none' }}>
+            {data.tagline}
+          </Heading>
+
+          {/* Subtext = longer headline/description */}
+          <Text as="p" size={{ initial: '4', sm: '5' }} color="gray" align="center" style={{ maxWidth: '600px', lineHeight: '1.6' }}>
             {data.headline}
           </Text>
-        </Box>
-      </Box>
 
-      {/* Call to Action Button */}
-      {data.actions && (
-        <Flex mt="6" align="center" justify="center">
-          <Actions
-            actions={data.actions}
-          />
+          {/* CTA buttons */}
+          {data.actions && (
+            <Flex mt="3" align="center" justify="center" gap="3" direction={{ initial: 'column', sm: 'row' }} wrap="wrap">
+              <Actions actions={data.actions} />
+            </Flex>
+          )}
         </Flex>
-      )}
-    </Box>
+      </Container>
+    </Section>
   );
 };
-
-

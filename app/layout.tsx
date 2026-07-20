@@ -4,11 +4,11 @@ import React from "react";
 import { ThemeProvider } from "../components/theme-provider";
 import { Metadata } from "next";
 import { getGlobalConfig } from "../lib/contentlayer";
-import { Box, Theme } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 
 export const metadata: Metadata = {
-  title: "Vanden IT",
-  description: "Vanden IT",
+  title: "Vanden IT — Software Consultancy",
+  description: "Vanden IT specializes in developing high-performance software solutions that drive business success.",
 };
 
 export default async function RootLayout({
@@ -20,34 +20,39 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           disableTransitionOnChange
-          forcedTheme={global?.theme?.darkMode || "system"}
+          forcedTheme={global?.theme?.darkMode || "dark"}
         >
           <Theme
-            accentColor={global?.theme?.accentCol || "blue" as any}
-            grayColor={global?.theme?.greyColor || "gray" as any}
+            accentColor={(global?.theme?.accentCol as any) || "blue"}
+            grayColor={(global?.theme?.grayColor as any) || "gray"}
             panelBackground="translucent"
             scaling="100%"
-            radius="full">
-            <Box
-              style={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                height: 480,
-                opacity: 0.6,
-                background:
-                  "linear-gradient(to bottom, var(--accent-4), transparent)",
-              }}
-            ></Box>
+            radius="medium"
+          >
             {children}
-        </Theme>
-      </ThemeProvider>
-    </body>
-    </html >
+          </Theme>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
