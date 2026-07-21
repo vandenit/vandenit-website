@@ -17,6 +17,10 @@
         "label": "About"
       },
       {
+        "href": "/how-i-work",
+        "label": "How I Work"
+      },
+      {
         "href": "/posts",
         "label": "Blog"
       },
