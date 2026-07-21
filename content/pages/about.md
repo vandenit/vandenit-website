@@ -85,8 +85,11 @@ blocks:
         text: >-
           I build and use multi-agent AI workflows in real production contexts —
           not as experiments, but as a core part of how I ship software faster
-          and with higher quality. [See how it works →](/how-i-work)
+          and with higher quality.
         richText: ''
+        buttonLink:
+          label: See how it works
+          link: /how-i-work
       - icon:
           name: FaCheckCircle
           color: green
