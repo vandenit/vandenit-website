@@ -14,20 +14,22 @@ There's a version of AI-assisted development that's genuinely dangerous: a junio
 
 That's not what I do.
 
-Over the last few years I've built a development workflow where AI agents handle the mechanical parts of the job: generating boilerplate, scaffolding tests, catching obvious code smells, running through repetitive implementation patterns. This is real leverage. Work that used to take days now takes hours.
+Over the last few years I've built a development workflow where AI agents are genuine collaborators, not just code generators. They help with architecture design, review decisions, and keep an up-to-date understanding of the codebase through persistent memory. Work that used to take days now takes hours.
 
-But here's what doesn't change: every architectural decision still goes through 15 years of enterprise experience.
+But here's what doesn't change: when something feels off — a pattern that looks clean but will cause problems at scale, a "clever" solution that will be unmaintainable in six months, a security implication that only surfaces if you've seen it break in production before — that's where 15 years of enterprise experience kicks in. The agents don't always catch those. I do.
 
-## The part AI can't replace
+## Where experience still matters
 
-An AI model doesn't know your system's history. It doesn't know why that design decision was made three years ago, or what the security implications are of this particular data flow, or which parts of the codebase will be touched by six other teams. It doesn't have opinions about maintainability that are grounded in having shipped real software at scale.
+AI agents aren't dumb workers. My Hermes agent knows my codebase, remembers decisions from previous sessions, and helps me think through architecture. It's a real collaborator. But there's a difference between knowing the system and knowing when the system is about to do something stupid.
 
-I do.
+An AI can generate a clean implementation of a bad architecture. It can write well-structured code that solves the wrong problem. It can optimize for the immediate task and miss the downstream impact on six other teams. It doesn't have the gut feeling that says "this looks right but I've seen this pattern fail at scale."
 
-So when I work with AI agents, the division of labor is deliberate:
+That's the part I bring. Not "I do the thinking, AI does the typing" — the agents think too. But when the output feels wrong in a way that's hard to articulate, my experience is what gets things back on track. Sometimes that means catching a subtle architecture issue. Sometimes it's as simple as saying "that's not how we do it here" and redirecting the agent.
 
-- **AI handles:** boilerplate, test generation, code review passes, refactoring patterns, documentation drafts
-- **I handle:** system design, security posture, performance architecture, integration strategy, the decisions that will matter in two years
+So when I work with AI agents, the division of labor is deliberate but not rigid:
+
+- **AI handles:** implementation, test generation, code review passes, refactoring patterns, documentation drafts, and often first-pass architecture proposals
+- **I handle:** the gut check — "does this feel right?", security posture decisions, performance trade-offs, integration strategy, and redirecting the agents when they're confidently wrong
 
 The output is enterprise-grade software. The timeline is aggressive. That's not a contradiction — it's the point.
 
