@@ -23,8 +23,14 @@ blocks:
       Every project runs through a two-layer process. The first layer is
       Hermes — a local AI agent with persistent memory, reusable skills, and
       access to the full codebase across sessions. It is not a one-shot prompt.
-      It knows the project the same way a junior developer would after three
-      months on the team.
+      It remembers what we decided last week, what went wrong, and what we
+      learned from it.
+
+
+      When something breaks, the lesson gets saved — as a memory entry or a
+      skill update — so the same mistake doesn't happen twice. The agent gets
+      better over time, not because the model changes, but because the context
+      does.
 
 
       **Hermes handles:** implementation, test generation, code review passes,
