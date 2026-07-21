@@ -108,11 +108,11 @@ blocks:
       - icon:
           name: FaServer
           color: blue
-        title: Self-Hosted AI Infrastructure
+        title: AI Tooling Setup
         text: >
-          Local LLMs, RAG pipelines, custom AI agents. No SaaS dependencies,
-          no per-seat costs, no data leaving your network. Built for teams
-          that have real reasons to keep their data in-house.
+          Custom AI agents, self-hosted workflows, and development tooling
+          built around your team's actual process. No per-seat SaaS costs,
+          no vendor lock-in.
     _template: features
 
   - body: >
