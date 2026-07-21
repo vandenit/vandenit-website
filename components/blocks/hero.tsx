@@ -29,7 +29,7 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
         <Flex direction="column" align="center" gap="5" style={{ textAlign: 'center' }}>
           {/* Badge — short label, NOT duplicating H1 */}
           <Badge size="2" variant="soft" color="blue" radius="full">
-            Software Consultancy
+            AI-Powered Development
           </Badge>
 
           {/* H1 = short tagline */}

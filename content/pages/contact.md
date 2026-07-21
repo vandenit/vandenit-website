@@ -1,31 +1,33 @@
 ---
-title: contact
+title: Contact
 blocks:
-  - title: Contact us
-    items:
-      - icon:
-          name: EnvelopeClosedIcon
-          color: ''
-        title: Adres
-        text: ''
-        richText: |
-          Filomenastraat 24\
-          2018 Antwerpen\
-          BE0768.999.370
-      - icon:
-          name: FaMailBulk
-          color: ''
-        title: Email
-        text: Mail us
-        richText: ''
-        link: 'mailto:info@vandenit.be'
-      - icon:
-          name: LinkedInLogoIcon
-          color: ''
-        title: LinkedIn
-        text: Visit us on LinkedIn
-        richText: ''
-        link: 'https://www.linkedin.com/in/filip-van-den-broeck/'
-    _template: features
----
+  - tagline: Let's talk
+    headline: >-
+      The best way to reach me is email. I read everything myself and respond
+      within 24 hours.
+    text: ''
+    text2: ''
+    actions:
+      - label: filip@vandenit.be
+        type: email
+        icon: true
+        link: filip@vandenit.be
+    color: default
+    _template: hero
+  - body: >
+      ## What to expect
 
+
+      I work with optimized AI workflows that keep delivery fast without
+      cutting corners on quality. That means your project gets enterprise-grade
+      engineering, not rushed output.
+
+
+      **Currently available:** Taking on new projects. Tell me what you're building.
+
+
+      Prefer LinkedIn? [Connect with me
+      here](https://www.linkedin.com/in/filip-van-den-broeck/).
+    color: ''
+    _template: content
+---
