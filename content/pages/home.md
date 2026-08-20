@@ -4,8 +4,9 @@ blocks:
   - tagline: Senior engineer. AI-powered workflows. Production-grade results.
     headline: >-
       AI agents handle the repetitive work. 15 years of enterprise experience
-      handles everything else — architecture, security, maintainability. The
-      result: fast delivery that holds up in production.
+      covers the rest — architecture, security, the decisions that keep code
+      maintainable. The result is delivery that holds up in production, not
+      just demos.
     text: ''
     text2: ''
     actions:

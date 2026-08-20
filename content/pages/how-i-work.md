@@ -3,9 +3,10 @@ title: How I Work
 blocks:
   - tagline: AI does the heavy lifting. Experience does the judgment.
     headline: >
-      I work with AI agents to build, review, and ship software faster than a
-      solo developer has any right to. The agents handle volume. I handle
-      everything that requires knowing when to stop and push back.
+      I work with AI agents to build, review, and ship software — faster
+      than I could alone, and with more consistency than ad-hoc use of the
+      same tools. The agents handle volume. I handle everything that
+      requires knowing when to stop and push back.
     actions:
       - label: See it in practice
         type: button
@@ -51,7 +52,8 @@ blocks:
       That last one matters more than it sounds. AI agents fail quietly. They
       produce well-structured, grammatically correct, thoroughly commented code
       that does the wrong thing. Catching that is a judgment call, not a
-      checklist. That judgment is what fifteen years in the industry buys you.
+      checklist. That judgment is the part that's hard to automate — it comes
+      from years of seeing these failures before.
 
 
       The workflow is not proprietary. It is teachable. Getting your team
@@ -100,7 +102,7 @@ blocks:
       model got smarter, but because the feedback was captured.
 
 
-      That is the gap. AI is eager to declare success. Experience knows
+      That is the gap. AI is eager to declare success. The work is knowing
       when a failing test is the signal, not the noise.
     _template: content
 

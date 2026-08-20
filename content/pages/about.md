@@ -5,8 +5,8 @@ blocks:
     avatarsName: Filip Van den Broeck
     description: >-
       Senior engineer and fractional tech lead based in Antwerp. 15 years
-      building enterprise systems. The last two spent obsessing over what
-      AI actually changes about software development.
+      building enterprise systems. The last two spent figuring out what AI
+      actually changes about how software gets built.
     avatarImage:
       src: /uploads/main/unnamed.jpg
       alt: Filip Van den Broeck
@@ -22,16 +22,17 @@ blocks:
       end-to-end, production-grade.
 
 
-      I know what it means to ship software that cannot fail. I know what good
-      architecture looks like under pressure. And I know how teams actually work
-      — not how they're supposed to work on a slide deck.
+      I've shipped software that couldn't afford to fail. I've held
+      architecture together under pressure. And I've seen how teams
+      actually work — which is rarely how it looks on a slide deck.
 
 
       ## The Shift
 
 
-      In the last two years, I've become obsessed with one question: **what
-      happens when AI becomes a first-class member of the development team?**
+      In the last two years, I've been focused on one question: **what
+      happens when AI becomes a first-class member of the development
+      team?**
 
 
       Not AI as a fancy autocomplete. Not a chatbot bolted onto a product.
@@ -61,15 +62,14 @@ blocks:
       ## What This Means for You
 
 
-      I work with optimized AI workflows that let me move fast without
-      sacrificing depth. Every engagement gets the full weight of 15 years
-      of enterprise experience — not just on the code I write, but on what
-      that code needs to become six months from now.
+      I bring fifteen years of enterprise experience to every engagement
+      — not just to the code I write, but to what that code needs to be
+      six months from now.
 
 
       The pitch isn't speed. The pitch is speed *and* production-grade quality.
       Those two things usually trade off. AI-augmented senior engineering is
-      how they don't.
+      one way they stop trading off.
 
 
       Whether that means auditing your team's AI readiness, stepping in as a
@@ -98,7 +98,7 @@ blocks:
       - icon:
           name: FaCheckCircle
           color: green
-        title: Quality Without Compromise
+        title: Standards Don't Slide
         text: >-
           15 years of enterprise delivery means I hold a high bar. AI speeds
           things up — it doesn't lower standards. Every output is reviewed,
@@ -109,9 +109,9 @@ blocks:
           color: orange
         title: Clear Communication
         text: >-
-          I translate between engineers, product owners, and stakeholders.
-          No jargon walls, no hand-waving. Just honest, structured updates
-          and decisions explained with context.
+          I translate between engineers, product owners, and stakeholders —
+          honest, structured updates, decisions explained with the context
+          behind them, no jargon walls.
         richText: ''
       - icon:
           name: FaUserShield

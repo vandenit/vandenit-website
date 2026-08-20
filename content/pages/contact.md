@@ -18,9 +18,8 @@ blocks:
       ## What to expect
 
 
-      I work with optimized AI workflows that keep delivery fast without
-      cutting corners on quality. That means your project gets enterprise-grade
-      engineering, not rushed output.
+      I work with AI tooling that keeps delivery fast without cutting
+      corners.
 
 
       **Currently available:** Taking on new projects. Tell me what you're building.
