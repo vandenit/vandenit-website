@@ -21,8 +21,10 @@ blocks:
 
 
       Every project runs through a two-layer process. The first layer is
-      Hermes — a local AI agent with persistent memory, reusable skills, and
-      access to the full codebase across sessions. It is not a one-shot prompt.
+      Hermes — an open-source AI agent with persistent memory, reusable
+      skills, and access to the full codebase across sessions. It runs on
+      GLM-5.2 via Ollama Cloud, with zero logging and zero data retention
+      by default. It is not a one-shot prompt.
       It remembers what we decided last week, what went wrong, and what we
       learned from it.
 

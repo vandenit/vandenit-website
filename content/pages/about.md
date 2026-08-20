@@ -41,11 +41,16 @@ blocks:
       quality bar.
 
 
-      To explore this seriously, I built **Hermes Agent** — a local, autonomous
-      AI coding assistant that runs entirely on my own infrastructure. Hermes
-      operates in a persistent loop: it receives tasks, reasons through them,
-      writes and executes code, reads test output, and self-corrects. It runs
-      on open-weight models with no data leaving the machine.
+      To explore this seriously, I run **Hermes Agent** — an open-source
+      autonomous AI coding platform — as my core development tool, configured
+      around my own workflows and engineering standards. Hermes operates in a
+      persistent loop: it receives tasks, reasons through them, writes and
+      executes code, reads test output, and self-corrects. It runs on
+      **GLM-5.2**, an open-weight model served through Ollama Cloud with zero
+      logging and zero data retention by default ([how that actually
+      works](/posts/glm-5.2-ollama-cloud-privacy)). Alongside it, I use Claude
+      for visual design review — it can see and score a screenshot, but never
+      touches code. Two AIs, two roles: one implements, one critiques.
 
 
       The result? I can handle workloads that would normally require a team of
@@ -83,9 +88,9 @@ blocks:
           color: blue
         title: AI-Augmented Engineering
         text: >-
-          I build and use multi-agent AI workflows in real production contexts —
-          not as experiments, but as a core part of how I ship software faster
-          and with higher quality.
+          I design and run multi-agent AI workflows in real production
+          contexts — not as experiments, but as a core part of how I ship
+          software faster and with higher quality.
         richText: ''
         buttonLink:
           label: See how it works
@@ -159,12 +164,14 @@ blocks:
       - icon:
           name: FaRobot
           color: orange
-        title: Builder — Hermes Agent & Multi-AI Workflows
+        title: AI Workflow Architect — Multi-Agent Engineering
         text: >-
-          Designed and built a locally-running autonomous AI coding agent.
-          Handles task decomposition, code generation, test execution, and
-          self-correction — all on self-hosted infrastructure with open-weight
-          models.
+          Configured and extended Hermes Agent, an open-source autonomous
+          coding platform, into a production workflow — custom skills,
+          persistent memory, and multi-agent orchestration. Paired with
+          Claude for visual design review, so implementation and critique
+          are handled by separate AIs. Runs on open-weight GLM-5.2 via
+          Ollama Cloud.
         richText: ''
     color: tint
     _template: features
