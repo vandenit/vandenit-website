@@ -1,0 +1,117 @@
+---
+title: "GLM-5.2, Ollama Cloud, and AI Privacy: What Clients Should Know"
+heroImg: /uploads/main/security_bg_3.jpg
+excerpt: >
+  A practical look at how GLM-5.2 runs on Ollama Cloud, what that means for your company data, and how it compares to Claude and GPT on privacy. Honest about the trade-offs.
+author: content/authors/filip.md
+date: 2026-08-20T10:00:00.000Z
+tags:
+  - ai
+  - privacy
+  - self-hosted
+  - ollama
+---
+
+"Is AI safe for my company data?"
+
+I hear this in nearly every sales conversation. Not as a hypothetical, but as a real concern from IT managers and business owners who are evaluating AI tools and worried about what happens to their code, their documents, their customer data once it touches a language model.
+
+This post lays out how VandenIT approaches that question today, using [GLM-5.2](https://docs.z.ai/guides/llm/glm-5.2) running on [Ollama Cloud](https://ollama.com/library/glm-5.2). I'll be specific about what the privacy guarantees actually are, where they fall short, and when you need something stricter.
+
+## The model: GLM-5.2
+
+GLM-5.2 is a large language model from [Zhipu AI](https://www.layer3labs.io/guides/glm-5-2-by-zhipu-ai-for-business), a Beijing-based company spun out of Tsinghua University. It was released on June 13, 2026.
+
+The architecture is a Mixture-of-Experts design with 753 billion total parameters and roughly 40 billion active per token. It supports a 1 million token context window, which means you can feed it very large documents or codebases in a single prompt without chunking.
+
+Two things make it interesting for client work:
+
+1. **It's the top open-weight model on coding benchmarks.** Terminal-Bench 2.1 score: 81.0. SWE-bench Pro: 62.1. For reference, [independent comparisons](https://lushbinary.com/blog/glm-5-2-vs-claude-opus-4-8-vs-gpt-5-5-coding-comparison/) put it ahead of Claude Opus 4.8 and GPT-5.5 on agentic coding tasks. Not ahead on everything, but ahead on the tasks that matter for development work.
+
+2. **The weights are MIT-licensed.** You can download them, inspect them, fine-tune them, run them on your own hardware, and use them commercially. No gatekeeping. This matters enormously for the privacy discussion, and I'll come back to why.
+
+## How it runs: Ollama Cloud
+
+Here's the part I want to be completely clear about: when VandenIT uses GLM-5.2 for your work, it runs on Ollama Cloud, a managed inference service. Not locally on your servers.
+
+[Ollama](https://ollama.com/pricing) is a US company. They host models on NVIDIA Cloud Provider infrastructure, primarily in the United States, with possible routing to Europe and Singapore. Your prompts and responses travel from your machine to Ollama's GPUs, get processed there, and come back.
+
+This is not the same as running the model on your own hardware. It is a cloud service. The privacy guarantees are contractual, not architectural. I'll explain exactly what those contracts say and how they compare to the alternatives.
+
+## The privacy comparison
+
+This is the section that matters most, so let me be precise. Here is how Ollama Cloud compares to the [Anthropic Claude API](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) and the [OpenAI API](https://developers.openai.com/api/docs/guides/your-data) on the things clients actually ask about:
+
+| | Ollama Cloud | Claude API (Anthropic) | OpenAI API |
+|---|---|---|---|
+| No training on your data | Default, all users | Default, all API users | Default for API and Enterprise |
+| Zero logging | Default, all users | 30-day retention for abuse monitoring | Retention for abuse monitoring |
+| Zero data retention (ZDR) | Default for everyone | Enterprise contract only | Special ZDR agreement only |
+| HIPAA BAA | No | Yes (Enterprise) | Yes (Enterprise) |
+| SOC 2 Type II | No | Yes | Yes |
+| EU data residency | No (primarily US) | Yes (Enterprise) | Yes (Enterprise) |
+
+Read this table carefully. Both Claude and GPT offer zero retention and no training on your data. That is real. The [Anthropic ZDR program](https://privacy.claude.com/en/articles/8956058-i-have-a-zero-data-retention-agreement-with-anthropic-what-products-does-it-apply-to) exists. [OpenAI's business data controls](https://openai.com/business-data/) exist. I'm not going to pretend they don't.
+
+The difference is who gets those guarantees by default.
+
+With Ollama Cloud, zero logging and zero data retention are the baseline for every user, including the free tier. You don't need a contract negotiation. You don't need an enterprise sales rep. You don't need an annual commitment or per-seat pricing. It's just how the service works, as stated in their [privacy policy](https://ollama.com/privacy).
+
+With Claude and GPT, the same guarantees exist but require an Enterprise agreement. That means annual contracts, minimum spend thresholds, and a procurement cycle that many SMBs simply won't go through. For a 30-person company that wants AI tooling without a six-month vendor evaluation, that's a real practical barrier.
+
+So the differentiators are not "Ollama is private and the others are not." The differentiators are:
+
+1. **Default vs enterprise-only.** You get zero retention without an enterprise contract.
+2. **Open-source exit strategy.** If Ollama Cloud ever changes its terms, you can take the exact same model and run it on your own hardware. You cannot do that with Claude or GPT. The weights are public. The fallback always exists.
+3. **Transparency.** GLM-5.2's weights are inspectable. Researchers can and do examine them. Claude and GPT are black boxes. You take the vendor's word for what's inside.
+
+Now, the honest counterpoint. Claude and GPT are stronger on compliance infrastructure. They have HIPAA Business Associate Agreements, SOC 2 Type II reports, and EU data residency options. If you are a healthcare provider in Belgium processing patient data, or a financial institution with strict regulatory requirements, those certifications matter more than default zero retention. Ollama Cloud does not have them. I will not pretend otherwise.
+
+## The China question
+
+Sometimes a client asks: "But it's a Chinese model. Isn't that a risk?"
+
+It's a fair question and deserves a straight answer.
+
+Zhipu AI in Beijing developed the model weights and published them under an MIT license. That license is irrevocable. Once published, the weights are just a file. A very large file, but a file.
+
+When you use GLM-5.2 through Ollama Cloud, your data flows from your machine to Ollama (a US company) running on NVIDIA servers. The model weights are loaded onto those GPUs. Zhipu is not in that chain. There is no connection to China, no phone-home behavior, no data flowing to Zhipu's servers. The weights are static. They don't call out to their creator any more than a downloaded PDF calls out to its author.
+
+The analogy I use with clients: this is the difference between using a recipe published by a Chinese company to cook in your own kitchen, and ordering food from a Chinese restaurant. In the first case, the Chinese company has no involvement in your meal. In the second, they are handling your ingredients. GLM-5.2 on Ollama Cloud is the first case.
+
+If that analogy doesn't resolve the concern, that's fine. For clients where it doesn't, local deployment removes the question entirely because no data leaves the building at all.
+
+## When local deployment makes sense
+
+Here is the decision framework I use with clients:
+
+| Client profile | Is Ollama Cloud sufficient? |
+|---|---|
+| General development, code review | Yes |
+| Internal business data, not regulated | Yes |
+| Client data under NDA | Likely yes (zero retention + no logging) |
+| GDPR-sensitive, EU-only requirement | Needs clear explanation: data goes primarily to US |
+| HIPAA or strictly regulated | Local deployment is the safe option |
+| "Nothing may leave the machine" | Local deployment |
+
+For the cases where local deployment is the right answer, the same MIT-licensed model runs on your own server. No different software, no different model, no retraining. You download the weights and run them.
+
+The cost spectrum looks like this:
+
+- **$20/month**: Ollama Cloud Pro, the default for most clients. Managed, zero config, zero retention.
+- **$0.50 to $3/hour**: Rented GPU instances (RunPod, Lambda, similar providers). Good for intermittent heavy workloads. You pay for compute time, not a permanent server.
+- **EUR 3,000 to 8,000**: Your own GPU server. A one-time hardware investment plus electricity. No per-query cost, no data ever leaves your network. This is the architectural guarantee that cloud services, however well-contracted, cannot match.
+
+The point is that choosing an open-source model like GLM-5.2 keeps all three options on the table. You start on Ollama Cloud because it's cheap and fast to set up. If your requirements tighten, you move to rented GPUs. If they tighten further, you buy hardware. The model never changes. Your code never changes. Your workflows never change. Only the infrastructure underneath shifts.
+
+That is the real value of open weights. Not that open-source is always better (it isn't), but that it gives you a path from cheap-and-convenient to expensive-and-airtight without switching models mid-project.
+
+## Bottom line
+
+Ollama Cloud with GLM-5.2 gives you better privacy defaults than Claude or GPT for users who don't have enterprise contracts. Zero logging, zero data retention, no training on your data, all available to everyone out of the box. The model is open-source, which means the exit strategy to local deployment always exists.
+
+It is not, however, the same as running the model on your own hardware. The guarantees are contractual, enforced by Ollama's agreements with their NVIDIA cloud providers, not by air-gapped servers in your office. For most clients, that distinction doesn't change the practical risk. For the strictest requirements, HIPAA environments, EU-only data residency, or hard "nothing leaves the building" policies, local deployment of the same model is the right call.
+
+The advantage of choosing GLM-5.2 specifically is that you don't have to pick one approach upfront and commit forever. You can start on the cloud, evaluate the privacy posture, and escalate to local hardware only if your requirements demand it. The open-source license is what makes that flexibility possible.
+
+Want to know which setup fits your situation? Book an [AI Workflow Audit](https://vandenit.be/how-i-work) and we'll map it out together.

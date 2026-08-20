@@ -1,6 +1,6 @@
 ---
 title: "How to Let Hermes Generate Podcasts with Your Own Chosen Voices Using Open Notebook"
-date: 2025-07-15
+date: 2026-07-15
 excerpt: >
   Self-host your own NotebookLM with Open Notebook, Hermes Agent, and XTTS voice cloning. Generate podcasts with any voice — entirely from your phone.
 author: content/authors/filip.md
@@ -31,7 +31,7 @@ The workflow that follows is technical, but the point isn't the technology — i
 
 One interface. One chat. Zero terminal sessions opened by a human.
 
-> **Note:** I'll link to separate tutorials for [Hermes Web UI setup](#) and [Google Workspace integration](#) in the future. This post focuses on the Open Notebook + voice cloning pipeline itself.
+> **Note:** Separate tutorials for Hermes Web UI setup and Google Workspace integration are coming. This post focuses on the Open Notebook + voice cloning pipeline itself.
 
 ## The Stack at a Glance
 
@@ -243,13 +243,13 @@ _tts_semaphore = asyncio.Semaphore(1)
 
 # Map voice names → reference WAV files
 VOICE_REFS = {
-    "stephen_fry":   "~/projects/stephen-fry-audio/drive_cache/base_refs/stephen_fry_1800s.wav",
-    "jon_lindstrom": "~/projects/stephen-fry-audio/drive_cache/base_refs/jon_lindstrom_1800s.wav",
-    "lynn_chen":     "~/projects/stephen-fry-audio/drive_cache/base_refs/lynn_chen_1800s.wav",
-    "scott_brick":   "~/projects/stephen-fry-audio/drive_cache/base_refs/scott_brick_1800s.wav",
+    "stephen_fry":   "~/voice-refs/stephen_fry.wav",
+    "jon_lindstrom": "~/voice-refs/jon_lindstrom.wav",
+    "lynn_chen":     "~/voice-refs/lynn_chen.wav",
+    "scott_brick":   "~/voice-refs/scott_brick.wav",
     # Default fallback maps to Stephen Fry
-    "alloy":         "~/projects/stephen-fry-audio/drive_cache/base_refs/stephen_fry_1800s.wav",
-    "echo":          "~/projects/stephen-fry-audio/drive_cache/base_refs/jon_lindstrom_1800s.wav",
+    "alloy":         "~/voice-refs/stephen_fry.wav",
+    "echo":          "~/voice-refs/jon_lindstrom.wav",
 }
 
 def _generate_sync(text: str, speaker_wav: str) -> bytes:
