@@ -21,7 +21,7 @@ Here's exactly what happened.
 
 I run two AIs in my local workflow. The choice of which AI does what is driven by cost and capability, not preference.
 
-**Hermes** runs GLM-5.2 via Ollama Cloud. It's my main tool — not because it's the smartest model available, but because it's cheap enough for intensive development without hitting usage limits, and because Hermes has persistent memory and reusable skills. That memory is what makes it possible to give Claude the right context for each review. Hermes is the implementer: it reads plans, modifies files, manages the dev server, runs builds, and takes Playwright screenshots. What it cannot do is see. GLM-5.2 has no vision capability. Hermes is literally blind to its own output.
+**Hermes** runs GLM 5 via Ollama Cloud. It's my main tool — not because it's the smartest model available, but because it's cheap enough for intensive development without hitting usage limits, and because Hermes has persistent memory and reusable skills. That memory is what makes it possible to give Claude the right context for each review. Hermes is the implementer: it reads plans, modifies files, manages the dev server, runs builds, and takes Playwright screenshots. What it cannot do is see. GLM 5 has no vision capability. Hermes is literally blind to its own output.
 
 **Claude Sonnet 4.6** runs via the Antigravity CLI (`agy`). I have a Google subscription that includes Claude access through Antigravity — it's not free, but it's affordable for the volume of design reviews I do. For heavy development work, Antigravity's usage limits kick in fast. For design reviews — a few screenshots per iteration — we stay within the limits. Claude is the reviewer: it reads screenshots with precision, scores design quality on a /10 scale, and gives specific, ranked, actionable feedback. What it cannot do is touch a file. It has no write access. It can describe a fix but not apply it.
 
@@ -184,7 +184,7 @@ The escalation pattern breaks the fix-A-break-B loop because the reviewer is now
 
 The key insight is **complementary blindness**.
 
-GLM-5.2 writes excellent code. It understands component structure, responsive design patterns, TypeScript types, CSS specificity. It just can't see the result. Claude Sonnet sees with precision — it can describe the visual weight of a section, the perceived hierarchy of a type scale, the absence of a hover state. It just can't touch a file.
+GLM 5 writes excellent code. It understands component structure, responsive design patterns, TypeScript types, CSS specificity. It just can't see the result. Claude Sonnet sees with precision — it can describe the visual weight of a section, the perceived hierarchy of a type scale, the absence of a hover state. It just can't touch a file.
 
 Neither can do this alone.
 

@@ -46,16 +46,16 @@ blocks:
       around my own workflows and engineering standards. Hermes operates in a
       persistent loop: it receives tasks, reasons through them, writes and
       executes code, reads test output, and self-corrects. It runs on
-      **GLM-5.2**, an open-weight model served through Ollama Cloud with zero
+      **GLM 5**, an open-weight model served through Ollama Cloud with zero
       logging and zero data retention by default ([how that actually
       works](/posts/glm-5.2-ollama-cloud-privacy)). Alongside it, I use Claude
       for visual design review — it can see and score a screenshot, but never
       touches code. Two AIs, two roles: one implements, one critiques.
 
 
-      The result? I can handle workloads that would normally require a team of
-      two or three — with tighter feedback loops, better documentation, and
-      more consistent code quality than pure manual work.
+      The result? I compress what used to be a multi-person effort into
+      something one person can run, with tighter feedback loops, better
+      documentation, and more consistent code quality than pure manual work.
 
 
       ## What This Means for You
@@ -170,7 +170,7 @@ blocks:
           coding platform, into a production workflow — custom skills,
           persistent memory, and multi-agent orchestration. Paired with
           Claude for visual design review, so implementation and critique
-          are handled by separate AIs. Runs on open-weight GLM-5.2 via
+          are handled by separate AIs. Runs on open-weight GLM 5 via
           Ollama Cloud.
         richText: ''
     color: tint

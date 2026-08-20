@@ -23,7 +23,7 @@ And here's the best part: the entire setup — install, configure, upload, gener
 The workflow that follows is technical, but the point isn't the technology — it's that you never need to leave your phone. Here's what actually happened:
 
 1. **"Install Open Notebook and make it accessible"** — typed into Hermes Web UI on a phone. Hermes spun up Docker Compose, generated an encryption key, and exposed the service.
-2. **"Configure GLM-5.2 everywhere"** — Hermes read its own config for the Ollama Cloud API key, then made a dozen REST API calls to register credentials, models, and defaults in Open Notebook.
+2. **"Configure GLM 5 everywhere"** — Hermes read its own config for the Ollama Cloud API key, then made a dozen REST API calls to register credentials, models, and defaults in Open Notebook.
 3. **"Upload my audiobook transcript and generate a podcast"** — Hermes found the transcript on disk, POSTed it as a source, created podcast profiles, and kicked off generation.
 4. **"Use Stephen Fry's voice"** — Hermes discovered voice reference files from an existing audiobook project, built an XTTS voice cloning proxy, and rewired Open Notebook to use it.
 5. **"Put the MP3 on my Google Drive and share it"** — Hermes uploaded the finished podcast and returned a shareable link. Open the link on your phone, tap "Open in Spotify," and you're listening to Stephen Fry discuss your book while walking the dog.
@@ -40,7 +40,7 @@ One interface. One chat. Zero terminal sessions opened by a human.
 | Orchestration | Hermes Agent | Automates the entire setup via API calls — from your phone |
 | Notebook engine | Open Notebook | Open-source NotebookLM alternative |
 | Database | SurrealDB | Open Notebook's document store |
-| LLM | GLM-5.2 on Ollama Cloud | OpenAI-compatible endpoint |
+| LLM | GLM 5 on Ollama Cloud | OpenAI-compatible endpoint |
 | Embedding | nomic-embed-text on Ollama Cloud | Same provider, no extra keys |
 | TTS (fallback) | Edge TTS proxy | Free, CPU-only, decent quality |
 | TTS (voice clone) | XTTS v2 proxy | Clone any voice from a reference clip |
@@ -109,7 +109,7 @@ curl -X POST http://localhost:5055/api/credentials \
   }'
 ```
 
-Then register the models — GLM-5.2 for language tasks and nomic-embed-text for embeddings:
+Then register the models — GLM 5 for language tasks and nomic-embed-text for embeddings:
 
 ```bash
 # Language model
@@ -402,7 +402,7 @@ curl -X POST http://localhost:5055/api/speaker-profiles \
   }'
 ```
 
-Then we create an episode profile that tells GLM-5.2 to write a natural conversation:
+Then we create an episode profile that tells GLM 5 to write a natural conversation:
 
 ```bash
 curl -X POST http://localhost:5055/api/episode-profiles \
@@ -480,7 +480,7 @@ The shareable link comes straight into the chat. Open it on your phone, tap "Ope
 
 ## Wrapping Up
 
-The end result: you send a chat message with some source material, Hermes spins up a notebook, writes a podcast script with GLM-5.2, and two cloned voices — Stephen Fry and Jon Lindstrom — discuss your content in a natural dialogue. The MP3 lands in Google Drive with a shareable link that you can open in Spotify from your phone.
+The end result: you send a chat message with some source material, Hermes spins up a notebook, writes a podcast script with GLM 5, and two cloned voices — Stephen Fry and Jon Lindstrom — discuss your content in a natural dialogue. The MP3 lands in Google Drive with a shareable link that you can open in Spotify from your phone.
 
 The whole pipeline is self-hosted except the LLM (which you could swap for a local Ollama model if you have a GPU) and the TTS reference clips (which you can make from any audio file you own). No Google account required for the notebook itself, no per-minute billing, no vendor lock-in.
 

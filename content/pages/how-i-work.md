@@ -23,7 +23,7 @@ blocks:
       Every project runs through a two-layer process. The first layer is
       Hermes — an open-source AI agent with persistent memory, reusable
       skills, and access to the full codebase across sessions. It runs on
-      GLM-5.2 via Ollama Cloud, with zero logging and zero data retention
+      GLM 5 via Ollama Cloud, with zero logging and zero data retention
       by default. It is not a one-shot prompt.
       It remembers what we decided last week, what went wrong, and what we
       learned from it.
@@ -63,28 +63,45 @@ blocks:
       ## When Experience Matters
 
 
-      Here is a concrete example. A client site was getting strong Lighthouse
-      mobile scores in CI. Playwright was happy. Eight separate AI review passes
-      across two tools did not flag anything. The score looked fine.
+      Here is a concrete example. A client reported that device changes from
+      their mobile app were not reaching the central unit. The AI analyzed
+      the codebase, found the missing sync logic, wrote a fix, and added a
+      test. The test failed. The AI spent three iterations on the test, then
+      concluded: the code fix is correct, the test helper has a technical
+      issue with the RabbitMQ Java client, and further debugging would not
+      be productive in this session.
 
 
-      On a real phone, the layout was broken. Text was unreadably small,
-      elements were overflowing, the experience was unusable.
+      That is the moment where judgment matters. The AI was ready to ship
+      the fix and move on. I disagreed. A failing test means either the code
+      or the test is wrong, and you do not know which until you understand
+      why. If there is a real issue and you ship anyway, you just moved a
+      production bug one step closer to the customer.
 
 
-      The cause was a missing viewport meta tag. One line. The kind of thing
-      that every browser simulation gets wrong because it is not simulating —
-      it is approximating. Lighthouse runs in a controlled Chromium instance with
-      a forced viewport. A Samsung Galaxy in someone's hand does not.
+      I asked the AI to describe the failing test's behavior to Claude for
+      a fresh analysis. Claude read the test and the fix, identified the
+      actual problem: the fix itself had a subtle ordering issue. Sync
+      messages were being sent before the database transaction committed,
+      meaning the central unit could receive a sync for a device that did
+      not exist yet. Claude proposed a correction to both the code and the
+      test.
 
 
-      No agent caught it. I caught it because I tested on a real device, which
-      is a habit, not a workflow step.
+      The fix was corrected, the test passed. I then asked the AI to update
+      its skills and memory to learn from this incident: never abandon a
+      failing test without understanding the root cause, and always treat a
+      failing test as a signal, not an obstacle. That feedback is now
+      captured for every future session.
 
 
-      That is the gap. Tools simulate. Humans verify. The value of experience is
-      not that it replaces tooling — it is that it knows where tooling lies to
-      you.
+      Result: a production incident was prevented, the test suite became
+      more reliable, and the AI's future behavior improved. Not because the
+      model got smarter, but because the feedback was captured.
+
+
+      That is the gap. AI is eager to declare success. Experience knows
+      when a failing test is the signal, not the noise.
     _template: content
 
   - title: What I Can Do For You
