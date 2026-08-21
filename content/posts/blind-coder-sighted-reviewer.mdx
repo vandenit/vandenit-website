@@ -53,6 +53,8 @@ We ran five design iterations and three content iterations.
 
 ## The Score Progression
 
+Scores are Claude's review scores, not objective quality measurements. They're useful for tracking iteration progress, not as absolute ratings.
+
 | Iteration | Desktop Score | Mobile Score | Content Score |
 |-----------|--------------|--------------|---------------|
 | Start     | 5.0          | —            | —             |
@@ -184,11 +186,11 @@ The escalation pattern breaks the fix-A-break-B loop because the reviewer is now
 
 The key insight is **complementary blindness**.
 
-GLM 5 writes excellent code. It understands component structure, responsive design patterns, TypeScript types, CSS specificity. It just can't see the result. Claude Sonnet sees with precision — it can describe the visual weight of a section, the perceived hierarchy of a type scale, the absence of a hover state. It just can't touch a file.
+In this workflow, GLM 5 handled the implementation work well. It understands component structure, responsive design patterns, TypeScript types, CSS specificity. It just can't see the result. Claude Sonnet sees with precision — it can describe the visual weight of a section, the perceived hierarchy of a type scale, the absence of a hover state. It just can't touch a file.
 
-Neither can do this alone.
+Neither could complete this workflow alone in the setup described here.
 
-A single AI doing its own design review is like a surgeon operating on themselves — technically possible, structurally unwise. The reviewer has no attachment to the code being reviewed. The coder has no attachment to the design being judged. The objectivity isn't a feature of the individual model. It's a feature of the structure.
+Using a separate reviewer reduces self-review bias. The reviewer has no attachment to the code being reviewed. The coder has no attachment to the design being judged. The objectivity isn't a feature of the individual model. It's a feature of the structure.
 
 I've tried the single-AI version. The model applies feedback to its own output, gradually convincing itself that what it has is good. Scores drift upward without the design actually improving. With two models, the reviewer has seen nothing but the screenshot. It doesn't know how hard the component was to build. It doesn't care.
 

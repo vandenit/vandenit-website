@@ -24,10 +24,10 @@ blocks:
       Every project runs through a two-layer process. The first layer is
       Hermes — an open-source AI agent with persistent memory, reusable
       skills, and access to the full codebase across sessions. It runs on
-      GLM 5 via Ollama Cloud, with zero logging and zero data retention
-      by default. It is not a one-shot prompt.
-      It remembers what we decided last week, what went wrong, and what we
-      learned from it.
+      an open-weight model via Ollama Cloud, with zero logging and zero
+      data retention by default. It carries context across sessions —
+      remembering what we decided, what went wrong, and what we learned
+      from it.
 
 
       When something breaks, the lesson gets saved — as a memory entry or a
@@ -38,8 +38,7 @@ blocks:
 
       **Hermes handles:** implementation, test generation, code review passes,
       refactoring, documentation, and first-pass architecture proposals. It does
-      this fast, and it does it consistently. It doesn't forget what we decided
-      last week.
+      this fast, and it does it consistently.
 
 
       **I handle:** the gut check. Does this feel right? Is the security posture
@@ -49,7 +48,7 @@ blocks:
       wrong, and what do I say to redirect it?
 
 
-      That last one matters more than it sounds. AI agents fail quietly. They
+      That last one matters more than it sounds. AI agents can fail quietly. They
       produce well-structured, grammatically correct, thoroughly commented code
       that does the wrong thing. Catching that is a judgment call, not a
       checklist. That judgment is the part that's hard to automate — it comes
@@ -102,8 +101,9 @@ blocks:
       model got smarter, but because the feedback was captured.
 
 
-      That is the gap. AI is eager to declare success. The work is knowing
-      when a failing test is the signal, not the noise.
+      That is the gap: an AI agent can mistake a plausible result for a
+      finished one. The work is knowing when a failing test means the
+      problem is not yet understood.
     _template: content
 
   - title: What I Can Do For You
@@ -133,7 +133,7 @@ blocks:
         text: >
           Custom AI agents, self-hosted workflows, and development tooling
           built around your team's actual process. No per-seat SaaS costs,
-          no vendor lock-in.
+          designed to preserve an exit path.
     _template: features
 
   - body: >

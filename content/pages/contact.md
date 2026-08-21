@@ -18,11 +18,11 @@ blocks:
       ## What to expect
 
 
-      I work with AI tooling that keeps delivery fast without cutting
-      corners.
+      I use AI tooling to accelerate delivery while keeping architecture,
+      security, and review under human ownership.
 
 
-      **Currently available:** Taking on new projects. Tell me what you're building.
+      **Currently available for new projects.** Tell me what you're building.
 
 
       Prefer LinkedIn? [Connect with me

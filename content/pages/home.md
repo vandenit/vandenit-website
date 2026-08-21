@@ -5,8 +5,7 @@ blocks:
     headline: >-
       AI agents handle the repetitive work. 15 years of enterprise experience
       covers the rest — architecture, security, the decisions that keep code
-      maintainable. The result is delivery that holds up in production, not
-      just demos.
+      maintainable. The result is software built to hold up in production.
     text: ''
     text2: ''
     actions:
@@ -60,7 +59,7 @@ blocks:
         text: >-
           Custom AI agents, self-hosted workflows, and development tooling
           built around your team's actual process. No per-seat SaaS costs,
-          no vendor lock-in.
+          designed to preserve an exit path.
         richText: ''
         link: ''
         buttonLink:
@@ -75,10 +74,11 @@ blocks:
         content: ''
         richContent: >
           Technical Lead for the Enablement project at BNP Paribas Fortis,
-          responsible for onboarding users to the financial platform
+          contributing to the financial platform
           [Centric](https://centric.bnpparibas.com/public/marketing/).
-          Oversaw architecture, backend and frontend delivery, and team
-          quality practices — serving **100,000+ users** across the platform.
+          Contributed across backend and frontend delivery, architecture
+          decisions, and team quality practices — serving **100,000+ users**
+          across the platform.
         image:
           src: /uploads/main/Screenshot 2024-09-30 at 07.21.37.png
           alt: BNP Paribas Centric platform

@@ -17,14 +17,15 @@ blocks:
 
       I spent 15 years deep inside enterprise engineering — most of it at
       **BNP Paribas Fortis**, where I worked as a senior developer and
-      eventually as Technical Lead on Centric, a financial platform serving
-      **100,000+ users**. I also built **DinnerGift** from scratch: full-stack,
-      end-to-end, production-grade.
+      eventually as Technical Lead for the Enablement project within Centric,
+      a financial platform serving **100,000+ users**. I also built
+      **DinnerGift** from scratch: full-stack, end-to-end, production-grade.
 
 
-      I've shipped software that couldn't afford to fail. I've held
-      architecture together under pressure. And I've seen how teams
-      actually work — which is rarely how it looks on a slide deck.
+      I've worked on systems where reliability, security, and continuity
+      mattered, and made architecture decisions under real delivery
+      pressure. And I've seen how teams actually work — under pressure,
+      across competing priorities, and through constant trade-offs.
 
 
       ## The Shift
@@ -35,11 +36,10 @@ blocks:
       team?**
 
 
-      Not AI as a fancy autocomplete. Not a chatbot bolted onto a product.
-      AI as a genuine collaborator in the engineering process — one that
-      handles research, drafts code, catches regressions, writes documentation,
-      and surfaces insights while a human engineer drives the architecture and
-      quality bar.
+      My focus is AI as a genuine collaborator in the engineering process
+      — one that handles research, drafts code, catches regressions,
+      writes documentation, and surfaces insights while a human engineer
+      drives the architecture and quality bar.
 
 
       To explore this seriously, I run **Hermes Agent** — an open-source
@@ -47,16 +47,15 @@ blocks:
       around my own workflows and engineering standards. Hermes operates in a
       persistent loop: it receives tasks, reasons through them, writes and
       executes code, reads test output, and self-corrects. It runs on
-      **GLM 5**, an open-weight model served through Ollama Cloud with zero
-      logging and zero data retention by default ([how that actually
-      works](/posts/glm-5.2-ollama-cloud-privacy)). Alongside it, I use Claude
+      an open-weight model served through Ollama Cloud with zero
+      logging and zero data retention by default. Alongside it, I use Claude
       for visual design review — it can see and score a screenshot, but never
       touches code. Two AIs, two roles: one implements, one critiques.
 
 
-      The result? I compress what used to be a multi-person effort into
-      something one person can run, with tighter feedback loops, better
-      documentation, and more consistent code quality than pure manual work.
+      The result? I use AI to coordinate work that would otherwise require
+      multiple handoffs, while keeping architecture and quality decisions
+      under human ownership.
 
 
       ## What This Means for You
@@ -67,9 +66,9 @@ blocks:
       six months from now.
 
 
-      The pitch isn't speed. The pitch is speed *and* production-grade quality.
-      Those two things usually trade off. AI-augmented senior engineering is
-      one way they stop trading off.
+      The goal is faster delivery without relaxing the quality bar. AI
+      increases throughput; experience still governs architecture, security,
+      and release decisions.
 
 
       Whether that means auditing your team's AI readiness, stepping in as a
@@ -101,8 +100,8 @@ blocks:
         title: Standards Don't Slide
         text: >-
           15 years of enterprise delivery means I hold a high bar. AI speeds
-          things up — it doesn't lower standards. Every output is reviewed,
-          tested, and owned.
+          things up — it doesn't lower standards. Production work is reviewed
+          and tested, and I remain accountable for what ships.
         richText: ''
       - icon:
           name: FaCommentDots
@@ -133,7 +132,7 @@ blocks:
       - icon:
           name: FaSmile
           color: yellow
-        title: Good to Work With
+        title: Calm Collaboration
         text: >-
           Focused, reliable, and human. I bring energy to hard problems and
           stay level-headed when things get complicated.
@@ -148,9 +147,10 @@ blocks:
           color: blue
         title: Technical Lead — BNP Paribas Fortis / Centric
         text: >-
-          Led architecture and delivery for Centric, a financial platform used
-          by 100,000+ users. Owned backend and frontend across Java, Spring,
-          and Angular. Managed team quality practices and agile delivery.
+          Technical Lead for the Enablement project within Centric, a financial
+          platform used by 100,000+ users. Contributed across backend and
+          frontend delivery, architecture decisions, and team quality
+          practices.
         richText: ''
       - icon:
           name: FaGift
@@ -170,7 +170,7 @@ blocks:
           coding platform, into a production workflow — custom skills,
           persistent memory, and multi-agent orchestration. Paired with
           Claude for visual design review, so implementation and critique
-          are handled by separate AIs. Runs on open-weight GLM 5 via
+          are handled by separate AIs. Runs on open-weight models via
           Ollama Cloud.
         richText: ''
     color: tint
