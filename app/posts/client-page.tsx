@@ -109,7 +109,8 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
               );
             })()}
 
-            {/* All Posts */}
+            {/* All Posts — hidden when there's only one post (already shown as featured) */}
+            {posts.length > 1 && (
             <Section>
               <Heading as="h2" size="5" mb="6">
                 All Posts
@@ -182,6 +183,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
                 })}
               </Flex>
             </Section>
+            )}
           </>
         )}
       </Container>

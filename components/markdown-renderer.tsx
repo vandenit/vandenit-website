@@ -67,31 +67,35 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             </Link>
           ),
           
-          // Code
+          // Code blocks (pre + code)
+          pre: ({ children }: any) => (
+            <pre style={{
+              backgroundColor: 'var(--gray-3)',
+              padding: '1rem',
+              borderRadius: '8px',
+              overflowX: 'auto',
+              maxWidth: '100%',
+              marginBottom: '1rem',
+              fontSize: '13px',
+              WebkitOverflowScrolling: 'touch',
+            }}>
+              {children}
+            </pre>
+          ),
           code: ({ children, className, ...props }: any) => {
-            const isInline = !className?.includes('language-');
-            if (isInline) {
+            const isBlock = className?.includes('language-');
+            if (isBlock) {
               return (
-                <Code size="2" style={{ padding: '2px 4px', wordBreak: 'break-word' }}>
+                <Code size="2" style={{ wordBreak: 'normal' }}>
                   {children}
                 </Code>
               );
             }
+            // Inline code (including language-less fenced blocks rendered inside <pre>)
             return (
-              <pre style={{
-                backgroundColor: 'var(--gray-3)',
-                padding: '1rem',
-                borderRadius: '8px',
-                overflow: 'auto',
-                maxWidth: '100%',
-                marginBottom: '1rem',
-                fontSize: '14px',
-                WebkitOverflowScrolling: 'touch',
-              }}>
-                <Code size="2">
-                  {children}
-                </Code>
-              </pre>
+              <Code size="2" style={{ padding: '2px 4px', wordBreak: 'break-word' }}>
+                {children}
+              </Code>
             );
           },
           
