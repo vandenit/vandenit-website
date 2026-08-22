@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog — Vanden IT",
-  description: "Security & Development insights from Vanden IT. Stay updated with the latest in web security, development best practices, and field experience.",
+  description: "AI-powered development workflows, self-hosted AI infrastructure, and practical examples of using AI in software development.",
 };
 
 export default async function PostsPage({

@@ -1,80 +1,141 @@
 ---
 title: About
 blocks:
-  - avatarHeader: Meet the developer
+  - avatarHeader: Filip Van den Broeck
     avatarsName: Filip Van den Broeck
     description: >-
-      A seasoned Full Stack Developer with over 15 years of experience in
-      developing high-performance, secure web applications and systems.
+      Senior engineer and fractional tech lead based in Antwerp. 15 years
+      building enterprise systems. The last two spent figuring out what AI
+      actually changes about how software gets built.
     avatarImage:
       src: /uploads/main/unnamed.jpg
       alt: Filip Van den Broeck
     _template: avatar
   - body: >
-      # What I Do Best
+      # The Story So Far
 
 
-      I build secure, scalable applications, with experience in critical systems
-      for companies like **BNP Paribas Fortis** and my own projects like
-      **DinnerGift**. I focus on **performance**, **security**, and
-      **reliability**. Let's connect to discuss how I can help bring your
-      project to life.
+      I spent 15 years deep inside enterprise engineering — most of it at
+      **BNP Paribas Fortis**, where I worked as a senior developer and
+      eventually as Technical Lead for the Enablement project within Centric,
+      a financial platform serving **100,000+ users**. I also built
+      **DinnerGift** from scratch: full-stack, end-to-end, production-grade.
+
+
+      I've worked on systems where reliability, security, and continuity
+      mattered, and made architecture decisions under real delivery
+      pressure. And I've seen how teams actually work — under pressure,
+      across competing priorities, and through constant trade-offs.
+
+
+      ## The Shift
+
+
+      In the last two years, I've been focused on one question: **what
+      happens when AI becomes a first-class member of the development
+      team?**
+
+
+      My focus is AI as a genuine collaborator in the engineering process
+      — one that handles research, drafts code, catches regressions,
+      writes documentation, and surfaces insights while a human engineer
+      drives the architecture and quality bar.
+
+
+      To explore this seriously, I run **Hermes Agent** — an open-source
+      autonomous AI coding platform — as my core development tool, configured
+      around my own workflows and engineering standards. Hermes operates in a
+      persistent loop: it receives tasks, reasons through them, writes and
+      executes code, reads test output, and self-corrects. It runs on
+      an open-weight model served through Ollama Cloud with zero
+      logging and zero data retention by default. Alongside it, I use Claude
+      for visual design review — it can see and score a screenshot, but never
+      touches code. Two AIs, two roles: one implements, one critiques.
+
+
+      The result? I use AI to coordinate work that would otherwise require
+      multiple handoffs, while keeping architecture and quality decisions
+      under human ownership.
+
+
+      ## What This Means for You
+
+
+      I bring fifteen years of enterprise experience to every engagement
+      — not just to the code I write, but to what that code needs to be
+      six months from now.
+
+
+      The goal is faster delivery without relaxing the quality bar. AI
+      increases throughput; experience still governs architecture, security,
+      and release decisions.
+
+
+      Whether that means auditing your team's AI readiness, stepping in as a
+      fractional tech lead, or standing up a self-hosted AI stack — the
+      engagement is deliberate and focused.
+
+
+      If that sounds like what you need, [let's talk](/contact).
     color: ''
     _template: content
-  - title: Why Clients Love Working with Me
+  - title: What I Do Best
     featuresId: workingwithme
     items:
       - icon:
-          name: FaShieldAlt
+          name: FaBrain
           color: blue
-        title: Security-First Approach
+        title: AI-Augmented Engineering
         text: >-
-          I prioritize security at every stage of development, ensuring your
-          application is resilient against modern threats with expertise in
-          applying OWASP standards.
+          I design and run multi-agent AI workflows in real production
+          contexts — not as experiments, but as a core part of how I ship
+          software faster and with higher quality.
         richText: ''
+        buttonLink:
+          label: See how it works
+          link: /how-i-work
       - icon:
           name: FaCheckCircle
           color: green
-        title: Quality-Driven
+        title: Standards Don't Slide
         text: >-
-          I aim for the highest quality in every project, ensuring the solutions
-          I deliver are functional, secure, reliable, and maintainable.
+          15 years of enterprise delivery means I hold a high bar. AI speeds
+          things up — it doesn't lower standards. Production work is reviewed
+          and tested, and I remain accountable for what ships.
         richText: ''
       - icon:
           name: FaCommentDots
           color: orange
-        title: Effective Communication
+        title: Clear Communication
         text: >-
-          My clients appreciate my clear and transparent communication, helping
-          them understand their needs and keeping them informed throughout the
-          project.
-        richText: ''
-      - icon:
-          name: FaSmile
-          color: yellow
-        title: Motivated and Positive
-        text: >-
-          I bring a positive attitude and sense of humor, making collaboration
-          enjoyable while staying focused on results.
+          I translate between engineers, product owners, and stakeholders —
+          honest, structured updates, decisions explained with the context
+          behind them, no jargon walls.
         richText: ''
       - icon:
           name: FaUserShield
           color: purple
-        title: Independent and Reliable
+        title: Full Ownership
         text: >-
-          With experience in developing, deploying, and securing my own
-          projects, I work independently, manage tasks efficiently, and meet
-          deadlines.
+          I work independently and take responsibility for outcomes — not
+          just outputs. If something breaks or needs rethinking, I'm already
+          on it.
         richText: ''
       - icon:
           name: FaPuzzlePiece
           color: red
-        title: Problem Solver
+        title: Systems Thinking
         text: >-
-          I thrive on tackling complex challenges, whether securing an
-          application or solving tricky development issues, ensuring the job
-          gets done effectively.
+          I look at architecture, team dynamics, tooling, and workflow as one
+          interconnected system. Good engineering is never just about the code.
+        richText: ''
+      - icon:
+          name: FaSmile
+          color: yellow
+        title: Calm Collaboration
+        text: >-
+          Focused, reliable, and human. I bring energy to hard problems and
+          stay level-headed when things get complicated.
         richText: ''
     color: tint
     _template: features
@@ -84,92 +145,40 @@ blocks:
       - icon:
           name: FaBuilding
           color: blue
-        title: Senior Full Stack Developer at BNP Paribas Fortis
+        title: Technical Lead — BNP Paribas Fortis / Centric
         text: >-
-          Led the development of a high-performance document and statement
-          archiving system, handling billions of records, while integrating
-          security measures aligned with OWASP standards.
+          Technical Lead for the Enablement project within Centric, a financial
+          platform used by 100,000+ users. Contributed across backend and
+          frontend delivery, architecture decisions, and team quality
+          practices.
         richText: ''
       - icon:
           name: FaGift
           color: green
-        title: Owner and Developer of DinnerGift
+        title: Owner & Full-Stack Developer — DinnerGift
         text: >-
-          Created a platform connecting restaurants and customers for selling
-          and buying gift certificates, using modern web technologies and a
-          security-first mindset.
+          Built end-to-end from concept to production: React/Next.js frontend,
+          Express REST API, MongoDB, and CircleCI CI/CD pipeline. Ran
+          independently for years as a commercial platform.
         richText: ''
       - icon:
-          name: FaProjectDiagram
+          name: FaRobot
           color: orange
-        title: Technical Lead for BNP Paribas Fortis' E-commerce Project
+        title: AI Workflow Architect — Multi-Agent Engineering
         text: >-
-          Managed the Enablement project responsible for user onboarding to the
-          financial platform Centric, ensuring all features met stringent
-          security requirements.
-        richText: ''
-    color: tint
-    _template: features
-  - title: Key Skills and Tools
-    featuresId: skills
-    items:
-      - icon:
-          name: FaCode
-          color: blue
-        title: Programming Languages
-        text: 'Java, JavaScript (ES6), Typescript, PHP, C, C++, HTML, CSS, SASS'
-        richText: ''
-      - icon:
-          name: FaReact
-          color: cyan
-        title: Frameworks and Libraries
-        text: >-
-          Spring Boot, Spring Core, React, Redux, Angular, AngularJS, NextJs,
-          Express.js
-        richText: ''
-      - icon:
-          name: FaLock
-          color: red
-        title: Security Practices
-        text: 'OWASP Top 10, Secure Coding, Vulnerability Management'
-        richText: ''
-      - icon:
-          name: FaToolbox
-          color: green
-        title: Development Tools
-        text: >-
-          IntelliJ, Visual Studio Code, Jenkins, Docker, Kubernetes, GIT, Maven,
-          GitHub Actions, CircleCI
-        richText: ''
-      - icon:
-          name: FaDatabase
-          color: orange
-        title: Database Systems
-        text: 'MongoDB, Oracle, H2, MySQL'
-        richText: ''
-      - icon:
-          name: FaClipboardCheck
-          color: purple
-        title: Methodologies
-        text: >-
-          Agile (Scrum, KANBAN), Test-Driven Development (TDD), Behavior-Driven
-          Development (BDD)
-        richText: ''
-      - icon:
-          name: FaVial
-          color: yellow
-        title: Testing and Security Tools
-        text: >-
-          Cypress, Cucumber, Mocha, Chai, JUnit, Mockito, Automated Security
-          Scanning
+          Configured and extended Hermes Agent, an open-source autonomous
+          coding platform, into a production workflow — custom skills,
+          persistent memory, and multi-agent orchestration. Paired with
+          Claude for visual design review, so implementation and critique
+          are handled by separate AIs. Runs on open-weight models via
+          Ollama Cloud.
         richText: ''
     color: tint
     _template: features
   - actions:
-      - label: Full CV
+      - label: Get in touch
         type: button
-        icon: false
-        link: /fullcv
+        icon: true
+        link: /contact
     _template: actions
 ---
-
