@@ -56,9 +56,9 @@ export async function generateMetadata({
 
 function pageDescription(slug: string, title: string): string {
   const descriptions: Record<string, string> = {
-    'about': 'Senior engineer and fractional tech lead based in Antwerp. 15 years building enterprise systems. The last two spent figuring out what AI actually changes about how software gets built.',
-    'how-i-work': 'AI does the heavy lifting. Experience does the judgment. How I use multi-agent AI workflows to ship production-grade software with human ownership of architecture and quality.',
-    'contact': 'Get in touch with Filip Van den Broeck at Vanden IT. Email filip@vandenit.be, or connect on LinkedIn. I read everything myself and respond within 24 hours.',
+    'about': 'Senior full-stack engineer and fractional tech lead with 15 years of enterprise experience, combining hands-on delivery with structured AI-assisted development.',
+    'how-i-work': 'How Filip joins teams as a senior developer or fractional tech lead, contributes to real delivery, and helps improve AI-assisted development workflows from inside the engagement.',
+    'contact': 'Contact Filip Van den Broeck about senior full-stack development, fractional technical leadership, or AI-augmented delivery within your product team.',
   };
   return descriptions[slug] || `Vanden IT — ${title}. Senior engineering with AI-powered workflows.`;
 }

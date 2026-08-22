@@ -29,7 +29,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
               Building & Shipping with AI
             </Heading>
             <Text size={{ initial: '4', sm: '5' }} color="gray" align="center" style={{ maxWidth: '600px', lineHeight: '1.6' }}>
-              Practical workflows for development teams using AI as a first-class collaborator.
+              Notes from real development work: the workflows, failures, and judgment calls involved in building software with AI.
             </Text>
           </Flex>
         </Container>

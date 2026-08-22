@@ -5,13 +5,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Practical workflows for development teams using AI as a first-class collaborator. Real examples, real failures, real results.",
+  description: "Practical notes from real development work: AI-assisted workflows, technical failures, review patterns, and the human judgment behind production delivery.",
   alternates: {
     canonical: '/posts',
   },
   openGraph: {
-    title: "Blog — Vanden IT",
-    description: "Practical workflows for development teams using AI as a first-class collaborator. Real examples, real failures, real results.",
+    title: "Building & Shipping with AI — Vanden IT",
+    description: "Practical notes from real development work: AI-assisted workflows, technical failures, review patterns, and the human judgment behind production delivery.",
     url: '/posts',
   },
 };

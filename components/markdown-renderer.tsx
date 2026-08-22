@@ -27,11 +27,15 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
               {children}
             </Heading>
           ),
-          h2: ({ children }: any) => (
-            <Heading as="h2" size="7" mb="3" mt="5">
-              {children}
-            </Heading>
-          ),
+          h2: ({ children }: any) => {
+            const text = typeof children === 'string' ? children : Array.isArray(children) ? children.join('') : '';
+            const slug = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+            return (
+              <Heading as="h2" id={slug || undefined} size="7" mb="3" mt="5">
+                {children}
+              </Heading>
+            );
+          },
           h3: ({ children }: any) => (
             <Heading as="h3" size="6" mb="3" mt="4">
               {children}

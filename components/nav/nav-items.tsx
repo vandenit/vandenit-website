@@ -61,7 +61,7 @@ export default function NavItems({ navs }: { navs: any[] }) {
         {!isContactPage && (
           <Button asChild size="2" ml="3">
             <Link href="/contact" style={{ textDecoration: 'none' }}>
-              Get in touch
+              Discuss a project
             </Link>
           </Button>
         )}
@@ -88,7 +88,7 @@ export default function NavItems({ navs }: { navs: any[] }) {
               <>
                 <DropdownMenu.Separator />
                 <DropdownMenu.Item asChild>
-                  <Link href="/contact">Get in touch</Link>
+                  <Link href="/contact">Discuss a project</Link>
                 </DropdownMenu.Item>
               </>
             )}

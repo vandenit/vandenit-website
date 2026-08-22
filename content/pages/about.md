@@ -4,9 +4,10 @@ blocks:
   - avatarHeader: Senior Engineer & Fractional Tech Lead
     avatarsName: Filip Van den Broeck
     description: >-
-      Senior engineer and fractional tech lead based in Antwerp. 15 years
-      building enterprise systems. The last two spent figuring out what AI
-      actually changes about how software gets built.
+      Senior full-stack engineer and fractional tech lead based in Antwerp.
+      15 years of experience building and maintaining enterprise systems,
+      now combined with a structured, hands-on approach to AI-assisted
+      development.
     avatarImage:
       src: /uploads/main/unnamed.jpg
       alt: Filip Van den Broeck
@@ -15,106 +16,118 @@ blocks:
       ## The Story So Far
 
 
-      I spent 15 years deep inside enterprise engineering — most of it at
-      **BNP Paribas Fortis**, where I worked as a senior developer and
-      eventually as Technical Lead for the Enablement project within Centric,
-      a financial platform serving **100,000+ users**. I also built
-      **DinnerGift** from scratch: full-stack, end-to-end, production-grade.
+      I spent most of my career inside enterprise engineering at BNP
+      Paribas Fortis. I worked as a senior developer and later as
+      Technical Lead for the Enablement project within Centric, a
+      financial platform serving more than 100,000 users.
 
 
-      I've worked on systems where reliability, security, and continuity
-      mattered, and made architecture decisions under real delivery
-      pressure. And I've seen how teams actually work — under pressure,
-      across competing priorities, and through constant trade-offs.
+      Alongside that work, I built DinnerGift from scratch and ran it as
+      a commercial platform — owning the backend, frontend, architecture,
+      deployment, and long-term maintenance.
+
+
+      Those environments taught me what production responsibility actually
+      means: making trade-offs under delivery pressure, keeping systems
+      understandable over time, and knowing when a technically plausible
+      solution is not yet safe to ship.
 
 
       ## The Shift
 
 
-      In the last two years, I've been focused on one question: **what
-      happens when AI becomes a first-class member of the development
-      team?**
+      Over the last two years, I have been exploring what changes when AI
+      becomes part of the everyday engineering workflow — not as an
+      autocomplete tool, but as a collaborator that can research,
+      implement, test, review, and document.
 
 
-      My focus is AI as a genuine collaborator in the engineering process
-      — one that handles research, drafts code, catches regressions,
-      writes documentation, and surfaces insights while a human engineer
-      drives the architecture and quality bar.
+      I built a workflow in which AI agents handle much of that volume
+      while I remain responsible for architecture, security, quality, and
+      release decisions. The most important lessons have not come from
+      the tasks the agents complete successfully, but from learning where
+      they sound confident while being wrong.
 
 
-      To explore this seriously, I run **Hermes Agent** — an open-source
-      autonomous AI coding platform — as my core development tool, configured
-      around my own workflows and engineering standards. Hermes operates in a
-      persistent loop: it receives tasks, reasons through them, writes and
-      executes code, reads test output, and self-corrects. It runs on
-      an open-weight model served through [Ollama
-      Cloud](https://ollama.com/cloud) with zero logging and zero data
-      retention by default. Alongside it, I use Claude
-      for visual design review — it can see and score a screenshot, but never
-      touches code. Two AIs, two roles: one implements, one critiques.
+      That workflow now shapes how I work. When I join a team as a
+      developer or tech lead, I can also help introduce the useful parts
+      of it — adapted to the team's codebase, constraints, and existing
+      practices.
 
 
-      The result? I use AI to coordinate work that would otherwise require
-      multiple handoffs, while keeping architecture and quality decisions
-      under human ownership.
+      ### The tools behind my workflow
+
+
+      I run Hermes Agent, an open-source autonomous AI coding platform,
+      as my core development tool. It operates in a persistent loop:
+      receiving tasks, reasoning through them, writing and executing
+      code, reading test output, and self-correcting. The open-weight
+      model is served through [Ollama
+      Cloud](https://ollama.com/cloud). Ollama states that prompt and
+      response content is not stored or logged and is not used for
+      training; vendor documentation should be reviewed against the
+      requirements of each engagement.
+
+
+      Alongside Hermes, I use Claude for visual design review — it can
+      see and score a screenshot, but never touches code. Two AIs, two
+      roles: one implements, one critiques.
 
 
       ## What This Means for You
 
 
-      I bring fifteen years of enterprise experience to every engagement
-      — not just to the code I write, but to what that code needs to be
-      six months from now.
+      I do not arrive with a generic AI transformation playbook. I first
+      contribute to the actual work: understanding the codebase, delivery
+      pressure, technical constraints, and the way the team collaborates.
 
 
-      The goal is faster delivery without relaxing the quality bar. AI
-      increases throughput; experience still governs architecture, security,
-      and release decisions.
+      From that position, I can help improve both the software and the
+      workflow around it. That may include architectural guidance,
+      hands-on implementation, stronger review practices, or introducing
+      AI support where it removes repetitive work without weakening
+      accountability.
 
 
-      Whether that means auditing your team's AI readiness, stepping in as a
-      fractional tech lead, or standing up a self-hosted AI stack — the
-      engagement is deliberate and focused.
+      The goal is not to maximize AI usage. The goal is to help the team
+      deliver good software more consistently.
 
 
-      If that sounds like what you need, [let's talk](/contact).
+      If that sounds like what you need, [see how I work](/how-i-work).
     color: ''
     _template: content
-  - title: What I Do Best
+  - title: What I Bring to the Team
     featuresId: workingwithme
     items:
       - icon:
-          name: FaBrain
-          color: blue
-        title: AI-Augmented Engineering
+          name: FaCheckCircle
+          color: green
+        title: Production Engineering
         text: >-
-          I design and run multi-agent AI workflows in real production
-          contexts, not as experiments. AI handles volume; I hold the
-          quality bar. Production work is reviewed, tested, and shipped
-          with full ownership of outcomes.
+          Fifteen years of building and maintaining real systems.
+          Architecture and implementation decisions are grounded in
+          reliability, security, delivery pressure, and long-term
+          maintainability.
         richText: ''
-        buttonLink:
-          label: See how it works
-          link: /how-i-work
       - icon:
           name: FaUserShield
           color: purple
         title: Technical Leadership
         text: >-
-          15 years of enterprise delivery means architecture decisions,
-          security posture, and trade-offs are grounded in real
-          experience. I translate between engineers, product owners, and
-          stakeholders with honest, structured updates.
+          Clear technical direction without disappearing into
+          abstractions. I contribute to the work, support engineers,
+          make trade-offs explicit, and communicate honestly with
+          product owners and stakeholders.
         richText: ''
       - icon:
-          name: FaPuzzlePiece
-          color: red
-        title: Systems Thinking
+          name: FaBrain
+          color: blue
+        title: AI-Augmented Delivery
         text: >-
-          I look at architecture, team dynamics, tooling, and workflow as
-          one interconnected system. Focused, reliable, and level-headed
-          when things get complicated. Good engineering is never just
-          about the code.
+          A structured AI workflow for implementation, testing, review,
+          and documentation. I bring the practices I use in my own
+          production work and adapt them to the team's actual
+          environment.
         richText: ''
     color: tint
     _template: features
@@ -155,9 +168,9 @@ blocks:
     color: tint
     _template: features
   - actions:
-      - label: Get in touch
+      - label: See how I work
         type: button
         icon: true
-        link: /contact
+        link: /how-i-work
     _template: actions
 ---

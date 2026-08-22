@@ -6,14 +6,14 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Vanden IT — Senior Engineering with AI-Powered Workflows",
-  description: "Senior engineer and fractional tech lead. AI agents handle the repetitive work, 15 years of enterprise experience covers the rest: architecture, security, and the decisions that keep code maintainable.",
+  title: "Vanden IT — Senior Developer & Fractional Tech Lead",
+  description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Based in Antwerp and available for embedded product team engagements.",
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Vanden IT — Senior Engineering with AI-Powered Workflows",
-    description: "Senior engineer and fractional tech lead. AI agents handle the repetitive work, 15 years of enterprise experience covers the rest.",
+    title: "Vanden IT — Senior Developer & Fractional Tech Lead",
+    description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Available for embedded product team engagements.",
     url: '/',
   },
 };

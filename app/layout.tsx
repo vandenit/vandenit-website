@@ -11,16 +11,16 @@ const SITE_URL = 'https://vandenit.be'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Vanden IT — Senior Engineering with AI-Powered Workflows",
+    default: "Vanden IT — Senior Developer & Fractional Tech Lead",
     template: "%s — Vanden IT",
   },
-  description: "Senior engineer and fractional tech lead. 15 years of enterprise delivery, now using AI-augmented workflows to ship production-grade software faster.",
+  description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Based in Antwerp and available for embedded product team engagements.",
   openGraph: {
     type: 'website',
     url: SITE_URL,
     siteName: 'Vanden IT',
-    title: "Vanden IT — Senior Engineering with AI-Powered Workflows",
-    description: "Senior engineer and fractional tech lead. 15 years of enterprise delivery, now using AI-augmented workflows to ship production-grade software faster.",
+    title: "Vanden IT — Senior Developer & Fractional Tech Lead",
+    description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Available for embedded product team engagements.",
     images: [
       {
         url: '/uploads/main/unnamed.jpg',
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Vanden IT — Senior Engineering with AI-Powered Workflows",
-    description: "Senior engineer and fractional tech lead. 15 years of enterprise delivery, now using AI-augmented workflows to ship production-grade software faster.",
+    title: "Vanden IT — Senior Developer & Fractional Tech Lead",
+    description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow.",
     images: ['/uploads/main/unnamed.jpg'],
   },
   alternates: {

@@ -3,8 +3,9 @@ title: Contact
 blocks:
   - tagline: Let's talk
     headline: >-
-      The best way to reach me is email. I read everything myself and respond
-      within 24 hours.
+      Looking for a senior developer or fractional tech lead? Tell me
+      what you are building, where delivery is getting stuck, and what
+      kind of technical support the team needs.
     text: ''
     text2: ''
     actions:
@@ -15,28 +16,34 @@ blocks:
     color: default
     _template: hero
   - body: >
-      ## What to expect
+      ## What I can help with
 
 
-      I use AI tooling to accelerate delivery while keeping architecture,
-      security, and review under human ownership.
+      I join teams in hands-on engineering or technical leadership roles.
+      AI workflow improvement can be part of that engagement where it
+      supports real delivery needs.
 
 
-      **Currently available for new projects.** Tell me what you're building.
+      **Currently available for new projects.**
 
 
       Prefer LinkedIn? [Connect with me
       here](https://www.linkedin.com/in/filip-van-den-broeck/).
 
 
-      ## Not sure where to start?
+      ## Useful context for a first conversation
 
 
-      - What are you building?
+      - **What are you building?**
 
-      - Where is delivery getting stuck right now?
+      - **Where is delivery getting stuck?**
 
-      - What role do AI tools already play in your team?
+      - **What does the current team look like?**
+
+      - **Are you looking for hands-on development, technical leadership,
+        or both?**
+
+      - **How are AI tools currently being used, if at all?**
     color: ''
     _template: content
 ---
