@@ -22,6 +22,7 @@ const navLinkStyle = (isActive: boolean): React.CSSProperties => ({
 
 export default function NavItems({ navs }: { navs: any[] }) {
   const currentPath = usePathname();
+  const isContactPage = currentPath === '/contact';
 
   // Fallback nav items if CMS data is empty
   const items = navs.length > 0 ? navs : [
@@ -45,22 +46,25 @@ export default function NavItems({ navs }: { navs: any[] }) {
       <Flex align="center" gap="2" display={{ initial: 'none', sm: 'flex' }}>
         {items.map((item) => {
           const href = item.href.startsWith('/') ? item.href : `/${item.href}`;
-          const isActive = currentPath === href || (href !== '/' && currentPath?.startsWith(href));
+          const isActive = currentPath === href || (href !== '/' && currentPath?.startsWith(`${href}/`));
           return (
             <Link
               key={item.href}
               href={href}
               style={navLinkStyle(isActive)}
+              aria-current={isActive ? 'page' : undefined}
             >
               {item.label}
             </Link>
           );
         })}
-        <Button asChild size="2" ml="3">
-          <Link href="/contact" style={{ textDecoration: 'none' }}>
-            Get in touch
-          </Link>
-        </Button>
+        {!isContactPage && (
+          <Button asChild size="2" ml="3">
+            <Link href="/contact" style={{ textDecoration: 'none' }}>
+              Get in touch
+            </Link>
+          </Button>
+        )}
       </Flex>
 
       {/* Mobile nav — hidden on desktop */}
@@ -80,10 +84,14 @@ export default function NavItems({ navs }: { navs: any[] }) {
                 </DropdownMenu.Item>
               );
             })}
-            <DropdownMenu.Separator />
-            <DropdownMenu.Item asChild>
-              <Link href="/contact">Get in touch</Link>
-            </DropdownMenu.Item>
+            {!isContactPage && (
+              <>
+                <DropdownMenu.Separator />
+                <DropdownMenu.Item asChild>
+                  <Link href="/contact">Get in touch</Link>
+                </DropdownMenu.Item>
+              </>
+            )}
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </Flex>

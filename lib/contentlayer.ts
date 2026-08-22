@@ -11,9 +11,9 @@ export function getPostBySlug(slug: string): Post | undefined {
   return allPosts.find((post) => post.slug === slug)
 }
 
-// Get posts by tag
-export function getPostsByTag(tag: string): Post[] {
-  return allPosts.filter((post) => post.tags?.includes(tag))
+// Get posts by tag (with author resolution and sorting)
+export function getPostsByTag(tag: string): (Post & { authorData?: Author })[] {
+  return getAllPostsWithAuthors().filter((post) => post.tags?.includes(tag));
 }
 
 // Get all pages
@@ -48,10 +48,14 @@ export function getAllThemes(): Theme[] {
   return allThemes
 }
 
-// Get all tags from themes
+// Get all tags from published posts (not from static tags.json)
 export function getAllTags(): string[] {
-  const themes = getAllThemes()
-  return themes.flatMap(theme => theme.data || [])
+  const posts = getAllPosts()
+  const tagSet = new Set<string>()
+  posts.forEach(post => {
+    post.tags?.forEach((tag: string) => tagSet.add(tag))
+  })
+  return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
 }
 
 // Helper function to resolve author for posts

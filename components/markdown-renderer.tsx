@@ -72,7 +72,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             const isInline = !className?.includes('language-');
             if (isInline) {
               return (
-                <Code size="2" style={{ padding: '2px 4px' }}>
+                <Code size="2" style={{ padding: '2px 4px', wordBreak: 'break-word' }}>
                   {children}
                 </Code>
               );
@@ -83,7 +83,10 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 padding: '1rem',
                 borderRadius: '8px',
                 overflow: 'auto',
-                marginBottom: '1rem'
+                maxWidth: '100%',
+                marginBottom: '1rem',
+                fontSize: '14px',
+                WebkitOverflowScrolling: 'touch',
               }}>
                 <Code size="2">
                   {children}
@@ -159,7 +162,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           
           // Tables
           table: ({ children }: any) => (
-            <div style={{ overflowX: 'auto', marginBottom: '1rem' }}>
+            <div style={{ overflowX: 'auto', maxWidth: '100%', marginBottom: '1rem', WebkitOverflowScrolling: 'touch' }}>
               <table style={{
                 width: '100%',
                 borderCollapse: 'collapse',

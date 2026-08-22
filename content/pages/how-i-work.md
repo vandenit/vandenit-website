@@ -8,12 +8,13 @@ blocks:
       same tools. The agents handle volume. I handle everything that
       requires knowing when to stop and push back.
     actions:
-      - label: See it in practice
+      - label: Read the case study
         type: button
         icon: true
-        link: /posts
+        link: /posts/blind-coder-sighted-reviewer
       - label: Get in touch
-        type: link
+        type: button
+        icon: false
         link: /contact
     _template: hero
 
@@ -24,7 +25,8 @@ blocks:
       Every project runs through a two-layer process. The first layer is
       Hermes — an open-source AI agent with persistent memory, reusable
       skills, and access to the full codebase across sessions. It runs on
-      an open-weight model via Ollama Cloud, with zero logging and zero
+      an open-weight model via [Ollama
+      Cloud](https://ollama.com/cloud), with zero logging and zero
       data retention by default. It carries context across sessions —
       remembering what we decided, what went wrong, and what we learned
       from it.
@@ -113,10 +115,9 @@ blocks:
           color: blue
         title: AI Workflow Audit
         text: >
-          I assess your team's development workflow and integrate AI tooling
-          where it creates real leverage. Not a generic AI adoption talk — a
-          hands-on review of how your team actually works, followed by a
-          concrete implementation plan.
+          A hands-on review of your team's development workflow, followed
+          by a concrete implementation plan for integrating AI tooling where
+          it creates real leverage.
       - icon:
           name: FaUserTie
           color: blue
@@ -146,6 +147,6 @@ blocks:
       the failure modes are all documented as we go.
 
 
-      [Read the posts →](/posts)
+      [Read the case study →](/posts/blind-coder-sighted-reviewer)
     _template: content
 ---

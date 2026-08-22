@@ -8,11 +8,14 @@ blocks:
       maintainable. The result is software built to hold up in production.
     text: ''
     text2: ''
+    proofBar: >-
+      15 years experience · 100,000+ users · Backend, frontend & technical
+      leadership
     actions:
-      - label: See the workflow
+      - label: Read the case study
         type: button
         icon: true
-        link: /posts
+        link: /posts/blind-coder-sighted-reviewer
       - label: Get in touch
         type: button
         icon: false
@@ -38,7 +41,7 @@ blocks:
         link: ''
         buttonLink:
           label: Learn more
-          link: /about
+          link: /how-i-work
       - icon:
           name: CodeIcon
           color: blue
@@ -51,7 +54,7 @@ blocks:
         link: ''
         buttonLink:
           label: Learn more
-          link: /about
+          link: /how-i-work
       - icon:
           name: FaServer
           color: blue
@@ -64,7 +67,7 @@ blocks:
         link: ''
         buttonLink:
           label: Learn more
-          link: /about
+          link: /how-i-work
     color: tint
     _template: features
   - title: Portfolio

@@ -1,7 +1,7 @@
 ---
 title: About
 blocks:
-  - avatarHeader: Filip Van den Broeck
+  - avatarHeader: Senior Engineer & Fractional Tech Lead
     avatarsName: Filip Van den Broeck
     description: >-
       Senior engineer and fractional tech lead based in Antwerp. 15 years
@@ -12,7 +12,7 @@ blocks:
       alt: Filip Van den Broeck
     _template: avatar
   - body: >
-      # The Story So Far
+      ## The Story So Far
 
 
       I spent 15 years deep inside enterprise engineering — most of it at
@@ -47,8 +47,9 @@ blocks:
       around my own workflows and engineering standards. Hermes operates in a
       persistent loop: it receives tasks, reasons through them, writes and
       executes code, reads test output, and self-corrects. It runs on
-      an open-weight model served through Ollama Cloud with zero
-      logging and zero data retention by default. Alongside it, I use Claude
+      an open-weight model served through [Ollama
+      Cloud](https://ollama.com/cloud) with zero logging and zero data
+      retention by default. Alongside it, I use Claude
       for visual design review — it can see and score a screenshot, but never
       touches code. Two AIs, two roles: one implements, one critiques.
 
@@ -118,8 +119,8 @@ blocks:
         title: Full Ownership
         text: >-
           I work independently and take responsibility for outcomes — not
-          just outputs. If something breaks or needs rethinking, I'm already
-          on it.
+          just outputs. If something breaks, I own the fix: monitoring,
+          incident response, and follow-up are part of the engagement.
         richText: ''
       - icon:
           name: FaPuzzlePiece
@@ -164,7 +165,7 @@ blocks:
       - icon:
           name: FaRobot
           color: orange
-        title: AI Workflow Architect — Multi-Agent Engineering
+        title: AI-Augmented Development Workflow
         text: >-
           Configured and extended Hermes Agent, an open-source autonomous
           coding platform, into a production workflow — custom skills,

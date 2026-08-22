@@ -27,6 +27,16 @@ blocks:
 
       Prefer LinkedIn? [Connect with me
       here](https://www.linkedin.com/in/filip-van-den-broeck/).
+
+
+      ## Not sure where to start?
+
+
+      - What are you building?
+
+      - Where is delivery getting stuck right now?
+
+      - What role do AI tools already play in your team?
     color: ''
     _template: content
 ---

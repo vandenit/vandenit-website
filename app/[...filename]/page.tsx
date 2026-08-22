@@ -36,10 +36,31 @@ export async function generateMetadata({
 
   if (!page) return {};
 
+  const url = `/${slug}`;
+  const title = page.title;
+  const description = pageDescription(slug, title);
+
   return {
-    title: `${page.title} — Vanden IT`,
-    description: `Vanden IT — ${page.title}. Software consultancy specializing in secure, scalable solutions.`,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${title} — Vanden IT`,
+      description,
+      url,
+    },
   };
+}
+
+function pageDescription(slug: string, title: string): string {
+  const descriptions: Record<string, string> = {
+    'about': 'Senior engineer and fractional tech lead based in Antwerp. 15 years building enterprise systems. The last two spent figuring out what AI actually changes about how software gets built.',
+    'how-i-work': 'AI does the heavy lifting. Experience does the judgment. How I use multi-agent AI workflows to ship production-grade software with human ownership of architecture and quality.',
+    'contact': 'Get in touch with Filip Van den Broeck at Vanden IT. Email filip@vandenit.be, or connect on LinkedIn. I read everything myself and respond within 24 hours.',
+  };
+  return descriptions[slug] || `Vanden IT — ${title}. Senior engineering with AI-powered workflows.`;
 }
 
 export async function generateStaticParams() {

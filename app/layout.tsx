@@ -6,9 +6,39 @@ import { Metadata, Viewport } from "next";
 import { getGlobalConfig } from "../lib/contentlayer";
 import { Theme } from "@radix-ui/themes";
 
+const SITE_URL = 'https://vandenit.be'
+
 export const metadata: Metadata = {
-  title: "Vanden IT — Software Consultancy",
-  description: "Vanden IT specializes in developing high-performance software solutions that drive business success. Security audits, custom development, and tech lead services.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Vanden IT — Senior Engineering with AI-Powered Workflows",
+    template: "%s — Vanden IT",
+  },
+  description: "Senior engineer and fractional tech lead. 15 years of enterprise delivery, now using AI-augmented workflows to ship production-grade software faster.",
+  openGraph: {
+    type: 'website',
+    url: SITE_URL,
+    siteName: 'Vanden IT',
+    title: "Vanden IT — Senior Engineering with AI-Powered Workflows",
+    description: "Senior engineer and fractional tech lead. 15 years of enterprise delivery, now using AI-augmented workflows to ship production-grade software faster.",
+    images: [
+      {
+        url: '/uploads/main/unnamed.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Vanden IT',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Vanden IT — Senior Engineering with AI-Powered Workflows",
+    description: "Senior engineer and fractional tech lead. 15 years of enterprise delivery, now using AI-augmented workflows to ship production-grade software faster.",
+    images: ['/uploads/main/unnamed.jpg'],
+  },
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export const viewport: Viewport = {
