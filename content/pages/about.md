@@ -77,8 +77,7 @@ blocks:
       ## What This Means for You
 
 
-      I do not arrive with a generic AI transformation playbook. I first
-      contribute to the actual work: understanding the codebase, delivery
+      I begin with the actual work: understanding the codebase, delivery
       pressure, technical constraints, and the way the team collaborates.
 
 

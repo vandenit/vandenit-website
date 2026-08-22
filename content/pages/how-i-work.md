@@ -101,15 +101,13 @@ blocks:
       strengthening test feedback, or removing repetitive handoffs.
 
 
-      This is not a generic rollout and it is not about maximizing AI
-      usage. We start from real delivery friction and only introduce
+      We start from real delivery friction and introduce only the
       practices that make the work better.
 
 
-      My AI workflow is proven in my own production work. Applying and
-      refining it inside other engineering teams is part of my embedded
-      developer or tech lead engagement, not currently sold as a standalone
-      transformation audit.
+      My AI workflow is grounded in my own production work. Within
+      developer or tech lead engagements, I adapt the useful parts to
+      the team's actual environment and delivery needs.
     _template: content
 
   - body: >

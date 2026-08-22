@@ -23,7 +23,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
         <Container size="3" px="6">
           <Flex direction="column" align="center" gap="4">
             <Badge size="2" variant="soft" color="blue" radius="full">
-              AI-Powered Development
+              Senior Engineering · AI-Augmented Delivery
             </Badge>
             <Heading as="h1" size={{ initial: '7', sm: '8' }} weight="bold" align="center">
               Building & Shipping with AI

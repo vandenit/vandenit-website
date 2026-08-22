@@ -5,8 +5,8 @@ blocks:
     headline: >-
       I join product teams as a senior full-stack developer or fractional
       tech lead. Alongside shipping real software, I help improve how AI
-      is used in development — without handing architecture, security,
-      or quality decisions over to the tools.
+      is used in development — while I remain accountable for
+      architecture, security, and quality.
     text: ''
     text2: ''
     proofBar: >-

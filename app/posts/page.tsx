@@ -4,7 +4,7 @@ import PostsClientPage from "./client-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Building & Shipping with AI",
   description: "Practical notes from real development work: AI-assisted workflows, technical failures, review patterns, and the human judgment behind production delivery.",
   alternates: {
     canonical: '/posts',
