@@ -89,54 +89,32 @@ blocks:
         title: AI-Augmented Engineering
         text: >-
           I design and run multi-agent AI workflows in real production
-          contexts — not as experiments, but as a core part of how I ship
-          software faster and with higher quality.
+          contexts, not as experiments. AI handles volume; I hold the
+          quality bar. Production work is reviewed, tested, and shipped
+          with full ownership of outcomes.
         richText: ''
         buttonLink:
           label: See how it works
           link: /how-i-work
       - icon:
-          name: FaCheckCircle
-          color: green
-        title: Standards Don't Slide
-        text: >-
-          15 years of enterprise delivery means I hold a high bar. AI speeds
-          things up — it doesn't lower standards. Production work is reviewed
-          and tested, and I remain accountable for what ships.
-        richText: ''
-      - icon:
-          name: FaCommentDots
-          color: orange
-        title: Clear Communication
-        text: >-
-          I translate between engineers, product owners, and stakeholders —
-          honest, structured updates, decisions explained with the context
-          behind them, no jargon walls.
-        richText: ''
-      - icon:
           name: FaUserShield
           color: purple
-        title: Full Ownership
+        title: Technical Leadership
         text: >-
-          I work independently and take responsibility for outcomes — not
-          just outputs. If something breaks, I own the fix: monitoring,
-          incident response, and follow-up are part of the engagement.
+          15 years of enterprise delivery means architecture decisions,
+          security posture, and trade-offs are grounded in real
+          experience. I translate between engineers, product owners, and
+          stakeholders with honest, structured updates.
         richText: ''
       - icon:
           name: FaPuzzlePiece
           color: red
         title: Systems Thinking
         text: >-
-          I look at architecture, team dynamics, tooling, and workflow as one
-          interconnected system. Good engineering is never just about the code.
-        richText: ''
-      - icon:
-          name: FaSmile
-          color: yellow
-        title: Calm Collaboration
-        text: >-
-          Focused, reliable, and human. I bring energy to hard problems and
-          stay level-headed when things get complicated.
+          I look at architecture, team dynamics, tooling, and workflow as
+          one interconnected system. Focused, reliable, and level-headed
+          when things get complicated. Good engineering is never just
+          about the code.
         richText: ''
     color: tint
     _template: features

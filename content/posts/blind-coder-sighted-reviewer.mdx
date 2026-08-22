@@ -37,6 +37,25 @@ I started by telling Hermes to read the design plan and implement it. The plan c
 
 Hermes went to work. It modified 29 files, started the Next.js dev server, then used Playwright to capture screenshots at 1280px (desktop) and 390px (mobile). Then it did something that looks simple but took me a while to get right: it piped those screenshots to Claude Sonnet via `agy`.
 
+The loop looks like this:
+
+```
+    Hermes (GLM 5)              Claude Sonnet
+    ────────────────             ──────────────
+         │                            │
+         ├── implements ──────────►   │
+         │                            │
+         ├── screenshots ─────────►   │
+         │                            ├── reviews
+         │                            ├── scores /10
+         │   ◄──────────── feedback──┤
+         │                            │
+         ├── applies fixes            │
+         │                            │
+         └── screenshots ─────────►   │
+              (repeat 5×)             │
+```
+
 The prompt Hermes sends looks roughly like this:
 
 ```
@@ -66,6 +85,18 @@ Scores are Claude's review scores, not objective quality measurements. They're u
 | Content 1 | —            | —            | 6.8           |
 | Content 2 | —            | —            | 7.6           |
 | Content 3 | —            | —            | 9.0           |
+
+Visualized as a progression:
+
+```
+Desktop:  5.0 ▓▓▓▓▓          6.4 ▓▓▓▓▓▓▓       7.2 ▓▓▓▓▓▓▓▓     8.8 ▓▓▓▓▓▓▓▓▓▓
+          ──────────────────────────────────────────────────────────────►
+          Start           Iter 1           Iter 2-3          Iter 4-5
+
+Content:  6.8 ▓▓▓▓▓▓▓      7.6 ▓▓▓▓▓▓▓▓     9.0 ▓▓▓▓▓▓▓▓▓▓▓
+          ──────────────────────────────────────────────────────────────►
+          Iter 1            Iter 2          Iter 3
+```
 
 Notice the plateau at 7.2 for two straight iterations. That's important. I'll come back to it.
 
