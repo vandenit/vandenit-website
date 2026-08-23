@@ -6,8 +6,16 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Vanden IT — Software Consultancy",
-  description: "Vanden IT specializes in developing high-performance software solutions that drive business success. Security audits, custom development, and tech lead services.",
+  title: "Vanden IT — Senior Developer & Fractional Tech Lead",
+  description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Based in Antwerp and available for embedded product team engagements.",
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: "Vanden IT — Senior Developer & Fractional Tech Lead",
+    description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Available for embedded product team engagements.",
+    url: '/',
+  },
 };
 
 export default async function HomePage() {

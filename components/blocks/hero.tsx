@@ -8,6 +8,7 @@ interface HeroBlockData {
   headline?: string;
   text?: string;
   text2?: string;
+  proofBar?: string;
   actions?: Array<{
     label: string;
     type: string;
@@ -29,7 +30,7 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
         <Flex direction="column" align="center" gap="5" style={{ textAlign: 'center' }}>
           {/* Badge — short label, NOT duplicating H1 */}
           <Badge size="2" variant="soft" color="blue" radius="full">
-            AI-Powered Development
+            Senior Engineering · AI-Augmented Delivery
           </Badge>
 
           {/* H1 = short tagline */}
@@ -46,6 +47,30 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
           {data.actions && (
             <Flex mt="3" align="center" justify="center" gap="3" direction={{ initial: 'column', sm: 'row' }} wrap="wrap">
               <Actions actions={data.actions} />
+            </Flex>
+          )}
+
+          {/* Proof bar — compact credentials strip */}
+          {data.proofBar && (
+            <Flex
+              mt="5"
+              align="center"
+              justify="center"
+              gap="3"
+              wrap="wrap"
+              style={{
+                color: 'var(--gray-10)',
+                fontSize: '14px',
+                fontWeight: 500,
+                letterSpacing: '-0.01em',
+              }}
+            >
+              {data.proofBar.split('·').map((item, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <span style={{ color: 'var(--gray-7)' }}>·</span>}
+                  <span>{item.trim()}</span>
+                </React.Fragment>
+              ))}
             </Flex>
           )}
         </Flex>

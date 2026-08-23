@@ -60,7 +60,7 @@ export default function Footer() {
           <Separator size="4" mt="0" />
           <Flex justify="center" pt="2" pb="2">
             <Text size="2" color="gray" style={{ opacity: 0.6 }}>
-              © Vanden IT — AI-Powered Development
+              © Vanden IT — Senior Engineering · AI-Augmented Delivery
             </Text>
           </Flex>
         </Container>

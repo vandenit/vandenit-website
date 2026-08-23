@@ -34,7 +34,7 @@ export default function PostClientPage({ post }: ClientPostProps) {
             </Flex>
           )}
 
-          <Heading as="h1" size={{ initial: '6', sm: '9' }} weight="bold" align="center" style={{ maxWidth: '800px', hyphens: 'none', overflowWrap: 'break-word' }}>
+          <Heading as="h1" size={{ initial: '5', sm: '8' }} weight="bold" align="center" style={{ maxWidth: '800px', hyphens: 'none', overflowWrap: 'break-word' }}>
             {post.title}
           </Heading>
 

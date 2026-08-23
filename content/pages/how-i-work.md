@@ -1,151 +1,172 @@
 ---
 title: How I Work
 blocks:
-  - tagline: AI does the heavy lifting. Experience does the judgment.
-    headline: >
-      I work with AI agents to build, review, and ship software — faster
-      than I could alone, and with more consistency than ad-hoc use of the
-      same tools. The agents handle volume. I handle everything that
-      requires knowing when to stop and push back.
+  - tagline: I join the team. Ship real work. Improve how the work gets done.
+    headline: >-
+      I work as a senior developer or fractional tech lead inside the
+      existing delivery process. That gives me the context to contribute
+      directly, make better technical decisions, and help the team
+      introduce AI workflows where they create practical leverage.
     actions:
-      - label: See it in practice
+      - label: Discuss a project
         type: button
         icon: true
-        link: /posts
-      - label: Get in touch
-        type: link
         link: /contact
+      - label: Read the case study
+        type: button
+        icon: false
+        link: /posts/blind-coder-sighted-reviewer
     _template: hero
 
   - body: >
-      ## The Method
+      ## How an engagement develops
 
 
-      Every project runs through a two-layer process. The first layer is
-      Hermes — an open-source AI agent with persistent memory, reusable
-      skills, and access to the full codebase across sessions. It runs on
-      an open-weight model via Ollama Cloud, with zero logging and zero
-      data retention by default. It carries context across sessions —
-      remembering what we decided, what went wrong, and what we learned
-      from it.
+      ### 1. Join and understand
 
 
-      When something breaks, the lesson gets saved — as a memory entry or a
-      skill update — so the same mistake doesn't happen twice. The agent gets
-      better over time, not because the model changes, but because the context
-      does.
+      I start with the real environment: the codebase, architecture,
+      delivery pressure, team responsibilities, and current tooling. The
+      goal is to understand before changing anything.
 
 
-      **Hermes handles:** implementation, test generation, code review passes,
-      refactoring, documentation, and first-pass architecture proposals. It does
-      this fast, and it does it consistently.
+      ### 2. Contribute to delivery
 
 
-      **I handle:** the gut check. Does this feel right? Is the security posture
-      sensible for what this system actually does? Where are the performance
-      trade-offs, and do they matter here? How does this fit into the broader
-      integration strategy? And — critically — when is the agent confidently
-      wrong, and what do I say to redirect it?
+      I take ownership of real engineering work — implementation,
+      architecture decisions, reviews, production issues, and the
+      technical conversations needed to keep delivery moving.
 
 
-      That last one matters more than it sounds. AI agents can fail quietly. They
-      produce well-structured, grammatically correct, thoroughly commented code
-      that does the wrong thing. Catching that is a judgment call, not a
-      checklist. That judgment is the part that's hard to automate — it comes
-      from years of seeing these failures before.
+      ### 3. Improve the workflow
 
 
-      The workflow is not proprietary. It is teachable. Getting your team
-      building this way — and avoiding the failure modes — is exactly what the
-      AI Workflow Audit is for.
+      While working with the team, I identify where better tooling or a
+      structured AI workflow could reduce repetition, shorten feedback
+      loops, or strengthen review and documentation.
+
+
+      ### 4. Leave durable practices
+
+
+      Useful patterns are documented and adapted to the team. The
+      objective is not dependence on a consultant or a specific tool, but
+      a workflow the team understands and can continue to refine.
     _template: content
 
   - body: >
-      ## When Experience Matters
+      ## Senior Full-Stack Development
 
 
-      Here is a concrete example. A client reported that device changes from
-      their mobile app were not reaching the central unit. The AI analyzed
-      the codebase, found the missing sync logic, wrote a fix, and added a
-      test. The test failed. The AI spent three iterations on the test, then
-      concluded: the code fix is correct, the test helper has a technical
-      issue with the RabbitMQ Java client, and further debugging would not
-      be productive in this session.
+      I contribute across backend and frontend, with particular experience
+      in Java, Spring, JavaScript/TypeScript, React, APIs, authentication,
+      and production delivery. I am most useful where a team needs someone
+      who can move between implementation details and the broader
+      architectural picture.
 
 
-      That is the moment where judgment matters. The AI was ready to ship
-      the fix and move on. I disagreed. A failing test means either the code
-      or the test is wrong, and you do not know which until you understand
-      why. If there is a real issue and you ship anyway, you just moved a
-      production bug one step closer to the customer.
-
-
-      I asked the AI to describe the failing test's behavior to Claude for
-      a fresh analysis. Claude read the test and the fix, identified the
-      actual problem: the fix itself had a subtle ordering issue. Sync
-      messages were being sent before the database transaction committed,
-      meaning the central unit could receive a sync for a device that did
-      not exist yet. Claude proposed a correction to both the code and the
-      test.
-
-
-      The fix was corrected, the test passed. I then asked the AI to update
-      its skills and memory to learn from this incident: never abandon a
-      failing test without understanding the root cause, and always treat a
-      failing test as a signal, not an obstacle. That feedback is now
-      captured for every future session.
-
-
-      Result: a production incident was prevented, the test suite became
-      more reliable, and the AI's future behavior improved. Not because the
-      model got smarter, but because the feedback was captured.
-
-
-      That is the gap: an AI agent can mistake a plausible result for a
-      finished one. The work is knowing when a failing test means the
-      problem is not yet understood.
+      The role is hands-on. I write code, investigate failures, review
+      changes, and take responsibility for getting work safely into
+      production.
     _template: content
 
-  - title: What I Can Do For You
-    items:
-      - icon:
-          name: FaSearch
-          color: blue
-        title: AI Workflow Audit
-        text: >
-          I assess your team's development workflow and integrate AI tooling
-          where it creates real leverage. Not a generic AI adoption talk — a
-          hands-on review of how your team actually works, followed by a
-          concrete implementation plan.
-      - icon:
-          name: FaUserTie
-          color: blue
-        title: Fractional Tech Lead
-        text: >
-          An experienced tech lead for your product on a part-time basis.
-          Architecture decisions, code review, team mentoring — with AI
-          augmentation built in from day one. You get senior oversight without
-          the full-time hire.
-      - icon:
-          name: FaServer
-          color: blue
-        title: AI Tooling Setup
-        text: >
-          Custom AI agents, self-hosted workflows, and development tooling
-          built around your team's actual process. No per-seat SaaS costs,
-          designed to preserve an exit path.
-    _template: features
+  - body: >
+      ## Fractional Tech Lead
+
+
+      Some teams need experienced technical direction but not another
+      full-time management layer. As a fractional tech lead, I combine
+      delivery work with architecture decisions, code review, mentoring,
+      technical planning, and communication with stakeholders.
+
+
+      Because I remain close to the code, technical direction stays
+      connected to what the team is actually building.
+    _template: content
+
+  - body: >
+      ## AI Workflow Improvement
+
+
+      I have developed a structured multi-agent workflow for my own
+      production work. AI agents can assist with research, implementation,
+      tests, review passes, refactoring, and documentation. I remain
+      responsible for architecture, security, correctness, and deciding
+      what ships.
+
+
+      When I work inside a team, I can help introduce the parts of that
+      workflow that fit the environment. That might mean improving prompts
+      and context, adding independent review, capturing recurring lessons,
+      strengthening test feedback, or removing repetitive handoffs.
+
+
+      We start from real delivery friction and introduce only the
+      practices that make the work better.
+
+
+      My AI workflow is grounded in my own production work. Within
+      developer or tech lead engagements, I adapt the useful parts to
+      the team's actual environment and delivery needs.
+    _template: content
+
+  - body: >
+      ## When Experience Makes the Judgment Calls
+
+
+      AI can produce a plausible answer before it has understood the
+      problem. Experience matters most at that boundary.
+
+
+      ### Problem
+
+
+      Device changes from a mobile app were not reaching the central unit.
+
+
+      ### First AI implementation
+
+
+      The agent found missing sync logic, wrote a fix, and added a test
+      — but the test failed.
+
+
+      ### Wrong conclusion
+
+
+      After several attempts, the agent concluded that the test helper
+      was unreliable and the code could still ship.
+
+
+      ### Human intervention
+
+
+      I refused to treat the failing test as an obstacle. A second review
+      exposed an ordering bug: sync messages were sent before the database
+      transaction committed.
+
+
+      ### Result
+
+
+      The implementation was corrected, the test passed, a production
+      incident was prevented, and the lesson was stored for future
+      sessions.
+
+
+      AI handled the volume. Experience made the judgment call.
+    _template: content
 
   - body: >
       ## See It In Practice
 
 
-      The best way to understand this workflow is to see it running. The posts
-      on this site are produced by the same system they describe — Hermes
-      writes, Claude reviews, I decide what ships. The tooling, the process, and
-      the failure modes are all documented as we go.
+      The best way to understand this workflow is to see it running. The
+      case study on this site was produced by the same system it describes
+      — Hermes writes, Claude reviews, I decide what ships. The tooling,
+      the process, and the failure modes are all documented as we go.
 
 
-      [Read the posts →](/posts)
+      [Read the case study →](/posts/blind-coder-sighted-reviewer)
     _template: content
 ---

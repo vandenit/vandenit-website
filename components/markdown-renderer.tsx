@@ -27,11 +27,15 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
               {children}
             </Heading>
           ),
-          h2: ({ children }: any) => (
-            <Heading as="h2" size="7" mb="3" mt="5">
-              {children}
-            </Heading>
-          ),
+          h2: ({ children }: any) => {
+            const text = typeof children === 'string' ? children : Array.isArray(children) ? children.join('') : '';
+            const slug = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+            return (
+              <Heading as="h2" id={slug || undefined} size="7" mb="3" mt="5">
+                {children}
+              </Heading>
+            );
+          },
           h3: ({ children }: any) => (
             <Heading as="h3" size="6" mb="3" mt="4">
               {children}
@@ -67,28 +71,35 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             </Link>
           ),
           
-          // Code
+          // Code blocks (pre + code)
+          pre: ({ children }: any) => (
+            <pre style={{
+              backgroundColor: 'var(--gray-3)',
+              padding: '1rem',
+              borderRadius: '8px',
+              overflowX: 'auto',
+              maxWidth: '100%',
+              marginBottom: '1rem',
+              fontSize: '13px',
+              WebkitOverflowScrolling: 'touch',
+            }}>
+              {children}
+            </pre>
+          ),
           code: ({ children, className, ...props }: any) => {
-            const isInline = !className?.includes('language-');
-            if (isInline) {
+            const isBlock = className?.includes('language-');
+            if (isBlock) {
               return (
-                <Code size="2" style={{ padding: '2px 4px' }}>
+                <Code size="2" style={{ wordBreak: 'normal' }}>
                   {children}
                 </Code>
               );
             }
+            // Inline code (including language-less fenced blocks rendered inside <pre>)
             return (
-              <pre style={{
-                backgroundColor: 'var(--gray-3)',
-                padding: '1rem',
-                borderRadius: '8px',
-                overflow: 'auto',
-                marginBottom: '1rem'
-              }}>
-                <Code size="2">
-                  {children}
-                </Code>
-              </pre>
+              <Code size="2" style={{ padding: '2px 4px', wordBreak: 'break-word' }}>
+                {children}
+              </Code>
             );
           },
           
@@ -159,7 +170,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           
           // Tables
           table: ({ children }: any) => (
-            <div style={{ overflowX: 'auto', marginBottom: '1rem' }}>
+            <div style={{ overflowX: 'auto', maxWidth: '100%', marginBottom: '1rem', WebkitOverflowScrolling: 'touch' }}>
               <table style={{
                 width: '100%',
                 borderCollapse: 'collapse',
