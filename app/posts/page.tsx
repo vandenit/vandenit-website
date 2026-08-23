@@ -4,8 +4,16 @@ import PostsClientPage from "./client-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog — Vanden IT",
-  description: "AI-powered development workflows, self-hosted AI infrastructure, and practical examples of using AI in software development.",
+  title: "Building & Shipping with AI",
+  description: "Practical notes from real development work: AI-assisted workflows, technical failures, review patterns, and the human judgment behind production delivery.",
+  alternates: {
+    canonical: '/posts',
+  },
+  openGraph: {
+    title: "Building & Shipping with AI — Vanden IT",
+    description: "Practical notes from real development work: AI-assisted workflows, technical failures, review patterns, and the human judgment behind production delivery.",
+    url: '/posts',
+  },
 };
 
 export default async function PostsPage({
@@ -16,10 +24,11 @@ export default async function PostsPage({
   const { tag } = await searchParams;
   const posts = tag ? getPostsByTag(tag) : getAllPostsWithAuthors();
   const allTags = getAllTags();
+  const totalPostsCount = getAllPostsWithAuthors().length;
 
   return (
     <Layout>
-      <PostsClientPage posts={posts} tags={allTags} />
+      <PostsClientPage posts={posts} tags={allTags} currentTag={tag} totalPostsCount={totalPostsCount} />
     </Layout>
   );
 }

@@ -36,10 +36,31 @@ export async function generateMetadata({
 
   if (!page) return {};
 
+  const url = `/${slug}`;
+  const title = page.title;
+  const description = pageDescription(slug, title);
+
   return {
-    title: `${page.title} — Vanden IT`,
-    description: `Vanden IT — ${page.title}. Software consultancy specializing in secure, scalable solutions.`,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${title} — Vanden IT`,
+      description,
+      url,
+    },
   };
+}
+
+function pageDescription(slug: string, title: string): string {
+  const descriptions: Record<string, string> = {
+    'about': 'Senior full-stack engineer and fractional tech lead with 15 years of enterprise experience, combining hands-on delivery with structured AI-assisted development.',
+    'how-i-work': 'How Filip joins teams as a senior developer or fractional tech lead, contributes to real delivery, and helps improve AI-assisted development workflows from inside the engagement.',
+    'contact': 'Contact Filip Van den Broeck about senior full-stack development, fractional technical leadership, or AI-augmented delivery within your product team.',
+  };
+  return descriptions[slug] || `Vanden IT — ${title}. Senior engineering with AI-powered workflows.`;
 }
 
 export async function generateStaticParams() {

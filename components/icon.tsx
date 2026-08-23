@@ -2,8 +2,7 @@
 import * as RadixIcons from "@radix-ui/react-icons";
 import * as FaIcons from "react-icons/fa";
 import React from "react";
-import { useLayout } from "./layout/layout-context";
-import { IconButton, IconProps } from "@radix-ui/themes";
+import { Text } from "@radix-ui/themes";
 
 export const IconOptions = {
   Tina: (props) => (
@@ -51,18 +50,21 @@ export const IconOptions = {
 export const Icon = ({
   data,
 }) => {
-  const { theme } = useLayout();
-
   if (IconOptions[data.name] === null || IconOptions[data.name] === undefined) {
     return null;
   }
 
-  const { name, color, size, variant } = data;
+  const { name, color, size } = data;
 
   const IconSVG = IconOptions[name];
   return (
-    <IconButton size={size || undefined} color={color || undefined} variant={variant || undefined}>
+    <Text
+      size={size || undefined}
+      color={color || undefined}
+      aria-hidden="true"
+      style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+    >
       <IconSVG />
-    </IconButton>
+    </Text>
   );
 };

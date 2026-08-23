@@ -3,17 +3,21 @@ title: Home
 blocks:
   - tagline: Senior engineer. AI-powered workflows. Production-grade results.
     headline: >-
-      AI agents handle the repetitive work. 15 years of enterprise experience
-      covers the rest — architecture, security, the decisions that keep code
-      maintainable. The result is software built to hold up in production.
+      I join product teams as a senior full-stack developer or fractional
+      tech lead. Alongside shipping real software, I help improve how AI
+      is used in development — while I remain accountable for
+      architecture, security, and quality.
     text: ''
     text2: ''
+    proofBar: >-
+      15 years experience · 100,000+ users · Backend, frontend & technical
+      leadership
     actions:
-      - label: See the workflow
+      - label: See how I work
         type: button
         icon: true
-        link: /posts
-      - label: Get in touch
+        link: /how-i-work
+      - label: Discuss a project
         type: button
         icon: false
         link: /contact
@@ -24,47 +28,52 @@ blocks:
         unsplash.com/photos/75EFpyXu3Wg
     color: default
     _template: hero
-  - title: What I Do
+  - title: How I Can Contribute
     featuresId: services
     items:
       - icon:
-          name: FaBrain
+          name: CodeIcon
           color: blue
-        title: AI Development Workflow Audit
+        title: Senior Full-Stack Development
         text: >-
-          I assess your team's development workflow and integrate AI tooling
-          where it creates real leverage.
+          Hands-on development across backend and frontend, from
+          architecture decisions to production delivery. I work inside
+          the existing team, take ownership of complex problems, and
+          help keep the codebase maintainable as it grows.
         richText: ''
         link: ''
         buttonLink:
-          label: Learn more
-          link: /about
+          label: How I contribute
+          link: /how-i-work#senior-full-stack-development
       - icon:
-          name: CodeIcon
+          name: FaUserTie
           color: blue
         title: Fractional Tech Lead
         text: >-
-          Experienced tech lead for your product, available part-time.
-          Architecture, code review, team mentoring — with AI augmentation
-          built in.
+          Part-time technical leadership for teams that need experienced
+          architectural guidance without a full-time hire. I contribute
+          to delivery while supporting code quality, technical decisions,
+          mentoring, and communication with stakeholders.
         richText: ''
         link: ''
         buttonLink:
-          label: Learn more
-          link: /about
+          label: Explore the role
+          link: /how-i-work#fractional-tech-lead
       - icon:
-          name: FaServer
+          name: FaBrain
           color: blue
-        title: AI Tooling Setup
+        title: AI Tooling & Workflow Improvement
         text: >-
-          Custom AI agents, self-hosted workflows, and development tooling
-          built around your team's actual process. No per-seat SaaS costs,
-          designed to preserve an exit path.
+          As part of the engagement, I help the team use AI more
+          deliberately in implementation, testing, review, and
+          documentation. We adapt the workflow to the real codebase
+          and delivery process — while keeping engineering judgment
+          under human ownership.
         richText: ''
         link: ''
         buttonLink:
-          label: Learn more
-          link: /about
+          label: See how AI fits
+          link: /how-i-work#ai-workflow-improvement
     color: tint
     _template: features
   - title: Portfolio
@@ -148,7 +157,7 @@ blocks:
         role: 'Delivery Lead & Senior Solution Architect'
     _template: testimonials
   - actions:
-      - label: Let's talk
+      - label: Discuss a project
         type: button
         icon: true
         link: /contact

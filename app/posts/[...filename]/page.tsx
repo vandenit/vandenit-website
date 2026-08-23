@@ -38,9 +38,27 @@ export async function generateMetadata({
 
   if (!post) return {};
 
+  const postUrl = `/posts/${post.slug}`;
+
   return {
-    title: `${post.title} — Vanden IT Blog`,
+    title: post.title,
     description: post.excerpt || `Vanden IT Blog — ${post.title}`,
+    alternates: {
+      canonical: postUrl,
+    },
+    openGraph: {
+      type: 'article',
+      title: `${post.title} — Vanden IT Blog`,
+      description: post.excerpt || `Vanden IT Blog — ${post.title}`,
+      url: postUrl,
+      publishedTime: post.date,
+      authors: ['Filip Van den Broeck'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt || `Vanden IT Blog — ${post.title}`,
+    },
   };
 }
 

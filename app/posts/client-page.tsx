@@ -11,9 +11,11 @@ import type { Post, Author } from '.contentlayer/generated';
 interface ClientPostProps {
   posts: (Post & { authorData?: Author })[];
   tags: string[];
+  currentTag?: string;
+  totalPostsCount: number;
 }
 
-export default function PostsClientPage({ posts, tags }: ClientPostProps) {
+export default function PostsClientPage({ posts, tags, currentTag, totalPostsCount }: ClientPostProps) {
   return (
     <>
       {/* Blog Header */}
@@ -21,19 +23,19 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
         <Container size="3" px="6">
           <Flex direction="column" align="center" gap="4">
             <Badge size="2" variant="soft" color="blue" radius="full">
-              AI-Powered Development
+              Senior Engineering · AI-Augmented Delivery
             </Badge>
             <Heading as="h1" size={{ initial: '7', sm: '8' }} weight="bold" align="center">
               Building & Shipping with AI
             </Heading>
             <Text size={{ initial: '4', sm: '5' }} color="gray" align="center" style={{ maxWidth: '600px', lineHeight: '1.6' }}>
-              Practical workflows for development teams using AI as a first-class collaborator.
+              Notes from real development work: the workflows, failures, and judgment calls involved in building software with AI.
             </Text>
           </Flex>
         </Container>
       </Section>
 
-      <TagFilterPanel tags={tags} />
+      <TagFilterPanel tags={tags} postsCount={totalPostsCount} currentTag={currentTag} />
 
       <Container size="3" px="6">
         {posts.length === 0 ? (
@@ -42,74 +44,73 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
           </Flex>
         ) : (
           <>
-            {/* Featured Post (OWASP post if it exists) */}
-            {posts.find(post => post.slug.includes('owasp')) && (
-              <Box mb="6">
-                <Box mb="3">
-                  <Badge size="2" variant="soft" color="amber" radius="full">
-                    Featured
-                  </Badge>
-                </Box>
-                {(() => {
-                  const featuredPost = posts.find(post => post.slug.includes('owasp'));
-                  if (!featuredPost) return null;
+            {/* Featured Post — first post when there's only one, or look for a flagged featured post */}
+            {(() => {
+              const featuredPost = posts.length === 1 ? posts[0] : posts.find(p => p.slug.includes('owasp'));
+              if (!featuredPost) return null;
 
-                  const date = new Date(featuredPost.date);
-                  const formattedDate = !isNaN(date.getTime()) ? format(date, "MMM dd, yyyy") : "";
+              const date = new Date(featuredPost.date);
+              const formattedDate = !isNaN(date.getTime()) ? format(date, "MMM dd, yyyy") : "";
 
-                  return (
-                    <Card className="card-elevated card-featured" size="4" style={{ overflow: 'hidden' }}>
-                      <Link href={featuredPost.url} style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <Box p="6" className="card-content-wrap">
-                          <Flex align="start" gap="4">
-                            {/* Icon — hidden on mobile to give heading more room */}
-                            <Flex flexShrink="0" display={{ initial: 'none', sm: 'flex' }} align="center" justify="center" style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'var(--accent-3)' }}>
-                              <FaShieldAlt size="1.8em" color="var(--accent-9)" />
-                            </Flex>
-                            <Box flexGrow="1" className="card-content-wrap" style={{ minWidth: 0 }}>
-                              <Heading as="h3" size={{ initial: '5', sm: '6' }} weight="bold" mb="3" style={{ overflowWrap: 'normal', wordBreak: 'normal', hyphens: 'none' }}>
-                                {featuredPost.title}
-                              </Heading>
-                              {featuredPost.excerpt && (
-                                <Text as="p" size="3" color="gray" mb="4" style={{ lineHeight: '1.6' }}>
-                                  {featuredPost.excerpt}
+              return (
+                <Box mb="6">
+                  <Box mb="3">
+                    <Badge size="2" variant="soft" color="amber" radius="full">
+                      Featured
+                    </Badge>
+                  </Box>
+                  <Card className="card-elevated card-featured" size="4" style={{ overflow: 'hidden' }}>
+                    <Link href={featuredPost.url} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <Box p="6" className="card-content-wrap">
+                        <Flex align="start" gap="4">
+                          {/* Icon — hidden on mobile to give heading more room */}
+                          <Flex flexShrink="0" display={{ initial: 'none', sm: 'flex' }} align="center" justify="center" style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'var(--accent-3)' }}>
+                            <FaShieldAlt size="1.8em" color="var(--accent-9)" />
+                          </Flex>
+                          <Box flexGrow="1" className="card-content-wrap" style={{ minWidth: 0 }}>
+                            <Heading as="h3" size={{ initial: '5', sm: '6' }} weight="bold" mb="3" style={{ overflowWrap: 'normal', wordBreak: 'normal', hyphens: 'none' }}>
+                              {featuredPost.title}
+                            </Heading>
+                            {featuredPost.excerpt && (
+                              <Text as="p" size="3" color="gray" mb="4" style={{ lineHeight: '1.6' }}>
+                                {featuredPost.excerpt}
+                              </Text>
+                            )}
+                            <Flex align="center" gap="4">
+                              {featuredPost.authorData && (
+                                <Flex align="center" gap="2">
+                                  <Avatar
+                                    src={featuredPost.authorData.avatar}
+                                    alt={featuredPost.authorData.name}
+                                    fallback={featuredPost.authorData.name?.[0] || 'A'}
+                                    size="2"
+                                    radius="full"
+                                  />
+                                  <Text size="2" color="gray">
+                                    {featuredPost.authorData.name}
+                                  </Text>
+                                </Flex>
+                              )}
+                              {formattedDate && (
+                                <Text size="2" color="gray">
+                                  {formattedDate}
                                 </Text>
                               )}
-                              <Flex align="center" gap="4">
-                                {featuredPost.authorData && (
-                                  <Flex align="center" gap="2">
-                                    <Avatar
-                                      src={featuredPost.authorData.avatar}
-                                      alt={featuredPost.authorData.name}
-                                      fallback={featuredPost.authorData.name?.[0] || 'A'}
-                                      size="2"
-                                      radius="full"
-                                    />
-                                    <Text size="2" color="gray">
-                                      {featuredPost.authorData.name}
-                                    </Text>
-                                  </Flex>
-                                )}
-                                {formattedDate && (
-                                  <Text size="2" color="gray">
-                                    {formattedDate}
-                                  </Text>
-                                )}
-                                <Box ml="auto">
-                                  <BsArrowRight size="1.2em" color="var(--accent-9)" />
-                                </Box>
-                              </Flex>
-                            </Box>
-                          </Flex>
-                        </Box>
-                      </Link>
-                    </Card>
-                  );
-                })()}
-              </Box>
-            )}
+                              <Box ml="auto">
+                                <BsArrowRight size="1.2em" color="var(--accent-9)" />
+                              </Box>
+                            </Flex>
+                          </Box>
+                        </Flex>
+                      </Box>
+                    </Link>
+                  </Card>
+                </Box>
+              );
+            })()}
 
-            {/* All Posts */}
+            {/* All Posts — hidden when there's only one post (already shown as featured) */}
+            {posts.length > 1 && (
             <Section>
               <Heading as="h2" size="5" mb="6">
                 All Posts
@@ -182,6 +183,7 @@ export default function PostsClientPage({ posts, tags }: ClientPostProps) {
                 })}
               </Flex>
             </Section>
+            )}
           </>
         )}
       </Container>
