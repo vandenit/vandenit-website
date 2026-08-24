@@ -743,6 +743,7 @@
 /* Mobile diagram: shown on mobile, hidden on desktop */
 .vdit-hero-diagram-mobile {
   display: block;
+  margin-top: 2.5rem;
 }
 
 .vdit-hero-diagram-mobile img {
@@ -846,6 +847,18 @@
   gap: var(--vdit-space-4);
   /* Remove generic floating-panel shadow */
   box-shadow: none;
+}
+
+/* Chapter marker + icon row */
+.vdit-chapter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Chapter card body text */
+.vdit-chapter-desc {
+  line-height: 1.6;
 }
 
 .vdit-chapter-card:hover {

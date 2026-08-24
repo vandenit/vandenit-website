@@ -97,7 +97,7 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
             {/* H1 */}
             <Heading
               as="h1"
-              size={{ initial: '8', sm: '9' }}
+              size={{ initial: '8', sm: '8' }}
               weight="bold"
               className="vdit-hero-title"
             >
@@ -138,7 +138,6 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
         <div
           aria-hidden="true"
           className="vdit-hero-diagram-mobile"
-          style={{ marginTop: '2.5rem' }}
         >
           <img
             src="/daniel-flow-mobile.svg"

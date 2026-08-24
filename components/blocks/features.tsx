@@ -43,7 +43,7 @@ export const Feature = ({
   return (
     <div className="vdit-chapter-card">
       {/* Chapter marker + icon row */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="vdit-chapter-header">
         <span className="vdit-chapter-marker" aria-hidden="true">
           {chapterNumber(index)}
         </span>
@@ -61,7 +61,7 @@ export const Feature = ({
         {data.title}
       </Heading>
 
-      <p className="vdit-proof-desc card-content-wrap" style={{ lineHeight: '1.6' }}>
+      <p className="vdit-proof-desc card-content-wrap vdit-chapter-desc">
         {data.text}
       </p>
 
@@ -95,7 +95,6 @@ export const Features = ({ data }: { data: FeaturesBlockData }) => {
             mb="6"
             align="center"
             id={data.featuresId}
-            style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}
           >
             {data.title}
           </Heading>
