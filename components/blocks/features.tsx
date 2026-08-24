@@ -36,27 +36,32 @@ export const Feature = ({
   return (
     <Card className="card-elevated" size="3" style={{ height: '100%' }}>
       <Flex direction="column" gap="3" style={{ height: '100%' }}>
-        {/* Icon in a rounded background */}
-        <Box
+        {/* Icon */}
+        <Flex
+          align="center"
+          justify="center"
           style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '8px',
-            background: 'var(--gray-3)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            width: '36px',
+            height: '36px',
+            borderRadius: 'var(--vdit-radius-xs)',
+            background: 'var(--vdit-color-surface-raised)',
+            border: 'var(--vdit-border)',
             flexShrink: 0,
           }}
         >
           <Icon data={{ size: '3', ...data.icon }} />
-        </Box>
+        </Flex>
 
-        <Heading as="h3" size="4" weight="bold">
+        <Heading
+          as="h3"
+          size="4"
+          weight="bold"
+          style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}
+        >
           {data.title}
         </Heading>
 
-        <Text as="p" size="3" color="gray" className="card-content-wrap" style={{ lineHeight: '1.6' }}>
+        <Text as="p" size="3" className="card-content-wrap" style={{ lineHeight: '1.6', color: 'var(--vdit-color-text-muted)' }}>
           {data.text}
         </Text>
 
@@ -71,18 +76,20 @@ export const Feature = ({
             <NextLink
               href={data.buttonLink.link}
               style={{
-                color: 'var(--accent-11)',
+                color: 'var(--vdit-color-system-strong)',
                 textDecoration: 'none',
-                fontSize: '14px',
+                fontSize: '13px',
                 fontWeight: 500,
+                fontFamily: 'var(--vdit-font-mono)',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '6px',
-                transition: 'gap 0.15s ease',
               }}
             >
               {data.buttonLink.label}
-              <BsArrowRight />
+              <BsArrowRight aria-hidden="true" />
             </NextLink>
           </Box>
         )}
@@ -93,10 +100,17 @@ export const Feature = ({
 
 export const Features = ({ data }: { data: FeaturesBlockData }) => {
   return (
-    <Section mb="5" pb="10" size="3" className="section-alt">
+    <Section mb="5" pb="10" size="3" className="vdit-section-alt">
       <Container size="3" px="6">
         {data.title && (
-          <Heading as="h2" size={{ initial: '6', sm: '7' }} mb="6" align="center" id={data.featuresId}>
+          <Heading
+            as="h2"
+            size={{ initial: '6', sm: '7' }}
+            mb="6"
+            align="center"
+            id={data.featuresId}
+            style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}
+          >
             {data.title}
           </Heading>
         )}

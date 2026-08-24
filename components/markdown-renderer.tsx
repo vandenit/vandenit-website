@@ -23,7 +23,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         components={{
           // Headings
           h1: ({ children }: any) => (
-            <Heading as="h1" size="8" mb="4" mt="6">
+            <Heading as="h1" size="8" mb="4" mt="6" style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}>
               {children}
             </Heading>
           ),
@@ -31,28 +31,28 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             const text = typeof children === 'string' ? children : Array.isArray(children) ? children.join('') : '';
             const slug = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
             return (
-              <Heading as="h2" id={slug || undefined} size="7" mb="3" mt="5">
+              <Heading as="h2" id={slug || undefined} size="7" mb="3" mt="5" style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}>
                 {children}
               </Heading>
             );
           },
           h3: ({ children }: any) => (
-            <Heading as="h3" size="6" mb="3" mt="4">
+            <Heading as="h3" size="6" mb="3" mt="4" style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}>
               {children}
             </Heading>
           ),
           h4: ({ children }: any) => (
-            <Heading as="h4" size="5" mb="2" mt="4">
+            <Heading as="h4" size="5" mb="2" mt="4" style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}>
               {children}
             </Heading>
           ),
           h5: ({ children }: any) => (
-            <Heading as="h5" size="4" mb="2" mt="3">
+            <Heading as="h5" size="4" mb="2" mt="3" style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}>
               {children}
             </Heading>
           ),
           h6: ({ children }: any) => (
-            <Heading as="h6" size="3" mb="2" mt="3">
+            <Heading as="h6" size="3" mb="2" mt="3" style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}>
               {children}
             </Heading>
           ),

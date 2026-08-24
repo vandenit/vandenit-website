@@ -1,3 +1,89 @@
+/* ── Vanden IT design-token layer ─────────────────────────────────────── */
+@layer vandenit.tokens, vandenit.base, vandenit.components, vandenit.utilities;
+
+@layer vandenit.tokens {
+  :root {
+    color-scheme: dark;
+
+    /* Typography – bound to next/font variables set in layout.tsx */
+    --vdit-font-body: var(--font-geist, "Geist", system-ui, sans-serif);
+    --vdit-font-display: var(--font-barlow-condensed, "Barlow Condensed", "Arial Narrow", sans-serif);
+    --vdit-font-mono: var(--font-geist-mono, "Geist Mono", ui-monospace, monospace);
+
+    /* Midnight surfaces */
+    --vdit-color-bg: #050a0f;
+    --vdit-color-bg-deep: #03070b;
+    --vdit-color-surface: #0b1620;
+    --vdit-color-surface-raised: #11202c;
+    --vdit-color-surface-soft: #162633;
+
+    /* Warm editorial text */
+    --vdit-color-text: #f3ebdc;
+    --vdit-color-text-muted: #aeb9c3;
+    --vdit-color-text-subtle: #7f8d99;
+
+    /* Structural rules */
+    --vdit-color-line: #243746;
+    --vdit-color-line-strong: #3b5364;
+
+    /* Daniël / system activity */
+    --vdit-color-system: #2f9fff;
+    --vdit-color-system-strong: #66b9ff;
+    --vdit-color-system-soft: rgb(47 159 255 / 14%);
+
+    /* Filip / human judgment */
+    --vdit-color-human: #d98b32;
+    --vdit-color-human-strong: #f0a84a;
+    --vdit-color-human-soft: rgb(217 139 50 / 14%);
+    --vdit-color-on-human: #071018;
+
+    /* Genuine risk only */
+    --vdit-color-risk: #ef6262;
+    --vdit-color-focus: #9fd3ff;
+
+    /* Spacing scale */
+    --vdit-space-1: 0.25rem;
+    --vdit-space-2: 0.5rem;
+    --vdit-space-3: 0.75rem;
+    --vdit-space-4: 1rem;
+    --vdit-space-5: 1.5rem;
+    --vdit-space-6: 2rem;
+    --vdit-space-7: 3rem;
+    --vdit-space-8: 4.5rem;
+    --vdit-space-9: 7rem;
+
+    /* Corner radii */
+    --vdit-radius-xs: 2px;
+    --vdit-radius-sm: 4px;
+    --vdit-radius-md: 8px;
+    --vdit-radius-lg: 12px;
+
+    --vdit-border: 1px solid var(--vdit-color-line);
+    --vdit-content: 72rem;
+    --vdit-reading: 68ch;
+
+    /* Fluid type scale */
+    --vdit-step--1: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem);
+    --vdit-step-0: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+    --vdit-step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+    --vdit-step-2: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+    --vdit-step-3: clamp(2.75rem, 1.9rem + 3vw, 5.75rem);
+
+    /* Motion */
+    --vdit-duration-fast: 140ms;
+    --vdit-duration-normal: 260ms;
+    --vdit-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Map Vanden IT font variables into Radix Theme font variables */
+  .radix-themes {
+    --default-font-family: var(--vdit-font-body);
+    --heading-font-family: var(--vdit-font-display);
+    --code-font-family: var(--vdit-font-mono);
+  }
+}
+
+/* ── Radix dark-theme color overrides ──────────────────────────────────── */
 .dark,
 .dark-theme {
   --blue-1: #01050e;
@@ -69,6 +155,7 @@
     }
   }
 }
+
 .dark,
 .dark-theme {
   --gray-1: #050506;
@@ -144,59 +231,396 @@
 .dark,
 .dark-theme,
 :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
-  --color-background: #050505;
+  --color-background: var(--vdit-color-bg);
 }
 
-/* ── Geist font ── */
-body {
-  margin: 0;
-  min-width: 320px;
-  color: var(--gray-12);
-  -webkit-text-size-adjust: 100%;
-  font-family: 'Geist', system-ui, -apple-system, sans-serif;
-  font-feature-settings: "liga" 1;
-}
-code, pre, kbd, samp {
-  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+/* ── Base reset & typography ───────────────────────────────────────────── */
+@layer vandenit.base {
+  html {
+    background: var(--vdit-color-bg-deep);
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background:
+      radial-gradient(circle at 20% 0%, rgb(47 159 255 / 9%), transparent 34rem),
+      var(--vdit-color-bg);
+    color: var(--vdit-color-text);
+    font-family: var(--vdit-font-body);
+    font-size: var(--vdit-step-0);
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+    font-feature-settings: "liga" 1;
+  }
+
+  code, pre, kbd, samp {
+    font-family: var(--vdit-font-mono);
+  }
+
+  ::selection {
+    background: var(--vdit-color-system);
+    color: var(--vdit-color-bg-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--vdit-color-focus);
+    outline-offset: 4px;
+    border-radius: var(--vdit-radius-xs);
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--vdit-color-text);
+    font-family: var(--vdit-font-display);
+    font-weight: 600;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  /* Heading letter-spacing */
+  h1 { letter-spacing: -0.03em; }
+  h2 { letter-spacing: -0.025em; }
+  h3, h4, h5, h6 { letter-spacing: -0.02em; }
+
+  p, li {
+    color: var(--vdit-color-text-muted);
+  }
 }
 
-/* ── Heading letter-spacing ── */
-h1 { letter-spacing: -0.03em; }
-h2 { letter-spacing: -0.025em; }
-h3, h4, h5, h6 { letter-spacing: -0.02em; }
+/* ── Structural components ─────────────────────────────────────────────── */
+@layer vandenit.components {
+  /* Shell / content wrapper */
+  .vdit-shell {
+    width: min(100% - 2rem, var(--vdit-content));
+    margin-inline: auto;
+  }
 
-/* ── Header blur ── */
-.header-blur {
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  background: rgba(8, 8, 10, 0.7);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  .vdit-section {
+    position: relative;
+    padding-block: var(--vdit-space-8);
+  }
+
+  .vdit-section--ruled {
+    border-block: var(--vdit-border);
+  }
+
+  /* Engineering grid background texture */
+  .vdit-grid-surface {
+    background-image: url("/engineering-grid.svg");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
+
+  /* Kicker label */
+  .vdit-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vdit-space-3);
+    color: var(--vdit-color-system-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .vdit-kicker::before {
+    width: 1.5rem;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+
+  /* Display heading */
+  .vdit-display {
+    max-width: 12ch;
+    margin: 0;
+    font-size: var(--vdit-step-3);
+    letter-spacing: -0.025em;
+  }
+
+  .vdit-reading {
+    max-width: var(--vdit-reading);
+  }
+
+  /* Evidence panel – square, no large shadow */
+  .vdit-panel {
+    position: relative;
+    border: var(--vdit-border);
+    border-radius: var(--vdit-radius-sm);
+    background: linear-gradient(145deg, rgb(17 32 44 / 92%), rgb(5 10 15 / 92%));
+  }
+
+  /* Buttons */
+  .vdit-button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--vdit-space-3);
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--vdit-color-human);
+    border-radius: var(--vdit-radius-sm);
+    font-family: var(--vdit-font-mono);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      background-color var(--vdit-duration-fast) var(--vdit-ease),
+      border-color var(--vdit-duration-fast) var(--vdit-ease),
+      color var(--vdit-duration-fast) var(--vdit-ease),
+      transform var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-button--primary {
+    background: var(--vdit-color-human);
+    color: var(--vdit-color-on-human);
+  }
+
+  .vdit-button--secondary {
+    background: transparent;
+    color: var(--vdit-color-text);
+  }
+
+  .vdit-button--cobalt {
+    background: transparent;
+    border-color: var(--vdit-color-system);
+    color: var(--vdit-color-system-strong);
+  }
+
+  .vdit-button:hover {
+    border-color: var(--vdit-color-human-strong);
+    transform: translateY(-2px);
+  }
+
+  .vdit-button--cobalt:hover {
+    border-color: var(--vdit-color-system-strong);
+    background: var(--vdit-color-system-soft);
+  }
+
+  /* System / human annotation labels */
+  .vdit-system-label {
+    color: var(--vdit-color-system-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .vdit-human-label {
+    color: var(--vdit-color-human-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Proof strip — ruled cells instead of rounded cards */
+  .vdit-proof-strip {
+    display: grid;
+    border-block: var(--vdit-border);
+  }
+
+  .vdit-proof-strip > * {
+    padding: var(--vdit-space-5);
+    border-bottom: var(--vdit-border);
+  }
+
+  .vdit-proof-strip > :last-child {
+    border-bottom: 0;
+  }
+
+  /* ── Header ──────────────────────────────────────── */
+  .vdit-header {
+    background: rgb(5 10 15 / 88%);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border-bottom: 1px solid var(--vdit-color-line);
+  }
+
+  /* Nav link — underline on active, no pill */
+  .vdit-nav-link {
+    color: var(--vdit-color-text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+    transition:
+      color var(--vdit-duration-fast) var(--vdit-ease),
+      border-color var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-nav-link:hover {
+    color: var(--vdit-color-text);
+  }
+
+  .vdit-nav-link[aria-current="page"] {
+    color: var(--vdit-color-text);
+    border-bottom-color: var(--vdit-color-human);
+  }
+
+  /* CTA button in header — amber */
+  .vdit-nav-cta {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 1rem;
+    background: var(--vdit-color-human);
+    color: var(--vdit-color-on-human);
+    border: 1px solid var(--vdit-color-human);
+    border-radius: var(--vdit-radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    font-family: var(--vdit-font-mono);
+    text-transform: uppercase;
+    transition:
+      background-color var(--vdit-duration-fast) var(--vdit-ease),
+      border-color var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-nav-cta:hover {
+    background: var(--vdit-color-human-strong);
+    border-color: var(--vdit-color-human-strong);
+  }
+
+  /* Hero section */
+  .vdit-hero {
+    position: relative;
+    padding-block: var(--vdit-space-8);
+    background-image: url("/engineering-grid.svg");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
+
+  .vdit-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 50%, rgb(47 159 255 / 7%), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 70% 80%, rgb(217 139 50 / 5%), transparent 50%);
+    pointer-events: none;
+  }
+
+  .vdit-hero > * {
+    position: relative;
+  }
+
+  /* Hero layout: single column mobile, asymmetric desktop */
+  .vdit-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--vdit-space-7);
+    align-items: center;
+  }
+
+  .vdit-hero-diagram {
+    display: none;
+  }
+
+  /* Footer */
+  .vdit-footer {
+    border-top: var(--vdit-border);
+    background: var(--vdit-color-surface);
+  }
+
+  /* Section alternation */
+  .vdit-section-alt {
+    background: var(--vdit-color-surface);
+  }
+
+  /* Content sections — midnight surface, tight spacing */
+  .vdit-content-section {
+    background: var(--vdit-color-bg);
+    padding-block: var(--vdit-space-5);
+    border-top: 1px solid var(--vdit-color-line);
+  }
+
+  .vdit-content-section:first-child {
+    border-top: 0;
+  }
+
+  /* Card updates */
+  .vdit-card {
+    border: var(--vdit-border);
+    border-radius: var(--vdit-radius-sm);
+    background: linear-gradient(145deg, var(--vdit-color-surface-raised), var(--vdit-color-surface));
+    transition:
+      border-color var(--vdit-duration-fast) var(--vdit-ease),
+      transform var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-card:hover {
+    border-color: var(--vdit-color-line-strong);
+    transform: translateY(-2px);
+  }
 }
 
-/* ── Hero section gradient ── */
-.hero-section {
-  position: relative;
-  background: radial-gradient(ellipse 120% 60% at 50% -10%, rgba(59, 130, 246, 0.18), transparent 70%);
-}
-.hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 100% 50% at 50% 0%, rgba(59, 130, 246, 0.1), transparent);
-  pointer-events: none;
-  z-index: 0;
-}
-.hero-section > * {
-  position: relative;
-  z-index: 1;
+/* ── Utility classes ───────────────────────────────────────────────────── */
+@layer vandenit.utilities {
+  .vdit-system-color { color: var(--vdit-color-system); }
+  .vdit-human-color  { color: var(--vdit-color-human); }
+  .vdit-muted        { color: var(--vdit-color-text-muted); }
+  .vdit-mono         { font-family: var(--vdit-font-mono); }
+  .vdit-display-font { font-family: var(--vdit-font-display); }
 }
 
-/* ── Section background alternation ── */
-.section-alt {
-  background: var(--gray-2);
+/* ── Responsive overrides ──────────────────────────────────────────────── */
+@media (min-width: 48rem) {
+  .vdit-shell {
+    width: min(100% - 4rem, var(--vdit-content));
+  }
+
+  .vdit-section {
+    padding-block: var(--vdit-space-9);
+  }
+
+  .vdit-proof-strip {
+    grid-template-columns: 1fr 1fr 1.6fr;
+  }
+
+  .vdit-proof-strip > * {
+    border-right: var(--vdit-border);
+    border-bottom: 0;
+  }
+
+  .vdit-proof-strip > :last-child {
+    border-right: 0;
+  }
+
+  /* Asymmetric hero on desktop */
+  .vdit-hero-inner {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--vdit-space-8);
+  }
+
+  .vdit-hero-diagram {
+    display: block;
+  }
 }
 
-/* ── Mobile horizontal snap scroll ── */
+/* ── Reduced-motion ────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Legacy utility classes (preserved, using vdit tokens) ─────────────── */
+
+/* Mobile horizontal snap scroll */
 .snap-scroll {
   display: flex;
   overflow-x: auto;
@@ -206,9 +630,7 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   scrollbar-width: none;
   padding-bottom: 8px;
 }
-.snap-scroll::-webkit-scrollbar {
-  display: none;
-}
+.snap-scroll::-webkit-scrollbar { display: none; }
 .snap-scroll > * {
   scroll-snap-align: start;
   flex: 0 0 85%;
@@ -216,7 +638,7 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   min-width: 0;
 }
 
-/* ── Word break for card content ── */
+/* Word break for card content */
 .card-content-wrap {
   overflow-wrap: break-word;
   word-break: normal;
@@ -224,7 +646,7 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   min-width: 0;
 }
 
-/* ── Testimonial snap-scroll container ── */
+/* Testimonial snap-scroll container */
 .testimonials-scroll-container {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
@@ -234,9 +656,7 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   scrollbar-width: none;
   padding-bottom: 8px;
 }
-.testimonials-scroll-container::-webkit-scrollbar {
-  display: none;
-}
+.testimonials-scroll-container::-webkit-scrollbar { display: none; }
 .testimonials-scroll-container > * {
   scroll-snap-align: start;
   flex: 0 0 100%;
@@ -244,71 +664,101 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   overflow: hidden;
 }
 
-/* ── Card elevation ── */
+/* Card elevation */
 .card-elevated {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 0 0 1px var(--vdit-color-line);
+  border-radius: var(--vdit-radius-sm);
+  transition:
+    box-shadow var(--vdit-duration-fast) var(--vdit-ease),
+    transform var(--vdit-duration-fast) var(--vdit-ease);
 }
 .card-elevated:hover {
   box-shadow:
-    0 0 0 1px var(--accent-7),
-    0 0 20px 4px rgba(59, 130, 246, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.2);
-  transform: translateY(-4px);
-}
-/* ── Featured card accent ── */
-.card-featured {
-  border-left: 4px solid var(--accent-9);
-  background: linear-gradient(135deg, var(--accent-2), var(--gray-2));
+    0 0 0 1px var(--vdit-color-line-strong),
+    0 0 16px 2px var(--vdit-color-system-soft);
+  transform: translateY(-2px);
 }
 
-/* ── Large decorative quote mark ── */
+/* Featured card accent */
+.card-featured {
+  border-left: 2px solid var(--vdit-color-system);
+  background: linear-gradient(135deg, var(--vdit-color-surface-raised), var(--vdit-color-surface));
+}
+
+/* Large decorative quote mark */
 .quote-mark {
   font-size: 3rem;
   line-height: 1;
-  color: var(--accent-9);
+  color: var(--vdit-color-system-strong);
   opacity: 0.4;
   font-family: Georgia, serif;
   display: block;
   margin-bottom: -8px;
 }
 
-/* ── Tag pill ── */
+/* Tag pill */
 .tag-pill {
   display: inline-flex;
   align-items: center;
   padding: 2px 10px;
-  border-radius: 9999px;
+  border-radius: var(--vdit-radius-xs);
   font-size: 12px;
   font-weight: 500;
-  background: var(--gray-5);
-  color: var(--gray-11);
-  border: 1px solid var(--gray-6);
-  transition: all 0.15s ease;
+  background: var(--vdit-color-surface-raised);
+  color: var(--vdit-color-text-muted);
+  border: 1px solid var(--vdit-color-line);
+  transition: all var(--vdit-duration-fast) var(--vdit-ease);
   text-decoration: none;
 }
 .tag-pill:hover {
-  background: var(--accent-5);
-  color: var(--accent-11);
-  border-color: var(--accent-6);
+  background: var(--vdit-color-system-soft);
+  color: var(--vdit-color-system-strong);
+  border-color: var(--vdit-color-system);
 }
 
-/* ── Custom scrollbar ── */
+/* Custom scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--gray-2); }
-::-webkit-scrollbar-thumb { background: var(--gray-6); border-radius: 5px; border: 2px solid var(--gray-2); }
-::-webkit-scrollbar-thumb:hover { background: var(--gray-7); }
+::-webkit-scrollbar-track { background: var(--vdit-color-surface); }
+::-webkit-scrollbar-thumb { background: var(--vdit-color-line-strong); border-radius: 5px; border: 2px solid var(--vdit-color-surface); }
+::-webkit-scrollbar-thumb:hover { background: var(--vdit-color-text-subtle); }
 
-/* ── Selection ── */
-::selection { background: var(--accent-5); color: var(--accent-12); }
-
+/* Action button */
 .action-button {
   min-width: 200px;
+  min-height: 44px;
 }
 
-/* ── Anchor scroll offset for sticky header ── */
+/* Anchor scroll offset for sticky header */
 [id] {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 72px;
+}
+
+/* Section alt background */
+.section-alt {
+  background: var(--vdit-color-surface);
+}
+
+/* Legacy hero-section class */
+.hero-section {
+  position: relative;
+}
+
+/* ── Hero diagram mobile/desktop visibility ─────────────────────────────── */
+/* Mobile diagram: shown on mobile, hidden on desktop */
+.vdit-hero-diagram-mobile {
+  display: block;
+  max-height: 160px;
+  overflow: hidden;
+}
+
+.vdit-hero-diagram-mobile img {
+  max-height: 160px;
+  object-fit: contain;
+}
+
+@media (min-width: 48rem) {
+  /* On desktop, hide the mobile diagram; the grid column shows the desktop one */
+  .vdit-hero-diagram-mobile {
+    display: none;
+  }
 }

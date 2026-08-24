@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 720" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Mobile AI workflow with human checkpoint</title>
+  <desc id="desc">Three blue paths descend and converge at an amber human decision before reaching production.</desc>
+  <g stroke="var(--vdit-color-line, #243746)" stroke-opacity=".65">
+    <path d="M24 24H336M24 696H336"/>
+    <path d="M48 24V696M312 24V696" stroke-dasharray="2 10"/>
+  </g>
+  <g stroke="var(--vdit-color-system, #2F9FFF)" stroke-width="2" vector-effect="non-scaling-stroke">
+    <path d="M90 120V260C90 340 180 340 180 430"/>
+    <path d="M180 120V430"/>
+    <path d="M270 120V260C270 340 180 340 180 430"/>
+  </g>
+  <g fill="var(--vdit-color-system, #2F9FFF)">
+    <circle cx="90" cy="180" r="4"/><circle cx="90" cy="270" r="4"/>
+    <circle cx="180" cy="190" r="4"/><circle cx="180" cy="300" r="4"/>
+    <circle cx="270" cy="180" r="4"/><circle cx="270" cy="270" r="4"/>
+  </g>
+  <g stroke="var(--vdit-color-risk, #EF6262)" stroke-width="2" vector-effect="non-scaling-stroke">
+    <path d="M286 218L302 246H270L286 218Z"/><path d="M286 227V236M286 240V242"/>
+  </g>
+  <g stroke="var(--vdit-color-human, #D98B32)" stroke-width="2" vector-effect="non-scaling-stroke">
+    <circle cx="180" cy="480" r="52"/><circle cx="180" cy="480" r="32"/><circle cx="180" cy="480" r="10" fill="var(--vdit-color-human, #D98B32)"/>
+    <path d="M180 532V640"/>
+  </g>
+  <circle cx="180" cy="664" r="16" stroke="var(--vdit-color-text, #F3EBDC)" stroke-width="2"/>
+  <circle cx="180" cy="664" r="3" fill="var(--vdit-color-text, #F3EBDC)"/>
+</svg>
+

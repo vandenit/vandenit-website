@@ -1,10 +1,24 @@
 import '@radix-ui/themes/styles.css';
-import '../styles.css'
+import '../styles.css';
 import React from "react";
 import { ThemeProvider } from "../components/theme-provider";
 import { Metadata, Viewport } from "next";
 import { getGlobalConfig } from "../lib/contentlayer";
 import { Theme } from "@radix-ui/themes";
+import { Barlow_Condensed } from "next/font/google";
+
+/*
+ * Barlow Condensed is self-hosted via next/font (display headings only).
+ * Geist and Geist Mono are loaded from Google Fonts CDN — the `geist` npm
+ * package and next/font/google Geist export were added in Next.js 15+;
+ * this project runs 14.2.21, so we keep CDN delivery for those two.
+ */
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-barlow-condensed",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  display: "swap",
+});
 
 const SITE_URL = 'https://vandenit.be'
 
@@ -54,21 +68,31 @@ export default async function RootLayout({
   const global = getGlobalConfig();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={barlowCondensed.variable}
+    >
       <head>
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        {/* Geist & Geist Mono — CDN (Next.js 14 doesn't include Geist in next/font/google) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+        {/*
+         * Expose Geist as CSS variables so vandenit-theme.css can reference them.
+         * next/font injects --font-barlow-condensed automatically;
+         * we manually declare --font-geist and --font-geist-mono here so the
+         * token layer resolves correctly.
+         */}
+        <style>{`
+          :root {
+            --font-geist: 'Geist';
+            --font-geist-mono: 'Geist Mono';
+          }
+        `}</style>
       </head>
       <body>
         <ThemeProvider
@@ -82,7 +106,7 @@ export default async function RootLayout({
             grayColor={(global?.theme?.grayColor as any) || "gray"}
             panelBackground="translucent"
             scaling="100%"
-            radius="medium"
+            radius="small"
           >
             {children}
           </Theme>
