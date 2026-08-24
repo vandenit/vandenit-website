@@ -65,7 +65,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
                         <Flex align="start" gap="4">
                           {/* Icon — hidden on mobile to give heading more room */}
                           <Flex flexShrink="0" display={{ initial: 'none', sm: 'flex' }} align="center" justify="center" style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'var(--accent-3)' }}>
-                            <FaShieldAlt size="1.8em" color="var(--accent-9)" />
+                            <FaShieldAlt size="1.8em" color="var(--vdit-color-system)" />
                           </Flex>
                           <Box flexGrow="1" className="card-content-wrap" style={{ minWidth: 0 }}>
                             <Heading as="h3" size={{ initial: '5', sm: '6' }} weight="bold" mb="3" style={{ overflowWrap: 'normal', wordBreak: 'normal', hyphens: 'none' }}>
@@ -97,7 +97,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
                                 </Text>
                               )}
                               <Box ml="auto">
-                                <BsArrowRight size="1.2em" color="var(--accent-9)" />
+                                <BsArrowRight size="1.2em" color="var(--vdit-color-system)" />
                               </Box>
                             </Flex>
                           </Box>
@@ -132,7 +132,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
                                 <Heading as="h3" size="4" weight="bold">
                                   {post.title}
                                 </Heading>
-                                <BsArrowRight color="var(--accent-9)" />
+                                <BsArrowRight color="var(--vdit-color-system)" />
                               </Flex>
 
                               {post.excerpt && (

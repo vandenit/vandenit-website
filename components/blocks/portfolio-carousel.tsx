@@ -117,7 +117,7 @@ export const PortfolioCarousel = ({
                                         width: i === currentSlide ? '24px' : '8px',
                                         height: '8px',
                                         borderRadius: '9999px',
-                                        background: i === currentSlide ? 'var(--accent-9)' : 'var(--gray-6)',
+                                        background: i === currentSlide ? 'var(--vdit-color-system)' : 'var(--gray-6)',
                                         cursor: 'pointer',
                                         transition: 'all 0.2s ease',
                                     }}

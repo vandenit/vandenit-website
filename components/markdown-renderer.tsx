@@ -106,7 +106,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           // Blockquotes
           blockquote: ({ children }: any) => (
             <Blockquote size="3" mb="3" style={{
-              borderLeft: '4px solid var(--accent-9)',
+              borderLeft: '4px solid var(--vdit-color-system)',
               paddingLeft: '1rem',
               fontStyle: 'italic'
             }}>
