@@ -844,12 +844,17 @@
   border-radius: var(--vdit-radius-sm);
   background: var(--vdit-color-surface);
   padding: var(--vdit-space-5);
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--vdit-space-4);
   /* Remove generic floating-panel shadow */
   box-shadow: none;
+}
+
+@media (min-width: 48rem) {
+  .vdit-chapter-card {
+    height: 100%;
+  }
 }
 
 /* Chapter marker + icon row */
