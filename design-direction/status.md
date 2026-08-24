@@ -114,7 +114,72 @@ _Screenshots not taken in this automated pass. Visual review recommended at next
 ### 9. Commit and branch
 
 ```
-commit  e6268c6
+commit  e6268c6 (implementation)
+commit  33fad7d (review fixes)
 branch  feature/visual-redesign
 date    2026-08-24
 ```
+
+---
+
+## Phase 2 Review
+
+**Reviewer:** agy (Claude Sonnet 4.6 Thinking)
+**Verdict:** 8/10 — Phase 2 approved ✓
+**Review commit:** `33fad7d`
+
+### Scores
+
+| Page | Mobile | Desktop |
+|------|--------|---------|
+| Home | 7.5 | 8 (post-fix) |
+| About | 8 | 8.5 |
+| How I Work | 8 | 8 |
+| Posts | 8 | 8 |
+| Blind Coder article | 7.5 | 8 |
+| Contact | 8 | 8.5 |
+
+### Fixes applied during review
+
+| # | File | What |
+|---|------|------|
+| 1-2 | `hero.tsx` + `styles.css` | Moved last inline `marginTop` to CSS class |
+| 3 | `hero.tsx` | H1 `sm:'9'` → `sm:'8'` to fix stranded "Production-" fragment on desktop |
+| 4-7 | `features.tsx` + `styles.css` | Replaced 3 remaining inline styles with CSS classes (`.vdit-chapter-header`, `.vdit-chapter-desc`), removed redundant H2 inline `fontFamily/color` |
+
+### Key findings
+
+- **One acceptance criteria failure caught:** Desktop H1 at size 9 produced `Production- / grade results.` — hyphenated word stranded across lines. Fixed.
+- **Content clean:** BNP/Centric scoped correctly to Enablement project, no unsupported claims, `mailto:` works.
+- **Fonts:** Geist self-hosted confirmed; Barlow on Google Fonts by design (no npm package) — acceptable.
+- **No bugs** that would break rendering. No nested `<a>` tags. No Radix compliance violations in changed files.
+
+---
+
+## Phase 3 — Opmerkingen voor implementatie
+
+### [claude] Visuele issues
+
+1. **Experience Highlights cards inconsistency** — About pagina cards hebben geen chapter markers (01/02/03) terwijl contribution cards ze wel hebben. Visueel inconsistent.
+
+2. **Double H1 on blog posts** — Pre-existing issue: blog post pagina's hebben twee H1 elementen (pagina titel + artikel titel). WCAG document structure violation.
+
+3. **Portfolio carousel kleuren** — Gebruikt nog Radix accent tokens (`var(--accent-9)`) i.p.v. Vanden IT tokens (`var(--vdit-color-system)`). Visueel subtiel inconsistent.
+
+4. **Proof strip mobile stacked borders** — Op contact pagina ontbreekt de mobile stacked border styling op de proof strip. Minor.
+
+### [hermes] Code quality issues
+
+5. **`geist` npm package toegevoegd** — agy heeft de `geist` package geïnstalleerd voor self-hosted fonts. Verifieer dat dit geen `next` downgrade veroorzaakt (bekende pitfall: `geist` kan `next` naar 14.x downgraden).
+
+6. **Barlow Condensed nog via Google Fonts CDN** — Geen npm package beschikbaar. Acceptabel voor nu, maar in een latere fase kan Barlow Condensed ook self-hosted worden voor volledige CDN-onafhankelijkheid.
+
+7. **`tsconfig.tsbuildinfo` nog steeds tracked** — Staat in `.gitignore` maar is al eerder gecommit. `git rm --cached tsconfig.tsbuildinfo` nodig om het uit de repo te verwijderen.
+
+### Fase 3 scope (volgens `03-implementation-plan.md`)
+
+- How I Work als connected process (4 stappen als één pad)
+- Mobile vertical stepper
+- Cobalt voor exploratie, amber voor judgment/verification
+- Production incident example als 5 evidence beats
+- Optioneel: IntersectionObserver reveal (alleen na static approval)
