@@ -922,3 +922,426 @@
   text-underline-offset: 3px;
 }
 
+/* ── Engagement process (four connected steps) ─────────────────────────── */
+.vdit-process {
+  max-width: var(--vdit-content);
+  margin-inline: auto;
+}
+
+.vdit-process-heading {
+  font-size: var(--vdit-step-2);
+  margin-bottom: var(--vdit-space-6);
+}
+
+.vdit-process-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+/* Mobile: vertical stepper with left cobalt rail */
+.vdit-process-step {
+  position: relative;
+  padding-left: 3rem;
+  padding-bottom: var(--vdit-space-6);
+}
+
+.vdit-process-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Cobalt rail on the left */
+.vdit-process-step::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--vdit-color-system);
+  opacity: 0.5;
+}
+
+/* Terminate rail cleanly at last step */
+.vdit-process-step:last-child::before {
+  bottom: calc(100% - 12px);
+}
+
+/* Node dot */
+.vdit-process-step::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vdit-color-bg);
+  border: 1.5px solid var(--vdit-color-system);
+}
+
+.vdit-process-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.vdit-process-step-title {
+  font-size: var(--vdit-step-1);
+  margin: 0 0 0.5rem;
+}
+
+.vdit-process-step-body {
+  margin: 0;
+  color: var(--vdit-color-text-muted);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* Desktop: four connected columns with horizontal cobalt rail */
+@media (min-width: 48rem) {
+  .vdit-process-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  /* Horizontal cobalt rail above the columns */
+  .vdit-process-list::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--vdit-color-system);
+    opacity: 0.5;
+  }
+
+  .vdit-process-step {
+    padding-left: var(--vdit-space-4);
+    padding-bottom: 0;
+    border-left: var(--vdit-border);
+  }
+
+  .vdit-process-step:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  /* Override mobile rail and node */
+  .vdit-process-step::before {
+    display: none;
+  }
+
+  .vdit-process-step::after {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--vdit-color-bg);
+    border: 1.5px solid var(--vdit-color-system);
+  }
+
+  .vdit-process-step:first-child::after {
+    left: -6px;
+  }
+
+  .vdit-process-step-title {
+    font-size: var(--vdit-step-1);
+  }
+
+  .vdit-process-step-body {
+    font-size: var(--vdit-step--1);
+  }
+}
+
+/* ── Decision trace (five-beat evidence rail) ───────────────────────────── */
+.vdit-decision-trace {
+  max-width: var(--vdit-content);
+  margin-inline: auto;
+}
+
+.vdit-decision-heading {
+  font-size: var(--vdit-step-2);
+  margin-bottom: var(--vdit-space-4);
+}
+
+.vdit-decision-intro {
+  color: var(--vdit-color-text-muted);
+  max-width: 60ch;
+  margin-bottom: var(--vdit-space-6);
+  line-height: 1.6;
+}
+
+.vdit-decision-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile: vertical evidence rail */
+.vdit-decision-beat {
+  position: relative;
+  padding-left: 3rem;
+  padding-bottom: var(--vdit-space-5);
+}
+
+.vdit-decision-beat:last-child {
+  padding-bottom: 0;
+}
+
+/* Rail line */
+.vdit-decision-beat::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--vdit-color-line-strong);
+}
+
+/* Cobalt rail for system beats (01-03) */
+.vdit-decision-beat[data-state="system"]::before {
+  background: var(--vdit-color-system);
+  opacity: 0.5;
+}
+
+/* Amber rail for human intervention (04) */
+.vdit-decision-beat[data-state="human"]::before {
+  background: var(--vdit-color-human);
+  opacity: 0.6;
+}
+
+/* Calm rail for result (05) */
+.vdit-decision-beat[data-state="result"]::before {
+  background: var(--vdit-color-line);
+}
+
+/* Terminate rail at last beat */
+.vdit-decision-beat:last-child::before {
+  bottom: calc(100% - 12px);
+}
+
+/* Node dot */
+.vdit-decision-beat::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vdit-color-bg);
+  border: 1.5px solid var(--vdit-color-system);
+}
+
+/* Warning node (beat 03 — wrong conclusion) */
+.vdit-decision-beat[data-state="warning"]::after {
+  border-color: var(--vdit-color-risk);
+  background: var(--vdit-color-bg);
+}
+
+/* Human node (beat 04) */
+.vdit-decision-beat[data-state="human"]::after {
+  border-color: var(--vdit-color-human);
+  background: var(--vdit-color-human-soft);
+}
+
+/* Result node (beat 05) */
+.vdit-decision-beat[data-state="result"]::after {
+  border-color: var(--vdit-color-line-strong);
+  background: var(--vdit-color-surface);
+}
+
+.vdit-decision-beat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--vdit-space-3);
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.vdit-decision-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+}
+
+.vdit-decision-label {
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-1);
+  font-weight: 600;
+  color: var(--vdit-color-text);
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* Invalid tag for beat 03 */
+.vdit-decision-invalid-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  font-family: var(--vdit-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vdit-color-risk);
+  border: 1px solid var(--vdit-color-risk);
+  border-radius: var(--vdit-radius-xs);
+  background: rgb(239 98 98 / 8%);
+}
+
+/* Human label styling */
+.vdit-decision-beat[data-state="human"] .vdit-decision-marker {
+  color: var(--vdit-color-human);
+}
+
+.vdit-decision-beat[data-state="human"] .vdit-decision-label {
+  color: var(--vdit-color-human-strong);
+}
+
+/* Result label styling — calm, resolved */
+.vdit-decision-beat[data-state="result"] .vdit-decision-marker {
+  color: var(--vdit-color-text-subtle);
+}
+
+.vdit-decision-beat[data-state="result"] .vdit-decision-label {
+  color: var(--vdit-color-text);
+}
+
+.vdit-decision-beat-body {
+  margin: 0;
+  color: var(--vdit-color-text-muted);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* Warning body text — slight risk tint to show invalidity */
+.vdit-decision-beat[data-state="warning"] .vdit-decision-beat-body {
+  color: var(--vdit-color-text-muted);
+  position: relative;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--vdit-color-risk);
+  opacity: 0.85;
+}
+
+/* Human body text */
+.vdit-decision-beat[data-state="human"] .vdit-decision-beat-body {
+  color: var(--vdit-color-text);
+}
+
+/* Result body text — calm */
+.vdit-decision-beat[data-state="result"] .vdit-decision-beat-body {
+  color: var(--vdit-color-text-muted);
+}
+
+.vdit-decision-summary {
+  margin-top: var(--vdit-space-6);
+  padding-top: var(--vdit-space-5);
+  border-top: var(--vdit-border);
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-1);
+  color: var(--vdit-color-text);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  max-width: 60ch;
+}
+
+/* Desktop: five-node horizontal trace */
+@media (min-width: 64rem) {
+  .vdit-decision-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  /* Horizontal rail */
+  .vdit-decision-list::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--vdit-color-system);
+    opacity: 0.5;
+  }
+
+  .vdit-decision-beat {
+    padding-left: var(--vdit-space-4);
+    padding-bottom: 0;
+    border-left: var(--vdit-border);
+  }
+
+  .vdit-decision-beat:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  /* Override mobile rail */
+  .vdit-decision-beat::before {
+    display: none;
+  }
+
+  /* Node dot on horizontal rail */
+  .vdit-decision-beat::after {
+    left: -5px;
+    top: 0;
+    width: 11px;
+    height: 11px;
+  }
+
+  .vdit-decision-beat:first-child::after {
+    left: -6px;
+  }
+
+  .vdit-decision-beat-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .vdit-decision-label {
+    font-size: var(--vdit-step-0);
+  }
+
+  .vdit-decision-beat-body {
+    font-size: var(--vdit-step--1);
+    max-width: none;
+  }
+
+  /* Warning body — left border in horizontal layout */
+  .vdit-decision-beat[data-state="warning"] .vdit-decision-beat-body {
+    padding-left: 0.5rem;
+  }
+
+  .vdit-decision-summary {
+    font-size: var(--vdit-step-2);
+  }
+}
+
+/* Ensure no horizontal overflow at very narrow widths */
+@media (max-width: 320px) {
+  .vdit-process-step,
+  .vdit-decision-beat {
+    padding-left: 2.5rem;
+  }
+}
+
