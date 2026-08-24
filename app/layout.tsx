@@ -6,18 +6,33 @@ import { Metadata, Viewport } from "next";
 import { getGlobalConfig } from "../lib/contentlayer";
 import { Theme } from "@radix-ui/themes";
 import { Barlow_Condensed } from "next/font/google";
+import localFont from "next/font/local";
 
 /*
- * Barlow Condensed is self-hosted via next/font (display headings only).
- * Geist and Geist Mono are loaded from Google Fonts CDN — the `geist` npm
- * package and next/font/google Geist export were added in Next.js 15+;
- * this project runs 14.2.21, so we keep CDN delivery for those two.
+ * Barlow Condensed — via next/font/google (display headings only).
+ * Geist and Geist Mono — self-hosted via next/font/local using variable
+ * woff2 files from the `geist` npm package copied to public/fonts/.
+ * Both variable fonts cover all required weights (300–700) in a single file.
  */
 const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow-condensed",
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   display: "swap",
+});
+
+const geistSans = localFont({
+  src: "../public/fonts/Geist-Variable.woff2",
+  variable: "--font-geist",
+  display: "swap",
+  weight: "100 900",
+});
+
+const geistMono = localFont({
+  src: "../public/fonts/GeistMono-Variable.woff2",
+  variable: "--font-geist-mono",
+  display: "swap",
+  weight: "100 900",
 });
 
 const SITE_URL = 'https://vandenit.be'
@@ -71,29 +86,8 @@ export default async function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={barlowCondensed.variable}
+      className={`${barlowCondensed.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
-      <head>
-        {/* Geist & Geist Mono — CDN (Next.js 14 doesn't include Geist in next/font/google) */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-        {/*
-         * Expose Geist as CSS variables so vandenit-theme.css can reference them.
-         * next/font injects --font-barlow-condensed automatically;
-         * we manually declare --font-geist and --font-geist-mono here so the
-         * token layer resolves correctly.
-         */}
-        <style>{`
-          :root {
-            --font-geist: 'Geist';
-            --font-geist-mono: 'Geist Mono';
-          }
-        `}</style>
-      </head>
       <body>
         <ThemeProvider
           attribute="class"

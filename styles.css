@@ -5,10 +5,11 @@
   :root {
     color-scheme: dark;
 
-    /* Typography – bound to next/font variables set in layout.tsx */
+    /* Typography – all three fonts bound to next/font variables set in layout.tsx */
     --vdit-font-body: var(--font-geist, "Geist", system-ui, sans-serif);
     --vdit-font-display: var(--font-barlow-condensed, "Barlow Condensed", "Arial Narrow", sans-serif);
     --vdit-font-mono: var(--font-geist-mono, "Geist Mono", ui-monospace, monospace);
+
 
     /* Midnight surfaces */
     --vdit-color-bg: #050a0f;
@@ -595,9 +596,9 @@
     border-right: 0;
   }
 
-  /* Asymmetric hero on desktop */
+  /* Equal-column hero on desktop (6/6) */
   .vdit-hero-inner {
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--vdit-space-8);
   }
 
@@ -733,11 +734,6 @@
   scroll-margin-top: 72px;
 }
 
-/* Section alt background */
-.section-alt {
-  background: var(--vdit-color-surface);
-}
-
 /* Legacy hero-section class */
 .hero-section {
   position: relative;
@@ -747,13 +743,18 @@
 /* Mobile diagram: shown on mobile, hidden on desktop */
 .vdit-hero-diagram-mobile {
   display: block;
-  max-height: 160px;
-  overflow: hidden;
 }
 
 .vdit-hero-diagram-mobile img {
-  max-height: 160px;
-  object-fit: contain;
+  /* Width-based sizing lets the 75x150 SVG aspect ratio determine height.
+   * clamp(110px, 32vw, 140px) gives ~220-280px rendered height on phones.
+   */
+  width: clamp(110px, 32vw, 140px);
+  height: auto;
+  max-width: none;
+  display: block;
+  margin-inline: auto;
+  opacity: 0.85;
 }
 
 @media (min-width: 48rem) {
@@ -762,3 +763,141 @@
     display: none;
   }
 }
+
+/* ── Hero copy CSS classes (replaces inline styles in hero.tsx) ─────────── */
+.vdit-hero-copy {
+  /* Left copy column — content flows naturally */
+}
+
+.vdit-hero-kicker {
+  margin-bottom: 1.25rem;
+}
+
+.vdit-hero-title {
+  font-family: var(--vdit-font-display);
+  color: var(--vdit-color-text);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  text-wrap: balance;
+}
+
+.vdit-hero-lead {
+  color: var(--vdit-color-text-muted);
+  line-height: 1.65;
+  max-width: 52ch;
+  margin-bottom: 2rem;
+}
+
+/* Desktop diagram image */
+.vdit-hero-diagram img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.9;
+}
+
+/* ── Proof strip CSS classes (replaces inline styles in hero.tsx) ────────── */
+.vdit-proof-strip-wrapper {
+  margin-top: var(--vdit-space-7);
+}
+
+.vdit-proof-item-label {
+  margin-bottom: 0.25rem;
+  margin-top: 0;
+}
+
+.vdit-proof-value {
+  margin: 0 0 0.25rem;
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-2);
+  font-weight: 700;
+  color: var(--vdit-color-text);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.vdit-proof-unit {
+  font-size: 0.5em;
+  font-weight: 400;
+  color: var(--vdit-color-text-muted);
+  margin-left: 0.3em;
+  letter-spacing: 0;
+}
+
+.vdit-proof-desc {
+  margin: 0;
+  color: var(--vdit-color-text-muted);
+  font-size: var(--vdit-step--1);
+  line-height: 1.4;
+}
+
+/* ── Contribution section chapter markers ───────────────────────────────── */
+.vdit-chapter-card {
+  position: relative;
+  border: var(--vdit-border);
+  border-top: 2px solid var(--vdit-color-system);
+  border-radius: var(--vdit-radius-sm);
+  background: var(--vdit-color-surface);
+  padding: var(--vdit-space-5);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--vdit-space-4);
+  /* Remove generic floating-panel shadow */
+  box-shadow: none;
+}
+
+.vdit-chapter-card:hover {
+  border-color: var(--vdit-color-line-strong);
+  border-top-color: var(--vdit-color-system-strong);
+}
+
+.vdit-chapter-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.vdit-chapter-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--vdit-radius-xs);
+  background: var(--vdit-color-system-soft);
+  border: 1px solid var(--vdit-color-system);
+  flex-shrink: 0;
+}
+
+.vdit-chapter-title {
+  font-family: var(--vdit-font-display);
+  color: var(--vdit-color-text);
+}
+
+.vdit-chapter-link {
+  color: var(--vdit-color-system-strong);
+  text-decoration: none;
+  font-size: var(--vdit-step--1);
+  font-weight: 500;
+  font-family: var(--vdit-font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.vdit-chapter-link:hover {
+  color: var(--vdit-color-system-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+

@@ -85,12 +85,12 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
   return (
     <section className="vdit-hero">
       <Container size="3" px="6">
-        {/* Asymmetric two-column on desktop, single column on mobile */}
+        {/* Equal two-column on desktop, single column on mobile */}
         <div className="vdit-hero-inner">
           {/* Left column: copy and CTAs */}
-          <div>
+          <div className="vdit-hero-copy">
             {/* Kicker */}
-            <p className="vdit-kicker" style={{ marginBottom: '1.25rem' }}>
+            <p className="vdit-kicker vdit-hero-kicker">
               Senior Engineering&nbsp;·&nbsp;AI-Augmented Delivery
             </p>
 
@@ -99,14 +99,7 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
               as="h1"
               size={{ initial: '8', sm: '9' }}
               weight="bold"
-              style={{
-                fontFamily: 'var(--vdit-font-display)',
-                color: 'var(--vdit-color-text)',
-                lineHeight: 0.95,
-                letterSpacing: '-0.03em',
-                marginBottom: '1.25rem',
-                textWrap: 'balance',
-              }}
+              className="vdit-hero-title"
             >
               {data.tagline}
             </Heading>
@@ -115,12 +108,7 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
             <Text
               as="p"
               size={{ initial: '3', sm: '4' }}
-              style={{
-                color: 'var(--vdit-color-text-muted)',
-                lineHeight: 1.65,
-                maxWidth: '52ch',
-                marginBottom: '2rem',
-              }}
+              className="vdit-hero-lead"
             >
               {data.headline}
             </Text>
@@ -142,12 +130,6 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
               alt=""
               width="600"
               height="210"
-              style={{
-                width: '100%',
-                height: 'auto',
-                display: 'block',
-                opacity: 0.9,
-              }}
             />
           </div>
         </div>
@@ -161,66 +143,30 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
           <img
             src="/daniel-flow-mobile.svg"
             alt=""
-            width="360"
-            height="360"
-            style={{
-              width: '100%',
-              maxWidth: '300px',
-              height: 'auto',
-              display: 'block',
-              margin: '0 auto',
-              opacity: 0.85,
-            }}
+            width="75"
+            height="150"
           />
         </div>
       </Container>
 
       {/* Proof strip — ruled cells below the hero */}
-      <div style={{ marginTop: 'var(--vdit-space-7)' }}>
+      <div className="vdit-proof-strip-wrapper">
         <Container size="3" px="6">
           <div className="vdit-proof-strip">
             {PROOF_ITEMS.map((item, i) => (
               <div key={i}>
-                <p
-                  className="vdit-system-label"
-                  style={{ marginBottom: '0.25rem', marginTop: 0 }}
-                >
+                <p className="vdit-system-label vdit-proof-item-label">
                   {item.annotation}
                 </p>
-                <p
-                  style={{
-                    margin: '0 0 0.25rem',
-                    fontFamily: 'var(--vdit-font-display)',
-                    fontSize: 'var(--vdit-step-2)',
-                    fontWeight: 700,
-                    color: 'var(--vdit-color-text)',
-                    lineHeight: 1,
-                    letterSpacing: '-0.03em',
-                  }}
-                >
+                <p className="vdit-proof-value">
                   {item.value}
                   {item.unit && (
-                    <span
-                      style={{
-                        fontSize: '0.5em',
-                        fontWeight: 400,
-                        color: 'var(--vdit-color-text-muted)',
-                        marginLeft: '0.3em',
-                        letterSpacing: 0,
-                      }}
-                    >
+                    <span className="vdit-proof-unit">
                       {item.unit}
                     </span>
                   )}
                 </p>
-                <p
-                  style={{
-                    margin: 0,
-                    color: 'var(--vdit-color-text-muted)',
-                    fontSize: 'var(--vdit-step--1)',
-                    lineHeight: 1.4,
-                  }}
-                >
+                <p className="vdit-proof-desc">
                   {item.label}
                 </p>
               </div>

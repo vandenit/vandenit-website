@@ -1,6 +1,6 @@
 "use client";
 import { Icon } from "../icon";
-import { Box, Card, Container, Flex, Grid, Heading, Section, Text } from "@radix-ui/themes";
+import { Container, Grid, Heading, Section } from "@radix-ui/themes";
 import { MarkdownRenderer } from "../markdown-renderer";
 import { BsArrowRight } from "react-icons/bs";
 import NextLink from "next/link";
@@ -28,73 +28,59 @@ interface FeaturesBlockData {
   _template: string;
 }
 
+/** Zero-padded chapter number, e.g. 1 → "01" */
+function chapterNumber(index: number): string {
+  return String(index + 1).padStart(2, '0');
+}
+
 export const Feature = ({
   data,
+  index,
 }: {
   data: FeatureItem;
+  index: number;
 }) => {
   return (
-    <Card className="card-elevated" size="3" style={{ height: '100%' }}>
-      <Flex direction="column" gap="3" style={{ height: '100%' }}>
-        {/* Icon */}
-        <Flex
-          align="center"
-          justify="center"
-          style={{
-            width: '36px',
-            height: '36px',
-            borderRadius: 'var(--vdit-radius-xs)',
-            background: 'var(--vdit-color-surface-raised)',
-            border: 'var(--vdit-border)',
-            flexShrink: 0,
-          }}
-        >
+    <div className="vdit-chapter-card">
+      {/* Chapter marker + icon row */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span className="vdit-chapter-marker" aria-hidden="true">
+          {chapterNumber(index)}
+        </span>
+        <div className="vdit-chapter-icon" aria-hidden="true">
           <Icon data={{ size: '3', ...data.icon }} />
-        </Flex>
+        </div>
+      </div>
 
-        <Heading
-          as="h3"
-          size="4"
-          weight="bold"
-          style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}
+      <Heading
+        as="h3"
+        size="4"
+        weight="bold"
+        className="vdit-chapter-title"
+      >
+        {data.title}
+      </Heading>
+
+      <p className="vdit-proof-desc card-content-wrap" style={{ lineHeight: '1.6' }}>
+        {data.text}
+      </p>
+
+      {data.richText && (
+        <Container>
+          <MarkdownRenderer content={data.richText} />
+        </Container>
+      )}
+
+      {data.buttonLink && (
+        <NextLink
+          href={data.buttonLink.link}
+          className="vdit-chapter-link"
         >
-          {data.title}
-        </Heading>
-
-        <Text as="p" size="3" className="card-content-wrap" style={{ lineHeight: '1.6', color: 'var(--vdit-color-text-muted)' }}>
-          {data.text}
-        </Text>
-
-        {data.richText && (
-          <Container>
-            <MarkdownRenderer content={data.richText} />
-          </Container>
-        )}
-
-        {data.buttonLink && (
-          <Box mt="auto" pt="2">
-            <NextLink
-              href={data.buttonLink.link}
-              style={{
-                color: 'var(--vdit-color-system-strong)',
-                textDecoration: 'none',
-                fontSize: '13px',
-                fontWeight: 500,
-                fontFamily: 'var(--vdit-font-mono)',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-              }}
-            >
-              {data.buttonLink.label}
-              <BsArrowRight aria-hidden="true" />
-            </NextLink>
-          </Box>
-        )}
-      </Flex>
-    </Card>
+          {data.buttonLink.label}
+          <BsArrowRight aria-hidden="true" />
+        </NextLink>
+      )}
+    </div>
   );
 };
 
@@ -117,7 +103,7 @@ export const Features = ({ data }: { data: FeaturesBlockData }) => {
         <Grid columns={{ initial: '1', sm: '3' }} gap="4">
           {data.items &&
             data.items.map((block, i) => (
-              <Feature key={i} data={block} />
+              <Feature key={i} data={block} index={i} />
             ))}
         </Grid>
       </Container>

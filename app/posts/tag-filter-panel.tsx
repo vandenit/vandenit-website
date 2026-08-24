@@ -1,3 +1,4 @@
+"use client";
 import { Flex, Text, Container, Badge } from '@radix-ui/themes';
 import { FaFilter } from 'react-icons/fa';
 import Link from 'next/link';
