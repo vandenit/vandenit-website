@@ -33,10 +33,10 @@ export function ScoreVisual() {
 
       {/* Desktop series */}
       <div className="vdit-score-series" data-series="desktop">
-        <h4 className="vdit-score-series-title">
+        <p className="vdit-score-series-title">
           <span className="vdit-score-series-label">Desktop score</span>
           <span className="vdit-score-series-pattern-key">solid bars</span>
-        </h4>
+        </p>
         <div className="vdit-score-bars">
           {desktopData.map((point) => {
             const widthPct = (point.score / MAX_SCORE) * 100;
@@ -60,10 +60,10 @@ export function ScoreVisual() {
 
       {/* Content series */}
       <div className="vdit-score-series" data-series="content">
-        <h4 className="vdit-score-series-title">
+        <p className="vdit-score-series-title">
           <span className="vdit-score-series-label">Content score</span>
           <span className="vdit-score-series-pattern-key">dashed bars</span>
-        </h4>
+        </p>
         <div className="vdit-score-bars">
           {contentData.map((point) => {
             const widthPct = (point.score / MAX_SCORE) * 100;

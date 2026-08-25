@@ -70,7 +70,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   const postUrl = `/posts/${post.slug}`;
-  const socialImageUrl = '/social/blind-coder-social.png';
+  const socialImageUrl = `/social/${post.slug}-social.png`;
 
   return {
     title: post.title,

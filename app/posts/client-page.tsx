@@ -41,7 +41,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
           <>
             {/* Strong ruled feature entry */}
             {(() => {
-              const featuredPost = posts.length === 1 ? posts[0] : posts.find(p => p.slug.includes('owasp'));
+              const featuredPost = posts[0];
               if (!featuredPost) return null;
 
               const date = new Date(featuredPost.date);
@@ -122,7 +122,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
                   const date = new Date(post.date);
                   let formattedDate = "";
                   if (!isNaN(date.getTime())) {
-                    formattedDate = format(date, "MMM dd, yyyy");
+                    formattedDate = format(date, "MMM d, yyyy");
                   }
                   return (
                     <Box key={post._id} className="vdit-card" p="5">

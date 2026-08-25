@@ -76,12 +76,15 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             </Text>
           ),
 
-          // Links
-          a: ({ href, children }: any) => (
-            <Link href={href} target="_blank" rel="noopener noreferrer">
-              {children}
-            </Link>
-          ),
+          // Links — internal links stay in same tab, external links open new tab
+          a: ({ href, children }: any) => {
+            const isInternal = href?.startsWith('/') || href?.startsWith('#');
+            return (
+              <Link href={href} {...(isInternal ? {} : { target: "_blank", rel: "noopener noreferrer" })}>
+                {children}
+              </Link>
+            );
+          },
           
           // Code blocks (pre + code) — detect ASCII diagrams and replace with visuals
           pre: ({ children }: any) => {
