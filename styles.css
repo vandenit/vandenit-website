@@ -1004,8 +1004,57 @@
   max-width: 60ch;
 }
 
+/* Tablet: 2×2 grid for better readability */
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .vdit-process-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--vdit-space-6) var(--vdit-space-5);
+    position: relative;
+  }
+
+  .vdit-process-step {
+    padding-left: var(--vdit-space-4);
+    padding-bottom: 0;
+    border-left: var(--vdit-border);
+  }
+
+  .vdit-process-step:nth-child(odd) {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .vdit-process-step::before {
+    display: none;
+  }
+
+  .vdit-process-step::after {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--vdit-color-bg);
+    border: 1.5px solid var(--vdit-color-system);
+  }
+
+  .vdit-process-step:nth-child(odd)::after {
+    left: -6px;
+  }
+
+  .vdit-process-step-title {
+    font-size: var(--vdit-step-1);
+  }
+
+  .vdit-process-step-body {
+    font-size: var(--vdit-step--1);
+  }
+}
+
 /* Desktop: four connected columns with horizontal cobalt rail */
-@media (min-width: 48rem) {
+@media (min-width: 64rem) {
   .vdit-process-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
