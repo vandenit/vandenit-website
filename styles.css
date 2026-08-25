@@ -1510,6 +1510,13 @@
   scroll-margin-top: 80px;
 }
 
+/* Code blocks — internal horizontal scroll on narrow screens */
+.vdit-article-content pre {
+  overflow-x: auto;
+  max-width: 100%;
+  scrollbar-width: thin;
+}
+
 /* TOC: desktop side rail */
 .vdit-article-toc {
   position: static;
