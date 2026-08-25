@@ -26,7 +26,7 @@ const steps = [
 
 export const EngagementProcess = () => {
   return (
-    <Section size="2" mb="3" className="vdit-content-section">
+    <Section size="2" mb="3" className="vdit-content-section vdit-process-section">
       <Container size="3" px="6">
         <section className="vdit-process" aria-labelledby="engagement-process-title">
           <h2 id="engagement-process-title" className="vdit-process-heading">

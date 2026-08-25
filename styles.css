@@ -448,11 +448,15 @@
 
   /* Nav link — underline on active, no pill */
   .vdit-nav-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--vdit-color-text-muted);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    padding: 6px 2px;
+    padding: 6px 0.5rem;
     border-bottom: 2px solid transparent;
     transition:
       color var(--vdit-duration-fast) var(--vdit-ease),
@@ -470,7 +474,7 @@
 
   /* CTA button in header — amber */
   .vdit-nav-cta {
-    min-height: 36px;
+    min-height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -516,6 +520,14 @@
 
   .vdit-hero > * {
     position: relative;
+  }
+
+  .vdit-hero-kicker {
+    flex-wrap: wrap;
+  }
+
+  .vdit-kicker-tail {
+    display: inline-flex;
   }
 
   /* Hero layout: single column mobile, asymmetric desktop */
@@ -575,6 +587,32 @@
   .vdit-muted        { color: var(--vdit-color-text-muted); }
   .vdit-mono         { font-family: var(--vdit-font-mono); }
   .vdit-display-font { font-family: var(--vdit-font-display); }
+  .vdit-nowrap       { white-space: nowrap; }
+}
+
+/* Minimum 44px interaction targets without enlarging their visual content. */
+.mobile-menu-button,
+.site-logo-link,
+.site-footer a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 63.99rem) {
+  /* Tighten section rhythm only; preserve text and step/beat spacing. */
+  .vdit-content-section {
+    padding-block: var(--vdit-space-4);
+    margin-bottom: var(--vdit-space-2) !important;
+  }
+
+  .vdit-process-section,
+  .vdit-decision-section {
+    padding-block: var(--vdit-space-3);
+    margin-bottom: var(--vdit-space-1) !important;
+  }
 }
 
 /* ── Responsive overrides ──────────────────────────────────────────────── */
@@ -1004,55 +1042,6 @@
   max-width: 60ch;
 }
 
-/* Tablet: 2×2 grid for better readability */
-@media (min-width: 48rem) and (max-width: 63.99rem) {
-  .vdit-process-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--vdit-space-6) var(--vdit-space-5);
-    position: relative;
-  }
-
-  .vdit-process-step {
-    padding-left: var(--vdit-space-4);
-    padding-bottom: 0;
-    border-left: var(--vdit-border);
-  }
-
-  .vdit-process-step:nth-child(odd) {
-    border-left: 0;
-    padding-left: 0;
-  }
-
-  .vdit-process-step::before {
-    display: none;
-  }
-
-  .vdit-process-step::after {
-    content: "";
-    position: absolute;
-    left: -5px;
-    top: 0;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: var(--vdit-color-bg);
-    border: 1.5px solid var(--vdit-color-system);
-  }
-
-  .vdit-process-step:nth-child(odd)::after {
-    left: -6px;
-  }
-
-  .vdit-process-step-title {
-    font-size: var(--vdit-step-1);
-  }
-
-  .vdit-process-step-body {
-    font-size: var(--vdit-step--1);
-  }
-}
-
 /* Desktop: four connected columns with horizontal cobalt rail */
 @media (min-width: 64rem) {
   .vdit-process-list {
@@ -1082,7 +1071,6 @@
 
   .vdit-process-step:first-child {
     border-left: 0;
-    padding-left: 0;
   }
 
   /* Override mobile rail and node */

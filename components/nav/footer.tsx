@@ -10,7 +10,7 @@ export default function Footer() {
       asChild
       className="vdit-footer"
     >
-      <footer>
+      <footer className="site-footer">
         <Container size="3" px="6">
           <Flex
             direction={{ initial: 'column', sm: 'row' }}

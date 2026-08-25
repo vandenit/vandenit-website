@@ -91,7 +91,11 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
           <div className="vdit-hero-copy">
             {/* Kicker */}
             <p className="vdit-kicker vdit-hero-kicker">
-              Senior Engineering&nbsp;·&nbsp;AI-Augmented Delivery
+              <span>Senior Engineering</span>
+              <span className="vdit-kicker-tail">
+                <span aria-hidden="true">&nbsp;·&nbsp;</span>
+                <span className="vdit-nowrap">AI‑Augmented Delivery</span>
+              </span>
             </p>
 
             {/* H1 */}

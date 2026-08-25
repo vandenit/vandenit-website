@@ -24,9 +24,8 @@ export default function NavItems({ navs }: { navs: any[] }) {
       <Link
         href="/"
         aria-label="Vanden IT Home"
+        className="site-logo-link"
         style={{
-          display: 'flex',
-          alignItems: 'center',
           gap: '10px',
           textDecoration: 'none',
           color: 'var(--vdit-color-text)',
@@ -68,6 +67,7 @@ export default function NavItems({ navs }: { navs: any[] }) {
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <IconButton
+              className="mobile-menu-button"
               size="3"
               variant="ghost"
               color="gray"

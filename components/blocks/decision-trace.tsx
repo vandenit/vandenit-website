@@ -37,7 +37,7 @@ const beats = [
 
 export const DecisionTrace = () => {
   return (
-    <Section size="2" mb="3" className="vdit-content-section">
+    <Section size="2" mb="3" className="vdit-content-section vdit-decision-section">
       <Container size="3" px="6">
         <section
           className="vdit-decision-trace"
