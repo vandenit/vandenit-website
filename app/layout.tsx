@@ -52,10 +52,10 @@ export const metadata: Metadata = {
     description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Available for embedded product team engagements.",
     images: [
       {
-        url: '/uploads/main/unnamed.jpg',
+        url: '/social/vandenit-home-social.png',
         width: 1200,
         height: 630,
-        alt: 'Vanden IT',
+        alt: 'Vanden IT — Senior Developer & Fractional Tech Lead',
       },
     ],
   },
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Vanden IT — Senior Developer & Fractional Tech Lead",
     description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow.",
-    images: ['/uploads/main/unnamed.jpg'],
+    images: ['/social/vandenit-home-social.png'],
   },
   alternates: {
     canonical: '/',

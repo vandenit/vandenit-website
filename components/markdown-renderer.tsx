@@ -1,14 +1,26 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import { Heading, Text, Link, Code, Blockquote } from '@radix-ui/themes';
+import React from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import { Heading, Text, Link, Code, Blockquote } from "@radix-ui/themes";
 import Image from 'next/image';
+import { WorkflowVisual } from './article/workflow-visual';
+import { ScoreVisual } from './article/score-visual';
 
 
 interface MarkdownRendererProps {
   content: string;
   className?: string;
+}
+
+// Check if a code block content is the workflow ASCII diagram
+function isWorkflowDiagram(content: string): boolean {
+  return content.includes('Hermes (GLM 5)') && content.includes('Claude Sonnet') && content.includes('screenshots');
+}
+
+// Check if a code block content is the score progression ASCII diagram
+function isScoreDiagram(content: string): boolean {
+  return content.includes('Desktop:') && content.includes('Content:') && content.includes('▓');
 }
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ 
@@ -71,21 +83,42 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             </Link>
           ),
           
-          // Code blocks (pre + code)
-          pre: ({ children }: any) => (
-            <pre style={{
-              backgroundColor: 'var(--gray-3)',
-              padding: '1rem',
-              borderRadius: '8px',
-              overflowX: 'auto',
-              maxWidth: '100%',
-              marginBottom: '1rem',
-              fontSize: '13px',
-              WebkitOverflowScrolling: 'touch',
-            }}>
-              {children}
-            </pre>
-          ),
+          // Code blocks (pre + code) — detect ASCII diagrams and replace with visuals
+          pre: ({ children }: any) => {
+            // Extract text content from the code block
+            const codeChild = Array.isArray(children) ? children[0] : children;
+            const codeContent = typeof codeChild?.props?.children === 'string' 
+              ? codeChild.props.children 
+              : Array.isArray(codeChild?.props?.children) 
+                ? codeChild.props.children.join('') 
+                : '';
+
+            // Replace workflow ASCII diagram
+            if (isWorkflowDiagram(codeContent)) {
+              return <WorkflowVisual />;
+            }
+
+            // Replace score progression ASCII diagram
+            if (isScoreDiagram(codeContent)) {
+              return <ScoreVisual />;
+            }
+
+            // Normal code block
+            return (
+              <pre style={{
+                backgroundColor: 'var(--gray-3)',
+                padding: '1rem',
+                borderRadius: '8px',
+                overflowX: 'auto',
+                maxWidth: '100%',
+                marginBottom: '1rem',
+                fontSize: '13px',
+                WebkitOverflowScrolling: 'touch',
+              }}>
+                {children}
+              </pre>
+            );
+          },
           code: ({ children, className, ...props }: any) => {
             const isBlock = className?.includes('language-');
             if (isBlock) {

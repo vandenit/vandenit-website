@@ -1383,3 +1383,687 @@
   }
 }
 
+/* ── Phase 4: Case study and blog ───────────────────────────────────────── */
+
+/* Case-file article header */
+.vdit-article-section {
+  padding-bottom: var(--vdit-space-8);
+}
+
+.vdit-article-header {
+  max-width: var(--vdit-reading);
+  margin-inline: auto;
+}
+
+.vdit-article-kicker {
+  margin-bottom: var(--vdit-space-3);
+}
+
+.vdit-article-kicker .vdit-kicker {
+  font-size: var(--vdit-step--1);
+}
+
+.vdit-article-title {
+  font-family: var(--vdit-font-display);
+  font-size: clamp(1.75rem, 1.3rem + 2.2vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--vdit-color-text);
+  margin: 0 0 var(--vdit-space-4) 0;
+  text-wrap: balance;
+}
+
+.vdit-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vdit-space-4) var(--vdit-space-6);
+  margin-bottom: var(--vdit-space-4);
+  border-top: var(--vdit-border);
+  border-bottom: var(--vdit-border);
+  padding: var(--vdit-space-3) 0;
+}
+
+.vdit-article-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vdit-article-meta-label {
+  font-family: var(--vdit-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vdit-color-text-subtle);
+}
+
+.vdit-article-meta-item > span:last-child {
+  color: var(--vdit-color-text);
+  font-size: var(--vdit-step--1);
+}
+
+.vdit-article-back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--vdit-color-system-strong);
+  text-decoration: none;
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color var(--vdit-duration-fast) var(--vdit-ease);
+}
+
+.vdit-article-back-link:hover {
+  color: var(--vdit-color-system);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Article layout: TOC sidebar + content */
+.vdit-article-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--vdit-space-6);
+}
+
+/* Desktop TOC sidebar — hidden on mobile, shown on desktop */
+.vdit-article-sidebar {
+  display: none;
+}
+
+.vdit-article-toc-mobile {
+  display: block;
+}
+
+@media (min-width: 64rem) {
+  .vdit-article-layout {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: var(--vdit-space-7);
+    align-items: start;
+  }
+
+  .vdit-article-sidebar {
+    display: block;
+  }
+
+  .vdit-article-toc-mobile {
+    display: none;
+  }
+}
+
+/* Article body — editorial measure */
+.vdit-article-body {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.vdit-article-content {
+  max-width: 72ch;
+  font-size: var(--vdit-step-0);
+  line-height: 1.65;
+}
+
+.vdit-article-content h2 {
+  scroll-margin-top: 80px;
+}
+
+/* TOC: desktop side rail */
+.vdit-article-toc {
+  position: static;
+}
+
+@media (min-width: 64rem) {
+  .vdit-article-toc {
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+}
+
+.vdit-toc-title {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vdit-color-text-subtle);
+  margin: 0 0 var(--vdit-space-3) 0;
+}
+
+.vdit-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: var(--vdit-border);
+}
+
+.vdit-toc-item {
+  margin: 0;
+}
+
+.vdit-toc-link {
+  display: block;
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  transition:
+    color var(--vdit-duration-fast) var(--vdit-ease),
+    border-color var(--vdit-duration-fast) var(--vdit-ease);
+  line-height: 1.3;
+}
+
+.vdit-toc-link:hover {
+  color: var(--vdit-color-text);
+  border-left-color: var(--vdit-color-line-strong);
+}
+
+.vdit-toc-link[aria-current="location"] {
+  color: var(--vdit-color-system-strong);
+  border-left-color: var(--vdit-color-system);
+}
+
+.vdit-toc-link:focus-visible {
+  outline: 2px solid var(--vdit-color-focus);
+  outline-offset: 2px;
+}
+
+/* TOC: mobile horizontally scrollable chips */
+.vdit-article-toc-mobile .vdit-toc-title {
+  margin-bottom: var(--vdit-space-2);
+}
+
+.vdit-article-toc-mobile .vdit-toc-list {
+  display: flex;
+  flex-direction: row;
+  gap: var(--vdit-space-2);
+  overflow-x: auto;
+  border-left: none;
+  padding-bottom: var(--vdit-space-2);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  /* Trailing fade affordance */
+  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+.vdit-article-toc-mobile .vdit-toc-item {
+  flex-shrink: 0;
+}
+
+.vdit-article-toc-mobile .vdit-toc-link {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  border-left: none;
+  border: var(--vdit-border);
+  border-radius: var(--vdit-radius-xs);
+  padding: 0 0.75rem;
+  min-height: 44px;
+  margin-left: 0;
+}
+
+.vdit-article-toc-mobile .vdit-toc-link[aria-current="location"] {
+  border-color: var(--vdit-color-system);
+  background: var(--vdit-color-system-soft);
+}
+
+/* ── Workflow visual ────────────────────────────────────────────────────── */
+.vdit-workflow-visual {
+  margin: var(--vdit-space-6) 0;
+  padding: var(--vdit-space-5);
+  border: var(--vdit-border);
+  border-radius: var(--vdit-radius-sm);
+  background: var(--vdit-color-surface);
+}
+
+.vdit-workflow-caption {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  margin-bottom: var(--vdit-space-4);
+  padding-bottom: var(--vdit-space-3);
+  border-bottom: var(--vdit-border);
+}
+
+.vdit-workflow-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+.vdit-workflow-step {
+  position: relative;
+  padding-left: 3rem;
+  padding-bottom: var(--vdit-space-4);
+}
+
+.vdit-workflow-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Cobalt rail for system steps */
+.vdit-workflow-step::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--vdit-color-system);
+  opacity: 0.5;
+}
+
+/* Amber rail for human step */
+.vdit-workflow-step[data-role="human"]::before {
+  background: var(--vdit-color-human);
+  opacity: 0.6;
+}
+
+.vdit-workflow-step:last-child::before {
+  bottom: calc(100% - 12px);
+}
+
+/* Node dot */
+.vdit-workflow-step::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vdit-color-bg);
+  border: 1.5px solid var(--vdit-color-system);
+}
+
+.vdit-workflow-step[data-role="human"]::after {
+  border-color: var(--vdit-color-human);
+  background: var(--vdit-color-human-soft);
+}
+
+.vdit-workflow-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.vdit-workflow-step[data-role="human"] .vdit-workflow-marker {
+  color: var(--vdit-color-human);
+}
+
+.vdit-workflow-actor {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.vdit-workflow-action {
+  display: block;
+  color: var(--vdit-color-text-muted);
+  font-size: var(--vdit-step--1);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.vdit-workflow-step[data-role="human"] .vdit-workflow-action {
+  color: var(--vdit-color-text);
+}
+
+.vdit-workflow-note {
+  margin-top: var(--vdit-space-4);
+  padding-top: var(--vdit-space-3);
+  border-top: var(--vdit-border);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.vdit-workflow-note .vdit-human-label {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+/* Desktop: horizontal workflow */
+@media (min-width: 64rem) {
+  .vdit-workflow-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--vdit-space-4);
+    position: relative;
+  }
+
+  .vdit-workflow-list::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--vdit-color-system);
+    opacity: 0.5;
+  }
+
+  .vdit-workflow-step {
+    padding-left: var(--vdit-space-4);
+    padding-bottom: 0;
+    border-left: var(--vdit-border);
+  }
+
+  .vdit-workflow-step:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .vdit-workflow-step::before {
+    display: none;
+  }
+
+  .vdit-workflow-step::after {
+    left: -5px;
+    top: 0;
+    width: 11px;
+    height: 11px;
+  }
+
+  .vdit-workflow-step:first-child::after {
+    left: -6px;
+  }
+
+  /* Human step: full-width below the grid */
+  .vdit-workflow-step[data-role="human"] {
+    grid-column: 1 / -1;
+    border-left: 2px solid var(--vdit-color-human);
+    padding: var(--vdit-space-4);
+    margin-top: var(--vdit-space-4);
+    border-radius: var(--vdit-radius-xs);
+    background: var(--vdit-color-human-soft);
+  }
+
+  .vdit-workflow-step[data-role="human"]::after {
+    display: none;
+  }
+}
+
+/* ── Score progression visual ───────────────────────────────────────────── */
+.vdit-score-visual {
+  margin: var(--vdit-space-6) 0;
+  padding: var(--vdit-space-5);
+  border: var(--vdit-border);
+  border-radius: var(--vdit-radius-sm);
+  background: var(--vdit-color-surface);
+}
+
+.vdit-score-caption {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  margin-bottom: var(--vdit-space-4);
+  padding-bottom: var(--vdit-space-3);
+  border-bottom: var(--vdit-border);
+}
+
+.vdit-score-series {
+  margin-bottom: var(--vdit-space-5);
+}
+
+.vdit-score-series:last-of-type {
+  margin-bottom: var(--vdit-space-4);
+}
+
+.vdit-score-series-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--vdit-space-3);
+  margin: 0 0 var(--vdit-space-3) 0;
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-1);
+  color: var(--vdit-color-text);
+  font-weight: 600;
+}
+
+.vdit-score-series-label {
+  letter-spacing: -0.02em;
+}
+
+.vdit-score-series-pattern-key {
+  font-family: var(--vdit-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--vdit-color-text-subtle);
+  font-weight: 400;
+}
+
+.vdit-score-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vdit-space-2);
+}
+
+.vdit-score-bar-row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 2rem;
+  align-items: center;
+  gap: var(--vdit-space-2);
+}
+
+.vdit-score-bar-label {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  text-align: right;
+}
+
+.vdit-score-bar-track {
+  height: 22px;
+  background: var(--vdit-color-bg);
+  border: 1px solid var(--vdit-color-line);
+  border-radius: var(--vdit-radius-xs);
+  overflow: hidden;
+}
+
+/* Desktop series: solid cobalt fill */
+.vdit-score-bar--desktop {
+  height: 100%;
+  background: var(--vdit-color-system);
+  opacity: 0.75;
+}
+
+/* Content series: dashed/diagonal pattern to distinguish without colour alone */
+.vdit-score-bar--content {
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--vdit-color-human),
+      var(--vdit-color-human) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+  opacity: 0.8;
+}
+
+.vdit-score-bar-value {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-text);
+  text-align: left;
+}
+
+/* Score data table */
+.vdit-score-table-wrap {
+  margin-top: var(--vdit-space-5);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vdit-score-table-caption {
+  font-family: var(--vdit-font-mono);
+  font-size: 0.7rem;
+  color: var(--vdit-color-text-subtle);
+  text-align: left;
+  padding-bottom: var(--vdit-space-2);
+}
+
+.vdit-score-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--vdit-border);
+  font-size: var(--vdit-step--1);
+}
+
+.vdit-score-table th,
+.vdit-score-table td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--vdit-color-line);
+  text-align: left;
+}
+
+.vdit-score-table thead th {
+  background: var(--vdit-color-surface-raised);
+  color: var(--vdit-color-text);
+  font-family: var(--vdit-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vdit-score-table tbody th {
+  color: var(--vdit-color-text);
+  font-weight: 500;
+}
+
+.vdit-score-table tbody td {
+  color: var(--vdit-color-text-muted);
+  font-family: var(--vdit-font-mono);
+}
+
+.vdit-score-note {
+  margin-top: var(--vdit-space-3);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  font-style: italic;
+}
+
+/* ── Posts index: strong ruled feature entry ────────────────────────────── */
+.vdit-feature-entry {
+  border-block: var(--vdit-border);
+  border-top: 2px solid var(--vdit-color-system);
+  padding: var(--vdit-space-6) 0;
+}
+
+.vdit-feature-entry-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.vdit-feature-entry-link:hover .vdit-feature-entry-title {
+  color: var(--vdit-color-system-strong);
+}
+
+.vdit-feature-entry-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--vdit-space-2) var(--vdit-space-4);
+  margin-bottom: var(--vdit-space-4);
+}
+
+.vdit-feature-entry-date {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-subtle);
+}
+
+.vdit-feature-entry-reading {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-subtle);
+}
+
+.vdit-feature-entry-title {
+  font-family: var(--vdit-font-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--vdit-color-text);
+  margin: 0 0 var(--vdit-space-3) 0;
+  text-wrap: balance;
+  transition: color var(--vdit-duration-fast) var(--vdit-ease);
+}
+
+.vdit-feature-entry-excerpt {
+  color: var(--vdit-color-text-muted);
+  font-size: var(--vdit-step-0);
+  line-height: 1.6;
+  max-width: 60ch;
+  margin: 0 0 var(--vdit-space-4) 0;
+}
+
+.vdit-feature-entry-cue {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--vdit-space-3) var(--vdit-space-4);
+  border: var(--vdit-border);
+  border-left: 2px solid var(--vdit-color-system);
+  border-radius: var(--vdit-radius-xs);
+  background: var(--vdit-color-surface);
+  margin-bottom: var(--vdit-space-4);
+  max-width: 60ch;
+}
+
+.vdit-feature-entry-cue .vdit-system-label {
+  font-size: 0.7rem;
+}
+
+.vdit-feature-entry-cue .vdit-human-label {
+  font-size: 0.7rem;
+}
+
+.vdit-feature-entry-author {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-subtle);
+  margin-bottom: var(--vdit-space-3);
+}
+
+.vdit-feature-entry-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--vdit-color-system-strong);
+}
+
+.vdit-feature-entry-link:hover .vdit-feature-entry-cta {
+  color: var(--vdit-color-system);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.vdit-feature-entry-link:focus-visible {
+  outline: 2px solid var(--vdit-color-focus);
+  outline-offset: 4px;
+}
+

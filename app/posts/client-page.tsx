@@ -2,9 +2,7 @@
 import { format } from "date-fns";
 import Link from "next/link";
 import React from "react";
-import { Flex, Box, Heading, Text, Avatar, Card, Container, Section, Badge } from '@radix-ui/themes';
-import { BsArrowRight } from "react-icons/bs";
-import { FaShieldAlt } from "react-icons/fa";
+import { Flex, Box, Heading, Text, Container, Section } from '@radix-ui/themes';
 import { TagFilterPanel } from "./tag-filter-panel";
 import type { Post, Author } from '.contentlayer/generated';
 
@@ -22,11 +20,8 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
       <Section size="3" mb="4" pt={{ initial: '7', sm: '9' }}>
         <Container size="3" px="6">
           <Flex direction="column" align="center" gap="4">
-            <Badge size="2" variant="soft" color="blue" radius="full">
-              Senior Engineering · AI-Augmented Delivery
-            </Badge>
             <Heading as="h1" size={{ initial: '7', sm: '8' }} weight="bold" align="center">
-              Building & Shipping with AI
+              Building &amp; Shipping with AI
             </Heading>
             <Text size={{ initial: '4', sm: '5' }} color="gray" align="center" style={{ maxWidth: '600px', lineHeight: '1.6' }}>
               Notes from real development work: the workflows, failures, and judgment calls involved in building software with AI.
@@ -44,67 +39,74 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
           </Flex>
         ) : (
           <>
-            {/* Featured Post — first post when there's only one, or look for a flagged featured post */}
+            {/* Strong ruled feature entry */}
             {(() => {
               const featuredPost = posts.length === 1 ? posts[0] : posts.find(p => p.slug.includes('owasp'));
               if (!featuredPost) return null;
 
               const date = new Date(featuredPost.date);
-              const formattedDate = !isNaN(date.getTime()) ? format(date, "MMM dd, yyyy") : "";
+              const isoDate = !isNaN(date.getTime()) ? date.toISOString().split("T")[0] : "";
+              const formattedDate = !isNaN(date.getTime()) ? format(date, "MMM d, yyyy") : "";
+
+              // Calculate reading time (same logic as article page)
+              const rawBody = featuredPost.body.raw || '';
+              const wordCount = rawBody
+                .replace(/```[\s\S]*?```/g, ' ')
+                .replace(/`[^`]+`/g, ' ')
+                .replace(/[#*>\-_~|]/g, ' ')
+                .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .split(' ')
+                .filter((w) => w.length > 0).length;
+              const readingTime = Math.max(1, Math.round(wordCount / 200));
 
               return (
                 <Box mb="6">
-                  <Box mb="3">
-                    <Badge size="2" variant="soft" color="amber" radius="full">
-                      Featured
-                    </Badge>
-                  </Box>
-                  <Card className="card-elevated card-featured" size="4" style={{ overflow: 'hidden' }}>
-                    <Link href={featuredPost.url} style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <Box p="6" className="card-content-wrap">
-                        <Flex align="start" gap="4">
-                          {/* Icon — hidden on mobile to give heading more room */}
-                          <Flex flexShrink="0" display={{ initial: 'none', sm: 'flex' }} align="center" justify="center" style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'var(--accent-3)' }}>
-                            <FaShieldAlt size="1.8em" color="var(--vdit-color-system)" />
-                          </Flex>
-                          <Box flexGrow="1" className="card-content-wrap" style={{ minWidth: 0 }}>
-                            <Heading as="h3" size={{ initial: '5', sm: '6' }} weight="bold" mb="3" style={{ overflowWrap: 'normal', wordBreak: 'normal', hyphens: 'none' }}>
-                              {featuredPost.title}
-                            </Heading>
-                            {featuredPost.excerpt && (
-                              <Text as="p" size="3" color="gray" mb="4" style={{ lineHeight: '1.6' }}>
-                                {featuredPost.excerpt}
-                              </Text>
-                            )}
-                            <Flex align="center" gap="4">
-                              {featuredPost.authorData && (
-                                <Flex align="center" gap="2">
-                                  <Avatar
-                                    src={featuredPost.authorData.avatar}
-                                    alt={featuredPost.authorData.name}
-                                    fallback={featuredPost.authorData.name?.[0] || 'A'}
-                                    size="2"
-                                    radius="full"
-                                  />
-                                  <Text size="2" color="gray">
-                                    {featuredPost.authorData.name}
-                                  </Text>
-                                </Flex>
-                              )}
-                              {formattedDate && (
-                                <Text size="2" color="gray">
-                                  {formattedDate}
-                                </Text>
-                              )}
-                              <Box ml="auto">
-                                <BsArrowRight size="1.2em" color="var(--vdit-color-system)" />
-                              </Box>
-                            </Flex>
-                          </Box>
-                        </Flex>
-                      </Box>
+                  <article className="vdit-feature-entry">
+                    <Link href={featuredPost.url} className="vdit-feature-entry-link">
+                      {/* Case metadata row */}
+                      <div className="vdit-feature-entry-meta">
+                        <span className="vdit-kicker">Case File</span>
+                        {isoDate && (
+                          <time dateTime={isoDate} className="vdit-feature-entry-date">
+                            {formattedDate}
+                          </time>
+                        )}
+                        <span className="vdit-feature-entry-reading">{readingTime} min read</span>
+                      </div>
+
+                      {/* Article title as H2 — page outline is H1 → H2 */}
+                      <Heading as="h2" className="vdit-feature-entry-title">
+                        {featuredPost.title}
+                      </Heading>
+
+                      {/* Excerpt */}
+                      {featuredPost.excerpt && (
+                        <p className="vdit-feature-entry-excerpt">
+                          {featuredPost.excerpt}
+                        </p>
+                      )}
+
+                      {/* Mini workflow rail crop as evidence cue */}
+                      <div className="vdit-feature-entry-cue" aria-hidden="true">
+                        <span className="vdit-system-label">Hermes → Claude → Feedback → Fix</span>
+                        <span className="vdit-human-label">→ Filip decides what ships</span>
+                      </div>
+
+                      {/* Author */}
+                      {featuredPost.authorData && (
+                        <div className="vdit-feature-entry-author">
+                          {featuredPost.authorData.name}
+                        </div>
+                      )}
+
+                      {/* Read the case study */}
+                      <span className="vdit-feature-entry-cta">
+                        Read the case study →
+                      </span>
                     </Link>
-                  </Card>
+                  </article>
                 </Box>
               );
             })()}
@@ -123,62 +125,30 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
                     formattedDate = format(date, "MMM dd, yyyy");
                   }
                   return (
-                    <Card key={post._id} className="card-elevated" size="3">
+                    <Box key={post._id} className="vdit-card" p="5">
                       <Link href={post.url} style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <Box p="5">
-                          <Flex align="start" gap="3">
-                            <Box flexGrow="1">
-                              <Flex align="center" mb="2" justify="between">
-                                <Heading as="h3" size="4" weight="bold">
-                                  {post.title}
-                                </Heading>
-                                <BsArrowRight color="var(--vdit-color-system)" />
-                              </Flex>
-
-                              {post.excerpt && (
-                                <Text as="p" size="2" color="gray" mb="4" style={{ lineHeight: '1.5' }}>
-                                  {post.excerpt}
-                                </Text>
-                              )}
-
-                              <Flex align="center" justify="between">
-                                <Flex align="center" gap="3">
-                                  {post.authorData && (
-                                    <Flex align="center" gap="2">
-                                      <Avatar
-                                        src={post.authorData.avatar}
-                                        alt={post.authorData.name}
-                                        fallback={post.authorData.name?.[0] || 'A'}
-                                        size="1"
-                                        radius="full"
-                                      />
-                                      <Text size="2" color="gray">
-                                        {post.authorData.name}
-                                      </Text>
-                                    </Flex>
-                                  )}
-                                  {formattedDate && (
-                                    <Text size="2" color="gray">
-                                      {formattedDate}
-                                    </Text>
-                                  )}
-                                </Flex>
-
-                                {post.tags && (
-                                  <Flex align="center" gap="2">
-                                    {post.tags.slice(0, 3).map((tag) => (
-                                      <Badge key={tag} size="1" variant="soft" color="gray">
-                                        {tag}
-                                      </Badge>
-                                    ))}
-                                  </Flex>
-                                )}
-                              </Flex>
-                            </Box>
-                          </Flex>
-                        </Box>
+                        <Heading as="h3" size="4" weight="bold" mb="2">
+                          {post.title}
+                        </Heading>
+                        {post.excerpt && (
+                          <Text as="p" size="2" color="gray" mb="3" style={{ lineHeight: '1.5' }}>
+                            {post.excerpt}
+                          </Text>
+                        )}
+                        <Flex align="center" gap="3">
+                          {post.authorData && (
+                            <Text size="2" color="gray">
+                              {post.authorData.name}
+                            </Text>
+                          )}
+                          {formattedDate && (
+                            <Text size="2" color="gray">
+                              {formattedDate}
+                            </Text>
+                          )}
+                        </Flex>
                       </Link>
-                    </Card>
+                    </Box>
                   );
                 })}
               </Flex>
