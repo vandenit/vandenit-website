@@ -32,7 +32,7 @@ export const EngagementProcess = () => {
           <h2 id="engagement-process-title" className="vdit-process-heading">
             How an engagement develops
           </h2>
-          <ol className="vdit-process-list">
+          <ol className="vdit-process-list" role="list">
             {steps.map((step) => (
               <li key={step.number} className="vdit-process-step">
                 <span className="vdit-process-marker" aria-hidden="true">

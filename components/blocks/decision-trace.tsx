@@ -50,7 +50,7 @@ export const DecisionTrace = () => {
             AI can produce a plausible answer before it has understood the
             problem. Experience matters most at that boundary.
           </p>
-          <ol className="vdit-decision-list">
+          <ol className="vdit-decision-list" role="list">
             {beats.map((beat) => (
               <li
                 key={beat.number}
@@ -64,7 +64,7 @@ export const DecisionTrace = () => {
                   <h3 className="vdit-decision-label">{beat.label}</h3>
                   {beat.invalid && (
                     <span className="vdit-decision-invalid-tag" aria-label="Invalid conclusion">
-                      ✕ Invalid
+                      <span aria-hidden="true">✕</span> Invalid
                     </span>
                   )}
                 </div>

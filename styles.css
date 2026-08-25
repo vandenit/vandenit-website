@@ -40,6 +40,7 @@
 
     /* Genuine risk only */
     --vdit-color-risk: #ef6262;
+    --vdit-color-risk-soft: rgb(239 98 98 / 8%);
     --vdit-color-focus: #9fd3ff;
 
     /* Spacing scale */
@@ -1194,17 +1195,17 @@
 .vdit-decision-invalid-tag {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
+  gap: var(--vdit-space-1);
+  padding: 2px var(--vdit-space-2);
   font-family: var(--vdit-font-mono);
-  font-size: 0.7rem;
+  font-size: var(--vdit-step--1);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--vdit-color-risk);
   border: 1px solid var(--vdit-color-risk);
   border-radius: var(--vdit-radius-xs);
-  background: rgb(239 98 98 / 8%);
+  background: var(--vdit-color-risk-soft, rgb(239 98 98 / 8%));
 }
 
 /* Human label styling */
