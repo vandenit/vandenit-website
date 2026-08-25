@@ -1254,7 +1254,7 @@
   color: var(--vdit-color-risk);
   border: 1px solid var(--vdit-color-risk);
   border-radius: var(--vdit-radius-xs);
-  background: var(--vdit-color-risk-soft, rgb(239 98 98 / 8%));
+  background: var(--vdit-color-risk-soft);
 }
 
 /* Human label styling */

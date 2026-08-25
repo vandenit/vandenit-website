@@ -50,6 +50,7 @@ export const DecisionTrace = () => {
             AI can produce a plausible answer before it has understood the
             problem. Experience matters most at that boundary.
           </p>
+          {/* VoiceOver strips <ol> list semantics with list-style:none; role="list" restores them */}
           <ol className="vdit-decision-list" role="list">
             {beats.map((beat) => (
               <li
@@ -63,7 +64,7 @@ export const DecisionTrace = () => {
                   </span>
                   <h3 className="vdit-decision-label">{beat.label}</h3>
                   {beat.invalid && (
-                    <span className="vdit-decision-invalid-tag" aria-label="Invalid conclusion">
+                    <span role="note" className="vdit-decision-invalid-tag" aria-label="Invalid conclusion">
                       <span aria-hidden="true">✕</span> Invalid
                     </span>
                   )}

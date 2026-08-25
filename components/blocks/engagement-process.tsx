@@ -32,6 +32,7 @@ export const EngagementProcess = () => {
           <h2 id="engagement-process-title" className="vdit-process-heading">
             How an engagement develops
           </h2>
+          {/* VoiceOver strips <ol> list semantics with list-style:none; role="list" restores them */}
           <ol className="vdit-process-list" role="list">
             {steps.map((step) => (
               <li key={step.number} className="vdit-process-step">
