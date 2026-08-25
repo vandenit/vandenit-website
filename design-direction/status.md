@@ -183,3 +183,63 @@ date    2026-08-24
 - Cobalt voor exploratie, amber voor judgment/verification
 - Production incident example als 5 evidence beats
 - Optioneel: IntersectionObserver reveal (alleen na static approval)
+
+---
+
+## Phase 3 — Implementation
+
+**Branch:** `feature/phase-3-how-i-work`
+**Date:** 2026-08-25
+**Commits:** `498e11e` (preflight) → `3ed0085` (implementation) → `f93a11f` (code review fixes) → `6c55adc` (tablet grid fix) → `456e072` (cleanup)
+
+### Implementation agents
+
+| Rol | Agent | Model |
+|-----|-------|-------|
+| Preflight + triage | Hermes subagent | GLM 5.2 (Ollama Cloud) |
+| Visual implementation | Hermes subagent | GLM 5.2 (Ollama Cloud) |
+| Design review | Hermes subagent (browser + vision) | GLM 5.2 (Ollama Cloud) |
+| Code review | Hermes subagent | GLM 5.2 (Ollama Cloud) |
+| Review fixes | Hermes (orchestrator) | GLM 5.2 (Ollama Cloud) |
+
+### What was built
+
+1. **`components/blocks/engagement-process.tsx`** — 4-step connected process
+   - Desktop (≥64rem): 4 connected columns with horizontal cobalt rail, 01/02/03/04 markers in Geist Mono
+   - Tablet (48-64rem): 2×2 grid for readability
+   - Mobile (<48rem): vertical stepper with left cobalt rail, clean termination at step 04
+   - Semantic HTML: `<section>`, `<ol role="list">`, `<li>`, `<h2>`, `<h3>`
+
+2. **`components/blocks/decision-trace.tsx`** — 5-beat evidence trace
+   - Beats 01-03: cobalt/neutral system exploration
+   - Beat 03: ✕ Invalid tag (not color-only — text label + red border)
+   - Beat 04: amber pivot "Human intervention"
+   - Beat 05: calm terminal "Result" state
+   - Closing sentence: "AI handled the volume. Experience made the judgment call."
+   - Semantic HTML: `<section>`, `<ol role="list">`, `<li data-state="...">`, `<h2>`, `<h3>`
+
+3. **CSS** — ~470 lines using Vanden IT design tokens
+4. **Preflight cleanups**: tsconfig.tsbuildinfo untracked, geist package removed, portfolio accent tokens migrated, baseline screenshots captured
+
+### Design review scores
+
+| Viewport | Score | Key finding |
+|----------|-------|-------------|
+| Desktop 1280px | 8.5/10 | Both systems render as connected. Cobalt rail slightly faint. |
+| Tablet 768px | 8/10 (fixed) | Was 7.5 — 2×2 grid fix applied for tablet readability |
+| Mobile 390px | 9/10 | Vertical steppers work well. No overflow. |
+| Mobile 320px | 9/10 | Zero overflow. Padding adjustment kicks in. |
+
+### Code review verdict: APPROVE
+
+- 0 bugs, 0 TypeScript errors, production build passes
+- All warnings fixed: --vdit-color-risk-soft token added, hardcoded spacing → tokens, role="list" on <ol>, aria-hidden on ✕ character
+- Content: all existing copy preserved verbatim, closing sentence present
+- Accessibility: 1 H1 per page, heading hierarchy correct, aria-hidden on decorative markers, aria-labelledby on sections
+
+### Remaining items for later phases
+
+- Cobalt rail opacity could be 0.6-0.7 (aesthetic, low priority)
+- Page length on mobile is long but not broken (inherent to content volume)
+- IntersectionObserver reveal deferred to optional motion phase
+- Service sections remain editorial (by design — page rhythm preserved)
