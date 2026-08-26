@@ -1476,6 +1476,8 @@
 
 .vdit-article-toc-mobile {
   display: block;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 @media (min-width: 64rem) {
@@ -1596,6 +1598,7 @@
   padding-bottom: var(--vdit-space-2);
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+  max-width: 100%;
   /* Trailing fade affordance */
   mask-image: linear-gradient(to right, black 85%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
