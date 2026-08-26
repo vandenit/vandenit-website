@@ -306,3 +306,65 @@ d22aeb4 review: Claude Sonnet code review fixes
 ```
 
 **Branch:** `feature/phase-3-how-i-work`
+
+---
+
+## Phase 4 — Case Study and Blog
+
+**Branch:** `feature/phase-4-case-study-blog`
+**Date:** 2026-08-26
+**Commits:** `09ebd12` → `e9b5068` → `dcd7e12` → `b621ea3` → `f67f5a7`
+
+### Implementation agents
+
+| Rol | Agent | Model | Profile |
+|-----|-------|-------|---------|
+| Implementatie | Hermes subagent | GLM 5.2 (Ollama Cloud) | default |
+| Code review | Hermes instance | Claude Sonnet 4.6 (Nous) | code-reviewer |
+| UX review | Hermes instance | GPT-5.6 (Nous) | ux-ui-designer |
+| Vision verify | Hermes (orchestrator) | GLM 5.2 (Ollama Cloud) | default |
+| Review fixes | Hermes (orchestrator) | GLM 5.2 (Ollama Cloud) | default |
+| External review | ChatGPT (user-reported) | GPT-5 | — |
+
+### What was built
+
+1. **Case-file header** — kicker, H1, `<time>` date, author, reading time, back-to-blog link, tags subordinate
+2. **Article TOC** — desktop sticky side rail, mobile 44px anchor chips met horizontal scroll + overflow fade
+3. **Workflow visual** — 6-step semantic HTML flow (Hermes→evidence→Claude→feedback→fixes→Filip decides), cobalt system + amber human decision
+4. **Score visual** — accessible bar chart + data table (Desktop 5.0→8.8, Content 6.8→9.0), exact values as text
+5. **Blog index** — one ruled feature entry, H1→H2 outline, case metadata, no fake archive/filters
+6. **Social images** — 1200×630 homepage + article-specific SVG/PNG, og:image + twitter:image metadata
+7. **`<article>` wrapper**, semantic HTML, 684 regels CSS
+
+### Code review (Claude Sonnet 4.6)
+
+**Verdict: CHANGES NEEDED → fixed → APPROVE**
+- B1: Social image hardcoded → per-slug fix
+- B2: Fragile featured post detection → posts[0]
+- W1: h4 skip in ScoreVisual → `<p>`
+- W2: All links target=_blank → internal links stay same tab
+- W3: Date format inconsistency → unified
+
+### Bug fixes (user + ChatGPT reported)
+
+1. **Mobile horizontal overflow** — TOC chip strip expanded page to ~1490px. Fix: `max-width: 100%` + `overflow: hidden` on `.vdit-article-toc-mobile`
+2. **Desktop sticky TOC disappears on scroll** — `align-items: start` limited sidebar to 603px. Fix: `align-self: stretch` on `.vdit-article-sidebar` at >=64rem
+
+### Review verdicts (all fixes)
+
+| Fix | Code reviewer (Sonnet 4.6) | UX designer (GPT-5.6) | GLM 5.2 subagent |
+|-----|---------------------------|----------------------|-------------------|
+| Mobile overflow | APPROVE | 9/10 | Zero overflow all viewports |
+| Sticky TOC | APPROVE | PASS | TOC 80px at both positions |
+
+### Finale commits
+
+```
+09ebd12 feature/phase-4: case study shell, blog index, article visuals, social images
+e9b5068 review: code review fixes — blocking bugs + behavioral regression
+dcd7e12 review: code block overflow fix + UX review verification
+b621ea3 fix: mobile horizontal overflow on blog post — TOC chips unbounded
+f67f5a7 fix: desktop sticky TOC disappears on scroll
+```
+
+**Branch:** `feature/phase-4-case-study-blog`
