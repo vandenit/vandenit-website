@@ -1489,6 +1489,7 @@
 
   .vdit-article-sidebar {
     display: block;
+    align-self: stretch;
   }
 
   .vdit-article-toc-mobile {
