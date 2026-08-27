@@ -406,6 +406,12 @@
     background: var(--vdit-color-system-soft);
   }
 
+  .vdit-button:focus-visible {
+    outline: 2px solid var(--vdit-color-focus);
+    outline-offset: 3px;
+    border-radius: var(--vdit-radius-sm);
+  }
+
   /* System / human annotation labels */
   .vdit-system-label {
     color: var(--vdit-color-system-strong);
