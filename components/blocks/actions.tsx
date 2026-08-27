@@ -2,7 +2,7 @@
 import Link from "next/link";
 import * as React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
-import { Button, Flex } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 
 interface ActionItem {
   label: string;
@@ -11,65 +11,39 @@ interface ActionItem {
   link: string;
 }
 
-const PrimaryButton = ({ action, href }: { action: ActionItem; href?: string }) => (
-  <Button
-    size="3"
-    variant="solid"
-    color="blue"
-    asChild={!!href}
-    style={{ width: '100%' }}
-    className="action-button"
-  >
-    {href ? (
-      href.startsWith('mailto:') ? (
-        <a href={href}>
-          {action.label}
-          {action.icon && <BiRightArrowAlt />}
-        </a>
-      ) : (
-        <Link href={href}>
-          {action.label}
-          {action.icon && <BiRightArrowAlt />}
-        </Link>
-      )
-    ) : (
-      <>
-        {action.label}
-        {action.icon && <BiRightArrowAlt />}
-      </>
-    )}
-  </Button>
-);
+/**
+ * "Discuss a project" / contact links = amber primary (human judgment).
+ * Workflow / informational links = cobalt secondary.
+ */
+function isHumanAction(action: ActionItem): boolean {
+  return /discuss/i.test(action.label) || /contact/i.test(action.link);
+}
 
-const SecondaryButton = ({ action, href }: { action: ActionItem; href?: string }) => (
-  <Button
-    size="3"
-    variant="outline"
-    color="gray"
-    asChild={!!href}
-    style={{ width: '100%' }}
-    className="action-button"
-  >
-    {href ? (
-      href.startsWith('mailto:') ? (
-        <a href={href}>
-          {action.label}
-          {action.icon && <BiRightArrowAlt />}
-        </a>
-      ) : (
-        <Link href={href}>
-          {action.label}
-          {action.icon && <BiRightArrowAlt />}
-        </Link>
-      )
-    ) : (
-      <>
-        {action.label}
-        {action.icon && <BiRightArrowAlt />}
-      </>
-    )}
-  </Button>
-);
+const PrimaryButton = ({ action, href }: { action: ActionItem; href?: string }) => {
+  const inner = (
+    <>
+      {action.label}
+      {action.icon && <BiRightArrowAlt aria-hidden="true" />}
+    </>
+  );
+  const cls = "vdit-button vdit-button--primary action-button";
+  if (!href) return <button className={cls}>{inner}</button>;
+  if (href.startsWith('mailto:')) return <a href={href} className={cls}>{inner}</a>;
+  return <Link href={href} className={cls}>{inner}</Link>;
+};
+
+const SecondaryButton = ({ action, href }: { action: ActionItem; href?: string }) => {
+  const inner = (
+    <>
+      {action.label}
+      {action.icon && <BiRightArrowAlt aria-hidden="true" />}
+    </>
+  );
+  const cls = "vdit-button vdit-button--cobalt action-button";
+  if (!href) return <button className={cls}>{inner}</button>;
+  if (href.startsWith('mailto:')) return <a href={href} className={cls}>{inner}</a>;
+  return <Link href={href} className={cls}>{inner}</Link>;
+};
 
 export const Actions = ({
   actions,
@@ -77,35 +51,31 @@ export const Actions = ({
   actions: ActionItem[];
 }) => {
   return (
-    <Flex align="center" justify="center" direction={{ initial: "column", sm: "row" }} gap="3" width={{ initial: '100%', sm: 'auto' }}>
+    <Flex
+      align="center"
+      justify="center"
+      direction={{ initial: "column", sm: "row" }}
+      gap="3"
+      width={{ initial: '100%', sm: 'auto' }}
+    >
       {actions &&
         actions.map((action, index) => {
-          const isPrimary = index === 0;
+          const isHuman = isHumanAction(action) || index === 0;
           if (action.type === "email") {
             const mailtoHref = action.link?.startsWith('mailto:') ? action.link : `mailto:${action.link || ''}`;
-            return isPrimary
+            return isHuman
               ? <PrimaryButton key={index} action={action} href={mailtoHref} />
               : <SecondaryButton key={index} action={action} href={mailtoHref} />;
           }
           if (action.type === "button") {
+            const isPrimary = isHumanAction(action);
             return isPrimary
               ? <PrimaryButton key={index} action={action} href={action.link || undefined} />
               : <SecondaryButton key={index} action={action} href={action.link || undefined} />;
           }
           if (action.type === "link" || action.type === "linkExternal") {
             return (
-              <Button
-                key={index}
-                size="3"
-                variant="ghost"
-                color="gray"
-                asChild
-              >
-                <Link href={action.link || "/"}>
-                  {action.label}
-                  {action.icon && <BiRightArrowAlt />}
-                </Link>
-              </Button>
+              <SecondaryButton key={index} action={action} href={action.link || "/"} />
             );
           }
           return null;

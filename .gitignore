@@ -36,3 +36,4 @@ public/admin/
 .next/
 out/
 dist/tsconfig.tsbuildinfo
+tsconfig.tsbuildinfo

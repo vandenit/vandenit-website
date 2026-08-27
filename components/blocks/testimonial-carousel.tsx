@@ -22,7 +22,7 @@ export const TestimonialCarousel = ({
     data: TestimonialsBlockData;
 }) => {
     return (
-        <Section size="3" mb="5" pb="10" className="section-alt">
+        <Section size="3" mb="5" pb="10" className="vdit-section-alt">
             <Container size="3" px="6">
                 <Heading as="h2" size={{ initial: '6', sm: '7' }} mb="6" align="center"
                     id={data.testimonialsId}>

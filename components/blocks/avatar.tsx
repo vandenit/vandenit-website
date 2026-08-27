@@ -14,10 +14,10 @@ interface AvatarBlockData {
 }
 
 export const AvatarBlock = ({ data }: { data: AvatarBlockData }) => (
-  <Section size="2" pt={{ initial: '6', sm: '9' }} pb="4">
+  <Section size="2" pt={{ initial: '6', sm: '9' }} pb="4" className="vdit-content-section">
     <Container size="3" px="6">
       {data.avatarHeader && (
-        <Heading as="h1" size={{ initial: '6', sm: '9' }} weight="bold" mb="5" align="center">
+        <Heading as="h1" size={{ initial: '6', sm: '9' }} weight="bold" mb="5" align="center" style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}>
           {data.avatarHeader}
         </Heading>
       )}
@@ -31,10 +31,10 @@ export const AvatarBlock = ({ data }: { data: AvatarBlockData }) => (
             radius="full"
           />
           <Box>
-            <Heading as="h2" size="5" weight="bold" mb="2">
+            <Heading as="h2" size="5" weight="bold" mb="2" style={{ fontFamily: 'var(--vdit-font-display)', color: 'var(--vdit-color-text)' }}>
               {data.avatarsName}
             </Heading>
-            <Text as="p" size="3" color="gray" style={{ lineHeight: '1.6' }}>
+            <Text as="p" size="3" style={{ lineHeight: '1.6', color: 'var(--vdit-color-text-muted)' }}>
               {data.description}
             </Text>
           </Box>

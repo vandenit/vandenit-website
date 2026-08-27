@@ -11,7 +11,7 @@ interface ContentBlockData {
 
 export const Content = ({ data }: { data: ContentBlockData }) => {
   return (
-    <Section size="3" mb="5">
+    <Section size="2" mb="3" className="vdit-content-section">
       <Container size="3" px="6">
         <Box style={{ maxWidth: '720px', margin: '0 auto' }}>
           <MarkdownRenderer content={data.body} />

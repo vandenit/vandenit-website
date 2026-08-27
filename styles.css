@@ -1,3 +1,91 @@
+/* ── Vanden IT design-token layer ─────────────────────────────────────── */
+@layer vandenit.tokens, vandenit.base, vandenit.components, vandenit.utilities;
+
+@layer vandenit.tokens {
+  :root {
+    color-scheme: dark;
+
+    /* Typography – all three fonts bound to next/font variables set in layout.tsx */
+    --vdit-font-body: var(--font-geist, "Geist", system-ui, sans-serif);
+    --vdit-font-display: var(--font-barlow-condensed, "Barlow Condensed", "Arial Narrow", sans-serif);
+    --vdit-font-mono: var(--font-geist-mono, "Geist Mono", ui-monospace, monospace);
+
+
+    /* Midnight surfaces */
+    --vdit-color-bg: #050a0f;
+    --vdit-color-bg-deep: #03070b;
+    --vdit-color-surface: #0b1620;
+    --vdit-color-surface-raised: #11202c;
+    --vdit-color-surface-soft: #162633;
+
+    /* Warm editorial text */
+    --vdit-color-text: #f3ebdc;
+    --vdit-color-text-muted: #aeb9c3;
+    --vdit-color-text-subtle: #7f8d99;
+
+    /* Structural rules */
+    --vdit-color-line: #243746;
+    --vdit-color-line-strong: #3b5364;
+
+    /* Daniël / system activity */
+    --vdit-color-system: #2f9fff;
+    --vdit-color-system-strong: #66b9ff;
+    --vdit-color-system-soft: rgb(47 159 255 / 14%);
+
+    /* Filip / human judgment */
+    --vdit-color-human: #d98b32;
+    --vdit-color-human-strong: #f0a84a;
+    --vdit-color-human-soft: rgb(217 139 50 / 14%);
+    --vdit-color-on-human: #071018;
+
+    /* Genuine risk only */
+    --vdit-color-risk: #ef6262;
+    --vdit-color-risk-soft: rgb(239 98 98 / 8%);
+    --vdit-color-focus: #9fd3ff;
+
+    /* Spacing scale */
+    --vdit-space-1: 0.25rem;
+    --vdit-space-2: 0.5rem;
+    --vdit-space-3: 0.75rem;
+    --vdit-space-4: 1rem;
+    --vdit-space-5: 1.5rem;
+    --vdit-space-6: 2rem;
+    --vdit-space-7: 3rem;
+    --vdit-space-8: 4.5rem;
+    --vdit-space-9: 7rem;
+
+    /* Corner radii */
+    --vdit-radius-xs: 2px;
+    --vdit-radius-sm: 4px;
+    --vdit-radius-md: 8px;
+    --vdit-radius-lg: 12px;
+
+    --vdit-border: 1px solid var(--vdit-color-line);
+    --vdit-content: 72rem;
+    --vdit-reading: 68ch;
+
+    /* Fluid type scale */
+    --vdit-step--1: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem);
+    --vdit-step-0: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+    --vdit-step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+    --vdit-step-2: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+    --vdit-step-3: clamp(2.75rem, 1.9rem + 3vw, 5.75rem);
+
+    /* Motion */
+    --vdit-duration-fast: 140ms;
+    --vdit-duration-normal: 260ms;
+    --vdit-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Map Vanden IT font variables into Radix Theme font variables */
+  .radix-themes {
+    --default-font-family: var(--vdit-font-body);
+    --heading-font-family: var(--vdit-font-display);
+    --code-font-family: var(--vdit-font-mono);
+  }
+}
+
+/* ── Radix dark-theme color overrides ──────────────────────────────────── */
 .dark,
 .dark-theme {
   --blue-1: #01050e;
@@ -69,6 +157,7 @@
     }
   }
 }
+
 .dark,
 .dark-theme {
   --gray-1: #050506;
@@ -144,59 +233,437 @@
 .dark,
 .dark-theme,
 :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
-  --color-background: #050505;
+  --color-background: var(--vdit-color-bg);
 }
 
-/* ── Geist font ── */
-body {
-  margin: 0;
-  min-width: 320px;
-  color: var(--gray-12);
-  -webkit-text-size-adjust: 100%;
-  font-family: 'Geist', system-ui, -apple-system, sans-serif;
-  font-feature-settings: "liga" 1;
-}
-code, pre, kbd, samp {
-  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+/* ── Base reset & typography ───────────────────────────────────────────── */
+@layer vandenit.base {
+  html {
+    background: var(--vdit-color-bg-deep);
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background:
+      radial-gradient(circle at 20% 0%, rgb(47 159 255 / 9%), transparent 34rem),
+      var(--vdit-color-bg);
+    color: var(--vdit-color-text);
+    font-family: var(--vdit-font-body);
+    font-size: var(--vdit-step-0);
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+    font-feature-settings: "liga" 1;
+  }
+
+  code, pre, kbd, samp {
+    font-family: var(--vdit-font-mono);
+  }
+
+  ::selection {
+    background: var(--vdit-color-system);
+    color: var(--vdit-color-bg-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--vdit-color-focus);
+    outline-offset: 4px;
+    border-radius: var(--vdit-radius-xs);
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--vdit-color-text);
+    font-family: var(--vdit-font-display);
+    font-weight: 600;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  /* Heading letter-spacing */
+  h1 { letter-spacing: -0.03em; }
+  h2 { letter-spacing: -0.025em; }
+  h3, h4, h5, h6 { letter-spacing: -0.02em; }
+
+  p, li {
+    color: var(--vdit-color-text-muted);
+  }
 }
 
-/* ── Heading letter-spacing ── */
-h1 { letter-spacing: -0.03em; }
-h2 { letter-spacing: -0.025em; }
-h3, h4, h5, h6 { letter-spacing: -0.02em; }
+/* ── Structural components ─────────────────────────────────────────────── */
+@layer vandenit.components {
+  /* Shell / content wrapper */
+  .vdit-shell {
+    width: min(100% - 2rem, var(--vdit-content));
+    margin-inline: auto;
+  }
 
-/* ── Header blur ── */
-.header-blur {
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  background: rgba(8, 8, 10, 0.7);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  .vdit-section {
+    position: relative;
+    padding-block: var(--vdit-space-8);
+  }
+
+  .vdit-section--ruled {
+    border-block: var(--vdit-border);
+  }
+
+  /* Engineering grid background texture */
+  .vdit-grid-surface {
+    background-image: url("/engineering-grid.svg");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
+
+  /* Kicker label */
+  .vdit-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vdit-space-3);
+    color: var(--vdit-color-system-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .vdit-kicker::before {
+    width: 1.5rem;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+
+  /* Display heading */
+  .vdit-display {
+    max-width: 12ch;
+    margin: 0;
+    font-size: var(--vdit-step-3);
+    letter-spacing: -0.025em;
+  }
+
+  .vdit-reading {
+    max-width: var(--vdit-reading);
+  }
+
+  /* Evidence panel – square, no large shadow */
+  .vdit-panel {
+    position: relative;
+    border: var(--vdit-border);
+    border-radius: var(--vdit-radius-sm);
+    background: linear-gradient(145deg, rgb(17 32 44 / 92%), rgb(5 10 15 / 92%));
+  }
+
+  /* Buttons */
+  .vdit-button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--vdit-space-3);
+    padding: 0.6rem 1.25rem;
+    border: 1px solid var(--vdit-color-human);
+    border-radius: var(--vdit-radius-sm);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color var(--vdit-duration-fast) var(--vdit-ease),
+      border-color var(--vdit-duration-fast) var(--vdit-ease),
+      color var(--vdit-duration-fast) var(--vdit-ease),
+      transform var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-button--primary {
+    background: var(--vdit-color-human);
+    color: var(--vdit-color-on-human);
+  }
+
+  .vdit-button--secondary {
+    background: transparent;
+    color: var(--vdit-color-text);
+  }
+
+  .vdit-button--cobalt {
+    background: transparent;
+    border-color: var(--vdit-color-system);
+    color: var(--vdit-color-system-strong);
+  }
+
+  .vdit-button:hover {
+    border-color: var(--vdit-color-human-strong);
+    transform: translateY(-2px);
+  }
+
+  .vdit-button--cobalt:hover {
+    border-color: var(--vdit-color-system-strong);
+    background: var(--vdit-color-system-soft);
+  }
+
+  /* System / human annotation labels */
+  .vdit-system-label {
+    color: var(--vdit-color-system-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .vdit-human-label {
+    color: var(--vdit-color-human-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Proof strip — ruled cells instead of rounded cards */
+  .vdit-proof-strip {
+    display: grid;
+    border-block: var(--vdit-border);
+  }
+
+  .vdit-proof-strip > * {
+    padding: var(--vdit-space-5);
+    border-bottom: var(--vdit-border);
+  }
+
+  .vdit-proof-strip > :last-child {
+    border-bottom: 0;
+  }
+
+  /* ── Header ──────────────────────────────────────── */
+  .vdit-header {
+    background: rgb(5 10 15 / 88%);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border-bottom: 1px solid var(--vdit-color-line);
+  }
+
+  /* Nav link — underline on active, no pill */
+  .vdit-nav-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vdit-color-text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 0.5rem;
+    border-bottom: 2px solid transparent;
+    transition:
+      color var(--vdit-duration-fast) var(--vdit-ease),
+      border-color var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-nav-link:hover {
+    color: var(--vdit-color-text);
+  }
+
+  .vdit-nav-link[aria-current="page"] {
+    color: var(--vdit-color-text);
+    border-bottom-color: var(--vdit-color-human);
+  }
+
+  /* CTA button in header — amber */
+  .vdit-nav-cta {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 1rem;
+    background: var(--vdit-color-human);
+    color: var(--vdit-color-on-human);
+    border: 1px solid var(--vdit-color-human);
+    border-radius: var(--vdit-radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    font-family: var(--vdit-font-mono);
+    text-transform: uppercase;
+    transition:
+      background-color var(--vdit-duration-fast) var(--vdit-ease),
+      border-color var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-nav-cta:hover {
+    background: var(--vdit-color-human-strong);
+    border-color: var(--vdit-color-human-strong);
+  }
+
+  /* Hero section */
+  .vdit-hero {
+    position: relative;
+    padding-block: var(--vdit-space-8);
+    background-image: url("/engineering-grid.svg");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
+
+  .vdit-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 50%, rgb(47 159 255 / 7%), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 70% 80%, rgb(217 139 50 / 5%), transparent 50%);
+    pointer-events: none;
+  }
+
+  .vdit-hero > * {
+    position: relative;
+  }
+
+  .vdit-hero-kicker {
+    flex-wrap: wrap;
+  }
+
+  .vdit-kicker-tail {
+    display: inline-flex;
+  }
+
+  /* Hero layout: single column mobile, asymmetric desktop */
+  .vdit-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--vdit-space-7);
+    align-items: center;
+  }
+
+  .vdit-hero-diagram {
+    display: none;
+  }
+
+  /* Footer */
+  .vdit-footer {
+    border-top: var(--vdit-border);
+    background: var(--vdit-color-surface);
+  }
+
+  /* Section alternation */
+  .vdit-section-alt {
+    background: var(--vdit-color-surface);
+  }
+
+  /* Content sections — midnight surface, tight spacing */
+  .vdit-content-section {
+    background: var(--vdit-color-bg);
+    padding-block: var(--vdit-space-5);
+    border-top: 1px solid var(--vdit-color-line);
+  }
+
+  .vdit-content-section:first-child {
+    border-top: 0;
+  }
+
+  /* Card updates */
+  .vdit-card {
+    border: var(--vdit-border);
+    border-radius: var(--vdit-radius-sm);
+    background: linear-gradient(145deg, var(--vdit-color-surface-raised), var(--vdit-color-surface));
+    transition:
+      border-color var(--vdit-duration-fast) var(--vdit-ease),
+      transform var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-card:hover {
+    border-color: var(--vdit-color-line-strong);
+    transform: translateY(-2px);
+  }
 }
 
-/* ── Hero section gradient ── */
-.hero-section {
-  position: relative;
-  background: radial-gradient(ellipse 120% 60% at 50% -10%, rgba(59, 130, 246, 0.18), transparent 70%);
-}
-.hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 100% 50% at 50% 0%, rgba(59, 130, 246, 0.1), transparent);
-  pointer-events: none;
-  z-index: 0;
-}
-.hero-section > * {
-  position: relative;
-  z-index: 1;
+/* ── Utility classes ───────────────────────────────────────────────────── */
+@layer vandenit.utilities {
+  .vdit-system-color { color: var(--vdit-color-system); }
+  .vdit-human-color  { color: var(--vdit-color-human); }
+  .vdit-muted        { color: var(--vdit-color-text-muted); }
+  .vdit-mono         { font-family: var(--vdit-font-mono); }
+  .vdit-display-font { font-family: var(--vdit-font-display); }
+  .vdit-nowrap       { white-space: nowrap; }
 }
 
-/* ── Section background alternation ── */
-.section-alt {
-  background: var(--gray-2);
+/* Minimum 44px interaction targets without enlarging their visual content. */
+.mobile-menu-button,
+.site-logo-link,
+.site-footer a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ── Mobile horizontal snap scroll ── */
+@media (max-width: 63.99rem) {
+  /* Tighten section rhythm only; preserve text and step/beat spacing. */
+  .vdit-content-section {
+    padding-block: var(--vdit-space-4);
+    margin-bottom: var(--vdit-space-2) !important;
+  }
+
+  .vdit-process-section,
+  .vdit-decision-section {
+    padding-block: var(--vdit-space-3);
+    margin-bottom: var(--vdit-space-1) !important;
+  }
+}
+
+/* ── Responsive overrides ──────────────────────────────────────────────── */
+@media (min-width: 48rem) {
+  .vdit-shell {
+    width: min(100% - 4rem, var(--vdit-content));
+  }
+
+  .vdit-section {
+    padding-block: var(--vdit-space-9);
+  }
+
+  .vdit-proof-strip {
+    grid-template-columns: 1fr 1fr 1.6fr;
+  }
+
+  .vdit-proof-strip > * {
+    border-right: var(--vdit-border);
+    border-bottom: 0;
+  }
+
+  .vdit-proof-strip > :last-child {
+    border-right: 0;
+  }
+
+  /* Equal-column hero on desktop (6/6) */
+  .vdit-hero-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--vdit-space-8);
+  }
+
+  .vdit-hero-diagram {
+    display: block;
+  }
+}
+
+/* ── Reduced-motion ────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Legacy utility classes (preserved, using vdit tokens) ─────────────── */
+
+/* Mobile horizontal snap scroll */
 .snap-scroll {
   display: flex;
   overflow-x: auto;
@@ -206,9 +673,7 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   scrollbar-width: none;
   padding-bottom: 8px;
 }
-.snap-scroll::-webkit-scrollbar {
-  display: none;
-}
+.snap-scroll::-webkit-scrollbar { display: none; }
 .snap-scroll > * {
   scroll-snap-align: start;
   flex: 0 0 85%;
@@ -216,7 +681,7 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   min-width: 0;
 }
 
-/* ── Word break for card content ── */
+/* Word break for card content */
 .card-content-wrap {
   overflow-wrap: break-word;
   word-break: normal;
@@ -224,7 +689,7 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   min-width: 0;
 }
 
-/* ── Testimonial snap-scroll container ── */
+/* Testimonial snap-scroll container */
 .testimonials-scroll-container {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
@@ -234,9 +699,7 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   scrollbar-width: none;
   padding-bottom: 8px;
 }
-.testimonials-scroll-container::-webkit-scrollbar {
-  display: none;
-}
+.testimonials-scroll-container::-webkit-scrollbar { display: none; }
 .testimonials-scroll-container > * {
   scroll-snap-align: start;
   flex: 0 0 100%;
@@ -244,71 +707,1374 @@ h3, h4, h5, h6 { letter-spacing: -0.02em; }
   overflow: hidden;
 }
 
-/* ── Card elevation ── */
+/* Card elevation */
 .card-elevated {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 0 0 1px var(--vdit-color-line);
+  border-radius: var(--vdit-radius-sm);
+  transition:
+    box-shadow var(--vdit-duration-fast) var(--vdit-ease),
+    transform var(--vdit-duration-fast) var(--vdit-ease);
 }
 .card-elevated:hover {
   box-shadow:
-    0 0 0 1px var(--accent-7),
-    0 0 20px 4px rgba(59, 130, 246, 0.08),
-    0 8px 32px rgba(0, 0, 0, 0.2);
-  transform: translateY(-4px);
-}
-/* ── Featured card accent ── */
-.card-featured {
-  border-left: 4px solid var(--accent-9);
-  background: linear-gradient(135deg, var(--accent-2), var(--gray-2));
+    0 0 0 1px var(--vdit-color-line-strong),
+    0 0 16px 2px var(--vdit-color-system-soft);
+  transform: translateY(-2px);
 }
 
-/* ── Large decorative quote mark ── */
+/* Featured card accent */
+.card-featured {
+  border-left: 2px solid var(--vdit-color-system);
+  background: linear-gradient(135deg, var(--vdit-color-surface-raised), var(--vdit-color-surface));
+}
+
+/* Large decorative quote mark */
 .quote-mark {
   font-size: 3rem;
   line-height: 1;
-  color: var(--accent-9);
+  color: var(--vdit-color-system-strong);
   opacity: 0.4;
   font-family: Georgia, serif;
   display: block;
   margin-bottom: -8px;
 }
 
-/* ── Tag pill ── */
+/* Tag pill */
 .tag-pill {
   display: inline-flex;
   align-items: center;
   padding: 2px 10px;
-  border-radius: 9999px;
+  border-radius: var(--vdit-radius-xs);
   font-size: 12px;
   font-weight: 500;
-  background: var(--gray-5);
-  color: var(--gray-11);
-  border: 1px solid var(--gray-6);
-  transition: all 0.15s ease;
+  background: var(--vdit-color-surface-raised);
+  color: var(--vdit-color-text-muted);
+  border: 1px solid var(--vdit-color-line);
+  transition: all var(--vdit-duration-fast) var(--vdit-ease);
   text-decoration: none;
 }
 .tag-pill:hover {
-  background: var(--accent-5);
-  color: var(--accent-11);
-  border-color: var(--accent-6);
+  background: var(--vdit-color-system-soft);
+  color: var(--vdit-color-system-strong);
+  border-color: var(--vdit-color-system);
 }
 
-/* ── Custom scrollbar ── */
+/* Custom scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--gray-2); }
-::-webkit-scrollbar-thumb { background: var(--gray-6); border-radius: 5px; border: 2px solid var(--gray-2); }
-::-webkit-scrollbar-thumb:hover { background: var(--gray-7); }
+::-webkit-scrollbar-track { background: var(--vdit-color-surface); }
+::-webkit-scrollbar-thumb { background: var(--vdit-color-line-strong); border-radius: 5px; border: 2px solid var(--vdit-color-surface); }
+::-webkit-scrollbar-thumb:hover { background: var(--vdit-color-text-subtle); }
 
-/* ── Selection ── */
-::selection { background: var(--accent-5); color: var(--accent-12); }
-
+/* Action button */
 .action-button {
   min-width: 200px;
+  min-height: 44px;
 }
 
-/* ── Anchor scroll offset for sticky header ── */
+/* Anchor scroll offset for sticky header */
 [id] {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 72px;
 }
+
+/* Legacy hero-section class */
+.hero-section {
+  position: relative;
+}
+
+/* ── Hero diagram mobile/desktop visibility ─────────────────────────────── */
+/* Mobile diagram: shown on mobile, hidden on desktop */
+.vdit-hero-diagram-mobile {
+  display: block;
+  margin-top: 2.5rem;
+}
+
+.vdit-hero-diagram-mobile img {
+  /* Width-based sizing lets the 75x150 SVG aspect ratio determine height.
+   * clamp(110px, 32vw, 140px) gives ~220-280px rendered height on phones.
+   */
+  width: clamp(110px, 32vw, 140px);
+  height: auto;
+  max-width: none;
+  display: block;
+  margin-inline: auto;
+  opacity: 0.85;
+}
+
+@media (min-width: 48rem) {
+  /* On desktop, hide the mobile diagram; the grid column shows the desktop one */
+  .vdit-hero-diagram-mobile {
+    display: none;
+  }
+}
+
+/* ── Hero copy CSS classes (replaces inline styles in hero.tsx) ─────────── */
+.vdit-hero-copy {
+  /* Left copy column — content flows naturally */
+}
+
+.vdit-hero-kicker {
+  margin-bottom: 1.25rem;
+}
+
+.vdit-hero-title {
+  font-family: var(--vdit-font-display);
+  color: var(--vdit-color-text);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  text-wrap: balance;
+}
+
+.vdit-hero-lead {
+  color: var(--vdit-color-text-muted);
+  line-height: 1.65;
+  max-width: 52ch;
+  margin-bottom: 2rem;
+}
+
+/* Desktop diagram image */
+.vdit-hero-diagram img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.9;
+}
+
+/* ── Proof strip CSS classes (replaces inline styles in hero.tsx) ────────── */
+.vdit-proof-strip-wrapper {
+  margin-top: var(--vdit-space-7);
+}
+
+.vdit-proof-item-label {
+  margin-bottom: 0.25rem;
+  margin-top: 0;
+}
+
+.vdit-proof-value {
+  margin: 0 0 0.25rem;
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-2);
+  font-weight: 700;
+  color: var(--vdit-color-text);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.vdit-proof-unit {
+  font-size: 0.5em;
+  font-weight: 400;
+  color: var(--vdit-color-text-muted);
+  margin-left: 0.3em;
+  letter-spacing: 0;
+}
+
+.vdit-proof-desc {
+  margin: 0;
+  color: var(--vdit-color-text-muted);
+  font-size: var(--vdit-step--1);
+  line-height: 1.4;
+}
+
+/* ── Contribution section chapter markers ───────────────────────────────── */
+.vdit-chapter-card {
+  position: relative;
+  border: var(--vdit-border);
+  border-top: 2px solid var(--vdit-color-system);
+  border-radius: var(--vdit-radius-sm);
+  background: var(--vdit-color-surface);
+  padding: var(--vdit-space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--vdit-space-4);
+  /* Remove generic floating-panel shadow */
+  box-shadow: none;
+}
+
+@media (min-width: 48rem) {
+  .vdit-chapter-card {
+    height: 100%;
+  }
+}
+
+/* Chapter marker + icon row */
+.vdit-chapter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Chapter card body text */
+.vdit-chapter-desc {
+  line-height: 1.6;
+}
+
+.vdit-chapter-card:hover {
+  border-color: var(--vdit-color-line-strong);
+  border-top-color: var(--vdit-color-system-strong);
+}
+
+.vdit-chapter-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.vdit-chapter-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--vdit-radius-xs);
+  background: var(--vdit-color-system-soft);
+  border: 1px solid var(--vdit-color-system);
+  flex-shrink: 0;
+}
+
+.vdit-chapter-title {
+  font-family: var(--vdit-font-display);
+  color: var(--vdit-color-text);
+}
+
+.vdit-chapter-link {
+  color: var(--vdit-color-system-strong);
+  text-decoration: none;
+  font-size: var(--vdit-step--1);
+  font-weight: 500;
+  font-family: var(--vdit-font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.vdit-chapter-link:hover {
+  color: var(--vdit-color-system-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Engagement process (four connected steps) ─────────────────────────── */
+.vdit-process {
+  max-width: var(--vdit-content);
+  margin-inline: auto;
+}
+
+.vdit-process-heading {
+  font-size: var(--vdit-step-2);
+  margin-bottom: var(--vdit-space-6);
+}
+
+.vdit-process-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+/* Mobile: vertical stepper with left cobalt rail */
+.vdit-process-step {
+  position: relative;
+  padding-left: 3rem;
+  padding-bottom: var(--vdit-space-6);
+}
+
+.vdit-process-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Cobalt rail on the left */
+.vdit-process-step::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--vdit-color-system);
+  opacity: 0.5;
+}
+
+/* Terminate rail cleanly at last step */
+.vdit-process-step:last-child::before {
+  bottom: calc(100% - 12px);
+}
+
+/* Node dot */
+.vdit-process-step::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vdit-color-bg);
+  border: 1.5px solid var(--vdit-color-system);
+}
+
+.vdit-process-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.vdit-process-step-title {
+  font-size: var(--vdit-step-1);
+  margin: 0 0 0.5rem;
+}
+
+.vdit-process-step-body {
+  margin: 0;
+  color: var(--vdit-color-text-muted);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* Desktop: four connected columns with horizontal cobalt rail */
+@media (min-width: 64rem) {
+  .vdit-process-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  /* Horizontal cobalt rail above the columns */
+  .vdit-process-list::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--vdit-color-system);
+    opacity: 0.5;
+  }
+
+  .vdit-process-step {
+    padding-left: var(--vdit-space-4);
+    padding-bottom: 0;
+    border-left: var(--vdit-border);
+  }
+
+  .vdit-process-step:first-child {
+    border-left: 0;
+  }
+
+  /* Override mobile rail and node */
+  .vdit-process-step::before {
+    display: none;
+  }
+
+  .vdit-process-step::after {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--vdit-color-bg);
+    border: 1.5px solid var(--vdit-color-system);
+  }
+
+  .vdit-process-step:first-child::after {
+    left: -6px;
+  }
+
+  .vdit-process-step-title {
+    font-size: var(--vdit-step-1);
+  }
+
+  .vdit-process-step-body {
+    font-size: var(--vdit-step--1);
+  }
+}
+
+/* ── Decision trace (five-beat evidence rail) ───────────────────────────── */
+.vdit-decision-trace {
+  max-width: var(--vdit-content);
+  margin-inline: auto;
+}
+
+.vdit-decision-heading {
+  font-size: var(--vdit-step-2);
+  margin-bottom: var(--vdit-space-4);
+}
+
+.vdit-decision-intro {
+  color: var(--vdit-color-text-muted);
+  max-width: 60ch;
+  margin-bottom: var(--vdit-space-6);
+  line-height: 1.6;
+}
+
+.vdit-decision-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile: vertical evidence rail */
+.vdit-decision-beat {
+  position: relative;
+  padding-left: 3rem;
+  padding-bottom: var(--vdit-space-5);
+}
+
+.vdit-decision-beat:last-child {
+  padding-bottom: 0;
+}
+
+/* Rail line */
+.vdit-decision-beat::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--vdit-color-line-strong);
+}
+
+/* Cobalt rail for system beats (01-03) */
+.vdit-decision-beat[data-state="system"]::before {
+  background: var(--vdit-color-system);
+  opacity: 0.5;
+}
+
+/* Amber rail for human intervention (04) */
+.vdit-decision-beat[data-state="human"]::before {
+  background: var(--vdit-color-human);
+  opacity: 0.6;
+}
+
+/* Calm rail for result (05) */
+.vdit-decision-beat[data-state="result"]::before {
+  background: var(--vdit-color-line);
+}
+
+/* Terminate rail at last beat */
+.vdit-decision-beat:last-child::before {
+  bottom: calc(100% - 12px);
+}
+
+/* Node dot */
+.vdit-decision-beat::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vdit-color-bg);
+  border: 1.5px solid var(--vdit-color-system);
+}
+
+/* Warning node (beat 03 — wrong conclusion) */
+.vdit-decision-beat[data-state="warning"]::after {
+  border-color: var(--vdit-color-risk);
+  background: var(--vdit-color-bg);
+}
+
+/* Human node (beat 04) */
+.vdit-decision-beat[data-state="human"]::after {
+  border-color: var(--vdit-color-human);
+  background: var(--vdit-color-human-soft);
+}
+
+/* Result node (beat 05) */
+.vdit-decision-beat[data-state="result"]::after {
+  border-color: var(--vdit-color-line-strong);
+  background: var(--vdit-color-surface);
+}
+
+.vdit-decision-beat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--vdit-space-3);
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.vdit-decision-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+}
+
+.vdit-decision-label {
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-1);
+  font-weight: 600;
+  color: var(--vdit-color-text);
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* Invalid tag for beat 03 */
+.vdit-decision-invalid-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vdit-space-1);
+  padding: 2px var(--vdit-space-2);
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vdit-color-risk);
+  border: 1px solid var(--vdit-color-risk);
+  border-radius: var(--vdit-radius-xs);
+  background: var(--vdit-color-risk-soft);
+}
+
+/* Human label styling */
+.vdit-decision-beat[data-state="human"] .vdit-decision-marker {
+  color: var(--vdit-color-human);
+}
+
+.vdit-decision-beat[data-state="human"] .vdit-decision-label {
+  color: var(--vdit-color-human-strong);
+}
+
+/* Result label styling — calm, resolved */
+.vdit-decision-beat[data-state="result"] .vdit-decision-marker {
+  color: var(--vdit-color-text-subtle);
+}
+
+.vdit-decision-beat[data-state="result"] .vdit-decision-label {
+  color: var(--vdit-color-text);
+}
+
+.vdit-decision-beat-body {
+  margin: 0;
+  color: var(--vdit-color-text-muted);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* Warning body text — slight risk tint to show invalidity */
+.vdit-decision-beat[data-state="warning"] .vdit-decision-beat-body {
+  color: var(--vdit-color-text-muted);
+  position: relative;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--vdit-color-risk);
+  opacity: 0.85;
+}
+
+/* Human body text */
+.vdit-decision-beat[data-state="human"] .vdit-decision-beat-body {
+  color: var(--vdit-color-text);
+}
+
+/* Result body text — calm */
+.vdit-decision-beat[data-state="result"] .vdit-decision-beat-body {
+  color: var(--vdit-color-text-muted);
+}
+
+.vdit-decision-summary {
+  margin-top: var(--vdit-space-6);
+  padding-top: var(--vdit-space-5);
+  border-top: var(--vdit-border);
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-1);
+  color: var(--vdit-color-text);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  max-width: 60ch;
+}
+
+/* Desktop: five-node horizontal trace */
+@media (min-width: 64rem) {
+  .vdit-decision-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  /* Horizontal rail */
+  .vdit-decision-list::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--vdit-color-system);
+    opacity: 0.5;
+  }
+
+  .vdit-decision-beat {
+    padding-left: var(--vdit-space-4);
+    padding-bottom: 0;
+    border-left: var(--vdit-border);
+  }
+
+  .vdit-decision-beat:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  /* Override mobile rail */
+  .vdit-decision-beat::before {
+    display: none;
+  }
+
+  /* Node dot on horizontal rail */
+  .vdit-decision-beat::after {
+    left: -5px;
+    top: 0;
+    width: 11px;
+    height: 11px;
+  }
+
+  .vdit-decision-beat:first-child::after {
+    left: -6px;
+  }
+
+  .vdit-decision-beat-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .vdit-decision-label {
+    font-size: var(--vdit-step-0);
+  }
+
+  .vdit-decision-beat-body {
+    font-size: var(--vdit-step--1);
+    max-width: none;
+  }
+
+  /* Warning body — left border in horizontal layout */
+  .vdit-decision-beat[data-state="warning"] .vdit-decision-beat-body {
+    padding-left: 0.5rem;
+  }
+
+  .vdit-decision-summary {
+    font-size: var(--vdit-step-2);
+  }
+}
+
+/* Ensure no horizontal overflow at very narrow widths */
+@media (max-width: 320px) {
+  .vdit-process-step,
+  .vdit-decision-beat {
+    padding-left: 2.5rem;
+  }
+}
+
+/* ── Phase 4: Case study and blog ───────────────────────────────────────── */
+
+/* Case-file article header */
+.vdit-article-section {
+  padding-bottom: var(--vdit-space-8);
+}
+
+.vdit-article-header {
+  max-width: var(--vdit-reading);
+  margin-inline: auto;
+}
+
+.vdit-article-kicker {
+  margin-bottom: var(--vdit-space-3);
+}
+
+.vdit-article-kicker .vdit-kicker {
+  font-size: var(--vdit-step--1);
+}
+
+.vdit-article-title {
+  font-family: var(--vdit-font-display);
+  font-size: clamp(1.75rem, 1.3rem + 2.2vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--vdit-color-text);
+  margin: 0 0 var(--vdit-space-4) 0;
+  text-wrap: balance;
+}
+
+.vdit-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vdit-space-4) var(--vdit-space-6);
+  margin-bottom: var(--vdit-space-4);
+  border-top: var(--vdit-border);
+  border-bottom: var(--vdit-border);
+  padding: var(--vdit-space-3) 0;
+}
+
+.vdit-article-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vdit-article-meta-label {
+  font-family: var(--vdit-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vdit-color-text-subtle);
+}
+
+.vdit-article-meta-item > span:last-child {
+  color: var(--vdit-color-text);
+  font-size: var(--vdit-step--1);
+}
+
+.vdit-article-back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--vdit-color-system-strong);
+  text-decoration: none;
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color var(--vdit-duration-fast) var(--vdit-ease);
+}
+
+.vdit-article-back-link:hover {
+  color: var(--vdit-color-system);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Article layout: TOC sidebar + content */
+.vdit-article-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--vdit-space-6);
+}
+
+/* Desktop TOC sidebar — hidden on mobile, shown on desktop */
+.vdit-article-sidebar {
+  display: none;
+}
+
+.vdit-article-toc-mobile {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: 64rem) {
+  .vdit-article-layout {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: var(--vdit-space-7);
+    align-items: start;
+  }
+
+  .vdit-article-sidebar {
+    display: block;
+    align-self: stretch;
+  }
+
+  .vdit-article-toc-mobile {
+    display: none;
+  }
+}
+
+/* Article body — editorial measure */
+.vdit-article-body {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.vdit-article-content {
+  max-width: 72ch;
+  font-size: var(--vdit-step-0);
+  line-height: 1.65;
+}
+
+.vdit-article-content h2 {
+  scroll-margin-top: 80px;
+}
+
+/* Code blocks — internal horizontal scroll on narrow screens */
+.vdit-article-content pre {
+  overflow-x: auto;
+  max-width: 100%;
+  scrollbar-width: thin;
+}
+
+/* TOC: desktop side rail */
+.vdit-article-toc {
+  position: static;
+}
+
+@media (min-width: 64rem) {
+  .vdit-article-toc {
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+}
+
+.vdit-toc-title {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vdit-color-text-subtle);
+  margin: 0 0 var(--vdit-space-3) 0;
+}
+
+.vdit-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: var(--vdit-border);
+}
+
+.vdit-toc-item {
+  margin: 0;
+}
+
+.vdit-toc-link {
+  display: block;
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  transition:
+    color var(--vdit-duration-fast) var(--vdit-ease),
+    border-color var(--vdit-duration-fast) var(--vdit-ease);
+  line-height: 1.3;
+}
+
+.vdit-toc-link:hover {
+  color: var(--vdit-color-text);
+  border-left-color: var(--vdit-color-line-strong);
+}
+
+.vdit-toc-link[aria-current="location"] {
+  color: var(--vdit-color-system-strong);
+  border-left-color: var(--vdit-color-system);
+}
+
+.vdit-toc-link:focus-visible {
+  outline: 2px solid var(--vdit-color-focus);
+  outline-offset: 2px;
+}
+
+/* TOC: mobile horizontally scrollable chips */
+.vdit-article-toc-mobile .vdit-toc-title {
+  margin-bottom: var(--vdit-space-2);
+}
+
+.vdit-article-toc-mobile .vdit-toc-list {
+  display: flex;
+  flex-direction: row;
+  gap: var(--vdit-space-2);
+  overflow-x: auto;
+  border-left: none;
+  padding-bottom: var(--vdit-space-2);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  max-width: 100%;
+  /* Trailing fade affordance */
+  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+.vdit-article-toc-mobile .vdit-toc-item {
+  flex-shrink: 0;
+}
+
+.vdit-article-toc-mobile .vdit-toc-link {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  border-left: none;
+  border: var(--vdit-border);
+  border-radius: var(--vdit-radius-xs);
+  padding: 0 0.75rem;
+  min-height: 44px;
+  margin-left: 0;
+}
+
+.vdit-article-toc-mobile .vdit-toc-link[aria-current="location"] {
+  border-color: var(--vdit-color-system);
+  background: var(--vdit-color-system-soft);
+}
+
+/* ── Workflow visual ────────────────────────────────────────────────────── */
+.vdit-workflow-visual {
+  margin: var(--vdit-space-6) 0;
+  padding: var(--vdit-space-5);
+  border: var(--vdit-border);
+  border-radius: var(--vdit-radius-sm);
+  background: var(--vdit-color-surface);
+}
+
+.vdit-workflow-caption {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  margin-bottom: var(--vdit-space-4);
+  padding-bottom: var(--vdit-space-3);
+  border-bottom: var(--vdit-border);
+}
+
+.vdit-workflow-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+.vdit-workflow-step {
+  position: relative;
+  padding-left: 3rem;
+  padding-bottom: var(--vdit-space-4);
+}
+
+.vdit-workflow-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Cobalt rail for system steps */
+.vdit-workflow-step::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--vdit-color-system);
+  opacity: 0.5;
+}
+
+/* Amber rail for human step */
+.vdit-workflow-step[data-role="human"]::before {
+  background: var(--vdit-color-human);
+  opacity: 0.6;
+}
+
+.vdit-workflow-step:last-child::before {
+  bottom: calc(100% - 12px);
+}
+
+/* Node dot */
+.vdit-workflow-step::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vdit-color-bg);
+  border: 1.5px solid var(--vdit-color-system);
+}
+
+.vdit-workflow-step[data-role="human"]::after {
+  border-color: var(--vdit-color-human);
+  background: var(--vdit-color-human-soft);
+}
+
+.vdit-workflow-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.vdit-workflow-step[data-role="human"] .vdit-workflow-marker {
+  color: var(--vdit-color-human);
+}
+
+.vdit-workflow-actor {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.vdit-workflow-action {
+  display: block;
+  color: var(--vdit-color-text-muted);
+  font-size: var(--vdit-step--1);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.vdit-workflow-step[data-role="human"] .vdit-workflow-action {
+  color: var(--vdit-color-text);
+}
+
+.vdit-workflow-note {
+  margin-top: var(--vdit-space-4);
+  padding-top: var(--vdit-space-3);
+  border-top: var(--vdit-border);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.vdit-workflow-note .vdit-human-label {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+/* Desktop: horizontal workflow */
+@media (min-width: 64rem) {
+  .vdit-workflow-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--vdit-space-4);
+    position: relative;
+  }
+
+  .vdit-workflow-list::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--vdit-color-system);
+    opacity: 0.5;
+  }
+
+  .vdit-workflow-step {
+    padding-left: var(--vdit-space-4);
+    padding-bottom: 0;
+    border-left: var(--vdit-border);
+  }
+
+  .vdit-workflow-step:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .vdit-workflow-step::before {
+    display: none;
+  }
+
+  .vdit-workflow-step::after {
+    left: -5px;
+    top: 0;
+    width: 11px;
+    height: 11px;
+  }
+
+  .vdit-workflow-step:first-child::after {
+    left: -6px;
+  }
+
+  /* Human step: full-width below the grid */
+  .vdit-workflow-step[data-role="human"] {
+    grid-column: 1 / -1;
+    border-left: 2px solid var(--vdit-color-human);
+    padding: var(--vdit-space-4);
+    margin-top: var(--vdit-space-4);
+    border-radius: var(--vdit-radius-xs);
+    background: var(--vdit-color-human-soft);
+  }
+
+  .vdit-workflow-step[data-role="human"]::after {
+    display: none;
+  }
+}
+
+/* ── Score progression visual ───────────────────────────────────────────── */
+.vdit-score-visual {
+  margin: var(--vdit-space-6) 0;
+  padding: var(--vdit-space-5);
+  border: var(--vdit-border);
+  border-radius: var(--vdit-radius-sm);
+  background: var(--vdit-color-surface);
+}
+
+.vdit-score-caption {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  margin-bottom: var(--vdit-space-4);
+  padding-bottom: var(--vdit-space-3);
+  border-bottom: var(--vdit-border);
+}
+
+.vdit-score-series {
+  margin-bottom: var(--vdit-space-5);
+}
+
+.vdit-score-series:last-of-type {
+  margin-bottom: var(--vdit-space-4);
+}
+
+.vdit-score-series-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--vdit-space-3);
+  margin: 0 0 var(--vdit-space-3) 0;
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-1);
+  color: var(--vdit-color-text);
+  font-weight: 600;
+}
+
+.vdit-score-series-label {
+  letter-spacing: -0.02em;
+}
+
+.vdit-score-series-pattern-key {
+  font-family: var(--vdit-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--vdit-color-text-subtle);
+  font-weight: 400;
+}
+
+.vdit-score-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vdit-space-2);
+}
+
+.vdit-score-bar-row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 2rem;
+  align-items: center;
+  gap: var(--vdit-space-2);
+}
+
+.vdit-score-bar-label {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  text-align: right;
+}
+
+.vdit-score-bar-track {
+  height: 22px;
+  background: var(--vdit-color-bg);
+  border: 1px solid var(--vdit-color-line);
+  border-radius: var(--vdit-radius-xs);
+  overflow: hidden;
+}
+
+/* Desktop series: solid cobalt fill */
+.vdit-score-bar--desktop {
+  height: 100%;
+  background: var(--vdit-color-system);
+  opacity: 0.75;
+}
+
+/* Content series: dashed/diagonal pattern to distinguish without colour alone */
+.vdit-score-bar--content {
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--vdit-color-human),
+      var(--vdit-color-human) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+  opacity: 0.8;
+}
+
+.vdit-score-bar-value {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-text);
+  text-align: left;
+}
+
+/* Score data table */
+.vdit-score-table-wrap {
+  margin-top: var(--vdit-space-5);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vdit-score-table-caption {
+  font-family: var(--vdit-font-mono);
+  font-size: 0.7rem;
+  color: var(--vdit-color-text-subtle);
+  text-align: left;
+  padding-bottom: var(--vdit-space-2);
+}
+
+.vdit-score-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--vdit-border);
+  font-size: var(--vdit-step--1);
+}
+
+.vdit-score-table th,
+.vdit-score-table td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--vdit-color-line);
+  text-align: left;
+}
+
+.vdit-score-table thead th {
+  background: var(--vdit-color-surface-raised);
+  color: var(--vdit-color-text);
+  font-family: var(--vdit-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vdit-score-table tbody th {
+  color: var(--vdit-color-text);
+  font-weight: 500;
+}
+
+.vdit-score-table tbody td {
+  color: var(--vdit-color-text-muted);
+  font-family: var(--vdit-font-mono);
+}
+
+.vdit-score-note {
+  margin-top: var(--vdit-space-3);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-muted);
+  font-style: italic;
+}
+
+/* ── Posts index: strong ruled feature entry ────────────────────────────── */
+.vdit-feature-entry {
+  border-block: var(--vdit-border);
+  border-top: 2px solid var(--vdit-color-system);
+  padding: var(--vdit-space-6) 0;
+}
+
+.vdit-feature-entry-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.vdit-feature-entry-link:hover .vdit-feature-entry-title {
+  color: var(--vdit-color-system-strong);
+}
+
+.vdit-feature-entry-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--vdit-space-2) var(--vdit-space-4);
+  margin-bottom: var(--vdit-space-4);
+}
+
+.vdit-feature-entry-date {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-subtle);
+}
+
+.vdit-feature-entry-reading {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-subtle);
+}
+
+.vdit-feature-entry-title {
+  font-family: var(--vdit-font-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--vdit-color-text);
+  margin: 0 0 var(--vdit-space-3) 0;
+  text-wrap: balance;
+  transition: color var(--vdit-duration-fast) var(--vdit-ease);
+}
+
+.vdit-feature-entry-excerpt {
+  color: var(--vdit-color-text-muted);
+  font-size: var(--vdit-step-0);
+  line-height: 1.6;
+  max-width: 60ch;
+  margin: 0 0 var(--vdit-space-4) 0;
+}
+
+.vdit-feature-entry-cue {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--vdit-space-3) var(--vdit-space-4);
+  border: var(--vdit-border);
+  border-left: 2px solid var(--vdit-color-system);
+  border-radius: var(--vdit-radius-xs);
+  background: var(--vdit-color-surface);
+  margin-bottom: var(--vdit-space-4);
+  max-width: 60ch;
+}
+
+.vdit-feature-entry-cue .vdit-system-label {
+  font-size: 0.7rem;
+}
+
+.vdit-feature-entry-cue .vdit-human-label {
+  font-size: 0.7rem;
+}
+
+.vdit-feature-entry-author {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  color: var(--vdit-color-text-subtle);
+  margin-bottom: var(--vdit-space-3);
+}
+
+.vdit-feature-entry-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--vdit-color-system-strong);
+}
+
+.vdit-feature-entry-link:hover .vdit-feature-entry-cta {
+  color: var(--vdit-color-system);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.vdit-feature-entry-link:focus-visible {
+  outline: 2px solid var(--vdit-color-focus);
+  outline-offset: 4px;
+}
+

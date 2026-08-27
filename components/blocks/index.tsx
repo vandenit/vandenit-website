@@ -6,6 +6,8 @@ import { TestimonialCarousel } from "./testimonial-carousel";
 import { PortfolioCarousel } from "./portfolio-carousel";
 import { ActionsBlock } from "./action-block";
 import { ImageHeader } from "./imageHeader";
+import { EngagementProcess } from "./engagement-process";
+import { DecisionTrace } from "./decision-trace";
 import type { Page } from '.contentlayer/generated';
 
 export const Blocks = (props: Page) => {
@@ -42,6 +44,10 @@ const Block = (block: any) => {
       return <ActionsBlock data={block} />;
     case "imageHeader":
       return <ImageHeader data={block} />;
+    case "engagement-process":
+      return <EngagementProcess />;
+    case "decision-trace":
+      return <DecisionTrace />;
     default:
       return null;
   }
