@@ -11,7 +11,7 @@ excerpt: >
   I redesigned and rebranded vandenit.be using two AIs with opposite capabilities — one that can write code but can't see, and one that can see but can't touch the code. A third AI joined for the final stages. This is the workflow, and what I learned from it.
 ---
 
-On July 20, 2026, I ran a session that changed how I think about AI-assisted development. It started with two AIs and grew to three. 29 files changed. My freelance site — [vandenit.be](https://vandenit.be) — went from a 5/10 to an 8.8/10 design score and a 9.0/10 content score. None of the AIs could have done it alone.
+On July 20, 2026, I ran a session that changed how I think about AI-assisted development. It started with two AIs and grew to three. 29 files changed. My freelance site — [vandenit.be](https://vandenit.be) — went from a 5/10 to an 8.8/10 design score and a 9.0/10 content score. The result came from combining capabilities that no single part of my setup provided on its own.
 
 Here's exactly what happened.
 
@@ -21,7 +21,7 @@ This is a case study of the workflow I use in my own development environment. It
 
 ## The Setup
 
-I run two AIs in my local workflow. The choice of which AI does what is driven by cost and capability, not preference.
+For the original redesign loop, I ran two AIs in my local workflow. The choice of which AI does what is driven by cost and capability, not preference.
 
 **Hermes** runs GLM 5 via Ollama Cloud. It's my main tool — not because it's the smartest model available, but because it's cheap enough for intensive development without hitting usage limits, and because Hermes has persistent memory and reusable skills. That memory is what makes it possible to give Claude the right context for each review. Hermes is the implementer: it reads plans, modifies files, manages the dev server, runs builds, and takes Playwright screenshots. What it cannot do is see. GLM 5 has no vision capability. Hermes is literally blind to its own output.
 
