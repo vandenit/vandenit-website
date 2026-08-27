@@ -368,3 +368,75 @@ f67f5a7 fix: desktop sticky TOC disappears on scroll
 ```
 
 **Branch:** `feature/phase-4-case-study-blog`
+
+---
+
+## Phase 5 — About and Contact
+
+**Branch:** `feature/phase-5-about-contact`
+**Date:** 2026-08-27
+**Source:** `03-implementation-plan.md` (Phase 5 scope) + `09-phase-5-review-todo.md` (acceptance review by ChatGPT)
+
+### Implementation agents
+
+| Rol | Agent | Model |
+|-----|-------|-------|
+| Implementatie | Hermes subagent | GLM 5.2 (Ollama Cloud) |
+| Acceptance fixes | agy (Claude Sonnet 4.6) | Claude Sonnet 4.6 (Thinking) |
+| Review fixes | Hermes (orchestrator) | GLM 5.2 (Ollama Cloud) |
+| Acceptance review | ChatGPT (user-reported) | GPT-5 |
+| Code + visual review | agy (Claude Sonnet 4.6) | Claude Sonnet 4.6 (Thinking) |
+
+### What was built
+
+1. **About page** — typographic monogram checkpoint (FV initials, amber border, display font), career timeline evidence rail (cobalt rail, mono markers, vertical on mobile), long-form story paragraphs on ~72ch editorial measure
+2. **Contact page** — quiet hero with amber mailto CTA, subtle cobalt system rule, preserves LinkedIn link + conversation context list
+3. **3 new components**: `about-header.tsx`, `career-timeline.tsx`, `contact-hero.tsx`
+
+### Acceptance fixes (from 09-phase-5-review-todo.md)
+
+| Item | Status | Fix |
+|------|--------|-----|
+| P1: Author in case-file header | ✅ | Always visible with fallback, itemProp="author" |
+| P1: `<article>` wraps H1 | ✅ | aria-labelledby="case-study-title", H1 has matching id |
+| P1: Homepage og:image | ✅ | Moved to app/page.tsx openGraph.images (was bleeding to all pages from layout.tsx) |
+| P2: FV monogram aria-hidden | ✅ | aria-hidden="true" on monogram container |
+| P2: LinkedIn 44px touch target | ✅ | Scoped selector a[href*="linkedin.com"] with min-height: 44px (was 17px) |
+
+### Responsive evidence
+
+12 screenshots at 320, 390, 768, 1024, 1280, 1440px for /about and /contact.
+
+| Page | Viewport | scrollWidth | clientWidth | Overflow | H1 count |
+|------|----------|-------------|-------------|----------|----------|
+| /about | 320px | 320 | 320 | ✅ No | 1 |
+| /about | 390px | 390 | 390 | ✅ No | 1 |
+| /about | 768px | 768 | 768 | ✅ No | 1 |
+| /about | 1024px | 1024 | 1024 | ✅ No | 1 |
+| /about | 1280px | 1280 | 1280 | ✅ No | 1 |
+| /about | 1440px | 1440 | 1440 | ✅ No | 1 |
+| /contact | 320px | 320 | 320 | ✅ No | 1 |
+| /contact | 390px | 390 | 390 | ✅ No | 1 |
+| /contact | 768px | 768 | 768 | ✅ No | 1 |
+| /contact | 1024px | 1024 | 1024 | ✅ No | 1 |
+| /contact | 1280px | 1280 | 1280 | ✅ No | 1 |
+| /contact | 1440px | 1440 | 1440 | ✅ No | 1 |
+
+LinkedIn touch target verified via Playwright: 44px (min-height) on 320px, 390px, 768px.
+
+og:image verified in production build:
+- Homepage: 1 og:image → vandenit-home-social.png
+- Article: 1 og:image → blind-coder-sighted-reviewer-social.png (no homepage bleed)
+
+### Finale commits
+
+```
+803d4b1 feature/phase-5: About and Contact redesign
+5ce5050 review: focus-visible radius fix for buttons
+8b31913 docs: add Phase 5 acceptance review TODO from ChatGPT
+4cfb5ee review: Phase 5 acceptance fixes — P1 + P2
+bf27889 fix: og:image bleed — move from layout.tsx to homepage page.tsx
+5d7b3b6 fix: LinkedIn touch target — scoped selector with min-height 44px
+```
+
+**Branch:** `feature/phase-5-about-contact`

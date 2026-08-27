@@ -406,6 +406,12 @@
     background: var(--vdit-color-system-soft);
   }
 
+  .vdit-button:focus-visible {
+    outline: 2px solid var(--vdit-color-focus);
+    outline-offset: 3px;
+    border-radius: var(--vdit-radius-sm);
+  }
+
   /* System / human annotation labels */
   .vdit-system-label {
     color: var(--vdit-color-system-strong);
@@ -2078,3 +2084,329 @@
   outline-offset: 4px;
 }
 
+/* ── Phase 5: About and Contact ─────────────────────────────────────────── */
+
+/* Reading measure for Content blocks — 68ch editorial measure */
+.vdit-reading-measure {
+  max-width: var(--vdit-reading);
+  margin-inline: auto;
+}
+
+/* ── About header: typographic monogram checkpoint ──────────────────────── */
+.vdit-about-header-section {
+  padding-top: var(--vdit-space-8);
+  padding-bottom: var(--vdit-space-6);
+}
+
+.vdit-about-header {
+  max-width: var(--vdit-content);
+  margin-inline: auto;
+}
+
+/* Cobalt system rule — subtle horizontal accent */
+.vdit-about-rule {
+  width: 3rem;
+  height: 2px;
+  background: var(--vdit-color-system);
+  margin-bottom: var(--vdit-space-5);
+}
+
+.vdit-about-kicker {
+  margin-bottom: var(--vdit-space-5);
+}
+
+.vdit-about-header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vdit-space-5);
+}
+
+@media (min-width: 48rem) {
+  .vdit-about-header-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--vdit-space-6);
+  }
+}
+
+/* Monogram checkpoint — amber human node */
+.vdit-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--vdit-radius-sm);
+  border: 2px solid var(--vdit-color-human);
+  background: var(--vdit-color-human-soft);
+  flex-shrink: 0;
+}
+
+@media (min-width: 48rem) {
+  .vdit-monogram {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+.vdit-monogram-text {
+  font-family: var(--vdit-font-display);
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  font-weight: 700;
+  color: var(--vdit-color-human-strong);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.vdit-about-header-copy {
+  min-width: 0;
+}
+
+.vdit-about-title {
+  font-family: var(--vdit-font-display);
+  font-size: clamp(1.75rem, 1.3rem + 2.2vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--vdit-color-text);
+  margin: 0 0 var(--vdit-space-3) 0;
+  text-wrap: balance;
+}
+
+.vdit-about-name {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step-0);
+  font-weight: 600;
+  color: var(--vdit-color-text);
+  margin: 0 0 var(--vdit-space-4) 0;
+  letter-spacing: 0.02em;
+}
+
+.vdit-about-description {
+  color: var(--vdit-color-text-muted);
+  font-size: var(--vdit-step-0);
+  line-height: 1.65;
+  max-width: 68ch;
+  margin: 0;
+}
+
+/* ── Career timeline: evidence rail ─────────────────────────────────────── */
+.vdit-career-timeline {
+  max-width: var(--vdit-content);
+  margin-inline: auto;
+}
+
+.vdit-career-heading {
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-2);
+  font-weight: 600;
+  color: var(--vdit-color-text);
+  margin: 0 0 var(--vdit-space-6) 0;
+  letter-spacing: -0.02em;
+}
+
+.vdit-career-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile: vertical stepper with left cobalt rail */
+.vdit-career-step {
+  position: relative;
+  padding-left: 3rem;
+  padding-bottom: var(--vdit-space-6);
+}
+
+.vdit-career-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Cobalt rail on the left */
+.vdit-career-step::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--vdit-color-system);
+  opacity: 0.5;
+}
+
+/* Terminate rail cleanly at last step */
+.vdit-career-step:last-child::before {
+  bottom: calc(100% - 12px);
+}
+
+/* Node dot */
+.vdit-career-step::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--vdit-color-bg);
+  border: 1.5px solid var(--vdit-color-system);
+}
+
+.vdit-career-marker {
+  font-family: var(--vdit-font-mono);
+  font-size: var(--vdit-step--1);
+  font-weight: 600;
+  color: var(--vdit-color-system);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.vdit-career-step-title {
+  font-family: var(--vdit-font-display);
+  font-size: var(--vdit-step-1);
+  font-weight: 600;
+  color: var(--vdit-color-text);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.vdit-career-step-body {
+  margin: 0;
+  color: var(--vdit-color-text-muted);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* Desktop: three connected columns with horizontal cobalt rail */
+@media (min-width: 64rem) {
+  .vdit-career-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  /* Horizontal cobalt rail above the columns */
+  .vdit-career-list::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--vdit-color-system);
+    opacity: 0.5;
+  }
+
+  .vdit-career-step {
+    padding-left: var(--vdit-space-4);
+    padding-bottom: 0;
+    border-left: var(--vdit-border);
+  }
+
+  .vdit-career-step:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  /* Override mobile rail and node */
+  .vdit-career-step::before {
+    display: none;
+  }
+
+  .vdit-career-step::after {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--vdit-color-bg);
+    border: 1.5px solid var(--vdit-color-system);
+  }
+
+  .vdit-career-step:first-child::after {
+    left: -6px;
+  }
+
+  .vdit-career-step-title {
+    font-size: var(--vdit-step-0);
+  }
+
+  .vdit-career-step-body {
+    font-size: var(--vdit-step--1);
+    max-width: none;
+  }
+}
+
+/* ── Contact hero: quiet and direct ─────────────────────────────────────── */
+.vdit-contact-hero-section {
+  padding-top: var(--vdit-space-8);
+  padding-bottom: var(--vdit-space-5);
+}
+
+.vdit-contact-hero {
+  max-width: var(--vdit-content);
+  margin-inline: auto;
+}
+
+/* Subtle cobalt system rule */
+.vdit-contact-rule {
+  width: 3rem;
+  height: 2px;
+  background: var(--vdit-color-system);
+  margin-bottom: var(--vdit-space-5);
+}
+
+.vdit-contact-kicker {
+  margin-bottom: var(--vdit-space-5);
+}
+
+.vdit-contact-title {
+  font-family: var(--vdit-font-display);
+  font-size: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--vdit-color-text);
+  margin: 0 0 var(--vdit-space-4) 0;
+  text-wrap: balance;
+}
+
+.vdit-contact-lead {
+  color: var(--vdit-color-text-muted);
+  line-height: 1.65;
+  max-width: 52ch;
+  margin-bottom: var(--vdit-space-6);
+}
+
+.vdit-contact-actions {
+  margin-bottom: var(--vdit-space-2);
+}
+
+/* ── LinkedIn mobile touch-target (P2 a11y) ─────────────────────────────── */
+/*
+ * The "Connect with me here" inline link renders at ~17px line height on
+ * mobile. At 320px–768px mobile widths the interactive area falls below the
+ * required 44px touch target. This adds vertical padding with a matching
+ * negative margin to keep the surrounding paragraph layout unchanged while
+ * enlarging the pointer / touch area. Applies only to external inline <a>
+ * elements inside the contact-page body prose.
+ */
+@media (max-width: 768px) {
+  .vdit-content-section a[href*="linkedin.com"] {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+/* Ensure no horizontal overflow at very narrow widths */
+@media (max-width: 320px) {
+  .vdit-career-step {
+    padding-left: 2.5rem;
+  }
+}

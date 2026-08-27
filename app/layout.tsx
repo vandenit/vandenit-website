@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Available for embedded product team engagements.",
     images: [
       {
-        url: '/social/vandenit-home-social.png',
+        url: `${SITE_URL}/social/vandenit-home-social.png`,
         width: 1200,
         height: 630,
         alt: 'Vanden IT — Senior Developer & Fractional Tech Lead',

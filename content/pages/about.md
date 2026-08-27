@@ -8,10 +8,7 @@ blocks:
       15 years of experience building and maintaining enterprise systems,
       now combined with a structured, hands-on approach to AI-assisted
       development.
-    avatarImage:
-      src: /uploads/main/unnamed.jpg
-      alt: Filip Van den Broeck
-    _template: avatar
+    _template: about-header
   - body: >
       ## The Story So Far
 
@@ -165,7 +162,7 @@ blocks:
           Ollama Cloud.
         richText: ''
     color: tint
-    _template: features
+    _template: career-timeline
   - actions:
       - label: See how I work
         type: button
