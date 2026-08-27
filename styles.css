@@ -2389,21 +2389,18 @@
 
 /* ── LinkedIn mobile touch-target (P2 a11y) ─────────────────────────────── */
 /*
- * The "Connect with me here" inline link renders at ~22px line height on
- * desktop. At 320px–768px mobile widths the interactive area falls below the
+ * The "Connect with me here" inline link renders at ~17px line height on
+ * mobile. At 320px–768px mobile widths the interactive area falls below the
  * required 44px touch target. This adds vertical padding with a matching
  * negative margin to keep the surrounding paragraph layout unchanged while
- * enlarging the pointer / touch area. Applies only to inline <a> elements
- * inside the contact-page body prose.
+ * enlarging the pointer / touch area. Applies only to external inline <a>
+ * elements inside the contact-page body prose.
  */
 @media (max-width: 768px) {
-  .vdit-content-section .vdit-article-content p a,
-  .vdit-content-section .vdit-reading-measure p a {
-    display: inline-block;
-    padding-top: 0.6875rem;    /* (44px - 22px line-height) / 2 = 11px ≈ 0.6875rem */
-    padding-bottom: 0.6875rem;
-    margin-top: -0.6875rem;
-    margin-bottom: -0.6875rem;
+  .vdit-content-section a[href*="linkedin.com"] {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 }
 
