@@ -15,6 +15,14 @@ export const metadata: Metadata = {
     title: "Vanden IT — Senior Developer & Fractional Tech Lead",
     description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Available for embedded product team engagements.",
     url: '/',
+    images: [
+      {
+        url: 'https://vandenit.be/social/vandenit-home-social.png',
+        width: 1200,
+        height: 630,
+        alt: 'Vanden IT — Senior Developer & Fractional Tech Lead',
+      },
+    ],
   },
 };
 

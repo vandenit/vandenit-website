@@ -88,12 +88,6 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${barlowCondensed.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
-      <head>
-        <meta property="og:image" content="https://vandenit.be/social/vandenit-home-social.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Vanden IT — Senior Developer & Fractional Tech Lead" />
-      </head>
       <body>
         <ThemeProvider
           attribute="class"
