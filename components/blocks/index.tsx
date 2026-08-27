@@ -2,6 +2,9 @@ import { Hero } from "./hero";
 import { Content } from "./content";
 import { Features } from "./features";
 import { AvatarBlock } from "./avatar";
+import { AboutHeader } from "./about-header";
+import { CareerTimeline } from "./career-timeline";
+import { ContactHero } from "./contact-hero";
 import { TestimonialCarousel } from "./testimonial-carousel";
 import { PortfolioCarousel } from "./portfolio-carousel";
 import { ActionsBlock } from "./action-block";
@@ -32,6 +35,12 @@ const Block = (block: any) => {
       return <Hero data={block} />;
     case "avatar":
       return <AvatarBlock data={block} />;
+    case "about-header":
+      return <AboutHeader data={block} />;
+    case "career-timeline":
+      return <CareerTimeline data={block} />;
+    case "contact-hero":
+      return <ContactHero data={block} />;
     case "content":
       return <Content data={block} />;
     case "features":

@@ -14,7 +14,7 @@ blocks:
         icon: true
         link: filip@vandenit.be
     color: default
-    _template: hero
+    _template: contact-hero
   - body: >
       ## What I can help with
 
