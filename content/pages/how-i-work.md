@@ -18,41 +18,7 @@ blocks:
         link: /posts/blind-coder-sighted-reviewer
     _template: hero
 
-  - body: >
-      ## How an engagement develops
-
-
-      ### 1. Join and understand
-
-
-      I start with the real environment: the codebase, architecture,
-      delivery pressure, team responsibilities, and current tooling. The
-      goal is to understand before changing anything.
-
-
-      ### 2. Contribute to delivery
-
-
-      I take ownership of real engineering work — implementation,
-      architecture decisions, reviews, production issues, and the
-      technical conversations needed to keep delivery moving.
-
-
-      ### 3. Improve the workflow
-
-
-      While working with the team, I identify where better tooling or a
-      structured AI workflow could reduce repetition, shorten feedback
-      loops, or strengthen review and documentation.
-
-
-      ### 4. Leave durable practices
-
-
-      Useful patterns are documented and adapted to the team. The
-      objective is not dependence on a consultant or a specific tool, but
-      a workflow the team understands and can continue to refine.
-    _template: content
+  - _template: engagement-process
 
   - body: >
       ## Senior Full-Stack Development
@@ -110,52 +76,7 @@ blocks:
       the team's actual environment and delivery needs.
     _template: content
 
-  - body: >
-      ## When Experience Makes the Judgment Calls
-
-
-      AI can produce a plausible answer before it has understood the
-      problem. Experience matters most at that boundary.
-
-
-      ### Problem
-
-
-      Device changes from a mobile app were not reaching the central unit.
-
-
-      ### First AI implementation
-
-
-      The agent found missing sync logic, wrote a fix, and added a test
-      — but the test failed.
-
-
-      ### Wrong conclusion
-
-
-      After several attempts, the agent concluded that the test helper
-      was unreliable and the code could still ship.
-
-
-      ### Human intervention
-
-
-      I refused to treat the failing test as an obstacle. A second review
-      exposed an ordering bug: sync messages were sent before the database
-      transaction committed.
-
-
-      ### Result
-
-
-      The implementation was corrected, the test passed, a production
-      incident was prevented, and the lesson was stored for future
-      sessions.
-
-
-      AI handled the volume. Experience made the judgment call.
-    _template: content
+  - _template: decision-trace
 
   - body: >
       ## See It In Practice

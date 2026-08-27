@@ -1,7 +1,15 @@
 "use client";
 import * as React from "react";
-import { Actions } from "./actions";
-import { Badge, Container, Flex, Heading, Section, Text } from "@radix-ui/themes";
+import Link from "next/link";
+import { Container, Flex, Heading, Text } from "@radix-ui/themes";
+import { BiRightArrowAlt } from "react-icons/bi";
+
+interface HeroAction {
+  label: string;
+  type: string;
+  icon: boolean;
+  link: string;
+}
 
 interface HeroBlockData {
   tagline?: string;
@@ -9,12 +17,7 @@ interface HeroBlockData {
   text?: string;
   text2?: string;
   proofBar?: string;
-  actions?: Array<{
-    label: string;
-    type: string;
-    icon: boolean;
-    link: string;
-  }>;
+  actions?: HeroAction[];
   image?: {
     src: string;
     alt: string;
@@ -23,58 +26,157 @@ interface HeroBlockData {
   _template: string;
 }
 
+/**
+ * "Discuss a project" = amber primary (human action).
+ * Everything else = cobalt secondary.
+ */
+function isDiscussAction(action: HeroAction): boolean {
+  return /discuss/i.test(action.label) || /contact/i.test(action.link);
+}
+
+function HeroButton({ action }: { action: HeroAction }) {
+  const isPrimary = isDiscussAction(action);
+  const href = action.type === "email"
+    ? (action.link?.startsWith('mailto:') ? action.link : `mailto:${action.link || ''}`)
+    : (action.link || '/');
+
+  const className = isPrimary ? "vdit-button vdit-button--primary" : "vdit-button vdit-button--cobalt";
+
+  if (href.startsWith('mailto:')) {
+    return (
+      <a href={href} className={className}>
+        {action.label}
+        {action.icon && <BiRightArrowAlt aria-hidden="true" />}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {action.label}
+      {action.icon && <BiRightArrowAlt aria-hidden="true" />}
+    </Link>
+  );
+}
+
+/* Proof strip items — static, matches actual content */
+const PROOF_ITEMS = [
+  {
+    value: "15",
+    unit: "years",
+    label: "Senior engineering experience",
+    annotation: "CAREER SPAN",
+  },
+  {
+    value: "100K+",
+    unit: "users",
+    label: "Production systems delivered",
+    annotation: "SCALE",
+  },
+  {
+    value: "Full stack",
+    unit: "",
+    label: "Backend, frontend & technical leadership",
+    annotation: "SCOPE",
+  },
+];
+
 export const Hero = ({ data }: { data: HeroBlockData }) => {
   return (
-    <Section size="3" className="hero-section" pt={{ initial: '7', sm: '9' }} pb={{ initial: '6', sm: '8' }}>
+    <section className="vdit-hero">
       <Container size="3" px="6">
-        <Flex direction="column" align="center" gap="5" style={{ textAlign: 'center' }}>
-          {/* Badge — short label, NOT duplicating H1 */}
-          <Badge size="2" variant="soft" color="blue" radius="full">
-            Senior Engineering · AI-Augmented Delivery
-          </Badge>
+        {/* Equal two-column on desktop, single column on mobile */}
+        <div className="vdit-hero-inner">
+          {/* Left column: copy and CTAs */}
+          <div className="vdit-hero-copy">
+            {/* Kicker */}
+            <p className="vdit-kicker vdit-hero-kicker">
+              <span>Senior Engineering</span>
+              <span className="vdit-kicker-tail">
+                <span aria-hidden="true">&nbsp;·&nbsp;</span>
+                <span className="vdit-nowrap">AI‑Augmented Delivery</span>
+              </span>
+            </p>
 
-          {/* H1 = short tagline */}
-          <Heading as="h1" size={{ initial: '7', sm: '9' }} weight="bold" align="center" style={{ maxWidth: '800px', hyphens: 'none' }}>
-            {data.tagline}
-          </Heading>
-
-          {/* Subtext = longer headline/description */}
-          <Text as="p" size={{ initial: '4', sm: '5' }} color="gray" align="center" style={{ maxWidth: '600px', lineHeight: '1.6' }}>
-            {data.headline}
-          </Text>
-
-          {/* CTA buttons */}
-          {data.actions && (
-            <Flex mt="3" align="center" justify="center" gap="3" direction={{ initial: 'column', sm: 'row' }} wrap="wrap">
-              <Actions actions={data.actions} />
-            </Flex>
-          )}
-
-          {/* Proof bar — compact credentials strip */}
-          {data.proofBar && (
-            <Flex
-              mt="5"
-              align="center"
-              justify="center"
-              gap="3"
-              wrap="wrap"
-              style={{
-                color: 'var(--gray-10)',
-                fontSize: '14px',
-                fontWeight: 500,
-                letterSpacing: '-0.01em',
-              }}
+            {/* H1 */}
+            <Heading
+              as="h1"
+              size={{ initial: '8', sm: '8' }}
+              weight="bold"
+              className="vdit-hero-title"
             >
-              {data.proofBar.split('·').map((item, i) => (
-                <React.Fragment key={i}>
-                  {i > 0 && <span style={{ color: 'var(--gray-7)' }}>·</span>}
-                  <span>{item.trim()}</span>
-                </React.Fragment>
-              ))}
-            </Flex>
-          )}
-        </Flex>
+              {data.tagline}
+            </Heading>
+
+            {/* Subtext */}
+            <Text
+              as="p"
+              size={{ initial: '3', sm: '4' }}
+              className="vdit-hero-lead"
+            >
+              {data.headline}
+            </Text>
+
+            {/* CTA buttons */}
+            {data.actions && (
+              <Flex gap="3" direction={{ initial: 'column', xs: 'row' }} wrap="wrap">
+                {data.actions.map((action, i) => (
+                  <HeroButton key={i} action={action} />
+                ))}
+              </Flex>
+            )}
+          </div>
+
+          {/* Right column: system diagram (desktop only via .vdit-hero-diagram CSS) */}
+          <div className="vdit-hero-diagram" aria-hidden="true">
+            <img
+              src="/daniel-flow-desktop.svg"
+              alt=""
+              width="600"
+              height="210"
+            />
+          </div>
+        </div>
+
+        {/* Mobile-only system diagram (below copy, shown below sm breakpoint) */}
+        <div
+          aria-hidden="true"
+          className="vdit-hero-diagram-mobile"
+        >
+          <img
+            src="/daniel-flow-mobile.svg"
+            alt=""
+            width="75"
+            height="150"
+          />
+        </div>
       </Container>
-    </Section>
+
+      {/* Proof strip — ruled cells below the hero */}
+      <div className="vdit-proof-strip-wrapper">
+        <Container size="3" px="6">
+          <div className="vdit-proof-strip">
+            {PROOF_ITEMS.map((item, i) => (
+              <div key={i}>
+                <p className="vdit-system-label vdit-proof-item-label">
+                  {item.annotation}
+                </p>
+                <p className="vdit-proof-value">
+                  {item.value}
+                  {item.unit && (
+                    <span className="vdit-proof-unit">
+                      {item.unit}
+                    </span>
+                  )}
+                </p>
+                <p className="vdit-proof-desc">
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
+    </section>
   );
 };

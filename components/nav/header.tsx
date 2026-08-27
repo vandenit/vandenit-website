@@ -11,14 +11,17 @@ export default function Header() {
 
   return (
     <Box
+      asChild
       position="sticky"
       top="0"
-      className="header-blur"
+      className="vdit-header"
       style={{ zIndex: 100 }}
     >
-      <Container size="3" px="6">
-        <NavItems navs={header?.nav ?? []} />
-      </Container>
+      <header>
+        <Container size="3" px="6">
+          <NavItems navs={header?.nav ?? []} />
+        </Container>
+      </header>
     </Box>
   );
 }

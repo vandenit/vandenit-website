@@ -50,7 +50,7 @@ export const PortfolioCarousel = ({
     if (!portfolioItems || portfolioItems.length === 0) return null;
 
     return (
-        <Section size="3" mb="5" pb="10" className="section-alt">
+        <Section size="3" mb="5" pb="10" className="vdit-section-alt">
             <Container size="3" px="6">
                 <Heading as="h2" size={{ initial: '6', sm: '7' }} mb="6" align="center"
                     id={data.portfolioId}>
@@ -117,7 +117,7 @@ export const PortfolioCarousel = ({
                                         width: i === currentSlide ? '24px' : '8px',
                                         height: '8px',
                                         borderRadius: '9999px',
-                                        background: i === currentSlide ? 'var(--accent-9)' : 'var(--gray-6)',
+                                        background: i === currentSlide ? 'var(--vdit-color-system)' : 'var(--gray-6)',
                                         cursor: 'pointer',
                                         transition: 'all 0.2s ease',
                                     }}

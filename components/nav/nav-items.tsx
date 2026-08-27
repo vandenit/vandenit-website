@@ -2,23 +2,9 @@
 import { usePathname } from "next/navigation";
 import React from "react";
 import Link from "next/link";
-import { Flex, DropdownMenu, IconButton, Text, Button } from "@radix-ui/themes";
+import { Flex, DropdownMenu, IconButton } from "@radix-ui/themes";
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { VandenITLogo } from "../vanden-it-logo";
-
-const navLinkStyle = (isActive: boolean): React.CSSProperties => ({
-  color: isActive ? 'var(--gray-12)' : 'var(--gray-11)',
-  textDecoration: 'none',
-  fontWeight: 500,
-  fontSize: '14px',
-  padding: '6px 12px',
-  borderRadius: '6px',
-  transition: 'color 0.15s ease, background 0.15s ease',
-  position: 'relative',
-  ...(isActive ? {
-    background: 'var(--gray-3)',
-  } : {}),
-});
 
 export default function NavItems({ navs }: { navs: any[] }) {
   const currentPath = usePathname();
@@ -27,23 +13,34 @@ export default function NavItems({ navs }: { navs: any[] }) {
   // Fallback nav items if CMS data is empty
   const items = navs.length > 0 ? navs : [
     { href: '/', label: 'Home' },
+    { href: '/how-i-work', label: 'How I work' },
     { href: '/about', label: 'About' },
     { href: '/posts', label: 'Blog' },
-    { href: '/contact', label: 'Contact' },
   ];
 
   return (
     <Flex align="center" justify="between" height="64px">
       {/* Logo — always visible */}
-      <Link href="/" aria-label="Vanden IT Home" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--gray-12)' }}>
-        <VandenITLogo width={28} height={28} />
-        <Text size="4" weight="bold" style={{ letterSpacing: '-0.02em' }}>
-          Vanden IT
-        </Text>
+      <Link
+        href="/"
+        aria-label="Vanden IT Home"
+        className="site-logo-link"
+        style={{
+          gap: '10px',
+          textDecoration: 'none',
+          color: 'var(--vdit-color-text)',
+          fontFamily: 'var(--vdit-font-display)',
+          fontWeight: 600,
+          fontSize: '1.15rem',
+          letterSpacing: '-0.02em',
+        }}
+      >
+        <VandenITLogo width={26} height={26} />
+        Vanden IT
       </Link>
 
       {/* Desktop nav — hidden on mobile */}
-      <Flex align="center" gap="2" display={{ initial: 'none', sm: 'flex' }}>
+      <Flex align="center" gap="5" display={{ initial: 'none', sm: 'flex' }}>
         {items.map((item) => {
           const href = item.href.startsWith('/') ? item.href : `/${item.href}`;
           const isActive = currentPath === href || (href !== '/' && currentPath?.startsWith(`${href}/`));
@@ -51,7 +48,7 @@ export default function NavItems({ navs }: { navs: any[] }) {
             <Link
               key={item.href}
               href={href}
-              style={navLinkStyle(isActive)}
+              className="vdit-nav-link"
               aria-current={isActive ? 'page' : undefined}
             >
               {item.label}
@@ -59,11 +56,9 @@ export default function NavItems({ navs }: { navs: any[] }) {
           );
         })}
         {!isContactPage && (
-          <Button asChild size="2" ml="3">
-            <Link href="/contact" style={{ textDecoration: 'none' }}>
-              Discuss a project
-            </Link>
-          </Button>
+          <Link href="/contact" className="vdit-nav-cta" style={{ marginLeft: '8px' }}>
+            Discuss a project
+          </Link>
         )}
       </Flex>
 
@@ -71,16 +66,39 @@ export default function NavItems({ navs }: { navs: any[] }) {
       <Flex align="center" display={{ initial: 'flex', sm: 'none' }}>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <IconButton size="3" variant="soft" color="gray" aria-label="Open menu">
-              <HamburgerMenuIcon width="18" height="18" />
+            <IconButton
+              className="mobile-menu-button"
+              size="3"
+              variant="ghost"
+              color="gray"
+              aria-label="Open menu"
+              style={{ color: 'var(--vdit-color-text-muted)' }}
+            >
+              <HamburgerMenuIcon width="20" height="20" />
             </IconButton>
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content>
+          <DropdownMenu.Content
+            style={{
+              background: 'var(--vdit-color-surface-raised)',
+              border: 'var(--vdit-border)',
+              borderRadius: 'var(--vdit-radius-sm)',
+            }}
+          >
             {items.map((item) => {
               const href = item.href.startsWith('/') ? item.href : `/${item.href}`;
+              const isActive = currentPath === href || (href !== '/' && currentPath?.startsWith(`${href}/`));
               return (
                 <DropdownMenu.Item asChild key={item.href}>
-                  <Link href={href}>{item.label}</Link>
+                  <Link
+                    href={href}
+                    aria-current={isActive ? 'page' : undefined}
+                    style={{
+                      color: isActive ? 'var(--vdit-color-text)' : 'var(--vdit-color-text-muted)',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    {item.label}
+                  </Link>
                 </DropdownMenu.Item>
               );
             })}
@@ -88,7 +106,16 @@ export default function NavItems({ navs }: { navs: any[] }) {
               <>
                 <DropdownMenu.Separator />
                 <DropdownMenu.Item asChild>
-                  <Link href="/contact">Discuss a project</Link>
+                  <Link
+                    href="/contact"
+                    style={{
+                      color: 'var(--vdit-color-human-strong)',
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Discuss a project
+                  </Link>
                 </DropdownMenu.Item>
               </>
             )}

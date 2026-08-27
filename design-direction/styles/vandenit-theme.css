@@ -1,0 +1,293 @@
+@layer vandenit.tokens, vandenit.base, vandenit.components, vandenit.utilities;
+
+@layer vandenit.tokens {
+  :root {
+    color-scheme: dark;
+
+    /* Typography: bind these to next/font variables in layout.tsx. */
+    --vdit-font-body: var(--font-geist, "Geist", system-ui, sans-serif);
+    --vdit-font-display: var(--font-barlow-condensed, "Barlow Condensed", "Arial Narrow", sans-serif);
+    --vdit-font-mono: var(--font-geist-mono, "Geist Mono", ui-monospace, monospace);
+
+    /* Midnight surfaces. */
+    --vdit-color-bg: #050a0f;
+    --vdit-color-bg-deep: #03070b;
+    --vdit-color-surface: #0b1620;
+    --vdit-color-surface-raised: #11202c;
+    --vdit-color-surface-soft: #162633;
+
+    /* Warm editorial text. */
+    --vdit-color-text: #f3ebdc;
+    --vdit-color-text-muted: #aeb9c3;
+    --vdit-color-text-subtle: #7f8d99;
+
+    /* Structural rules. */
+    --vdit-color-line: #243746;
+    --vdit-color-line-strong: #3b5364;
+
+    /* Daniël / system activity. */
+    --vdit-color-system: #2f9fff;
+    --vdit-color-system-strong: #66b9ff;
+    --vdit-color-system-soft: rgb(47 159 255 / 14%);
+
+    /* Filip / human judgment. */
+    --vdit-color-human: #d98b32;
+    --vdit-color-human-strong: #f0a84a;
+    --vdit-color-human-soft: rgb(217 139 50 / 14%);
+    --vdit-color-on-human: #071018;
+
+    /* Genuine risk only. */
+    --vdit-color-risk: #ef6262;
+    --vdit-color-focus: #9fd3ff;
+
+    --vdit-space-1: 0.25rem;
+    --vdit-space-2: 0.5rem;
+    --vdit-space-3: 0.75rem;
+    --vdit-space-4: 1rem;
+    --vdit-space-5: 1.5rem;
+    --vdit-space-6: 2rem;
+    --vdit-space-7: 3rem;
+    --vdit-space-8: 4.5rem;
+    --vdit-space-9: 7rem;
+
+    --vdit-radius-xs: 2px;
+    --vdit-radius-sm: 4px;
+    --vdit-radius-md: 8px;
+    --vdit-radius-lg: 12px;
+
+    --vdit-border: 1px solid var(--vdit-color-line);
+    --vdit-content: 72rem;
+    --vdit-reading: 68ch;
+
+    --vdit-step--1: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem);
+    --vdit-step-0: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+    --vdit-step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+    --vdit-step-2: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+    --vdit-step-3: clamp(2.75rem, 1.9rem + 3vw, 5.75rem);
+
+    --vdit-duration-fast: 140ms;
+    --vdit-duration-normal: 260ms;
+    --vdit-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .radix-themes {
+    --default-font-family: var(--vdit-font-body);
+    --heading-font-family: var(--vdit-font-display);
+    --code-font-family: var(--vdit-font-mono);
+  }
+}
+
+@layer vandenit.base {
+  html {
+    background: var(--vdit-color-bg-deep);
+  }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at 20% 0%, rgb(47 159 255 / 9%), transparent 34rem),
+      var(--vdit-color-bg);
+    color: var(--vdit-color-text);
+    font-family: var(--vdit-font-body);
+    font-size: var(--vdit-step-0);
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background: var(--vdit-color-system);
+    color: var(--vdit-color-bg-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--vdit-color-focus);
+    outline-offset: 4px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--vdit-color-text);
+    font-family: var(--vdit-font-display);
+    font-weight: 600;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    color: var(--vdit-color-text-muted);
+  }
+}
+
+@layer vandenit.components {
+  .vdit-shell {
+    width: min(100% - 2rem, var(--vdit-content));
+    margin-inline: auto;
+  }
+
+  .vdit-section {
+    position: relative;
+    padding-block: var(--vdit-space-8);
+  }
+
+  .vdit-section--ruled {
+    border-block: var(--vdit-border);
+  }
+
+  .vdit-grid-surface {
+    background-image: url("../assets/engineering-grid.svg");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+  }
+
+  .vdit-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vdit-space-3);
+    color: var(--vdit-color-system-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .vdit-kicker::before {
+    width: 1.5rem;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+
+  .vdit-display {
+    max-width: 12ch;
+    margin: 0;
+    font-size: var(--vdit-step-3);
+    letter-spacing: -0.025em;
+  }
+
+  .vdit-reading {
+    max-width: var(--vdit-reading);
+  }
+
+  .vdit-panel {
+    position: relative;
+    border: var(--vdit-border);
+    border-radius: var(--vdit-radius-sm);
+    background: linear-gradient(145deg, rgb(17 32 44 / 92%), rgb(5 10 15 / 92%));
+  }
+
+  .vdit-button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--vdit-space-3);
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--vdit-color-human);
+    border-radius: var(--vdit-radius-sm);
+    font-family: var(--vdit-font-mono);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      background-color var(--vdit-duration-fast) var(--vdit-ease),
+      border-color var(--vdit-duration-fast) var(--vdit-ease),
+      color var(--vdit-duration-fast) var(--vdit-ease),
+      transform var(--vdit-duration-fast) var(--vdit-ease);
+  }
+
+  .vdit-button--primary {
+    background: var(--vdit-color-human);
+    color: var(--vdit-color-on-human);
+  }
+
+  .vdit-button--secondary {
+    background: transparent;
+    color: var(--vdit-color-text);
+  }
+
+  .vdit-button:hover {
+    border-color: var(--vdit-color-human-strong);
+    transform: translateY(-2px);
+  }
+
+  .vdit-system-label {
+    color: var(--vdit-color-system-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .vdit-human-label {
+    color: var(--vdit-color-human-strong);
+    font-family: var(--vdit-font-mono);
+    font-size: var(--vdit-step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .vdit-proof-strip {
+    display: grid;
+    border-block: var(--vdit-border);
+  }
+
+  .vdit-proof-strip > * {
+    padding: var(--vdit-space-5);
+    border-bottom: var(--vdit-border);
+  }
+
+  .vdit-proof-strip > :last-child {
+    border-bottom: 0;
+  }
+}
+
+@layer vandenit.utilities {
+  .vdit-system-color {
+    color: var(--vdit-color-system);
+  }
+
+  .vdit-human-color {
+    color: var(--vdit-color-human);
+  }
+
+  .vdit-mono {
+    font-family: var(--vdit-font-mono);
+  }
+}
+
+@media (min-width: 48rem) {
+  .vdit-shell {
+    width: min(100% - 4rem, var(--vdit-content));
+  }
+
+  .vdit-section {
+    padding-block: var(--vdit-space-9);
+  }
+
+  .vdit-proof-strip {
+    grid-template-columns: 1fr 1fr 1.6fr;
+  }
+
+  .vdit-proof-strip > * {
+    border-right: var(--vdit-border);
+    border-bottom: 0;
+  }
+
+  .vdit-proof-strip > :last-child {
+    border-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
