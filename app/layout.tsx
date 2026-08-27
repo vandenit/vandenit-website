@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     description: "Senior full-stack development and fractional technical leadership, strengthened by a structured AI workflow. Available for embedded product team engagements.",
     images: [
       {
-        url: '/social/vandenit-home-social.png',
+        url: `${SITE_URL}/social/vandenit-home-social.png`,
         width: 1200,
         height: 630,
         alt: 'Vanden IT — Senior Developer & Fractional Tech Lead',
@@ -88,6 +88,12 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${barlowCondensed.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
+      <head>
+        <meta property="og:image" content="https://vandenit.be/social/vandenit-home-social.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Vanden IT — Senior Developer & Fractional Tech Lead" />
+      </head>
       <body>
         <ThemeProvider
           attribute="class"
