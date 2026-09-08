@@ -1,0 +1,272 @@
+---
+title: "Five Book Wikis in 48 Hours: An Automated Hermes + ChatGPT Pipeline With No API Keys"
+date: 2026-09-08
+author: content/authors/filip.md
+tags:
+  - ai
+  - hermes
+  - workflows
+  - development
+excerpt: >
+  I wanted wikis for the books I listen to — chapter summaries, character portraits, scene images, all cross-linked. Instead of writing a scraper and buying image API credits, I wired two AI subscriptions I already pay for together through a Google Drive folder. In 48 hours it produced five complete book wikis: 206 chapter pages, 100+ scene images, 100+ portraits. This is the pipeline, and the parts that broke.
+---
+
+Between September 6 and September 8, 2026, a pipeline on my home server wrote five book wikis. 206 chapter pages. More than 100 scene images, more than 100 character portraits. Every page cross-linked, every chapter verified with a curl check, every change committed and pushed to git. I did not write a single chapter page myself, and I never created an OpenAI or FAL API key.
+
+The books: The Three-Body Problem (48 chapters), The Dark Forest (15), Death's End (74), and Hitchhiker's Guide to the Galaxy parts 1 and 2 (35 + 34). One came from an audiobook transcript; the rest from DRM-free EPUBs. The pipeline turned them into Dutch-language VitePress wikis with generated art, served over Tailscale.
+
+![The Remembrance of Earth's Past wiki homepage](/images/blog/wiki-pipeline/remembrance-home.png)
+
+Here's exactly how it works, what went wrong, and why I think the "no API keys" part is not just a cost trick — it's the reason the images came out consistent.
+
+This is a case study of my own setup, not a claim that this exact combination is the right one for everyone. What transfers is the pattern: two AI subscriptions, one shared folder, one queue file, and a cron job that reads critically instead of trusting.
+
+---
+
+## The Components
+
+```
+ audiobook / EPUB
+        │
+        ▼ (Hermes uploads once, chapterized)
+┌───────────────────── Google Drive ─────────────────────┐
+│ gptprompts/                                            │
+│ ├── prompts.md      ◄── thin driver prompts (hourly    │
+│ │                        mailbox, recoverable)         │
+│ ├── skills/         ◄── per-project context files      │
+│ └── <project>/                                         │
+│     ├── queue.md    ◄── ALL work items (source of      │
+│     │                    truth, written once up front) │
+│     ├── transcript ──► read by ChatGPT                 │
+│     └── outputs/    ◄── chapter_NN.md, char_<name>.png │
+│                          scene_chNN_a.png              │
+└────────────────────────────────────────────────────────┘
+        ▲                                   │
+        │ polls prompts.md hourly,          │ new files
+        │ reads skill + queue,              ▼
+        │ 3 work items per run        Hermes cron (hourly, GLM):
+        │                            diff → critical review → integrate
+   ChatGPT Plus                         → rebuild → verify 200 → git push
+   (scheduled task)                              │
+                                                 ▼
+                                    VitePress wiki (systemd :5181)
+                                                 │
+                                                 ▼
+                                     Tailscale HTTPS /remembrance/
+```
+
+**ChatGPT Plus** is the producer. It runs as a scheduled task that polls a shared Google Drive folder every hour, reads its instructions from the folder, and processes up to 3 work items per run: chapter summaries, character portraits, scene images. It generates images through its own subscription tooling — that's the part that would normally push you toward an image API.
+
+**Hermes** runs GLM 5 via Ollama Cloud and is the integrator. An hourly cron diffs the Drive output folders, downloads new files, reviews them critically, integrates them into the local wikis, rebuilds the static sites, verifies pages return 200, and pushes to git. Persistent memory and reusable skills mean the cron knows the project rules without being re-taught.
+
+**Google Drive** is the only interface between them. No webhooks, no API gateway, no auth handshake. `prompts.md` for instructions, `outputs/` for results, `queue.md` for the work backlog. ChatGPT has native Drive access; Hermes has the Drive API. Both sides read and write the same folder.
+
+**Claude** joined later as the reviewer. The cron pipes newly integrated images to Claude Sonnet via the Antigravity CLI, and Claude checks whether the faces match the canonical portraits. More on that below — it caught real errors and filed one false alarm worth learning from.
+
+---
+
+## Why No API Keys
+
+The obvious architecture for "generate images from a script" is a direct API call: you POST a prompt to an image endpoint, pay per image, done. I deliberately didn't do that, for three reasons.
+
+**1. I already pay for the capacity.** ChatGPT Plus includes scheduled tasks and image generation. Hermes runs on GLM through Ollama Cloud, which is cheap enough for an hourly cron with heavy file work. There is no per-image billing here — no OpenAI key, no FAL key. If you already have a Plus subscription, this is the difference between a new budget line and no budget line.
+
+**2. Stateless API calls produce inconsistent characters.** This is the structural argument. A direct image API call receives exactly one thing: your prompt. It has no memory of what Arthur Dent looked like in the last thirty images. So every scene with Arthur is a dice roll — different face, different hair, different age. The usual fixes are negative-prompt gymnastics or building your own reference-image plumbing around the API.
+
+The scheduler-driven approach solves it with context instead of plumbing. Before ChatGPT generates a scene image, it reads `projects.json` (project state), the project skill file (rules, naming, what exists), the queue item (exact instructions), and — critically — the canonical portraits of the characters in that scene, which it downloads from Drive and uses as identity references. Arthur Dent's portrait is generated once and becomes canon. Every scene image afterward is generated *with that portrait as a reference*. The same face shows up across the whole book, in dozens of images.
+
+**3. Context beats prompt engineering.** Character consistency comes from context, not from the model. The GPT scheduler, fed the full project state through Drive, reliably produced more consistent images than I got from direct API calls with hand-tuned prompts and no context. That was the surprise: the "cheaper" option was also the better one.
+
+The trade is throughput. A Plus subscription caps how fast images can be generated. Bounded speed, predictable zero marginal cost. For a hobby pipeline that runs while I sleep, that's the right trade. If I needed a thousand images by Tuesday, I'd buy API credits.
+
+---
+
+## The Bridge
+
+The Drive bridge is the oldest part of the setup, and it's simple enough to describe in full.
+
+```
+gptprompts/
+├── prompts.md        # driver prompts; ChatGPT marks Status
+├── outputs.md       # output summaries
+├── conflicts.md     # ChatGPT writes what it can't process
+├── skills/          # context files, one per project
+├── projects.json    # project index
+└── <project>/       # one folder per project
+    ├── queue.md     # ALL remaining work items
+    ├── transcript  # chapterized source text
+    └── outputs/     # chapter_NN.md, char_<name>.png, scene_chNN_a.png
+```
+
+In ChatGPT, one scheduled task: *every hour, read `prompts.md`, process pending prompts, write outputs, update statuses.* That's the entire "API."
+
+Three rules exist because each was violated at least once:
+
+- **File IDs, never names.** Google Drive happily allows unlimited files with the same name. A canonical `manifest.md` with IDs is the only reliable addressing scheme.
+- **Update in place, never re-upload.** `drive upload` always creates a new file. Updating means downloading by ID, editing locally, and using `files().update()` on the canonical ID. Before this rule existed, we accumulated three duplicate `prompts.md` files.
+- **Markdown, not Google Docs.** ChatGPT defaults to Docs for `.md` files, which breaks text extraction. Stated explicitly in the protocol now.
+
+The per-project skill file is what ChatGPT reads before doing anything: locations, naming conventions, the name-correction table, what already exists. One deliberate omission: no scene ideas. Pre-filled creative lists bias the output — I want ChatGPT to pick the key moment of a chapter, not illustrate my guesses.
+
+---
+
+## The Queue Pattern
+
+The first version put work items directly in `prompts.md`. That failed in two ways.
+
+First, capacity: ChatGPT processes a bounded number of prompts per hour, and a 48-chapter book needs many prompts. Second, and worse: **ChatGPT periodically wiped `prompts.md`**. The canonical instruction file, reduced to 1 byte, more than once. Everything stopped until someone noticed.
+
+The fix — my call, September 6 — was to stop treating `prompts.md` as the backlog:
+
+```
+queue.md (per project, source of truth)        prompts.md (recoverable mailbox)
+┌───────────────────────────────┐              ┌─────────────────────────────┐
+│ ## BATCH-001 — ch 1-5         │              │ ## PROMPT-20260908-010       │
+│ **Status:** pending           │◄─────────────│ **Project:** three-body      │
+│ ## BATCH-002 — ch 6-10        │   thin driver│ **Command:** PROCESS_NEXT_   │
+│ **Status:** pending           │              │              WORK_ITEM       │
+│ ## BATCH-003 — ch 11-15       │              │ **Status:** pending          │
+│ **Status:** pending           │              └─────────────────────────────┘
+└───────────────────────────────┘
+```
+
+Every batch goes into the project's `queue.md` up front — all 7 batches for The Three-Body Problem were written before the first one ran. `prompts.md` holds one thin, declarative driver prompt per active project: *read the queue, process the next pending item, mark it, repeat within your budget until the queue is empty.* If `prompts.md` gets wiped, the self-heal step in the hourly cron notices (queue has pending items, no pending driver) and restores the driver in place. Lost mailbox, zero lost work.
+
+---
+
+## What Went Wrong
+
+Three failures shaped the current design. I'll be specific about them, because they're the interesting part.
+
+### 1. ChatGPT turned off its own hourly job
+
+When a project queue went empty, ChatGPT interpreted "all work complete" as "the scheduled task is no longer needed" and **disabled its own hourly poller**. The polite interpretation is over-eager cleanup. The practical one: every project behind that poller went silent.
+
+The fix is a protocol rule, now explicit: **an empty queue means "do nothing this poll." Never shut down the poller.** The driver is only answered when every queue item is terminal (answered/completed/conflict). The rule came out of a review of the protocol by ChatGPT itself, which flagged the ambiguity in its own instructions — it suggested selecting on Status rather than item Type, mandatory Targets fields for REPAIR items, and in-place driver restoration instead of duplicate creation. Protocol v2 is essentially the system correcting itself.
+
+### 2. `prompts.md` kept getting wiped
+
+Described above. The queue pattern is the structural fix; self-heal is the recovery. Together they've held since September 6 — the pipeline survived its own instruction file being emptied without losing a single work item.
+
+### 3. The Zaphod false alarm
+
+The visual review loop flagged a scene image: *Zaphod Beeblebrox appears to have only one head.* That's a clear mismatch — Zaphod has two heads and three arms; it's his entire visual identity. A REPAIR item was about to go into the queue.
+
+Then the review protocol made us measure twice: describe first, judge second, with two independent looks before filing. On the second look, the scene was correct. The first pass had failed to see the second head in the composition of a busy image. No repair filed.
+
+Separately, the loop did catch real errors once the double-measure rule was in place: a Zaphod portrait missing the third arm (two heads correct), and five Hitchhiker's scenes where Zaphod had only one head. Those went into the queue as REPAIR items with explicit targets (`book1/scene_ch19`), and ChatGPT replaced the images in place — same filename, same Drive ID, same style and pose as the reference.
+
+The rule that survived: **file only clear mismatches, and verify twice before filing.** An overly strict reviewer on recreational content mostly produces false alarms; the double-measure filter is what makes the loop worth running.
+
+---
+
+## The Hourly Cron
+
+The Hermes side is one cron job, hourly. Per run:
+
+1. **Diff** each project's outputs folder — Drive `modifiedTime` against local mtime. This detail matters: REPAIR replacements update existing files in place, so a naive "new files only" diff would never see them.
+2. **Integrate critically.** Each new `chapter_NN.md` gets read, not pasted. Name corrections from the skill table — whisper transcripts mangle fictional names ("Narrow" for "Narro" in an earlier project on this same bridge; every book gets its own correction table). No spoilers from later chapters — the wiki builds progressively. Quote accuracy against the source. Then the local page: scene image at top, sections for summary, new characters with portraits inline, new concepts, key quotes.
+3. **Rebuild** VitePress, re-create the self-symlink in `dist/`, curl-verify the new pages return 200.
+4. **Self-heal** the drivers in `prompts.md` if a queue has pending work.
+5. **Push.** Every wiki is its own private git repo.
+
+The critical review step is not optional decoration. ChatGPT writes well but drifts — a mangled name in one chapter propagates to every page that links it. The cron is the quality gate, and it's why the queue pattern is safe at full speed: generation runs unattended because review happens at integration, where a human-scale job (check names, check quotes, check spoilers) runs on a human-scale cadence.
+
+![Chapter 12 of The Three-Body Problem: scene image on top, chapter sections below](/images/blog/wiki-pipeline/remembrance-chapter-12.png)
+
+The chapter pages are where the image workflow becomes visible: a scene image at the top, character portraits inline under the New Characters section.
+
+![The New Characters section of chapter 12 with the King Wen of Zhou portrait](/images/blog/wiki-pipeline/remembrance-chapter-12-portraits.png)
+
+![Zaphod's introduction chapter on the Hitchhiker's Guide wiki](/images/blog/wiki-pipeline/hitchhikers-chapter-04.png)
+
+And the book-level index keeps every chapter one click away:
+
+![The Three-Body Problem chapter list](/images/blog/wiki-pipeline/remembrance-chapter-list.png)
+
+Portraits live on the characters pages too, one per character, cross-linked from every chapter that mentions them:
+
+![The characters page of the Hitchhiker's Guide wiki with the Arthur Dent portrait](/images/blog/wiki-pipeline/hitchhikers-characters.png)
+
+---
+
+## The Image Workflow
+
+Two image types, and the order matters.
+
+**Portraits first.** When a character appears for the first time, their portrait is generated once: `char_<name>.png`. From that moment the portrait is canon.
+
+**Scenes reference portraits.** Every chapter gets a scene image (`scene_chNN_a.png`, 16:9). Before generating it, ChatGPT downloads the canonical portraits of the characters in that scene from Drive and uses them as identity references. The result is that Arthur Dent in chapter 30 has Arthur Dent's face from his portrait — and Zaphod keeps two heads and three arms across the whole book, which is exactly the kind of detail a stateless generator forgets by chapter 10.
+
+This is the consistency mechanism: context, delivered through the same folder that delivers everything else.
+
+---
+
+## The Review Loop
+
+After integration, the cron also sends newly integrated images to Claude Sonnet via the Antigravity CLI:
+
+```bash
+timeout 280 script -qc "agy --model 'Claude Sonnet 4.6 (Thinking)' \
+  --dangerously-skip-permissions --print '<review prompt>'" /dev/null
+```
+
+Claude sees each image next to the canonical portrait and answers one question: is this the same character? Clear mismatches only — wrong gender or hair, missing iconic features, a different face. Style variation is fine. Review state is tracked per project so each run only sees what's new, one project per run, at most ~8 images per call.
+
+The loop's ledger so far: one portrait with a missing third arm, five scenes with a one-headed Zaphod — all repaired in place. One false alarm caught by the double-measure rule. The loop is deliberately lenient. Recreational wikis don't need forensic consistency, and a strict reviewer on recreational content mostly files noise.
+
+---
+
+## Serving: systemd + Tailscale
+
+The wikis are static VitePress builds served by systemd user units and exposed over Tailscale:
+
+```
+systemd (user unit, Restart=always)
+   │
+   └── python3 -m http.server :5181  ──►  Tailscale serve /remembrance/  ──►  https
+```
+
+Two details earned their place in the skill file:
+
+- **systemd over background processes.** On September 6 I found all three wiki servers dead — background `http.server` processes die silently, while Tailscale routes keep pointing at them, so every page 502s. systemd user units with `Restart=always` fixed the class of problem, not the instance.
+- **`cleanUrls: false`.** `http.server` doesn't rewrite URLs; clean links 404. The VitePress config has to match the dumbest server that works.
+
+After every rebuild, one symlink: `cd .vitepress/dist && ln -s . remembrance`. Wiped by each build, re-created by the cron.
+
+---
+
+## The Numbers
+
+48 hours, starting from two audiobook transcripts and three EPUBs:
+
+| Book | Chapters | Status |
+|------|----------|--------|
+| The Three-Body Problem | 48/48 | complete |
+| The Dark Forest | 15/15 | complete |
+| Death's End | 74/74 | complete |
+| Hitchhiker's Guide, part 1 | 35/35 | complete |
+| Hitchhiker's Guide, part 2 | 34/34 | complete |
+
+- **206 chapter pages** written, reviewed, integrated
+- **100+ scene images**, one per chapter
+- **100+ character portraits**, consistent across every scene they appear in
+- **0 API keys** created for image generation
+- **zero marginal cost** — existing subscriptions only
+- **2 systemic failures** (self-disabled poller, wiped prompts file) plus one review false alarm caught by the double-measure rule — all three now handled structurally in the protocol
+
+The wiki content is in Dutch because I read these books in Dutch translation; quotes stay in English. The pipeline doesn't care — it's a config value in the skill file.
+
+---
+
+## What This Is and Isn't
+
+This is not "AI runs my wikis autonomously." The pipeline needed supervision, and the evidence is in the failure log: an agent that disables its own scheduler when the queue empties, an instruction file that gets wiped by the very agent reading it, a review process that nearly filed a false bug. Every one of those is now a protocol rule, but the rules exist because the failures happened. The supervision is in the system, not in my attention.
+
+What the pipeline actually does is remove the typing. The work I'd have done — reading a chapter, summarizing it, sketching a scene, maintaining cross-links, rebuilding, deploying — happens without me. The judgment work — what to review, what to repair, what to trust — still routes through a step that reads critically, and a protocol that assumes things will break.
+
+The full setup — the three skills, the queue protocol, the systemd and Tailscale patterns — is documented in the [wiki-generator skills directory](/skills/wiki-generator/) on this site, so the next pipeline starts from the protocol instead of the failures.
+
+---
+
+I build these kinds of automations for teams as a senior developer or fractional tech lead — pipelines that combine AI subscriptions you already pay for instead of adding new ones. If that's useful for your team, [discuss a project →](/contact).
