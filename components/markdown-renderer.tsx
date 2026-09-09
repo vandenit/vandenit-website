@@ -204,7 +204,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             }} />
           ),
           
-          // Tables
+          // Tables — wrapped in a scrollable container for narrow screens
           table: ({ children }: any) => (
             <div style={{ overflowX: 'auto', maxWidth: '100%', marginBottom: '1rem', WebkitOverflowScrolling: 'touch' }}>
               <table style={{

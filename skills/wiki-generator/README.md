@@ -1,6 +1,10 @@
 # Automatic Audiobook Wiki Generator — Hermes + ChatGPT, No Extra API Keys
 
+This is the working documentation for the pipeline described in the blog post [Five Book Wikis in 48 Hours](https://vandenit.be/posts/automated-wiki-generation-hermes-chatgpt). It is published as part of the [vandenit-website repository](https://github.com/vandenit/vandenit-website), where each file is kept next to the code it documents.
+
 This directory contains copies of the three Hermes skills that implement the wiki-generator pipeline:
+
+> **Publication note:** these are working copies published for documentation. Live Drive file IDs and internal cron/chat identifiers are anonymized as `<FILE_ID>` and similar placeholders — substitute your own when reproducing the setup. The skill files reflect the full working setup, including older or paused projects beyond the five wikis documented here.
 
 | File | Role |
 |------|------|
@@ -21,8 +25,8 @@ This README explains how to set the whole thing up from scratch. The short versi
 
 The obvious way to generate wiki images from a script is to call an image-generation API directly (OpenAI images, FAL.ai, etc.). That works, but it costs money per call and — more importantly — it produces *less consistent* images than the setup below. Here is the reasoning:
 
-1. **ChatGPT runs on an existing Plus subscription.** ChatGPT Plus includes scheduled tasks (the hourly poller), vision on inputs, and image generation through its own tooling. If you already pay for Plus, the marginal cost of this pipeline is zero: no OpenAI API key, no FAL key, no per-image billing.
-2. **Hermes runs on GLM via Ollama Cloud.** GLM is cheap enough to run an hourly cron that does diffing, critical review, wiki integration, rebuilds, verification and git pushes without hitting usage limits. Hermes brings persistent memory and reusable skills, so the cron knows the project rules without being re-taught.
+1. **ChatGPT runs on an existing Plus subscription.** ChatGPT Plus includes scheduled tasks (the hourly poller — see [Setup step 1](#1-the-drive-bridge)), vision on inputs, and image generation through its own tooling. If you already pay for Plus, the marginal cost of this pipeline is zero: no OpenAI API key, no FAL key, no per-image billing.
+2. **Hermes runs on GLM via Ollama Cloud.** GLM is the open-source LLM that powers the Hermes agent (by Nous Research); Ollama Cloud serves it cheaply enough to run an hourly cron that does diffing, critical review, wiki integration, rebuilds, verification and git pushes without hitting usage limits. Hermes brings persistent memory and reusable skills, so the cron knows the project rules without being re-taught.
 3. **Context-driven scheduling beats direct API calls for consistency.** A direct image API call gets exactly one thing: your prompt. The scheduler-driven approach feeds ChatGPT *everything* before it generates: `projects.json` (project state), the project skill file (naming rules, style, what exists already), `queue.md` with exact per-batch instructions, and — critically — the canonical character portraits as identity references. The result is that Arthur Dent has the same face in a scene image as in his canonical portrait, across dozens of images. A stateless API call has no way to hold that consistency across hundreds of generations. Character consistency comes from context, not from the model.
 
 That third point is the real argument. Cost is nice; consistency is structural.
@@ -108,7 +112,7 @@ Do not put your work items in `prompts.md`. ChatGPT periodically wipes it (obser
 
 ```markdown
 ---
-## PROMPT-20260908-010
+## PROMPT-YYYYMMDD-NNN
 **Status:** pending
 **Project:** three-body-problem
 **Skills:** skills/collaborate-skill.md, skills/three-body-problem-skill.md
@@ -155,7 +159,7 @@ The rule that makes hundreds of images consistent: **portraits first as canon, s
 
 ### 6. Hermes: the hourly integration cron
 
-Hermes runs the `wiki-builder-sync` cron every hour. Per run:
+Hermes runs an hourly integration cron (the `wiki-builder-sync` job, defined in the [wiki-builder skill](./wiki-builder.md)). Per run:
 
 1. **Diff** each project's outputs folder (compare Drive `modifiedTime` against local mtime — required so in-place REPAIR replacements get picked up).
 2. **Integrate critically.** Download new `chapter_NN.md` files, read them with a critical eye — name corrections from the skill table, no spoilers from later chapters, accurate quotes — then build the local page: scene image at top, sections for summary / new characters (portraits inline) / new concepts / key quotes. Update index, character and world pages, sidebar.
@@ -168,7 +172,7 @@ The critical review step is not optional. Whisper transcripts mangle fictional n
 
 ### 7. The visual review loop (optional, recommended)
 
-After integration, the cron can also review new images with Claude via the Antigravity CLI:
+After integration, the cron can also review new images with a vision-capable model via the Antigravity CLI (`agy`) — any AI CLI with vision and file access works for this step; it is optional:
 
 ```bash
 timeout 280 script -qc "agy --model 'Claude Sonnet 4.6 (Thinking)' --dangerously-skip-permissions --print '<review prompt>'" /dev/null
@@ -184,7 +188,7 @@ Real catches from this loop: Zaphod portrait missing an arm (two heads correct),
 
 ### 8. Serving: systemd + Tailscale
 
-Each wiki is a standalone VitePress site (`base: '/<name>/'` matching its Tailscale path). Serve with systemd **user units** — background `python3 -m http.server` processes die silently (found all three dead on 2026-09-06 with Tailscale routes still pointing at them):
+Each wiki is a standalone VitePress site (`base: '/<name>/'` matching its Tailscale path). Serve with systemd **user units** — background `python3 -m http.server` processes die silently (a bare `http.server` process hangs or gets killed without a trace, while Tailscale routes keep pointing at it and every page 502s):
 
 ```ini
 # ~/.config/systemd/user/wiki-remembrance.service
@@ -217,11 +221,11 @@ Between September 6 and September 8, 2026, starting from two transcripts and thr
 |------|----------|--------|
 | The Three-Body Problem | 48/48 | complete |
 | The Dark Forest | 15/15 | complete |
-| Death's End | 74 | near complete |
+| Death's End | 74/74 | complete |
 | Hitchhiker's Guide part 1 | 35/35 | complete |
-| Hitchhiker's Guide part 2 | 34 | near complete |
+| Hitchhiker's Guide part 2 | 34/34 | complete |
 
-206 chapter pages, 100+ scene images, 100+ character portraits, integrated, verified (curl 200) and pushed to git — without a human touching a chapter page and without a single image API key.
+206 chapter pages, 100+ scene images, 100+ character portraits, integrated, verified (curl 200) and pushed to git — without a human touching a chapter page and without a single image API key. The same pipeline is currently producing the next wiki (Ursula K. Le Guin's *Left Hand of Darkness*).
 
 ## Constraints and honest notes
 

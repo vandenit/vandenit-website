@@ -12,8 +12,8 @@ Use when: adding a new audiobook-wiki project, checking pipeline progress, integ
 
 1. **Lokale registry (source of truth voor state):** `~/projects/wiki-scheduler/registry.json` — Drive-ID's, paden, poorten, systemd units, git remotes, integrated_chapters per boek, driver-prompt-ID per boek.
 2. **Drive (per project):** `<project>/queue.md` met ALLE resterende batches (`**Status:** pending` → ChatGPT markeert `answered`), transcriptie in de projectfolder, output in `<project>/outputs/`.
-3. **prompts.md (canoniek ID 1RVrCIrJLQSByBeiv4-kQW-UPw1S285YW):** alleen driver-prompts (één per boek): "verwerk eerste pending batch uit queue.md, markeer answered, herhaal binnen promptbudget (3/uur) tot leeg". prompts.md is vluchtig — ChatGPT veegt het periodiek leeg; de queues zijn de source of truth.
-4. **Cron `wiki-builder-sync` (7203ff68d242, elk uur, Telegram 8884689161):** diff → integratie → rebuild → verify → self-heal drivers → commit/push → rapport ([SILENT] zonder nieuws).
+3. **prompts.md (canoniek ID <FILE_ID>):** alleen driver-prompts (één per boek): "verwerk eerste pending batch uit queue.md, markeer answered, herhaal binnen promptbudget (3/uur) tot leeg". prompts.md is vluchtig — ChatGPT veegt het periodiek leeg; de queues zijn de source of truth.
+4. **Cron `wiki-builder-sync` (hourly, report via Telegram):** diff → integratie → rebuild → verify → self-heal drivers → commit/push → rapport ([SILENT] zonder nieuws).
 
 ## Waarom queue-patroon (beslissing Filip 2026-09-06)
 
@@ -23,7 +23,7 @@ Alle batch-prompts staan vooraf in de project-queue; de hoofdprompt zegt alleen 
 
 1. **Bron**: check eerst bestaande EPUB-MD's (`~/documentation/books/`, `~/documentation/books/drm-free-conversions/`) vóór whisper-transcriptie. EPUB-tekst = betere bron (geen verhaspelde namen). Whisper alleen als geen EPUB bestaat (skill: audio-transcription; achtergrond-daemon + monitor-cron).
 2. **Chapterizeer**: splits in hoofdstukbestanden met `## Chapter N: Titel`-koppen. EPUB: gebruik `contents.xhtml#c_chN` / `[]{#chapterN.xhtml}` anchors (DE: 74 hoofdstukken). Boeken zonder hoofdstukankers: splits op scènegrenzen (DF: 7 mega-hoofdstukken → 15 segmenten, max ~150K chars/segment; grote segmenten kwarten op paragraafgrenzen).
-3. **Drive**: maak subfolder + outputs-folder in de projectfolder, upload transcriptie, schrijf queue.md met batches van 5 hoofdstukken, voeg boek-sectie toe aan de projectspecifieke skill file (file-naamconventies: `chapter_<prefix>NN.md`, `scene_<prefix>chNN_a.png`), update projects.json (ID 1oKve_iHqNwew4YYMxSfs_JOXN1b6D2ff), zet driver-prompt in prompts.md.
+3. **Drive**: maak subfolder + outputs-folder in de projectfolder, upload transcriptie, schrijf queue.md met batches van 5 hoofdstukken, voeg boek-sectie toe aan de projectspecifieke skill file (file-naamconventies: `chapter_<prefix>NN.md`, `scene_<prefix>chNN_a.png`), update projects.json (ID <FILE_ID>), zet driver-prompt in prompts.md.
 4. **Registry**: entry in `~/projects/wiki-scheduler/registry.json` (books-sectie met drive-ID's, patterns, driver-ID).
 5. **Lokale wiki**: index-pagina placeholder (indien nieuw), sidebar-sectie in `.vitepress/config.mts`.
 6. **Git**: elk nieuw project = git init + `.gitignore` (node_modules, .vitepress/dist, cache) + `gh repo create <naam> --private --source . --push` (standaard sinds 2026-09-06, alle wiki-repo's: github.com/Filipvdb321/*).

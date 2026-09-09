@@ -11,26 +11,16 @@ Communicate with ChatGPT through a shared Google Drive folder structure. ChatGPT
 ## Folder Structure on Drive
 
 ```
-gptprompts/                          (1LrQDBCEaL8_sizc_-37Q_HBPOg_7XTy1)
+gptprompts/                          (the shared root folder)
 ├── prompts.md                       # Hermes writes prompts, ChatGPT marks status
 ├── outputs.md                       # ChatGPT writes output summaries
 ├── conflicts.md                     # ChatGPT writes conflicts
 ├── outputs/                         # ChatGPT writes output files (images, text, etc.)
 └── skills/                          # Skill files with context for ChatGPT
-    └── red-rising-skill.md          # Red Rising wiki context
+    └── <project>-skill.md           # Per-project wiki context
 ```
 
 **Google API script:** `python3 ~/.hermes/skills/productivity/google-workspace/scripts/google_api.py`
-
-**Reference:** `references/drive-duplicates-and-cron-sync.md` — Drive duplicate problem root cause and fix, cron-based wiki sync pattern.
-**Reference:** `references/wiki-processing-pipeline.md` — How to process ChatGPT chapter summaries into the local wiki, quality assessment criteria, and cron job configuration.
-**Reference:** `references/agy-tty-investigation.md` — agy TTY failure root cause (v1.1.11), tested workarounds, and recommendation matrix.
-**Reference:** `references/wiki-review-and-image-management.md` — Claude wiki review pattern, portrait swap technique, Drive skill update pattern, scene image embedding, and quality assessment of ChatGPT output.
-**Reference:** `references/wiki-review-findings.md` — Actual review results from session 2026-08-10: errors found, corrections applied, portrait review verdicts, and lessons for future reviews.
-**Reference:** `references/wiki-review-h25-34-findings.md` — Review of H25-H34, Darrow's post-Carving appearance (gold hair confirmed), new character verifications, missing world.md entries.
-**Reference:** `references/vitepress-wiki-build-pattern.md` — VitePress build script, cleanUrls/symlink configuration, image copying, batch embedding pattern, and common pitfalls.
-**Reference:** `references/audiobook-wiki-project-setup.md` — Full recipe for setting up a new audiobook-wiki project: create Drive folder, upload transcript, write skill file with Whisper name correction table, update projects.json, and write first prompt for chapter summaries.
-**Reference:** `references/agy-wiki-review-pattern.md` — agy (Claude) factual verification pattern for reviewing wiki content against source transcripts, including command template, key parameters, and typical findings taxonomy.
 
 ## Golden Rules
 
@@ -44,7 +34,7 @@ gptprompts/                          (1LrQDBCEaL8_sizc_-37Q_HBPOg_7XTy1)
 ChatGPT maintains `manifest.md` in the gptprompts folder with the canonical IDs. Download it first if you need the latest IDs:
 
 ```bash
-$GAPI drive download 1hu5w-VwMV-mnvaJ-4cV0b9NYDS8URerp --output /tmp/manifest.md 2>&1 | tail -3
+$GAPI drive download <FILE_ID> --output /tmp/manifest.md 2>&1 | tail -3
 cat /tmp/manifest.md
 ```
 
@@ -52,18 +42,18 @@ cat /tmp/manifest.md
 
 | File | ID |
 |---|---|
-| `gptprompts/` folder | `1LrQDBCEaL8_sizc_-37Q_HBPOg_7XTy1` |
-| `manifest.md` | `1hu5w-VwMV-mnvaJ-4cV0b9NYDS8URerp` |
-| `prompts.md` | `1RVrCIrJLQSByBeiv4-kQW-UPw1S285YW` |
-| `outputs.md` | `1kiKAgD5w6XtbzLndTCX-N1iw8ucRleye` |
-| `conflicts.md` | `1yB9NHB1KWLbafe38ZQ0M5wDvmJa-NhTl` |
-| `outputs/` folder | `1pF1c8Yfas4NkevugjN3BqDpszR2HLLgU` |
-| `skills/` folder | `1y06AcZA-g2o4Gujg2oq7dRiIbGh8z5Hz` |
-| `skills/red-rising-skill.md` | `1EHO4aJB5BWf7FQfCKm2hkrWRsRtKXp0Y` |
-| `skills/family-drawings-skill.md` | `17g_0X5cjm48ldPAl7xrxKN-Z0vG42p7T` |
-| `family-drawings/` folder | `1AtHJXCFkATBiH8TmBWmrtva_oaG1ZW4T` |
-| `projects.json` | `1oKve_iHqNwew4YYMxSfs_JOXN1b6D2ff` |
-| `collaborate-skill.md` | `1qeouROAi7d2DQR_UpAwpHSAuqfEKpa7F` |
+| `gptprompts/` folder | `<FILE_ID>` |
+| `manifest.md` | `<FILE_ID>` |
+| `prompts.md` | `<FILE_ID>` |
+| `outputs.md` | `<FILE_ID>` |
+| `conflicts.md` | `<FILE_ID>` |
+| `outputs/` folder | `<FILE_ID>` |
+| `skills/` folder | `<FILE_ID>` |
+| `skills/red-rising-skill.md` | `<FILE_ID>` |
+| `skills/family-drawings-skill.md` | `<FILE_ID>` |
+| `family-drawings/` folder | `<FILE_ID>` |
+| `projects.json` | `<FILE_ID>` |
+| `collaborate-skill.md` | `<FILE_ID>` |
 
 ## Skills System
 
@@ -81,8 +71,8 @@ Each project has a skill file in `gptprompts/skills/`. A skill file contains:
 
 ```bash
 GAPI="python3 ~/.hermes/skills/productivity/google-workspace/scripts/google_api.py"
-PROMPTS_ID="1RVrCIrJLQSByBeiv4-kQW-UPw1S285YW"  # from manifest.md
-FOLDER_ID="1LrQDBCEaL8_sizc_-37Q_HBPOg_7XTy1"
+PROMPTS_ID="<FILE_ID>"  # from manifest.md
+FOLDER_ID="<FILE_ID>"
 
 # Download current prompts via ID
 $GAPI drive download $PROMPTS_ID --output /tmp/prompts.md 2>&1 | tail -3
@@ -102,12 +92,12 @@ PROMPT
 $GAPI drive upload /tmp/prompts.md --parent $FOLDER_ID 2>&1 | tail -3
 ```
 
-**IMPORTANT:** The `PROMPTS_ID` above may be stale after ChatGPT cleanup. Always read `manifest.md` first to get the current canonical ID. The manifest ID itself (`1hu5w-VwMV-mnvaJ-4cV0b9NYDS8URerp`) is stable.
+**IMPORTANT:** The `PROMPTS_ID` above may be stale after ChatGPT cleanup. Always read `manifest.md` first to get the current canonical ID. The manifest ID itself (`<FILE_ID>`) is stable.
 
 ### 2. Check outputs
 
 ```bash
-OUTPUTS_ID="1kiKAgD5w6XtbzLndTCX-N1iw8ucRleye"
+OUTPUTS_ID="<FILE_ID>"
 $GAPI drive download $OUTPUTS_ID --output /tmp/outputs.md 2>&1 | tail -3
 cat /tmp/outputs.md
 ```
@@ -115,7 +105,7 @@ cat /tmp/outputs.md
 ### 3. Check conflicts
 
 ```bash
-CONFLICTS_ID="1yB9NHB1KWLbafe38ZQ0M5wDvmJa-NhTl"
+CONFLICTS_ID="<FILE_ID>"
 $GAPI drive download $CONFLICTS_ID --output /tmp/conflicts.md 2>&1 | tail -3
 cat /tmp/conflicts.md
 ```
@@ -123,7 +113,7 @@ cat /tmp/conflicts.md
 ### 4. Download output files from outputs/
 
 ```bash
-OUTPUTS_FOLDER_ID="1pF1c8Yfas4NkevugjN3BqDpszR2HLLgU"
+OUTPUTS_FOLDER_ID="<FILE_ID>"
 
 # Search for files in outputs folder
 $GAPI drive search "chapter" 2>&1 | grep -E '"name"|"id"'
@@ -264,7 +254,7 @@ The collaborate-skill defines: workflow steps, file rules (use IDs, update in-pl
   "projects": {
     "red-rising": {
       "slug": "red-rising",
-      "drive_folder": "1BkS6rql7fRtbHOMnkou1A5hi0qBd6AFT",
+      "drive_folder": "<FILE_ID>",
       "skill_file": "skills/red-rising-skill.md",
       "transcript": "red_rising.md",
       "description": "Red Rising wiki",
@@ -274,7 +264,7 @@ The collaborate-skill defines: workflow steps, file rules (use IDs, update in-pl
     },
     "family-drawings": {
       "slug": "family-drawings",
-      "drive_folder": "1AtHJXCFkATBiH8TmBWmrtva_oaG1ZW4T",
+      "drive_folder": "<FILE_ID>",
       "skill_file": "skills/family-drawings-skill.md",
       "transcript": "",
       "description": "Familie-tekeningen op basis van basis-karaktertekeningen",
@@ -333,7 +323,7 @@ This is a shorthand command — the skill file on Drive contains the full instru
 - **Drive creates duplicates on upload.** `drive upload` always creates a new file — it does not overwrite by name. This caused 3x `prompts.md` and 2x `outputs.md` duplicates. Always use File IDs from `manifest.md` and never upload a new file when one already exists. ChatGPT maintains `manifest.md` with canonical IDs.
 - **Automated wiki sync via cron.** A cron job can poll the outputs/ folder every 10 minutes (during active work) or hourly (for steady-state), download new chapter files, append them to the local wiki `summary.md`, update `world.md` / `characters.md`, and rebuild the VitePress site. Use `enabled_toolsets: ["file", "terminal"]` and set `workdir` to the docs directory.
 - **Cron delivery pitfall.** Cron jobs with deliver "origin" to a WebUI session may show last_delivery_error "unknown platform webui". The job still runs and processes files, but the delivery notification fails. Use deliver "local" if you only need processing without notification.
-- **ChatGPT organizes outputs into project-specific subfolders.** When ChatGPT processes a prompt for a project, it may create a subfolder inside the project's Drive folder (e.g. `three-body-problem/outputs/`) and place chapter files, character portraits, scene images, and index files there — NOT in the shared `gptprompts/outputs/` folder. To list and download these files, use the Drive API to query children of the project folder ID, then recursively list the `outputs/` subfolder. The shared `outputs/` folder ID from manifest.md (`1pF1c8Yfas4NkevugjN3BqDpszR2HLLgU`) is for older projects (red-rising, family-drawings); newer projects may use their own subfolder.
+- **ChatGPT organizes outputs into project-specific subfolders.** When ChatGPT processes a prompt for a project, it may create a subfolder inside the project's Drive folder (e.g. `three-body-problem/outputs/`) and place chapter files, character portraits, scene images, and index files there — NOT in the shared `gptprompts/outputs/` folder. To list and download these files, use the Drive API to query children of the project folder ID, then recursively list the `outputs/` subfolder. The shared `outputs/` folder ID from manifest.md (`<FILE_ID>`) is for older projects (red-rising, family-drawings); newer projects may use their own subfolder.
 - **Image download workflow for wiki integration.** After ChatGPT generates chapter summaries with images, download all assets and integrate into the local wiki — do NOT skip this step and present text-only pages. The user explicitly corrected this: "Geen sfeerbeelden ook en geen images? Chatgpt hafe die normaal klaar". Steps:
   1. List files in the project's `outputs/` Drive subfolder using `service.files().list(q="'<folder_id>' in parents and trashed=false")`
   2. Download each PNG/MD file via `service.files().get_media(fileId=...)`
