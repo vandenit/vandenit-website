@@ -1,5 +1,5 @@
 ---
-title: "Five Book Wikis in 48 Hours: An Automated Hermes + ChatGPT Pipeline With No API Keys"
+title: "Five Book Wikis in 48 Hours: A Subscription-First Hermes + ChatGPT Pipeline"
 date: 2026-09-08
 author: content/authors/filip.md
 tags:
@@ -11,15 +11,19 @@ excerpt: >
   I wanted wikis for the books I listen to — chapter summaries, character portraits, scene images, all cross-linked. Instead of writing a scraper and buying image API credits, I wired two AI subscriptions I already pay for together through a Google Drive folder. In 48 hours it produced five complete book wikis: 206 chapter pages, 100+ scene images, 100+ portraits. This is the pipeline, and the parts that broke.
 ---
 
-Between September 6 and September 8, 2026, a pipeline on my home server wrote five book wikis. 206 chapter pages. More than 100 scene images, more than 100 character portraits. Every page cross-linked, every chapter verified with a curl check, every change committed and pushed to git. I did not write a single chapter page myself, and I never created an OpenAI or FAL API key.
+Between September 6 and September 8, 2026, a pipeline on my home server wrote five book wikis. 206 chapter pages. More than 100 scene images, more than 100 character portraits. Every page cross-linked, every chapter verified with a curl check, every change committed and pushed to git. I did not write a single chapter page myself, and this pipeline never needed an OpenAI or FAL image API key.
 
 The books: The Three-Body Problem (48 chapters), The Dark Forest (15), Death's End (74), and Hitchhiker's Guide to the Galaxy parts 1 and 2 (35 + 34). One came from an audiobook transcript; the rest from DRM-free EPUBs. The pipeline turned them into Dutch-language VitePress wikis with generated art, served over Tailscale.
 
 ![The Remembrance of Earth's Past wiki homepage](/images/blog/wiki-pipeline/remembrance-home.png)
 
-Here's exactly how it works, what went wrong, and why I think the "no API keys" part is not just a cost trick — it's the reason the images came out consistent.
+Here's exactly how it works, what went wrong, and why running it on subscriptions I already pay for turned out to be the reason the images came out consistent.
 
 This is a case study of my own setup, not a claim that this exact combination is the right one for everyone. What transfers is the pattern: two AI subscriptions, one shared folder, one queue file, and a cron job that reads critically instead of trusting.
+
+## Why I Actually Wanted This
+
+The useful part for me is not that an AI can generate hundreds of pages. It is that I now have a private, spoiler-aware companion that grows only as far as I have read. It makes it easier to resume a complex series and lowers the friction of starting a book with a dense world or unfamiliar names. I am starting Ursula K. Le Guin's *The Left Hand of Darkness* with more confidence because names, places and concepts can accumulate behind me instead of becoming homework I have to remember.
 
 ---
 
@@ -57,25 +61,25 @@ This is a case study of my own setup, not a claim that this exact combination is
 
 **ChatGPT Plus** is the producer. It runs as a scheduled task that polls a shared Google Drive folder every hour, reads its instructions from the folder, and processes up to 3 work items per run: chapter summaries, character portraits, scene images. It generates images through its own subscription tooling — that's the part that would normally push you toward an image API.
 
-**Hermes** runs GLM 5 via Ollama Cloud and is the integrator. An hourly cron diffs the Drive output folders, downloads new files, reviews them critically, integrates them into the local wikis, rebuilds the static sites, verifies pages return 200, and pushes to git. Persistent memory and reusable skills mean the cron knows the project rules without being re-taught.
+**Hermes** acts as the integrator. In this setup, Hermes runs GLM 5 through Ollama Cloud; Hermes itself is model-agnostic, and GLM is simply the model I chose for this workflow. An hourly cron diffs the Drive output folders, downloads new files, reviews them critically, integrates them into the local wikis, rebuilds the static sites, verifies pages return 200, and pushes to git. Persistent memory and reusable skills mean the cron knows the project rules without being re-taught.
 
 **Google Drive** is the only interface between them. No webhooks, no API gateway, no auth handshake. `prompts.md` for instructions, `outputs/` for results, `queue.md` for the work backlog. ChatGPT has native Drive access; Hermes has the Drive API. Both sides read and write the same folder.
 
 **Claude** joined later as the reviewer. The cron pipes newly integrated images to Claude Sonnet via the Antigravity CLI, and Claude checks whether the faces match the canonical portraits. More on that below — it caught real errors and filed one false alarm worth learning from.
 
+> **Want the implementation rather than the story?** The sanitized wiki-generator playbook and its three Hermes skills are published in the [wiki-generator skills directory](/skills/wiki-generator/) on this site. The website is the readable documentation; GitHub is the canonical source.
+
 ---
 
-## Why No API Keys
+## Why No Image API
 
 The obvious architecture for "generate images from a script" is a direct API call: you POST a prompt to an image endpoint, pay per image, done. I deliberately didn't do that, for three reasons.
 
-**1. I already pay for the capacity.** ChatGPT Plus includes scheduled tasks and image generation. Hermes runs on GLM through Ollama Cloud, which is cheap enough for an hourly cron with heavy file work. There is no per-image billing here — no OpenAI key, no FAL key. If you already have a Plus subscription, this is the difference between a new budget line and no budget line.
+**1. I already pay for the capacity.** ChatGPT Plus includes scheduled tasks and image generation. Hermes runs on GLM through Ollama Cloud, cheap enough for an hourly cron with heavy file work. There is no per-image billing here — no OpenAI image key, no FAL key. If you already have a Plus subscription, this is the difference between a new budget line and no budget line. (Both products still authenticate — ChatGPT with my account, Hermes through Ollama Cloud — so "no API keys" would overclaim. The precise statement is: no new keys, no per-image billing.)
 
-**2. Stateless API calls produce inconsistent characters.** This is the structural argument. A direct image API call receives exactly one thing: your prompt. It has no memory of what Arthur Dent looked like in the last thirty images. So every scene with Arthur is a dice roll — different face, different hair, different age. The usual fixes are negative-prompt gymnastics or building your own reference-image plumbing around the API.
+**2. My prompt-only API calls were less consistent across chapters.** I could have built state and reference-image plumbing around an image API. The surprise was that I didn't need to: the scheduled ChatGPT workflow already had a natural place to load the project state and the canonical portraits before each generation. Before ChatGPT generates a scene image, it reads `projects.json` (project state), the project skill file (rules, naming, what exists), the queue item (exact instructions), and — critically — the canonical portraits of the characters in that scene, which it downloads from Drive and uses as identity references. Arthur Dent's portrait is generated once and becomes canon. Every scene image afterward is generated *with that portrait as a reference*. The same face shows up across the whole book, in dozens of images.
 
-The scheduler-driven approach solves it with context instead of plumbing. Before ChatGPT generates a scene image, it reads `projects.json` (project state), the project skill file (rules, naming, what exists), the queue item (exact instructions), and — critically — the canonical portraits of the characters in that scene, which it downloads from Drive and uses as identity references. Arthur Dent's portrait is generated once and becomes canon. Every scene image afterward is generated *with that portrait as a reference*. The same face shows up across the whole book, in dozens of images.
-
-**3. Context beats prompt engineering.** Character consistency comes from context, not from the model. The GPT scheduler, fed the full project state through Drive, reliably produced more consistent images than I got from direct API calls with hand-tuned prompts and no context. That was the surprise: the "cheaper" option was also the better one.
+**3. In this workflow, context beat more prompt tuning.** The consistency came from context, not from the model. The GPT scheduler, fed the full project state through Drive, reliably produced more consistent images than I got from direct API calls with hand-tuned prompts and no context. That was the surprise: the option I already paid for was also the better one.
 
 The trade is throughput. A Plus subscription caps how fast images can be generated. Bounded speed, predictable zero marginal cost. For a hobby pipeline that runs while I sleep, that's the right trade. If I needed a thousand images by Tuesday, I'd buy API credits.
 
@@ -251,7 +255,7 @@ After every rebuild, one symlink: `cd .vitepress/dist && ln -s . remembrance`. W
 - **206 chapter pages** written, reviewed, integrated
 - **100+ scene images**, one per chapter
 - **100+ character portraits**, consistent across every scene they appear in
-- **0 API keys** created for image generation
+- **0 image API keys** created — image generation ran entirely on existing subscriptions
 - **zero marginal cost** — existing subscriptions only
 - **2 systemic failures** (self-disabled poller, wiped prompts file) plus one review false alarm caught by the double-measure rule — all three now handled structurally in the protocol
 
@@ -264,6 +268,8 @@ The wiki content is in Dutch because I read these books in Dutch translation; qu
 This is not "AI runs my wikis autonomously." The pipeline needed supervision, and the evidence is in the failure log: an agent that disables its own scheduler when the queue empties, an instruction file that gets wiped by the very agent reading it, a review process that nearly filed a false bug. Every one of those is now a protocol rule, but the rules exist because the failures happened. The supervision is in the system, not in my attention.
 
 What the pipeline actually does is remove the typing. The work I'd have done — reading a chapter, summarizing it, sketching a scene, maintaining cross-links, rebuilding, deploying — happens without me. The judgment work — what to review, what to repair, what to trust — still routes through a step that reads critically, and a protocol that assumes things will break.
+
+A short boundary note, because this runs on a consultancy site: the generated wikis are private, and the source books are legally obtained. The workflow does send source-derived text and images through external AI and storage products (ChatGPT, Google Drive, Ollama Cloud), so I keep it to material I'm comfortable with those products seeing. Don't reuse this exact pattern for confidential client material without reviewing provider retention, permissions and access controls first. And the review commands in the playbook that use `--dangerously-skip-permissions` are an operator choice with real consequences — an exception I accept for a short, read-only review call on my own machine, not a default to copy.
 
 The full setup — the three skills, the queue protocol, the systemd and Tailscale patterns — is documented in the [wiki-generator skills directory](/skills/wiki-generator/) on this site, so the next pipeline starts from the protocol instead of the failures.
 

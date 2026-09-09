@@ -37,10 +37,11 @@ export default function SkillsIndexPage() {
             className="vdit-article-excerpt"
             style={{ maxWidth: "48rem", marginBottom: "1rem" }}
           >
-            Reproducible AI-workflow documentation, published from the same
-            repository as this site. Each collection documents a working
-            pipeline end to end — the protocol, the failure log, and the
-            commands to rebuild it.
+            Reusable AI-workflow documentation, published from the same
+            repository as this site. GitHub is the canonical source; these
+            pages are a rendered reading copy, so the two can never drift
+            apart. Each collection documents a working pipeline end to end —
+            the protocol, the failure log, and the commands to rebuild it.
           </p>
 
           <div className="vdit-article-meta">

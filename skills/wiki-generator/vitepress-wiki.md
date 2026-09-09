@@ -86,7 +86,7 @@ When you want a **dedicated standalone VitePress site** (not part of a documenta
 
 5. **Install, build, and serve:**
    ```bash
-   export PATH="/home/filip/.nvm/versions/node/v24.12.0/bin:$PATH"
+   export PATH="<your-node-bin>:$PATH"
    cd ~/projects/<name>-wiki
    npm install
    npx vitepress build
@@ -125,7 +125,7 @@ nav: [
 ]
 ```
 
-**Relative `./` links in content work correctly** regardless of base. `[Darrow](./characters#darrow)` in `summary.md` resolves to `./characters.html#darrow` in the built HTML, which the browser resolves relative to the current page URL.
+**Relative `./` links in content work correctly** regardless of base. `[Ye Wenjie](./characters#ye-wenjie)` in `summary.md` resolves to `./characters.html#ye-wenjie` in the built HTML, which the browser resolves relative to the current page URL.
 
 **Setup steps for standalone site + Tailscale subpath:**
 
@@ -149,7 +149,7 @@ nav: [
 | Nav link format | Bare (`/page.html`) | Bare (`/page.html`) | Bare (`/page.html`) — VitePress adds base |
 | `cleanUrls` | `false` | `false` | `false` |
 
-**`cleanUrls: true` does NOT work with `python3 -m http.server`.** The built HTML contains clean links (e.g. `/books/red_rising` without `.html`), and `python3 -m http.server` has no URL rewriting — it looks for a literal file at that path and returns 404. Always set `cleanUrls: false` when serving with `python3 -m http.server`.
+**`cleanUrls: true` does NOT work with `python3 -m http.server`.** The built HTML contains clean links (e.g. `/books/book-slug` without `.html`), and `python3 -m http.server` has no URL rewriting — it looks for a literal file at that path and returns 404. Always set `cleanUrls: false` when serving with `python3 -m http.server`.
 
 ## Static Server via systemd (recommended for standalone wikis)
 

@@ -104,7 +104,7 @@ export default async function SkillDocPage({ params }: PageProps) {
                   className="vdit-article-back-link"
                   style={{ display: "inline" }}
                 >
-                  View on GitHub ↗
+                  Canonical source on GitHub ↗
                 </a>
               </span>
             </div>

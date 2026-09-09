@@ -160,6 +160,8 @@ function extractDescription(body: string): string {
 /**
  * Rewrite relative .md links (./file.md or file.md) to site pages
  * (/skills/<collection>/<file>) so they work when rendered on the site.
+ * Links to the top-level skills README (../README.md) resolve to the
+ * /skills index page, which is that file's rendered equivalent.
  * Fence-aware: code blocks are left untouched.
  */
 function rewriteRelativeLinks(body: string, collection: string): string {
@@ -167,11 +169,14 @@ function rewriteRelativeLinks(body: string, collection: string): string {
   return segments
     .map((segment, i) => {
       if (i % 2 === 1) return segment; // inside a code fence
-      return segment.replace(
-        /\]\((\.\/)?([A-Za-z0-9._-]+)\.md(#[^)]*)?\)/g,
-        (_m, _dot, file, anchor) =>
-          `](/skills/${collection}/${file}${anchor || ""})`
-      );
+      return segment
+        .replace(
+          /\]\((\.\.?\/)?([A-Za-z0-9._-]+)\.md(#[^)]*)?\)/g,
+          (_m, dot, file, anchor) =>
+            dot === "../"
+              ? `](/skills${anchor || ""})`
+              : `](/skills/${collection}/${file}${anchor || ""})`
+        );
     })
     .join("");
 }

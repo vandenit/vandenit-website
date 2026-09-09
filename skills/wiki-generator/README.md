@@ -1,16 +1,18 @@
-# Automatic Audiobook Wiki Generator — Hermes + ChatGPT, No Extra API Keys
+# Automatic Audiobook Wiki Generator — Hermes + ChatGPT, Subscription-First
 
-This is the working documentation for the pipeline described in the blog post [Five Book Wikis in 48 Hours](https://vandenit.be/posts/automated-wiki-generation-hermes-chatgpt). It is published as part of the [vandenit-website repository](https://github.com/vandenit/vandenit-website), where each file is kept next to the code it documents.
+This is the working documentation for the pipeline described in the blog post [Five Book Wikis in 48 Hours](https://vandenit.be/posts/automated-wiki-generation-hermes-chatgpt). It is published as part of the [vandenit-website repository](https://github.com/vandenit/vandenit-website) — **GitHub is the canonical source for these files**; the website renders them from this same repository and does not maintain a second copy.
 
-This directory contains copies of the three Hermes skills that implement the wiki-generator pipeline:
+This directory contains sanitized copies of the three Hermes skills that implement the wiki-generator pipeline, plus a safety note:
 
-> **Publication note:** these are working copies published for documentation. Live Drive file IDs and internal cron/chat identifiers are anonymized as `<FILE_ID>` and similar placeholders — substitute your own when reproducing the setup. The skill files reflect the full working setup, including older or paused projects beyond the five wikis documented here.
+> **Publication note:** these are sanitized working copies. Live Drive file IDs and internal cron/chat identifiers are anonymized as `<FILE_ID>` and similar placeholders — substitute your own when reproducing the setup. Current book progress and other operator state live in the operator's private notes, not in these files. See the top-level [skills README](../README.md) for the publication policy and [`SAFETY.md`](./SAFETY.md) for data-handling boundaries before you run anything.
 
 | File | Role |
 |------|------|
-| [`wiki-builder.md`](./wiki-builder.md) | The full pipeline: local registry, Drive queues, hourly Hermes cron, integration rules, review loop, protocol v2 |
-| [`gpt-assistant-bridge.md`](./gpt-assistant-bridge.md) | The Google Drive bridge protocol: prompts.md / outputs / conflicts, file-ID golden rules, queue pattern |
+| [`README.md`](./README.md) | This file: architecture, setup from scratch, honest constraints |
+| [`gpt-assistant-bridge.md`](./gpt-assistant-bridge.md) | The Google Drive bridge protocol (v2): queue drivers, canonical file IDs, in-place updates, status vocabulary, authority model |
+| [`wiki-builder.md`](./wiki-builder.md) | The Hermes side: local registry, hourly integration cron, adding new books, the review loop |
 | [`vitepress-wiki.md`](./vitepress-wiki.md) | VitePress wiki serving: standalone site pattern, wiki page structure, systemd units, Tailscale subpaths |
+| [`SAFETY.md`](./SAFETY.md) | Data handling, source-material boundaries, unattended-operation notes |
 
 This README explains how to set the whole thing up from scratch. The short version:
 
@@ -21,13 +23,13 @@ This README explains how to set the whole thing up from scratch. The short versi
 
 **Why this exists:** in 48 hours this pipeline produced five complete book wikis — The Three-Body Problem (48 chapters), The Dark Forest (15), Death's End (74), Hitchhiker's Guide part 1 (35) and part 2 (34): 206 chapter pages, 100+ scene images, 100+ character portraits, all integrated, verified and pushed to git automatically. No image API key was ever created.
 
-## Why no API keys
+## Why subscription-first
 
-The obvious way to generate wiki images from a script is to call an image-generation API directly (OpenAI images, FAL.ai, etc.). That works, but it costs money per call and — more importantly — it produces *less consistent* images than the setup below. Here is the reasoning:
+The obvious way to generate wiki images from a script is to call an image-generation API directly (OpenAI images, FAL.ai, etc.). That works, and it costs money per call. This setup deliberately stays on subscriptions I already pay for — and that choice turned out to matter for consistency, not just cost. The reasoning:
 
-1. **ChatGPT runs on an existing Plus subscription.** ChatGPT Plus includes scheduled tasks (the hourly poller — see [Setup step 1](#1-the-drive-bridge)), vision on inputs, and image generation through its own tooling. If you already pay for Plus, the marginal cost of this pipeline is zero: no OpenAI API key, no FAL key, no per-image billing.
-2. **Hermes runs on GLM via Ollama Cloud.** GLM is the open-source LLM that powers the Hermes agent (by Nous Research); Ollama Cloud serves it cheaply enough to run an hourly cron that does diffing, critical review, wiki integration, rebuilds, verification and git pushes without hitting usage limits. Hermes brings persistent memory and reusable skills, so the cron knows the project rules without being re-taught.
-3. **Context-driven scheduling beats direct API calls for consistency.** A direct image API call gets exactly one thing: your prompt. The scheduler-driven approach feeds ChatGPT *everything* before it generates: `projects.json` (project state), the project skill file (naming rules, style, what exists already), `queue.md` with exact per-batch instructions, and — critically — the canonical character portraits as identity references. The result is that Arthur Dent has the same face in a scene image as in his canonical portrait, across dozens of images. A stateless API call has no way to hold that consistency across hundreds of generations. Character consistency comes from context, not from the model.
+1. **ChatGPT runs on an existing Plus subscription.** ChatGPT Plus includes scheduled tasks (the hourly poller — see [Setup step 1](#1-the-drive-bridge)), vision on inputs, and image generation through its own tooling. If you already pay for Plus, the marginal cost of this pipeline is zero: no OpenAI image API key, no FAL key, no per-image billing. (Both products still authenticate — ChatGPT with your account, the agent through its provider — so this is "no new keys", not literally "no API keys".)
+2. **Hermes is the integrator.** In this setup, Hermes runs GLM via Ollama Cloud; Hermes itself is model-agnostic. Ollama Cloud serves GLM cheaply enough to run an hourly cron that does diffing, critical review, wiki integration, rebuilds, verification and git pushes without hitting usage limits. Hermes brings persistent memory and reusable skills, so the cron knows the project rules without being re-taught.
+3. **In this workflow, context beat more prompt tuning.** A direct, prompt-only image API call gets exactly one thing: your prompt. My prompt-only API calls were less consistent across chapters. I could have built state and reference-image plumbing around an API — but the scheduled ChatGPT workflow already had a natural place to load everything before generating: `projects.json` (project state), the project skill file (naming rules, style, what exists already), `queue.md` with exact per-batch instructions, and — critically — the canonical character portraits as identity references. The result is that Arthur Dent has the same face in a scene image as in his canonical portrait, across dozens of images. That consistency comes from the context the scheduler loads, not from a better prompt.
 
 That third point is the real argument. Cost is nice; consistency is structural.
 
@@ -121,7 +123,7 @@ Do not put your work items in `prompts.md`. ChatGPT periodically wipes it (obser
 
 `PROCESS_NEXT_WORK_ITEM` is defined in the collaborate-skill file. Its semantics (fixed after ChatGPT reviewed its own protocol — protocol v2):
 
-- **Selection on Status, not Type.** BATCH and REPAIR items are both executable work. The queue is only done when no item is pending/open.
+- **Selection on Status, not Type.** BATCH and REPAIR items are both executable work. The queue is only done when no item is pending.
 - **The driver is only answered when all items are terminal** (answered/completed/conflict).
 - **REPAIR items carry `**Type:** REPAIR` + `**Targets:**`** with explicit target objects (e.g. `book1/scene_ch19`) — this resolves subproject ambiguity.
 - **An empty queue means "do nothing this poll."** Never shut down the poller. (ChatGPT once turned its own hourly job off when `prompts.md` was empty — this rule is the direct response.)
