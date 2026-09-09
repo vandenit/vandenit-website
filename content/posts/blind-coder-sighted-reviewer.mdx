@@ -8,10 +8,10 @@ tags:
   - workflows
   - development
 excerpt: >
-  I redesigned and rebranded vandenit.be in a single session using two AIs with opposite capabilities — one that can write code but can't see, and one that can see but can't touch the code.
+  I redesigned and rebranded vandenit.be using two AIs with opposite capabilities — one that can write code but can't see, and one that can see but can't touch the code. A third AI joined for the final stages. This is the workflow, and what I learned from it.
 ---
 
-On July 20, 2026, I ran a session that changed how I think about AI-assisted development. Two AIs. One session. 29 files changed. My freelance site — [vandenit.be](https://vandenit.be) — went from a 5/10 to an 8.8/10 design score and a 9.0/10 content score. Neither AI could have done it alone.
+On July 20, 2026, I ran a session that changed how I think about AI-assisted development. It started with two AIs and grew to three. 29 files changed. My freelance site — [vandenit.be](https://vandenit.be) — went from a 5/10 to an 8.8/10 design score and a 9.0/10 content score. The result came from combining capabilities that no single part of my setup provided on its own.
 
 Here's exactly what happened.
 
@@ -21,9 +21,11 @@ This is a case study of the workflow I use in my own development environment. It
 
 ## The Setup
 
-I run two AIs in my local workflow. The choice of which AI does what is driven by cost and capability, not preference.
+For the original redesign loop, I ran two AIs in my local workflow. The choice of which AI does what is driven by cost and capability, not preference.
 
 **Hermes** runs GLM 5 via Ollama Cloud. It's my main tool — not because it's the smartest model available, but because it's cheap enough for intensive development without hitting usage limits, and because Hermes has persistent memory and reusable skills. That memory is what makes it possible to give Claude the right context for each review. Hermes is the implementer: it reads plans, modifies files, manages the dev server, runs builds, and takes Playwright screenshots. What it cannot do is see. GLM 5 has no vision capability. Hermes is literally blind to its own output.
+
+That blindness is a deliberate constraint, not an oversight. Hermes supports vision-capable models — I could have configured one. I chose not to. Vision models cost more to run intensively, and I already have Claude and ChatGPT vision through existing subscriptions. The structural advantage is real too: the reviewer truly hasn't seen the code. I'll likely try a vision-capable model in Hermes at some point — but the cost/quality trade-off needs to make sense for the kind of heavy, iterative development work I do, and so far it hasn't.
 
 **Claude Sonnet 4.6** runs via the Antigravity CLI (`agy`). I have a Google subscription that includes Claude access through Antigravity — it's not free, but it's affordable for the volume of design reviews I do. For heavy development work, Antigravity's usage limits kick in fast. For design reviews — a few screenshots per iteration — we stay within the limits. Claude is the reviewer: it reads screenshots with precision, scores design quality on a /10 scale, and gives specific, ranked, actionable feedback. What it cannot do is touch a file. It has no write access. It can describe a fix but not apply it.
 
@@ -69,6 +71,8 @@ Be specific. Name components. Give exact values where relevant.
 Claude responds with a score and a ranked list. Hermes reads the response, applies fixes, takes new screenshots, and sends them back. That's one iteration.
 
 We ran five design iterations and three content iterations.
+
+In hindsight, there's a question I should have asked earlier. The Claude instance I used through Antigravity has its own browser with vision — it can navigate a live URL, scroll, hover, and inspect responsive breakpoints interactively. The screenshot loop was the pragmatic choice: it produces fixed, reproducible artifacts at known viewport widths, and I keep a visible audit trail across iterations. But a static screenshot can't catch a hover state that doesn't trigger, or a layout that shifts on scroll. Next time I'd combine both — screenshots for the structured score progression, and a live browser pass for the things only interaction surfaces.
 
 ---
 
@@ -124,7 +128,7 @@ This is the part I find most interesting. The design review loop didn't just imp
 
 ### 1. Radix Box `display: flex` TypeScript Error
 
-The code review subagent caught this one. I was using:
+The code review subagent caught this one. Hermes can spin up dedicated profiles — in this case a code-reviewer profile running a different model, which examines the same code through a separate lens. I was using:
 
 ```tsx
 <Box display={{ initial: 'none', sm: 'flex' }}>
@@ -262,15 +266,27 @@ The old site was serviceable. The new site is something I'd actually show a clie
 
 ---
 
+## A Third Perspective
+
+The redesign loop described above is the core of the story: Hermes builds, Claude reviews. But the project didn't end there, and being honest about that matters.
+
+As the site neared completion, ChatGPT became a third independent perspective. It reviewed the live result, helped translate UX feedback into concrete changes, and generated the site's visual assets — the hero illustration and supporting graphics. The original two-agent loop did the heavy lifting of the redesign. The final refinement benefited from a model that hadn't seen any of the earlier iterations, with no attachment to the code or the design decisions already made.
+
+This doesn't change the core mechanism. The blind-coder / sighted-reviewer loop is still what took the site from 5/10 to 8.8/10. But by the end, the workflow had grown from two AIs to three — each contributing something the others couldn't.
+
+---
+
 ## What This Actually Is
 
-I want to be careful about how I frame this. This isn't autonomous AI development. Claude wrote the design plan. I caught the viewport bug. I decided when to escalate. I reviewed the PR before merging.
+I want to be careful about how I frame this. This isn't autonomous AI development. Claude wrote the design plan. I caught the viewport bug. I decided when to escalate, when to accept a score, and when to override both AIs. I reviewed the PR before merging.
+
+The real system wasn't "AI team replaces developer." It was closer to this: Hermes builds and orchestrates. Claude provides an independent technical and visual review. ChatGPT adds a separate UX and visual perspective. Dedicated profiles handle targeted code review when useful. And a human — me — decides which critique is right and what actually ships.
 
 What the workflow does is compress the iteration cycle. A single design review loop — screenshot, critique, fix, screenshot again — takes about four minutes. Running five of those loops manually would have taken most of a day, and I would have been the bottleneck at every step.
 
-The two-AI structure means the bottleneck is the quality of the feedback, not the speed of the human. Claude's critique is immediate and specific. Hermes's implementation is immediate and precise. The human role shifts from doing to deciding — when to escalate, when to stop, when to override.
+The multi-AI structure means the bottleneck is the quality of the feedback, not the speed of the human. Claude's critique is immediate and specific. Hermes's implementation is immediate and precise. My role shifts from doing to deciding — when to escalate, when to stop, when to override, and which AI's judgement to trust on a given question.
 
-That's actually what AI-augmented development looks like in practice. Not a single AI doing everything. Not a human supervising every line. Two systems with complementary strengths, iterating toward quality, with a human watching the things neither can catch.
+That's actually what AI-augmented development looks like in practice. Not a single AI doing everything. Not a human supervising every line. Multiple systems with complementary strengths, iterating toward quality, with a human watching the things none of them can catch.
 
 ---
 
