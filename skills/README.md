@@ -15,6 +15,7 @@ These are not prompts to paste into a chat. They are operating documents, writte
 | Collection | What it does | Status |
 |---|---|---|
 | [`wiki-generator/`](./wiki-generator/) | ChatGPT + Hermes pipeline for private book wikis: spoiler-aware chapter summaries, canonical character portraits, scene images, critical review, VitePress serving | Working / evolving |
+| [`personal-prompt-pipeline/`](./personal-prompt-pipeline/) | Email-driven prompt processing: mails with subject "Personal prompt(s)" become agent tasks via cron, with sender allowlist + SPF/DKIM/DMARC gate, risk-classification (dangerous actions refused, not confirmed), multi-turn threads, one named agent session per conversation | Working |
 
 Status labels used in this directory:
 
