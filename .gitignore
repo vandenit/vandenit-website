@@ -37,3 +37,6 @@ public/admin/
 out/
 dist/tsconfig.tsbuildinfo
 tsconfig.tsbuildinfo
+
+# CV export (personal data, repo is public)
+CV-*.pdf
