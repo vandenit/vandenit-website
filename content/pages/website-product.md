@@ -98,9 +98,9 @@ blocks:
     color: tint
     _template: features
   - actions:
-      - label: Get Your Custom Website
+      - label: Discuss Your Website Project
         type: button
         icon: false
-        link: /getstarted
+        link: /contact
     _template: actions
 ---

@@ -90,4 +90,11 @@ blocks:
 
       [Read the case study →](/posts/blind-coder-sighted-reviewer)
     _template: content
+
+  - actions:
+      - label: Discuss a project
+        type: button
+        icon: true
+        link: /contact
+    _template: actions
 ---

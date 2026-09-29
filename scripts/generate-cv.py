@@ -65,21 +65,28 @@ SRC_CANDIDATES = [
 
 # ── Fonts ─────────────────────────────────────────────────────────────────
 def register_fonts(repo_root: str) -> None:
-    pat = os.path.join(
-        repo_root, "node_modules", ".pnpm", "geist@*",
-        "node_modules", "geist", "dist", "fonts", "geist-sans", "Geist-*.ttf",
-    )
-    found = {os.path.basename(p)[:-4]: p for p in glob.glob(pat)}
-    need = {
-        "Geist-Regular": "Geist",
-        "Geist-Medium": "Geist-Medium",
-        "Geist-SemiBold": "Geist-SemiBold",
-        "Geist-Bold": "Geist-Bold",
-    }
-    for base, psname in need.items():
-        if base not in found:
-            sys.exit(f"Font not found: {base} (searched {pat})")
-        pdfmetrics.registerFont(TTFont(psname, found[base]))
+    candidates = [
+        os.path.join(repo_root, "assets", "fonts", "Geist-{w}.ttf"),
+        os.path.join(
+            repo_root, "node_modules", ".pnpm", "geist@*",
+            "node_modules", "geist", "dist", "fonts", "geist-sans",
+            "Geist-{w}.ttf",
+        ),
+    ]
+    weights = ["Regular", "Medium", "SemiBold", "Bold"]
+    faces = {}
+    for w in weights:
+        found = None
+        for pat in candidates:
+            hits = glob.glob(pat.format(w=w))
+            if hits:
+                found = hits[0]
+                break
+        if not found:
+            sys.exit(f"Font not found: Geist-{w} (searched {candidates})")
+        faces[base := f"Geist-{w}"] = found
+        pdfmetrics.registerFont(TTFont(
+            "Geist" if w == "Regular" else base, found))
     # <b>/<i> resolution inside Paragraph markup
     addMapping("Geist", 0, 0, "Geist")
     addMapping("Geist", 1, 0, "Geist-SemiBold")

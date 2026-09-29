@@ -120,7 +120,7 @@ blocks:
 
       * **Activities:**
         * Worked as part of the frontend team for a new web application for
-        selling insurances.
+        selling insurance.
         * Improved code quality through refactoring and testing.
         * Built the frontend with AngularJS, communicating with a REST
         Level 3 Java backend.
@@ -249,7 +249,7 @@ blocks:
       ### Education
 
 
-      **Industrial Engineer** (2002-2006)
+      **Industrial Engineer** (2002–2006)
 
       * Specialization: Industrial engineer electronics, option Information
       and Communication Technology
