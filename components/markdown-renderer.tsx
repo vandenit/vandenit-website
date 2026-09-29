@@ -179,7 +179,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           img: ({ src, alt }: any) => {
             if (!src) return null;
             return (
-              <div style={{ margin: '1rem 0', textAlign: 'center' }}>
+              <span style={{ display: 'block', margin: '1rem 0', textAlign: 'center' }}>
                 <Image
                   src={src}
                   alt={alt || ''}
@@ -191,7 +191,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                     borderRadius: '8px'
                   }}
                 />
-              </div>
+              </span>
             );
           },
           

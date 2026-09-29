@@ -59,6 +59,7 @@ function pageDescription(slug: string, title: string): string {
     'about': 'Senior full-stack engineer and fractional tech lead with 15 years of enterprise experience, combining hands-on delivery with structured AI-assisted development.',
     'how-i-work': 'How Filip joins teams as a senior developer or fractional tech lead, contributes to real delivery, and helps improve AI-assisted development workflows from inside the engagement.',
     'contact': 'Contact Filip Van den Broeck about senior full-stack development, fractional technical leadership, or AI-augmented delivery within your product team.',
+    'fullcv': 'Full CV of Filip Van den Broeck — senior full-stack developer and fractional tech lead with 20 years of enterprise delivery, including the Teletask Nubis Cloud smart-home integrations.',
   };
   return descriptions[slug] || `Vanden IT — ${title}. Senior engineering with AI-powered workflows.`;
 }

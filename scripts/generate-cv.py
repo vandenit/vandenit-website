@@ -152,6 +152,11 @@ def parse_cv(md: str) -> dict:
                 r"^- \*\*(Address|Phone|Email|Website):\*\*\s*(.*)$", stripped)
             if m:
                 contacts.append(md_inline(m.group(2).strip()))
+                continue
+            # explicit subtitle line: **Senior Full Stack Developer · ...**
+            m_sub = re.match(r"^\*\*([^*]+)\*\*$", stripped)
+            if m_sub and role is None:
+                role = m_sub.group(1).strip()
         elif not stripped or stripped == "---":
             continue
         else:
@@ -173,14 +178,16 @@ def parse_cv(md: str) -> dict:
     if cur_sec is not None:
         sections.append(cur_sec)
 
-    # role subtitle = title of the first Experience entry
-    for sec in sections:
-        if sec["name"].lower() == "experience":
-            for blk in sec["blocks"]:
-                if isinstance(blk, dict):
-                    role = blk["title"]
-                    break
-            break
+    # role subtitle: explicit subtitle line wins; else title of the first
+    # Experience entry
+    if role is None:
+        for sec in sections:
+            if sec["name"].lower() == "experience":
+                for blk in sec["blocks"]:
+                    if isinstance(blk, dict):
+                        role = blk["title"]
+                        break
+                break
     return {"name": name, "contacts": contacts, "role": role,
             "sections": sections}
 
@@ -217,7 +224,7 @@ def make_styles():
             "bullet", fontName="Geist", fontSize=9, leading=12.3,
             textColor=BODY, leftIndent=11, bulletIndent=0,
             spaceBefore=0, spaceAfter=1.5, bulletFontSize=9,
-            bulletColor=AMBER),
+            bulletColor=SUBTLE),
         "subbullet": ParagraphStyle(
             "subbullet", fontName="Geist", fontSize=9, leading=12.3,
             textColor=BODY, leftIndent=23, bulletIndent=11,
