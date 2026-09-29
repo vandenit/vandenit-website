@@ -66,7 +66,33 @@ blocks:
         * Ensuring comprehensive test coverage for both frontend and backend using automated tests with Cucumber.
         * Adopting a Behavior-Driven Development (BDD) approach, where specifications are written in Gherkin syntax for Cucumber and rigorously tested against the developed code.
       * **Environment/Tools:** Java, Spring, React,
-      JPA, Hibernate, Oracle, H2, GIT, Jenkins, Gerkin, Cucumber, BDD.
+      JPA, Hibernate, Oracle, H2, GIT, Jenkins, Gherkin, Cucumber, BDD.
+
+
+      #### Senior Java Developer - Teletask - Nubis Cloud (via Vanden IT)
+
+      **Dec 2024 – Present**
+
+      * **Project:** Nubis Cloud backend and smart-home voice integrations
+      for Teletask, a Belgian building-automation (domotics) manufacturer.
+      * **Role:** Senior Java Developer (freelance, via Vanden IT)
+      * **Activities:**
+        * Developed the Google Home smart-home integration: SYNC, QUERY and
+        EXECUTE intents, device-type and trait mapping for lights, blinds,
+        thermostats, outlets and scenes, and OAuth2-based voice-device
+        provisioning.
+        * Fixed G2 AMQP byte-protocol issues for dimmers, tunable-white and
+        RGB devices using a strategy-pattern payload builder.
+        * Resolved cross-integration issues between the Google and Yandex
+        voice platforms (device-type crashes, motor/blinds trait mapping).
+        * Extended the Karate E2E test suite and delivered fixes through
+        GitLab CI/CD to AWS Elastic Beanstalk.
+        * Applied a multi-agent AI workflow in production delivery: Hermes
+        (GLM) implements and tests, Claude independently reviews, and I
+        decide what ships.
+      * **Environment/Tools:** Java 17, Spring Boot 3, JPA, PostgreSQL,
+      Redis, RabbitMQ (AMQP), OAuth2, LDAP, Karate, Maven, Docker, GitLab
+      CI/CD, AWS Elastic Beanstalk, Hermes Agent (GLM), Claude.
 
 
       #### Senior Full Stack Developer - Vanden IT
@@ -84,6 +110,10 @@ blocks:
         * Focused on high performance and high quality code with automated testing and delivery using CircleCI.
         * Deployed applications in Kubernetes on Digital Ocean.
         * Worked in an agile way (KANBAN) using Trello.
+        * Built a structured multi-agent AI development workflow for my own
+        production work: AI agents assist with research, implementation,
+        tests, review and documentation while I keep responsibility for
+        architecture, security and release decisions.
       * **Environment/Tools:** ES6, React, Redux, NextJs, Babel, Webpack,
       ExpressJS, MongoDB (Mlab), Mocha, Sinon, Chai, Chai as Promised,
       Bootstrap, HTML, styled JSX, CSS, npm, auth0, cloudinary, SendGrid, REST
@@ -226,6 +256,8 @@ blocks:
 
       * Web development (Java – Spring)
 
+      * AI-augmented software development
+
 
       ***
 
@@ -261,6 +293,13 @@ blocks:
 
       * IntelliJ, Eclipse (Java, J2EE, PHP, Aptana), Terminal (vi), Visual C++,
       Xcode, Dreamweaver
+
+      **AI-Assisted Development:**
+
+      * Multi-agent AI workflow in daily production use: Hermes Agent (GLM
+      via Ollama Cloud) for research, implementation, tests and
+      documentation; Claude (Anthropic) for independent code review; human
+      decision authority on architecture, security and releases
 
 
       ***
