@@ -41,13 +41,15 @@ blocks:
 
 
       Some teams need experienced technical direction but not another
-      full-time management layer. As a fractional tech lead, I combine
-      delivery work with architecture decisions, code review, mentoring,
-      technical planning, and communication with stakeholders.
+      full-time management layer. As a fractional tech lead, I act as the
+      bridge between business and engineering, taking on architecture
+      decisions, code review, mentoring, and the technical roadmap — while
+      staying close to the code and contributing directly to delivery.
 
 
-      Because I remain close to the code, technical direction stays
-      connected to what the team is actually building.
+      Technical direction that is disconnected from the work drifts.
+      Being embedded in the team keeps decisions grounded in what is
+      actually being built.
     _template: content
 
   - body: >

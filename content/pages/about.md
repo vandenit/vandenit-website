@@ -4,10 +4,10 @@ blocks:
   - avatarHeader: Senior Engineer & Fractional Tech Lead
     avatarsName: Filip Van den Broeck
     description: >-
-      Senior full-stack engineer and fractional tech lead based in Antwerp.
-      15 years of experience building and maintaining enterprise systems,
-      now combined with a structured, hands-on approach to AI-assisted
-      development.
+      Senior full-stack engineer and fractional tech lead based in Antwerp —
+      part-time technical leadership without the full-time hire. 15 years of
+      experience building and maintaining enterprise systems, with a hands-on
+      approach to architecture, code quality, and AI-assisted development.
     _template: about-header
   - body: >
       ## The Story So Far

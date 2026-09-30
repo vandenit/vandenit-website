@@ -51,9 +51,10 @@ blocks:
         title: Fractional Tech Lead
         text: >-
           Part-time technical leadership for teams that need experienced
-          architectural guidance without a full-time hire. I contribute
-          to delivery while supporting code quality, technical decisions,
-          mentoring, and communication with stakeholders.
+          architectural guidance without a full-time hire. I stay close
+          to the code while taking responsibility for technical decisions,
+          code quality, mentoring, and the conversation with stakeholders —
+          keeping delivery and direction connected.
         richText: ''
         link: ''
         buttonLink:
