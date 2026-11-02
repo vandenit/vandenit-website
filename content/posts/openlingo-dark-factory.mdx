@@ -1,0 +1,122 @@
+---
+title: "How I Set Up a Dark Factory to Produce a First MVP of OpenLingo"
+date: 2026-11-02
+author: content/authors/filip.md
+tags:
+  - ai
+  - hermes
+  - workflows
+  - development
+excerpt: >
+  My daughter wanted to learn Croatian. Duolingo does not offer it, and I had just read about dark factories. Six days later a queue of AI workers had produced a working language-app MVP through 26 reviewed pull requests, and the Trello board that runs the whole thing was on version 20. This is the setup, the evolution toward a stable self-gating board, and everything that broke along the way.
+---
+
+My daughter wants to learn Croatian. Duolingo does not offer Croatian, so the obvious answer was: build the app myself. The same week I read an article about dark factories, software production lines where agents write and verify the code and the human appears only at the gates. Two ideas clicked together, and I decided to test the concept on a real product instead of a toy.
+
+Six days later, on November 2, 2026, this is the situation: a working local-first Croatian learning app with a four-screen lesson loop, spaced repetition, family profiles, generated audio and illustrations. Behind it a Trello board where 21 cards have been merged, 11 more are waiting on real dependency chains, three one-shot AI workers are building in parallel, and two changes are parked in a column that exists purely for me to click accept on. The board software itself is at version 20. Each of those twenty versions encodes a lesson, usually a failure.
+
+This is the story of both: the factory, and the thing the factory is producing.
+
+## What a dark factory actually means here
+
+The article I read was "What Is a Software Factory? AI and Dark Factories Explained", a Signadot guide by Arjun Iyer from October 2026. It describes a spectrum. At one end, AI is autocomplete. At the other end, the dark factory: specs go in, working software comes out, and no human writes or reviews code, the software equivalent of lights-out manufacturing. The most cited example in the piece is a company that runs on two rules, "code must not be written by humans" and "code must not be reviewed by humans", backed by a test universe so fast and faithful that validation replaces review.
+
+What stayed with me was not the hype but the warning in the middle of the article. A factory that scales up generation without scaling up verification builds an unstable control loop: more effort, more incidents, less output. And the useful question is not "should my whole factory go dark", it is "which change classes have a sensor I trust". That question is the design brief for everything below.
+
+My setup sits deliberately in the middle of the spectrum. Agents build while I am doing something else, often while I sleep. But I appear at the gates: I approve specs, I merge pull requests, I test the deployed result myself before a card counts as done. The keyboard work moved to the agents. The judgment did not.
+
+## The product
+
+OpenLingo is a local-first language app, pilot language Croatian. It is a PWA: Next.js, service worker pre-caching, IndexedDB through Dexie, Howler for audio, and the FSRS spaced repetition algorithm per family profile. No accounts, no backend; progress lives in the browser.
+
+The method borrows from Fluent Forever: zero translation friction during lessons. Words arrive as image plus native audio, never as a Dutch translation. A three-second co-creation step lets the learner pick which of three pictures sticks in memory, and a sentence slot machine lets a child assemble silly Croatian sentences from who, action and what. Grammar lands through visual minimal pairs, not through case tables. The app scales between a pre-reader mode for a four-year-old and a fast-track adult mode on the same data.
+
+The MVP target is concrete: about 650 picturable words in roughly 22 units, a Unit 0 of twelve greeting chunks so a learner can say *Bok! Kako si?* on day one, a small grammar core that gets a person talking, backup and restore, and an agent-driven content queue that fills the course in a few days. On November 2 the app engine exists, the plan is approved, and the content is still queued. That distinction is the honest status.
+
+## The design that made it survivable
+
+I run Hermes Agent, an open-source agent platform by Nous Research, as the orchestrator, on GLM 5. Reviewing is done by other model families through a separate CLI, so the author model never judges its own work. The pieces that make this survivable:
+
+**Spec first, no spec no run.** Every task starts with a numbered acceptance criteria file. The verification suite refuses to run without one. This one rule changes everything downstream: reviews argue against numbered criteria instead of taste, and a worker cannot wander off.
+
+**A frozen sensor suite.** Before any feature work, the first task of the whole project built the verification pipeline itself: a fast iteration check and a full gate, both writing machine-readable evidence reports. It guards specs, secrets, file size budgets, and, critically, its own integrity. Any diff touching the sensors, the guards, or existing tests escalates to a human path. The suite was introduced through its own reviewed pull request, then frozen. Two weeks later it is still catching real things: an attempt to archive card files under a guarded directory tripped the path guard immediately, and a fixture change that would have made one sensor test meaningless required a full meta task to fix properly.
+
+**Blind cross-AI reviews.** A reviewer session is fresh and stateless. It sees exactly four things: the spec, the plan if there is one, the complete diff, and the verification report. It never sees the author's reasoning, the chat history, or previous rounds. Output is a strict rubric per acceptance criterion plus a defect list with severity, file and line. No scores out of ten, because numbers invite gaming. Routine changes go to Gemini 4 Argon at high reasoning effort; sensor changes, safety-critical classes and final verdicts escalate to Claude Sonnet; architecture plans go to Claude Opus. If the author model and the reviewer disagree for two rounds, a third model family breaks the tie.
+
+**A manual browser pass by a third session.** Automated checks cannot feel tap latency or notice that audio arrives late. For UI changes, a separate agent session drives the production build like a user, real taps, real audio, and returns findings that ride along in the review evidence.
+
+**One dispatcher, one-shot workers, hard caps.** A cheap five-minute tick reads the board, never writes code, claims at most one card per tick and detaches a fresh worker session for it, each in its own git worktree. Max three workers building in parallel. Workers are one-shot: they run exactly one card, spec to pull request, and stop. Recovery, when a worker crashes, is a new worker, not a resume.
+
+**Business acceptance stays with me.** Machine-verified is not accepted. A merged pull request lands the card in a BAT column, business acceptance testing, with the freshly built app deployed for me to try on a real device. My verdict is a card comment: accept, or findings verbatim back to the factory. The next cards in a dependency chain do not unlock until a blocker passes BAT.
+
+## The board is the factory
+
+The Trello board is not a mirror of the process, it is the process. Columns, left to right: Inbox, To Refine, Spec Approved, Implementation, Review and Release, Ready for me, BAT, Merged, Escaped. State transitions are derived from artifacts, verification reports, review verdicts, actual merges on the forge, never dragged by hand, and the board CLI is the only thing allowed to touch it.
+
+![The Software Factory board on November 2, 2026: eleven MVP cards wait in Spec Approved behind dependency chains while three workers fill Implementation to its cap](/images/blog/openlingo-dark-factory/software-factory-board.png)
+
+*The board as I left it on November 2, 2026. Left: the Spec Approved column holds eleven MVP cards, each blocked behind named dependencies, five of them visible here. Middle: Implementation is full, three workers, the work-in-progress cap. The empty columns are the point: nothing waits for me at that moment. Right: BAT, two cards waiting for my acceptance verdict, the blurred cover hides a deploy URL.*
+
+Rough cards go into To Refine, where a blind refiner session turns a one-line wish into a factory-ready spec, which a second blind session then reviews. A card carries its dependencies as real board identifiers, and the dispatcher never picks a blocked card. When a card's work finishes, it moves toward me only on evidence. I read the diff, click merge, then test the deployed app and post my verdict. The Escaped column exists for the day a defect slips through to production: it becomes a new card and a new held-out test scenario, not a blame session.
+
+## Evolution toward a stable board
+
+The board software started as a thin CLI and is now at version 20, with 616 tests of its own. I did not design twenty versions up front. Each version bump is a scar, and the interesting part of this whole experiment is how conventional the failures were. Everything below actually happened.
+
+**v2, invisible workers.** The first dispatcher design had workers move their card to the review column before the blind review ran. When a worker crashed mid-review, its card sat in a column the recovery scan never looked at: invisible, unclaimed, uncounted against the cap. A blind review of the dispatcher itself returned seventeen defects, five of them blockers. The fix redefined the protocol: a card stays in Implementation for its entire life until a review approves it, and the orphan scan now covers every state a card can be in. Crashed workers are redispatched, capped at three attempts, then parked for a human decision.
+
+**v3, the tick that deadlocked itself.** The first tick stopped entirely when the implementation column was full, which meant three dead cards could freeze the whole queue forever, including the recovery that would have unfrozen them. Full caps now block only new dispatches; bookkeeping always runs. The same review caught a blocked-card tracker that compared against the oldest status comment instead of the newest, which would have posted 288 duplicate comments per day, and an attempts counter that never reset after my interventions, which would have made a card unrestartable.
+
+**v5, the refiner.** Raw wishes need shaping before they are specs. To Refine became a real stage: a blind refiner session drafts the acceptance criteria, a second blind session reviews the refinement, and only approved specs reach the queue. The refiner crashed once after three attempts; the card parked itself with a marker and my verdict was a single "resume" comment that re-armed it with the findings as pickup context.
+
+**v7, the column that exists because of my own question.** After the first pull request auto-synced to Merged, I asked the obvious thing: wait, I wanted to test this first. Machine verification had passed, my acceptance had not happened. The BAT column was born that afternoon: merged code deploys automatically, I test it on the deployed app, my comment verdict moves it to Merged or kicks it back with findings, and a blocker only satisfies its dependents once it survives BAT.
+
+**v10, one classification, no ambiguity.** Verdicts are just card comments, and comments are messy text. Two code paths initially read the same comment differently. The fix is a single classification function that decides exactly once what every comment means, accept, kickback, neutral, or human reset, and every consumer derives from that one decision. "No" negations near an accept keyword count as rejections. A system that counts things must count them in exactly one place.
+
+**v11 and v12, deploy as a first-class concern.** Acceptance testing needs the app running. A stale server process holding the deployment port blocked the first BAT deploys, so deploys became idempotent with a fallback kill, and the tick retries a failed deploy every cycle until it succeeds.
+
+**v14, auto-merge as a written policy.** Low-risk cards with fully green sensors now merge themselves, but only inside a policy encoded as a pure verdict: title exceptions, sensor and factory changes, path-guard escalations and the factory repo itself are excluded forever. The first worker-merged pull request felt like a line crossed. The policy, not a model, made the decision.
+
+**v15 and v16, cards that arrive without a project.** A card without a project label used to block the pipeline or silently vanish. Now labels are derived live from the card every tick, unlabelled cards surface in a visible list instead of disappearing, and the tick links them itself. The rule from this: an unlabeled card never blocks the queue, and a marker is informational, never a gate.
+
+**v17, unreachable success.** The auto-merge policy required "sensors green", but one pre-declared, always-failing sensor self-test made that state formally unreachable for the product repo. Workers responded rationally: they declined every auto-merge. The sensor rule became deterministic: every verification step passes, with precisely the one declared exception, which the worker must verify and quote itself. Dead code that made a policy impossible is a failure mode I did not expect to enjoy finding.
+
+**v18, the archive that tripped its own alarm.** Full specifications outgrew card descriptions, so refined specs now export as markdown into the product repo and the card keeps a compact pointer. The export landed under a guarded directory and the product repo's own path guard flagged all eighteen files for escalation. I let the sensor win and moved the archive: proof the frozen guards work on their maintainer, not just on feature work.
+
+**v19 and v20, strictness and small frictions.** The chronic self-test exception was abolished by making the fixture task-independent, so the sensors-OK definition is now literally strict. And the markdown links on cards became full URLs, because relative paths are not clickable in Trello. Not every lesson is dramatic; most are just respect for the operator's five minutes.
+
+**The snapshot rule.** One evening I dragged a card myself, by hand, eight seconds after the tick took its snapshot. The tick noticed the impossible state, verified from the mutation log that the only actor it could have been was me, and respected the drag: no revert, no worker burned on it. A factory that runs while you sleep must never undo the one manual thing its owner did.
+
+**Told to disagree.** When the escalation reviewer's quota bucket ran dry mid-week, the mandatory check fell back to a second fully blind session of the same model family, explicitly prompted that its job is to scrutinize the earlier verdict, not to confirm it, and explicitly labeled as a fallback in the review artifact because the independence of a second family is a real thing to lose. The general lesson survived the quota: a second opinion that is told to be a second opinion, or that shares context with the first, is not a second opinion.
+
+## The system gates itself now
+
+The proof point arrived on November 2. The MVP planning itself went through the factory like any code change: a planning pull request with the MVP documents, fourteen fully specified factory cards with acceptance criteria and evidence mechanisms, and a frequency proposal for the 650-word course. The blind review kicked it back with findings, dependency mistakes in the card set, an unpinned enum, a wrong unit estimate, unresolved decisions; a second round fixed them; then it merged.
+
+That planning card was also the gate. It blocked all fourteen MVP cards by real identifier, so nothing could start until the plan itself was accepted. I merged the pull request and posted my acceptance on the card. Within the hour the dispatcher had claimed the three cards whose dependencies were satisfied, language leak fixes, the wordlist pipeline, chunk words for Unit 0, and detached three fresh workers, one per card, each in its own worktree. The board hit its implementation cap and stopped dispatching, correctly. Eleven cards still wait behind chains: the multi-unit pack needs the leak fixes and the chunk words; unit unlocking needs the pack; the concept registry needs the wordlist. Two of the older cards sit in BAT waiting for my verdict, and I gave one its acceptance that same afternoon.
+
+That is the moment the experiment produced: I merged one planning pull request, and the factory unrolled a fourteen-card dependency chain at its own pace, stopping itself exactly where the caps and the chains say it should stop. My keyboard was not involved.
+
+## What the first weeks cost, honestly
+
+Reviews are not one-pass. Typical changes take two to four blind rounds before approval; the sensor hardening task took six. The defect lists are usually right, occasionally pedantic, and the kickback mechanism means every round costs real wall-clock time.
+
+Quotas are a physical constraint. Buckets run dry, fallbacks fire, and a fallback review is labeled as such because the independence guarantee weakens. The routing table with its escalation rules exists precisely so that nothing switches models silently.
+
+Agents fail in ordinary ways. One worker crashed mid-review and was redispatched as attempt two. Two parallel workers collided on a test-server port and the second waited for the first to release it. A refiner exhausted its three attempts and parked its card for me. None of these were exotic; all of them were recoverable, which is the actual design goal. Recovery is a first-class feature, not an exception handler.
+
+The MVP is not finished. The engine, the four screens, the spaced repetition loop, profiles, generated audio and illustrations for Unit 1 all exist and merged clean. The full course content does not exist yet: the wordlist pipeline, the concept registry and Unit 0 are cards currently being built, and the content queue that will produce the remaining units is itself a specified card, designed with its own cron and orphan recovery like everything else in this system. When people picture a dark factory they picture generation; in practice the bottleneck is everything around it.
+
+And the privacy footnote that matters: the orchestrator model runs through a paid cloud service, not on my hardware, and course audio and images are generated through a paid API. Data goes to remote GPUs. I wrote about that trade-off, including the zero-logging defaults and the honest limits, in an earlier post.
+
+## What this is and isn't
+
+This is not "AI replaced a development team". What it did is compress a multi-person effort into something one person can run, and even that sentence needs its asterisk: run means maintain the gates, make the merge and acceptance calls, write the occasional rule that the agents cannot infer, and keep the sensors honest. The tools are not mine; I did not build the agent platform or the models, I configure and orchestrate them. The part that transfers is judgment: when a review finding is a real bug versus noise, when a card's spec is secretly two cards, when an exception in the sensor suite is a precedent and when it is a hole. That judgment is also the part that was already my job.
+
+OpenLingo is one family's language app. No accounts, no telemetry, no store listing. Its roadmap runs toward more languages on the same language-agnostic engine, and my daughter's Croatian is the first acceptance test that actually matters.
+
+The experiment continues. Version 21 of the board was being built by the factory itself while I wrote this.
+
+---
+
+I build these workflows for teams as a senior developer or fractional tech lead, and I write about the ones I run on my own projects first. If a factory that ships while you sleep sounds useful for your team, [discuss a project →](/contact).
