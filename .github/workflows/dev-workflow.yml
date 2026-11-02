@@ -1,9 +1,25 @@
+# Production deploy for https://vandenit.be.
+#
+# NOTE ON NAMING: despite the historical "dev" naming (this workflow's
+# file name, the kube/dev/ manifests, the Kubernetes namespace `dev` and
+# the DOKS cluster `k8s-1-vandenit-ams3-dev`), this pipeline deploys the
+# LIVE production environment.
+#
+# Triggers:
+# - push to `main` (direct pushes and merged PRs) — automatic deploy
+# - workflow_dispatch — manual re-deploy from `main`, via the GitHub
+#   Actions UI or `gh workflow run dev-workflow.yml --ref main`
+#
+# Feature-branch pushes trigger NO deploy; preview deployments do not
+# exist.
+
 name: Deploy to Digital Ocean Kubernetes.
 
 on:
   push:
-    branches-ignore:
-      - master
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
