@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# vandenit-website ./verify — the software factory sensor (T0 verify foundation,
+# task NEXT16-CONTENT-PIPELINE).
+#
+# FROZEN after this T0 introduction commit: any later change to this script,
+# scripts/verify/, playwright.config.ts or tests/e2e/ escalates automatically
+# (path-assertion-guard) and requires human review via a META-MR.
+#
+# Interface (do not change without human review):
+#   ./verify <fast|full>
+#     - writes .factory/evidence/<run-id>/report.json and prints the same
+#       JSON to stdout; progress notes go to stderr so stdout stays parseable.
+#     - fast  (< 30 s)  : spec-guard, path-assertion-guard, secret-guard,
+#                         typecheck, lint
+#     - full  (< 10 min): everything from fast + production-build +
+#                         Playwright smoke (tests/e2e, data-testid only)
+#
+# Exit codes: 0 = overall PASS, 1 = FAIL / DRAFT_NEEDS_SPEC / ESCALATE_PATH_GUARD.
+set -euo pipefail
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec python3 "$REPO_ROOT/scripts/verify/main.py" --repo-root "$REPO_ROOT" "$@"

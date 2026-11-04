@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { Flex, Box, Heading, Text, Container, Section } from '@radix-ui/themes';
 import { TagFilterPanel } from "./tag-filter-panel";
-import type { Post, Author } from '.contentlayer/generated';
+import type { Post, Author } from '../../lib/contentlayer';
 
 interface ClientPostProps {
   posts: (Post & { authorData?: Author })[];
@@ -20,7 +20,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
       <Section size="3" mb="4" pt={{ initial: '7', sm: '9' }}>
         <Container size="3" px="6">
           <Flex direction="column" align="center" gap="4">
-            <Heading as="h1" size={{ initial: '7', sm: '8' }} weight="bold" align="center">
+            <Heading as="h1" size={{ initial: '7', sm: '8' }} weight="bold" align="center" data-testid="posts-heading">
               Building &amp; Shipping with AI
             </Heading>
             <Text size={{ initial: '4', sm: '5' }} color="gray" align="center" style={{ maxWidth: '600px', lineHeight: '1.6' }}>
@@ -63,7 +63,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
 
               return (
                 <Box mb="6">
-                  <article className="vdit-feature-entry">
+                  <article className="vdit-feature-entry" data-testid="featured-post-card">
                     <Link href={featuredPost.url} className="vdit-feature-entry-link">
                       {/* Case metadata row */}
                       <div className="vdit-feature-entry-meta">
@@ -125,7 +125,7 @@ export default function PostsClientPage({ posts, tags, currentTag, totalPostsCou
                     formattedDate = format(date, "MMM d, yyyy");
                   }
                   return (
-                    <Box key={post._id} className="vdit-card" p="5">
+                    <Box key={post._id} className="vdit-card" p="5" data-testid="post-list-card">
                       <Link href={post.url} style={{ textDecoration: 'none', color: 'inherit' }}>
                         <Heading as="h3" size="4" weight="bold" mb="2">
                           {post.title}

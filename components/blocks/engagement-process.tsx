@@ -28,7 +28,7 @@ export const EngagementProcess = () => {
   return (
     <Section size="2" mb="3" className="vdit-content-section vdit-process-section">
       <Container size="3" px="6">
-        <section className="vdit-process" aria-labelledby="engagement-process-title">
+        <section className="vdit-process" aria-labelledby="engagement-process-title" data-testid="engagement-process">
           <h2 id="engagement-process-title" className="vdit-process-heading">
             How an engagement develops
           </h2>

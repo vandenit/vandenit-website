@@ -1,8 +1,13 @@
-const { withContentlayer } = require('next-contentlayer')
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
+  // Ship the raw content/ files into the standalone bundle so the build-time
+  // content pipeline can read them during build.
+  outputFileTracingIncludes: {
+    '/*': ['./content/**/*'],
+  },
+  // Next 16: Turbopack defaults (empty object = engine defaults).
+  turbopack: {},
   async redirects() {
     return [
       {
@@ -31,4 +36,4 @@ const nextConfig = {
 
 }
 
-module.exports = withContentlayer(nextConfig)
+module.exports = nextConfig

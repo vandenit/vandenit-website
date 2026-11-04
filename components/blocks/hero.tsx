@@ -83,7 +83,7 @@ const PROOF_ITEMS = [
 
 export const Hero = ({ data }: { data: HeroBlockData }) => {
   return (
-    <section className="vdit-hero">
+    <section className="vdit-hero" data-testid="hero-section">
       <Container size="3" px="6">
         {/* Equal two-column on desktop, single column on mobile */}
         <div className="vdit-hero-inner">
@@ -104,6 +104,7 @@ export const Hero = ({ data }: { data: HeroBlockData }) => {
               size={{ initial: '8', sm: '8' }}
               weight="bold"
               className="vdit-hero-title"
+              data-testid="hero-title"
             >
               {data.tagline}
             </Heading>

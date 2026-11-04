@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Container, Section, Flex, Badge } from "@radix-ui/themes";
 import { MarkdownRenderer } from "../../../components/markdown-renderer";
 import { ArticleToc } from "../../../components/article/article-toc";
-import type { Post, Author } from '.contentlayer/generated';
+import type { Post, Author } from '../../../lib/contentlayer';
 
 interface ClientPostProps {
   post: Post & { authorData?: Author };
@@ -20,7 +20,7 @@ export default function PostClientPage({ post, readingTime, tocItems }: ClientPo
 
   return (
     <Section size="3" pt={{ initial: '7', sm: '9' }} className="vdit-article-section">
-      <article aria-labelledby="case-study-title">
+      <article aria-labelledby="case-study-title" data-testid="post-article">
         {/* Case-file header */}
         <Container size="3" px="6">
           <header className="vdit-article-header">
@@ -28,14 +28,14 @@ export default function PostClientPage({ post, readingTime, tocItems }: ClientPo
               <span className="vdit-kicker">Case File / AI Delivery Workflow</span>
             </div>
 
-            <h1 id="case-study-title" className="vdit-article-title">
+            <h1 id="case-study-title" className="vdit-article-title" data-testid="post-title">
               {post.title}
             </h1>
 
             <div className="vdit-article-meta">
               <span className="vdit-article-meta-item">
                 <span className="vdit-article-meta-label">Author</span>
-                <span itemProp="author">
+                <span itemProp="author" data-testid="post-author">
                   {post.authorData ? post.authorData.name : 'Filip Van den Broeck'}
                 </span>
               </span>
@@ -84,7 +84,7 @@ export default function PostClientPage({ post, readingTime, tocItems }: ClientPo
 
             {/* Article content */}
             <div className="vdit-article-body">
-              <div className="vdit-article-content">
+              <div className="vdit-article-content" data-testid="post-content">
                 <MarkdownRenderer content={post.body.raw} />
               </div>
             </div>
