@@ -16,9 +16,12 @@ The website for [Vanden IT](https://vandenit.be) — the personal site and blog 
 
 ## Deployment
 
-- Production deploys run **only** on pushes and merges to `main`, via [`.github/workflows/dev-workflow.yml`](./.github/workflows/dev-workflow.yml). Feature-branch pushes trigger **no** deploy — there are no preview deployments.
-- A manual re-deploy from `main` is possible via the workflow's `workflow_dispatch` trigger: `gh workflow run dev-workflow.yml --ref main` (or the "Run workflow" button in the GitHub Actions UI).
-- Naming note (intentionally unchanged): the `kube/dev/` manifests and the Kubernetes namespace `dev` on the DOKS cluster `k8s-1-vandenit-ams3-dev` carry a legacy "dev" name, but that namespace is the live production environment serving [vandenit.be](https://vandenit.be).
+- `main` is the **development** branch: pushes and merged PRs to `main` trigger **no** deploy.
+- The `production` branch is the **release line**: a PR from `main` into `production`, once merged, deploys live via [`.github/workflows/dev-workflow.yml`](./.github/workflows/dev-workflow.yml) (GitHub Actions → Docker → DigitalOcean Kubernetes, behind Cloudflare). Feature-branch pushes trigger **no** deploy; preview deployments do not exist.
+- The `production` branch is protected (PR required, no force pushes or deletions), so every release is an explicit merge.
+- A manual re-deploy of the current release is possible via the workflow's `workflow_dispatch` trigger: `gh workflow run dev-workflow.yml --ref production` (or the "Run workflow" button in the GitHub Actions UI).
+- Content can intentionally lag: `main` may be ahead of `production` between releases; pages that link to source files on GitHub keep pointing at `main`.
+- Naming note (intentionally unchanged): the `kube/dev/` manifests and the Kubernetes namespace `dev` on the DOKS cluster `k8s-1-vandenit-ams3-dev` carry a legacy "dev" name but serve the **live production** environment (https://vandenit.be).
 
 ## Development
 
