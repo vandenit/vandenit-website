@@ -1,40 +1,26 @@
-import js from "@eslint/js";
+import next from "eslint-config-next";
 
-/**
- * ESLint 9 flat config for vandenit-website (T0 baseline, NEXT16-CONTENT-PIPELINE).
- *
- * Runner repair: the repo shipped `next lint` + eslint-config-next@14, but
- * that plugin's rules still call `context.getAncestors`, an API removed in
- * ESLint 9 — the declared "extends": ["eslint:recommended", "next"] surface
- * never was able to execute under the installed ESLint 9. The lint gate now
- * runs the executable rule surface directly (@eslint/js recommended). Phase B
- * (Next.js 16 upgrade) restores the Next-specific rules natively through
- * eslint-config-next@16, which builds for ESLint 9 flat config.
- */
+// eslint-config-next@16 ships flat configs natively. The base ("." export)
+// carries the core surface; "core-web-vitals" adds the Next runtime rules.
+const base = Array.isArray(next) ? next : [next];
+
 const eslintConfig = [
   {
     ignores: [
       ".next/**",
       "node_modules/**",
-      ".contentlayer/**",
       ".worktrees/**",
       "dist/**",
       "test-results/**",
       "playwright-report/**",
+      "scripts/verify/**",
     ],
   },
-  js.configs.recommended,
+  ...base,
   {
-    // CommonJS Next config file: declare the module-level globals so
-    // no-undef does not flag the existing require/module usage.
-    files: ["next.config.js"],
-    languageOptions: {
-      sourceType: "commonjs",
-      globals: {
-        require: "readonly",
-        module: "writable",
-        process: "readonly",
-      },
+    rules: {
+      // Existing JSX copy uses raw ampersands/apostrophes by design.
+      "react/no-unescaped-entities": "off",
     },
   },
 ];

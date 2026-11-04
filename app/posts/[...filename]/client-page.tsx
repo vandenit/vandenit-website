@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Container, Section, Flex, Badge } from "@radix-ui/themes";
 import { MarkdownRenderer } from "../../../components/markdown-renderer";
 import { ArticleToc } from "../../../components/article/article-toc";
-import type { Post, Author } from '.contentlayer/generated';
+import type { Post, Author } from '../../../lib/contentlayer';
 
 interface ClientPostProps {
   post: Post & { authorData?: Author };

@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { Flex, Box, Heading, Text, Container, Section } from '@radix-ui/themes';
 import { TagFilterPanel } from "./tag-filter-panel";
-import type { Post, Author } from '.contentlayer/generated';
+import type { Post, Author } from '../../lib/contentlayer';
 
 interface ClientPostProps {
   posts: (Post & { authorData?: Author })[];

@@ -10,7 +10,7 @@ The website for [Vanden IT](https://vandenit.be) — the personal site and blog 
 
 ## Tech stack
 
-- **Next.js 14** (App Router) + **Contentlayer** for content (`content/posts/*.mdx`, `content/pages/*.md`, `content/authors/*.md`)
+- **Next.js 16** (App Router, Turbopack) + **React 19** on a light build-time content pipeline (`node:fs` + `gray-matter` reading `content/posts/*.mdx`, `content/pages/*.md`, `content/authors/*.md` — content management is agent-driven via git)
 - **Radix UI Themes** for the design system
 - Deployed via **GitHub Actions → Docker → DigitalOcean Kubernetes**, behind Cloudflare
 
@@ -23,20 +23,18 @@ The website for [Vanden IT](https://vandenit.be) — the personal site and blog 
 ## Development
 
 ```bash
-npm install
-npx contentlayer build
-npx next dev -p 3000
+pnpm install
+pnpm dev
 ```
 
 Notes:
 
-- Use `npx contentlayer build && npx next dev` — `npm run dev` is wired to `contentlayer dev`, which crashes on a clipanion TypeError (known upstream incompatibility between contentlayer 0.3.x and newer clipanion versions; the explicit command is the workaround).
-- After changing `contentlayer.config.ts`, clear the cache first: `rm -rf .contentlayer && npx contentlayer build`.
-- The `/skills` pages are generated from `skills/**/*.md` at build time — no runtime filesystem access. Add a `.md` file under a subdirectory of `skills/` and it appears in the index.
+- The content pages are generated from `content/` and `skills/` at build time — no runtime filesystem access. Add a `.md` file under a subdirectory of `skills/` and it appears in the index.
+- `pnpm build` produces the standalone bundle; `content/` is traced into it (`outputFileTracingIncludes`) and copied again in the Docker runner stage.
 
 ## Adding content
 
-- **Blog post**: add `content/posts/<slug>.mdx` with Contentlayer frontmatter (`title`, `date`, `excerpt`, `author: content/authors/filip.md`, `tags`). The only author is `filip`.
+- **Blog post**: add `content/posts/<slug>.mdx` with frontmatter (`title`, `date`, `excerpt`, `author: content/authors/filip.md`, `tags`). The only author is `filip`.
 - **Skills documentation**: add or edit markdown files under `skills/<collection>/`. The site picks them up automatically, and each page links back to its source file on GitHub.
 
 ## Contact
