@@ -17,7 +17,7 @@ export default function Header() {
       className="vdit-header"
       style={{ zIndex: 100 }}
     >
-      <header>
+      <header data-testid="site-header">
         <Container size="3" px="6">
           <NavItems navs={header?.nav ?? []} />
         </Container>

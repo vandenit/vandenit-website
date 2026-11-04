@@ -65,7 +65,7 @@ export default async function SkillDocPage({ params }: PageProps) {
   return (
     <Layout>
     <Section size="3" pt={{ initial: "7", sm: "9" }} className="vdit-article-section">
-      <article aria-labelledby="skills-doc-title">
+      <article aria-labelledby="skills-doc-title" data-testid="skill-doc-article">
         <Container size="3" px="6">
           <header className="vdit-article-header">
             <div className="vdit-article-kicker">
@@ -74,7 +74,7 @@ export default async function SkillDocPage({ params }: PageProps) {
               </span>
             </div>
 
-            <h1 id="skills-doc-title" className="vdit-article-title">
+            <h1 id="skills-doc-title" className="vdit-article-title" data-testid="skill-doc-title">
               {doc.title}
             </h1>
 
@@ -136,7 +136,7 @@ export default async function SkillDocPage({ params }: PageProps) {
             </aside>
 
             <div className="vdit-article-body">
-              <div className="vdit-article-content">
+              <div className="vdit-article-content" data-testid="skill-doc-content">
                 <MarkdownRenderer content={doc.content} />
               </div>
             </div>

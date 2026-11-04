@@ -37,3 +37,13 @@ public/admin/
 out/
 dist/tsconfig.tsbuildinfo
 tsconfig.tsbuildinfo
+
+# Factory sensor + evidence (untracked by design; spec.json IS tracked)
+.factory/evidence/
+__pycache__/
+*.pyc
+.worktrees/
+
+# Playwright artifacts
+test-results/
+playwright-report/
