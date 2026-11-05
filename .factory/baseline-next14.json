@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "run_id": "full-20261104-130226",
+  "repo": "vandenit-website",
+  "branch": "NEXT16-CONTENT-PIPELINE",
+  "commit_sha": "3273011bf2a2dce737f3da54eff71101bc27339f",
+  "change_class": "deps",
+  "tier": "full",
+  "started_at": "2026-11-04T13:03:06Z",
+  "duration_ms": 39870,
+  "overall_status": "PASS",
+  "guards": {
+    "spec_present": true,
+    "path_guard_triggered": false,
+    "secret_guard_triggered": false,
+    "assertions_weakened": 0
+  },
+  "steps": [
+    {
+      "name": "spec-guard",
+      "status": "PASS",
+      "duration_ms": 0,
+      "actionable_failures": []
+    },
+    {
+      "name": "path-assertion-guard",
+      "status": "PASS",
+      "duration_ms": 2,
+      "actionable_failures": [],
+      "sensor_base": "3273011bf2a2dce737f3da54eff71101bc27339f",
+      "sensor_mode": "intro",
+      "sensor_changes": []
+    },
+    {
+      "name": "secret-guard",
+      "status": "PASS",
+      "duration_ms": 12,
+      "actionable_failures": []
+    },
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "duration_ms": 4040,
+      "actionable_failures": []
+    },
+    {
+      "name": "lint",
+      "status": "PASS",
+      "duration_ms": 888,
+      "actionable_failures": []
+    },
+    {
+      "name": "production-build",
+      "status": "PASS",
+      "duration_ms": 29450,
+      "actionable_failures": []
+    },
+    {
+      "name": "playwright-smoke",
+      "status": "PASS",
+      "duration_ms": 5430,
+      "actionable_failures": []
+    }
+  ],
+  "artifacts": {
+    "diffstat": " .eslintrc.json                                     |   6 -\n .factory/spec.json                                 |  23 ++\n .gitignore                                         |  10 +\n app/posts/[...filename]/client-page.tsx            |   8 +-\n app/posts/client-page.tsx                          |   6 +-\n app/posts/tag-filter-panel.tsx                     |   6 +-\n app/skills/[...slug]/page.tsx                      |   6 +-\n app/skills/page.tsx                                |   4 +-\n components/blocks/about-header.tsx                 |   2 +-\n components/blocks/contact-hero.tsx                 |   2 +-\n components/blocks/engagement-process.tsx           |   2 +-\n components/blocks/hero.tsx                         |   3 +-\n components/markdown-renderer.tsx                   |  10 +-\n components/nav/footer.tsx                          |   2 +-\n components/nav/header.tsx                          |   2 +-\n ...UtxSNLoP-vandenit-website-next-js-16-upgrade.md | 258 +++++++++++++++++++\n eslint.config.mjs                                  |  42 ++++\n package.json                                       |   3 +-\n playwright.config.ts                               |  40 +++\n pnpm-lock.yaml                                     |  39 ++-\n scripts/verify/__init__.py                         |   1 +\n scripts/verify/cleanup.py                          | 116 +++++++++\n scripts/verify/gitutil.py                          | 195 +++++++++++++++\n scripts/verify/guards.py                           | 274 +++++++++++++++++++++\n scripts/verify/main.py                             | 188 ++++++++++++++\n scripts/verify/report.py                           |  47 ++++\n scripts/verify/steps.py                            | 171 +++++++++++++\n tests/e2e/smoke.spec.ts                            | 133 ++++++++++\n verify                                             |  21 ++\n 29 files changed, 1584 insertions(+), 36 deletions(-)\n",
+    "report_path": ".factory/evidence/full-20261104-130226/report.json",
+    "steps_log_dir": ".factory/evidence/full-20261104-130226/steps"
+  },
+  "notes": [
+    "guards report the verdict about the diff, not sensor health; overall_status takes the worst verdict (DRAFT_NEEDS_SPEC > ESCALATE_PATH_GUARD > FAIL > PASS; semantics documented in .factory/spec.json origin)",
+    "path-assertion-guard base: mode=intro, base=3273011bf2a2",
+    "sensor changes on frozen paths since base: 0"
+  ]
+}

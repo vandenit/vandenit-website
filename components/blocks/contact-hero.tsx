@@ -35,7 +35,7 @@ export const ContactHero = ({ data }: { data: ContactHeroData }) => {
       className="vdit-content-section vdit-contact-hero-section"
     >
       <Container size="3" px="6">
-        <div className="vdit-contact-hero">
+        <div className="vdit-contact-hero" data-testid="contact-hero">
           {/* Subtle cobalt system rule */}
           <div className="vdit-contact-rule" aria-hidden="true" />
 

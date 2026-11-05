@@ -32,7 +32,7 @@ export const AboutHeader = ({ data }: { data: AboutHeaderData }) => {
       className="vdit-content-section vdit-about-header-section"
     >
       <Container size="3" px="6">
-        <header className="vdit-about-header">
+        <header className="vdit-about-header" data-testid="about-header">
           {/* Cobalt system rule */}
           <div className="vdit-about-rule" aria-hidden="true" />
 

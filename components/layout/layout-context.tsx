@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useContext } from "react";
-import type { Global } from '.contentlayer/generated';
+import type { Global } from '../../lib/contentlayer';
 
 interface LayoutState {
   globalSettings: Global | null;

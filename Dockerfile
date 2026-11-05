@@ -50,6 +50,11 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Raw content files: the build-time content pipeline reads them during
+# `next build` (generateStaticParams + static rendering), so the runtime
+# never needs them — they are traced into the standalone bundle as well.
+COPY --from=builder /app/content ./content
+
 USER nextjs
 
 EXPOSE 3000

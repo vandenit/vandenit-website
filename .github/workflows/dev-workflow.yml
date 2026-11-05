@@ -5,20 +5,27 @@
 # the DOKS cluster `k8s-1-vandenit-ams3-dev`), this pipeline deploys the
 # LIVE production environment.
 #
-# Triggers:
-# - push to `main` (direct pushes and merged PRs) — automatic deploy
-# - workflow_dispatch — manual re-deploy from `main`, via the GitHub
-#   Actions UI or `gh workflow run dev-workflow.yml --ref main`
+# Release-line model:
+# - `main` is the development branch; pushes and merged PRs to `main`
+#   trigger NO deploy.
+# - `production` is the release line: pushes/merged PRs to `production`
+#   (a PR from `main` into `production`) deploy to live.
+# - Feature-branch pushes trigger NO deploy; preview deployments do not
+#   exist.
+# - Manual re-deploy of the current release: `gh workflow run
+#   dev-workflow.yml --ref production` (or the "Run workflow" button in
+#   the GitHub Actions UI).
 #
-# Feature-branch pushes trigger NO deploy; preview deployments do not
-# exist.
+# The `production` branch is protected (PR required, no force pushes or
+# deletions), so a release is always an explicit merge of code that came
+# through `main`.
 
 name: Deploy to Digital Ocean Kubernetes.
 
 on:
   push:
     branches:
-      - main
+      - production
   workflow_dispatch:
 
 jobs:

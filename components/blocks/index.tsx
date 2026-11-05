@@ -11,7 +11,7 @@ import { ActionsBlock } from "./action-block";
 import { ImageHeader } from "./imageHeader";
 import { EngagementProcess } from "./engagement-process";
 import { DecisionTrace } from "./decision-trace";
-import type { Page } from '.contentlayer/generated';
+import type { Page } from '../../lib/contentlayer';
 
 export const Blocks = (props: Page) => {
   return (

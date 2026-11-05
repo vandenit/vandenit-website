@@ -175,11 +175,15 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             </li>
           ),
 
-          // Images
+          // Images — block-level <span> wrapper (NOT a <div>): react-markdown
+          // wraps standalone images in <p>, and <div> inside <p> is invalid
+          // HTML that breaks hydration (React #418: server/client trees are
+          // reparented differently). A display:block <span> is valid p-content
+          // and renders exactly like the former block-level wrapper.
           img: ({ src, alt }: any) => {
             if (!src) return null;
             return (
-              <div style={{ margin: '1rem 0', textAlign: 'center' }}>
+              <span style={{ display: 'block', margin: '1rem 0', textAlign: 'center' }}>
                 <Image
                   src={src}
                   alt={alt || ''}
@@ -191,7 +195,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                     borderRadius: '8px'
                   }}
                 />
-              </div>
+              </span>
             );
           },
           

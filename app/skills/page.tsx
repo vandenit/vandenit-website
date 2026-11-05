@@ -29,7 +29,7 @@ export default function SkillsIndexPage() {
             <span className="vdit-kicker">Documentation</span>
           </div>
 
-          <h1 id="skills-doc-title" className="vdit-article-title">
+          <h1 id="skills-doc-title" className="vdit-article-title" data-testid="skills-heading">
             Skills &amp; Playbooks
           </h1>
 
@@ -66,7 +66,7 @@ export default function SkillsIndexPage() {
           const isReadme = (f: string) => f.toLowerCase() === "readme.md";
 
           return (
-            <Box key={collection} mb="6">
+            <Box key={collection} mb="6" data-testid={`skill-collection-${collection}`}>
               <Flex align="baseline" gap="3" mb="2">
                 <h2
                   style={{
